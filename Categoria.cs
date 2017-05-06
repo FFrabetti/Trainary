@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trainary
 {
-    class Categoria
+    public class Categoria
     {
         private string _nome;
         private ISet<Attivita> _attivita;

@@ -2,7 +2,7 @@
 
 namespace Trainary
 {
-    class Attivita
+    public class Attivita
     {
         private string _nome;
         private string _descrizione;
