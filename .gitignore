@@ -1,0 +1,8 @@
+/bin
+/obj
+/Properties
+*.config
+*.xaml
+*.csproj
+App.xaml.cs
+MainWindow.xaml.cs
