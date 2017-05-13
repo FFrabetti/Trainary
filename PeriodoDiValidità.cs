@@ -8,14 +8,16 @@ namespace Trainary
 {
     public struct PeriodoDiValidità
     {
-        private DateTime _dataInizio, _dataFine;
+        private readonly DateTime _dataInizio;
+        private readonly DateTime _dataFine;
+
         public PeriodoDiValidità(DateTime dataInizio, DateTime dataFine)
         {
-            // controllo sulle date
-            if (dataInizio == null)
+            if (dataInizio == null || (DateTime.Compare(dataInizio, DateTime.Today) < 0))
                 throw new ArgumentNullException("dataInizio");
-            if (dataFine == null)
+            if (dataFine == null || (DateTime.Compare(dataFine, dataInizio) <= 0))
                 throw new ArgumentNullException("dataFine");
+
             _dataInizio = dataInizio;
             _dataFine = dataFine;
         }
@@ -32,17 +34,18 @@ namespace Trainary
         public bool IsNelPeriodo(DateTime data)
         {
             return data.CompareTo(_dataInizio) >= 0 && data.CompareTo(_dataFine) <= 0;
+
+            //return (DateTime.Compare(data, _dataInizio) >= 0) && (DateTime.Compare(data, _dataFine) <= 0);
         }
 
         public TimeSpan GetDurata()
         {
-            return _dataFine - _dataInizio;
-
+            return DataFine - DataInizio;
         }
+
         public override string ToString()
         {
-            // da stampare con il locale corrente
-            return "da "+_dataInizio+" a "+DataFine;
+            return "Periodo di validità:\nda " + _dataInizio.ToLocalTime().ToString() + " a " + _dataFine.ToLocalTime().ToString();
         }
     }
 }

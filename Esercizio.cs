@@ -8,8 +8,9 @@ namespace Trainary
 {
 	public abstract class Esercizio
 	{
-        private Attivita _attivita;
-        private Attributo[] _targets;
+        private readonly Attivita _attivita;
+        private readonly Attributo[] _targets;
+
         public Esercizio(Attivita attivita, Attributo[] targets)
         {
             if (attivita == null)
@@ -34,6 +35,7 @@ namespace Trainary
                 return _targets;
             }
         }
+
         public override string ToString()
         {
 
