@@ -5,48 +5,44 @@ namespace Trainary
 {
     public class Attivita : IComparable<Attivita>
     {
-        private string _nome;
+        private readonly string _nome;
         private string _descrizione;
         private string[] _attrezzi;
-        //private Categoria _categoria;
 
         public Attivita(string nome, string descrizione, string[] attrezzi)
         {
             if (nome == null)
                 throw new ArgumentNullException("nome");
-            //if (categoria == null)
-            //    throw new ArgumentNullException("categoria");
-            if (attrezzi == null)
-                throw new ArgumentNullException("attrezzi");
+            if (nome.Length == 0)
+                throw new ArgumentException("empty nome");
 
             _nome = nome;
-            //_categoria = categoria;
-            _descrizione = descrizione != null ? descrizione : "";
+            // attributi opzionali
+            // usano il micro-pattern nella get
+            _descrizione = descrizione;
             _attrezzi = attrezzi;
         }
 
         public Attivita(string nome, string descrizione)
-            : this(nome, descrizione, new string[0]) { }
+            : this(nome, descrizione, null) { }
 
         public Attivita(string nome, string[] attrezzi)
             : this(nome, null, attrezzi) { }
 
         public Attivita(string nome)
-            : this(nome, (string)null) // usa Attivita(string nome, string descrizione)
-        { }
+            : this(nome, null, null) { }
 
         public string Nome
         {
-            get
-            {
-                return _nome;
-            }
+            get { return _nome; }
         }
 
         public string Descrizione
         {
             get
             {
+                if (_descrizione == null)
+                    _descrizione = "";
                 return _descrizione;
             }
         }
@@ -55,17 +51,11 @@ namespace Trainary
         {
             get
             {
+                if (_attrezzi == null)
+                    _attrezzi = new string[0];
                 return _attrezzi;
             }
         }
-
-        //public Categoria Categoria
-        //{
-        //    get
-        //    {
-        //        return _categoria;
-        //    }
-        //}
 
         public override string ToString()
         {
@@ -76,7 +66,7 @@ namespace Trainary
         internal string FullToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(Nome);
+            sb.Append(_nome);
 
             if (Descrizione.Length > 0)
                 sb.Append(" (" + Descrizione + ")");
@@ -101,7 +91,7 @@ namespace Trainary
         // per IComparable<Attivita>
         public int CompareTo(Attivita other)
         {
-            return Nome.CompareTo(other.Nome);
+            return _nome.CompareTo(other.Nome);
         }
     }
 }
