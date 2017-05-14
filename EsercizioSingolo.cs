@@ -8,7 +8,7 @@ namespace Trainary
 {
     public class EsercizioSingolo : Esercizio
     {
-        public EsercizioSingolo(Attivita attivita, Attributo[] targets) : base(attivita, targets)
+        public EsercizioSingolo(Attivita attivita, IAttributo[] targets) : base(attivita, targets)
         {
 
         }

@@ -9,9 +9,9 @@ namespace Trainary
 	public abstract class Esercizio
 	{
         private readonly Attivita _attivita;
-        private readonly Attributo[] _targets;
+        private readonly IAttributo[] _targets;
 
-        public Esercizio(Attivita attivita, Attributo[] targets)
+        public Esercizio(Attivita attivita, IAttributo[] targets)
         {
             if (attivita == null)
                 throw new ArgumentNullException("attivita");
@@ -28,7 +28,7 @@ namespace Trainary
                 return _attivita;
             }
         }
-        public Attributo[] Targets
+        public IAttributo[] Targets
         {
             get
             {
@@ -40,7 +40,7 @@ namespace Trainary
         {
 
             String targetsToPrint = _attivita.ToString();
-            foreach (Attributo a in _targets)
+            foreach (IAttributo a in _targets)
             {
                 targetsToPrint += a;
                 targetsToPrint += " ";
