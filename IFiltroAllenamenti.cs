@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Trainary
 {
-    public interface FiltroAllenamenti
+    public interface IFiltroAllenamenti
     {
-        Allenamento[] Filtra(List<Allenamento> listaAllenamenti);
+        Allenamento[] Filtra(List<Allenamento> listaAllenamenti, object opzione);
     }
 }

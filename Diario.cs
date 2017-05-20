@@ -13,7 +13,9 @@ namespace Trainary
         private static Diario _instance;
 
         private Diario()
-        { }
+        {
+            _allenamenti = new List<Allenamento>();
+        }
 
         public static Diario GetInstance()
         {
@@ -30,11 +32,13 @@ namespace Trainary
             }
         }
 
-        public Allenamento[] FiltraAllenamenti(FiltroAllenamenti filtro)
+        public Allenamento[] FiltraAllenamenti(IFiltroAllenamenti filtro, Object opzione)
         {
             if (filtro == null)
                 throw new ArgumentNullException("filtro");
-            return filtro.Filtra(_allenamenti);
+            if (opzione == null)
+                throw new ArgumentNullException("opzione");
+            return filtro.Filtra(_allenamenti, opzione);
         }
     }
 }
