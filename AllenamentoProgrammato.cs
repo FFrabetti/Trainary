@@ -8,11 +8,11 @@ namespace Trainary
 {
     public class AllenamentoProgrammato : Allenamento
     {
-        private Seduta _seduta;
+        private readonly Seduta _seduta;
         public AllenamentoProgrammato(DateTime data,EsercizioSvolto[] eserciziSvolti,Seduta seduta) : base(data,eserciziSvolti)
         {
             if (seduta == null)
-                throw new ArgumentException("seduta");
+                throw new ArgumentNullException("seduta");
             _seduta = seduta;
         }
         public Seduta Seduta

@@ -9,14 +9,17 @@ namespace Trainary
     public class AllenamentoExtra : Allenamento
     {
         private string _nome;
+
         public AllenamentoExtra(DateTime data,EsercizioSvolto[] eserciziSvolti,string nome) : base(data, eserciziSvolti)
         {
-            _nome = nome;
+            Nome = nome;
         }
+
         public AllenamentoExtra(DateTime data, EsercizioSvolto[] eserciziSvolti) : this(data, eserciziSvolti, null)
         {
 
         }
+
         public string Nome
         {
             get
@@ -26,7 +29,7 @@ namespace Trainary
             set
             {
                 if (value == null)
-                    throw new ArgumentException("value");
+                   value = "";
                 _nome = value;
             }
         }
