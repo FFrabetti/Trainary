@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Trainary
 {
@@ -10,7 +6,7 @@ namespace Trainary
     {
         private string _nome;
 
-        public AllenamentoExtra(DateTime data,EsercizioSvolto[] eserciziSvolti,string nome) : base(data, eserciziSvolti)
+        public AllenamentoExtra(DateTime data, EsercizioSvolto[] eserciziSvolti, string nome) : base(data, eserciziSvolti)
         {
             Nome = nome;
         }

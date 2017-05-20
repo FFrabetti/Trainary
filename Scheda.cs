@@ -12,10 +12,10 @@ namespace Trainary
         private string _nome;
         private ScopoDellaScheda _scopo;
         private string _descrizione;
-        private PeriodoDiValidità _periodoDiValidita;
+        private PeriodoDiValidita _periodoDiValidita;
         private readonly ISet<Seduta> _sedute;
 		
-        public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, PeriodoDiValidità periodoDiValidita, ISet<Seduta> sedute)
+        public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, PeriodoDiValidita periodoDiValidita, ISet<Seduta> sedute)
         {
             if (String.IsNullOrEmpty(nome))
                 throw new ArgumentNullException("nome");
@@ -29,13 +29,13 @@ namespace Trainary
             _sedute = sedute;
         }
 
-        public Scheda(string nome, ScopoDellaScheda scopo, PeriodoDiValidità periodoDiValidita, ISet<Seduta> sedute)
+        public Scheda(string nome, ScopoDellaScheda scopo, PeriodoDiValidita periodoDiValidita, ISet<Seduta> sedute)
             : this(nome, scopo, null, periodoDiValidita, sedute) { }
 
-        public Scheda(string nome, string descrizione, PeriodoDiValidità periodoDiValidita, ISet<Seduta> sedute)
+        public Scheda(string nome, string descrizione, PeriodoDiValidita periodoDiValidita, ISet<Seduta> sedute)
             : this(nome, ScopoDellaScheda.None, descrizione, periodoDiValidita, sedute) { }
 
-        public Scheda(string nome, PeriodoDiValidità periodoDiValidita, ISet<Seduta> sedute)
+        public Scheda(string nome, PeriodoDiValidita periodoDiValidita, ISet<Seduta> sedute)
             : this(nome, ScopoDellaScheda.None, null, periodoDiValidita, sedute) { }
 
         public string Nome {
@@ -60,7 +60,7 @@ namespace Trainary
             }
         }
 
-        public PeriodoDiValidità PeriodoDiValidita {
+        public PeriodoDiValidita PeriodoDiValidita {
             get
             {
                return _periodoDiValidita;

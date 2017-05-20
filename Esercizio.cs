@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Trainary.attributi;
 
 namespace Trainary
 {
-	public abstract class Esercizio
+    public abstract class Esercizio
 	{
         private readonly Attivita _attivita;
         private readonly IAttributo[] _targets;
@@ -29,6 +25,7 @@ namespace Trainary
                 return _attivita;
             }
         }
+
         public IAttributo[] Targets
         {
             get
@@ -42,11 +39,10 @@ namespace Trainary
             return new EsercizioSvolto(this);
         }
 
-        public override string ToString()
+        public string FullToString()
         {
-
             String targetsToPrint = _attivita.ToString();
-            foreach (Attributo a in _targets)
+            foreach (IAttributo a in _targets)
             {
                 targetsToPrint += a;
                 targetsToPrint += " ";

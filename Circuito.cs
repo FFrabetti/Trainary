@@ -6,10 +6,14 @@ namespace Trainary
     public class Circuito : Esercizio
     {
         private readonly Esercizio[] _esercizi;
+
         public Circuito(Attivita attivita, IAttributo[] targets, Esercizio[] esercizi) : base(attivita, targets)
         {
             if (esercizi == null)
                 throw new ArgumentNullException("esercizi");
+            if (esercizi.Length < 2)
+                throw new ArgumentException("un circuito deve contenere almeno 2 esercizi");
+
             _esercizi = esercizi;
         }
 
@@ -20,7 +24,7 @@ namespace Trainary
             }
         }
 
-        public override string ToString()
+        public string FullToString()
         {
             String circuitoToPrint = "";
             int i = 1;
