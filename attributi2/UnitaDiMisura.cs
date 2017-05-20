@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Trainary.attributi2
 {
-    public abstract class UnitaDiMisura
+    public abstract partial class UnitaDiMisura
     {
-        #region scope: class (static)
+
+        #region Factory - scope: class (static)
 
         private static readonly Dictionary<string, UnitaDiMisura> _dictionary = new Dictionary<string, UnitaDiMisura>();
 
         static UnitaDiMisura()
         {
-            UnitaDiMisura numeroPuro = new UnitaBase("numero puro", "", Type.PURE_NUMBER);
-            UnitaDiMisura metre = new UnitaBase("metro", "m", Type.LENGTH);
-            UnitaDiMisura kilogram = new UnitaBase("kilogrammo", "kg", Type.MASS);
-            UnitaDiMisura second = new UnitaBase("secondo", "s", Type.TIME);
+            UnitaDiMisura number = new UnitaBase("numero puro", "", TipoQuantita.PURE_NUMBER);
+            UnitaDiMisura metre = new UnitaBase("metro", "m", TipoQuantita.LENGTH);
+            UnitaDiMisura kilogram = new UnitaBase("kilogrammo", "kg", TipoQuantita.MASS);
+            UnitaDiMisura second = new UnitaBase("secondo", "s", TipoQuantita.TIME);
 
-            UnitaDiMisura gram = new LinearUnita("grammo", "g", Type.MASS, kilogram, 0.001);
-            UnitaDiMisura kilometre = new LinearUnita("kilometro", "km", Type.LENGTH, metre, 1000);
+            UnitaDiMisura gram = new LinearUnita("grammo", "g", TipoQuantita.MASS, kilogram, 0.001);
+            UnitaDiMisura kilometre = new LinearUnita("kilometro", "km", TipoQuantita.LENGTH, metre, 1000);
 
-            _dictionary.Add("", numeroPuro);
+            _dictionary.Add("", number);
             _dictionary.Add("m", metre);
             _dictionary.Add("kg", kilogram);
             _dictionary.Add("s", second);
@@ -33,7 +33,7 @@ namespace Trainary.attributi2
             return _dictionary[simbolo];
         }
 
-        public static UnitaDiMisura GetBase(Type type)
+        public static UnitaDiMisura GetBase(TipoQuantita type)
         {
             foreach (UnitaDiMisura u in _dictionary.Values)
             {
@@ -43,7 +43,7 @@ namespace Trainary.attributi2
             return null;
         }
 
-        public static IEnumerable<UnitaDiMisura> GetOfType(Type type)
+        public static IEnumerable<UnitaDiMisura> GetOfType(TipoQuantita type)
         {
             List<UnitaDiMisura> lista = new List<UnitaDiMisura>();
             foreach (UnitaDiMisura u in _dictionary.Values)
@@ -60,10 +60,10 @@ namespace Trainary.attributi2
 
         private readonly string _nome;
         private readonly string _simbolo;
-        private readonly Type _tipo;
+        private readonly TipoQuantita _tipo;
         private readonly UnitaDiMisura _base;
 
-        private UnitaDiMisura(string nome, string simbolo, Type tipo, UnitaDiMisura uBase)
+        private UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura uBase)
         {
             if (string.IsNullOrEmpty(nome))
                 throw new ArgumentException("nome");
@@ -80,7 +80,7 @@ namespace Trainary.attributi2
 
         public string Simbolo { get { return _simbolo; } }
 
-        public Type Tipo { get { return _tipo; } }
+        public TipoQuantita Tipo { get { return _tipo; } }
 
         public bool isBase()
         {
@@ -105,12 +105,9 @@ namespace Trainary.attributi2
 
         #endregion
 
-
-        public enum Type { PURE_NUMBER, LENGTH, MASS, TIME }
-
         private class UnitaBase : UnitaDiMisura
         {
-            public UnitaBase(string nome, string simbolo, Type tipo)
+            public UnitaBase(string nome, string simbolo, TipoQuantita tipo)
                 : base(nome, simbolo, tipo, null) { }
 
             public override double fromSI(double value) { return value; }
@@ -122,7 +119,7 @@ namespace Trainary.attributi2
         {
             private readonly double _k;
 
-            public LinearUnita(string nome, string simbolo, Type tipo, UnitaDiMisura uBase, double k)
+            public LinearUnita(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura uBase, double k)
                 : base(nome, simbolo, tipo, uBase)
             {
                 if (k == 0)

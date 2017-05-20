@@ -2,37 +2,31 @@
 
 namespace Trainary.attributi2
 {
-    public class Quantita
+    static partial class QuantitaFactory
     {
-        private readonly double _valore;
-        private readonly UnitaDiMisura _unita;
-
-        public Quantita(double valore, UnitaDiMisura unita)
+        private abstract class Quantita : IQuantita
         {
-            if (unita == null)
-                throw new ArgumentNullException("unita");
+            public abstract TipoQuantita Tipo { get; }
+            public abstract double toStandard();
 
-            _valore = valore;
-            _unita = unita;
+            public static string FormatDouble(double value)
+            {
+                return FormatUtils.ToMaxTwoDecimals(value);
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (!(obj is IQuantita))
+                    throw new ArgumentException("obj is not IQuantita");
+
+                IQuantita that = (IQuantita)obj;
+                return Tipo == that.Tipo && toStandard() == that.toStandard();
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
-
-        public double Valore { get { return _valore; } }
-
-        public UnitaDiMisura Unita { get { return _unita; } }
-
-        public Quantita toSI()
-        {
-            if (_unita.isBase())
-                return this;
-
-            return new Quantita(_unita.toSI(_valore), _unita.getBase());
-        }
-
-        // Add ?
-
-        //public override bool Equals(object obj)
-        //{
-            
-        //}
     }
 }

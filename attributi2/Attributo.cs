@@ -1,18 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Trainary.attributi2
 {
-    interface Attributo
+    public class Attributo : IAttributo
     {
-        string Nome { get; }
-        double Valore{ get; }
-        UnitaDiMisura Unita { get; }
-        // Quantita ? 
-        
-        // ToString
+        private readonly string _nome;
+        private readonly IQuantita _quantita;
+
+        public Attributo(string nome, IQuantita quantita)
+        {
+            if (string.IsNullOrEmpty(nome))
+                throw new ArgumentException("nome");
+            if (quantita == null)
+                throw new ArgumentNullException("quantita");
+
+            _nome = nome;
+            _quantita = quantita;
+        }
+
+        public string Nome
+        {
+            get { return _nome; }
+        }
+
+        public IQuantita Quantita
+        {
+            get { return _quantita; }
+        }
+
+        public override string ToString()
+        {
+            return _nome + ": " + _quantita;
+        }
     }
 }
