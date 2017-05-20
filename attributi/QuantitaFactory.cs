@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Trainary.attributi2
+namespace Trainary.attributi
 {
     public static partial class QuantitaFactory
     {

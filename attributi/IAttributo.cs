@@ -1,13 +1,10 @@
-﻿namespace Trainary
+﻿namespace Trainary.attributi
 {
     public interface IAttributo
     {
-
-        double Valore { get; }
-        Units Unita { get; }
-
-        IAttributo Add(IAttributo that); // can throw exceptions
-        IAttributo ToStandard();
-        // ToString()
+        string Nome { get; }
+        IQuantita Quantita { get; } 
+        
+        // ToString
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainary.attributi2
+namespace Trainary.attributi
 {
     public abstract partial class UnitaDiMisura
     {

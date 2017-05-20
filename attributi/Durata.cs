@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Trainary.attributi2
+namespace Trainary.attributi
 {
     static partial class QuantitaFactory
     {
