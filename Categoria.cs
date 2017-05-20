@@ -10,9 +10,6 @@ namespace Trainary
         private readonly IEnumerable<Attivita> _attivita;
         private readonly IEnumerable<Categoria> _sottoCategorie;
 
-        private static readonly IEnumerable<Attivita> EMPTY_ATTIVITA = new Attivita[0];
-        private static readonly IEnumerable<Categoria> EMPTY_CATEGORIA = new Categoria[0];
-
         public Categoria(string nome, IEnumerable<Attivita> attivita, IEnumerable<Categoria> sottoCategorie)
         {
             if (nome == null)
@@ -20,14 +17,9 @@ namespace Trainary
             if (nome.Length == 0)
                 throw new ArgumentException("empty nome");
 
-            // categoria vuota, senza attività e senza sottoCategorie ???
-            //if (attivita == null && sottoCategorie == null)
-            // nel caso bisogna anche controllare se sono empty
-            //    throw new ArgumentNullException("attivita==null && sottoCategoria==null");
-
             _nome = nome;
-            _attivita = attivita != null ? new SortedSet<Attivita>(attivita) : EMPTY_ATTIVITA;
-            _sottoCategorie = sottoCategorie != null ? new SortedSet<Categoria>(sottoCategorie) : EMPTY_CATEGORIA;
+            _attivita = attivita != null ? new SortedSet<Attivita>(attivita) : new SortedSet<Attivita>();
+            _sottoCategorie = sottoCategorie != null ? new SortedSet<Categoria>(sottoCategorie) : new SortedSet<Categoria>();
         }
 
         public Categoria(string nome, IEnumerable<Attivita> attivita) 
@@ -36,7 +28,8 @@ namespace Trainary
         public Categoria(string nome, IEnumerable<Categoria> sottoCategorie)
             : this(nome, null, sottoCategorie) { }
 
-        //public Categoria(string nome) : this(nome, null, null) { }
+        // per la radice
+        public Categoria(string nome) : this(nome, null, null) { }
 
         public string Nome
         {
