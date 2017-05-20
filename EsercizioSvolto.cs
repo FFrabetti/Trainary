@@ -1,33 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Trainary
 {
     public class EsercizioSvolto
     {
-        private Esercizio _esercizio;
-        private List<Attributo> _dati;
+        private readonly Esercizio _esercizio;
+        private readonly List<Attributo> _dati;
+
         public EsercizioSvolto(Esercizio esercizio)
         {
             if (esercizio == null)
-                throw new ArgumentException("esercizio");
+                throw new ArgumentNullException("esercizio");
             _esercizio = esercizio;
             _dati = new List<Attributo>();
         }
-        public void AggiungiDato(Attributo dato)
+
+        public Esercizio Esercizio
         {
-            if (dato == null)
-                throw new ArgumentException("dato");
-            if (!_dati.Contains(dato))
-                _dati.Add(dato);
+            get { return _esercizio; }
         }
-        public void RimuoviDato(Attributo dato)
+
+        public List<Attributo> Dati
         {
-            if(_dati.Contains(dato))
-            _dati.Remove(dato);
+            get { return _dati; }
         }
     }
 }
