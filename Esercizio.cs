@@ -36,6 +36,11 @@ namespace Trainary
             }
         }
 
+        public EsercizioSvolto Svolgi()
+        {
+            return new EsercizioSvolto(this);
+        }
+
         public override string ToString()
         {
 

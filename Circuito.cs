@@ -9,7 +9,7 @@ namespace Trainary
     public class Circuito : Esercizio
     {
         private readonly Esercizio[] _esercizi;
-        public Circuito(Attivita attivita, Attributo[] targets, Esercizio[] esercizi) : base(attivita, targets)
+        public Circuito(Attivita attivita, IAttributo[] targets, Esercizio[] esercizi) : base(attivita, targets)
         {
             if (esercizi == null)
                 throw new ArgumentNullException("esercizi");

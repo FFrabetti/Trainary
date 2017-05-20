@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Trainary
 {
-    public interface Attributo
+    static class FormatUtils
     {
+        public static string ToMaxTwoDecimals(double value)
+        {
+            return value.ToString("0.##");
+        }
     }
 }
