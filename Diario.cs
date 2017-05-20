@@ -32,7 +32,7 @@ namespace Trainary
             }
         }
 
-        public Allenamento[] FiltraAllenamenti(IFiltroAllenamenti filtro, Object opzione)
+        public Allenamento[] FiltraAllenamenti(IFiltroAllenamenti filtro, object opzione)
         {
             if (filtro == null)
                 throw new ArgumentNullException("filtro");
