@@ -9,13 +9,25 @@ namespace Trainary
     {
         public static void Main(string[] args)
         {
-            TestCategoriaAttivita();
-            Separator();
-            TestFormat();
-            Separator();
-            TestAttributoTempo();
+            //TestCategoriaAttivita();
+            //Separator();
+            //TestFormat();
+            //Separator();
+            //TestAttributoTempo();
+            TestPeriodoDiValidita();
 
             Console.ReadLine(); 
+        }
+
+        private static void TestPeriodoDiValidita()
+        {
+            DateTime inizio = DateTime.Today;
+            DateTime fine = inizio.Add(new TimeSpan(1, 0, 0, 0));
+            PeriodoDiValidita periodo = new PeriodoDiValidita(inizio, fine);
+            DateTime prova = default(DateTime);
+            Console.WriteLine("default = {1} ({0})", periodo.IsNelPeriodo(prova), default(DateTime));
+            Console.WriteLine("ToString = {0}", periodo);
+            Console.WriteLine("FullToString = {0}", periodo.FullToString());
         }
 
         public static void Separator()
