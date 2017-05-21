@@ -18,16 +18,6 @@ namespace Trainary.attributi
                 _unita = unita;
             }
 
-            public double Valore
-            {
-                get { return _valore; }
-            }
-
-            public UnitaDiMisura Unita
-            {
-                get { return _unita; }
-            }
-
             public override TipoQuantita Tipo
             {
                 get { return _unita.Tipo; }

@@ -7,24 +7,19 @@ namespace Trainary.attributi
     {
         private class Durata : Quantita
         {
-            private readonly TimeSpan _timeSpan;
+            private readonly TimeSpan _durata;
 
-            public Durata(TimeSpan timeSpan)
+            public Durata(TimeSpan durata)
             {
-                if (timeSpan == null)
+                if (durata == null)
                     throw new ArgumentNullException("timeSpan");
 
-                _timeSpan = timeSpan;
+                _durata = durata;
             }
 
             public Durata(int h, int m, int s) : this(new TimeSpan(h, m, s))
             {
                 // negative values?
-            }
-
-            public TimeSpan TimeSpan
-            {
-                get { return _timeSpan; }
             }
 
             public override TipoQuantita Tipo
@@ -34,20 +29,20 @@ namespace Trainary.attributi
 
             public override double toStandard()
             {
-                return _timeSpan.TotalSeconds;
+                return _durata.TotalSeconds;
             }
 
             public override string ToString()
             {
                 StringBuilder sb = new StringBuilder();
-                if (_timeSpan.Days != 0)
-                    sb.Append(_timeSpan.Days + " days ");
-                if (_timeSpan.Hours != 0)
-                    sb.Append(_timeSpan.Hours + "h ");
-                if (_timeSpan.Minutes != 0)
-                    sb.Append(_timeSpan.Minutes + "m ");
-                if (_timeSpan.Seconds != 0 || _timeSpan.Milliseconds != 0)
-                    sb.Append((_timeSpan.Seconds + _timeSpan.Milliseconds / 1000.0) + "s");
+                if (_durata.Days != 0)
+                    sb.Append(_durata.Days + " days ");
+                if (_durata.Hours != 0)
+                    sb.Append(_durata.Hours + "h ");
+                if (_durata.Minutes != 0)
+                    sb.Append(_durata.Minutes + "m ");
+                if (_durata.Seconds != 0 || _durata.Milliseconds != 0)
+                    sb.Append((_durata.Seconds + _durata.Milliseconds / 1000.0) + "s");
 
                 return sb.ToString().TrimEnd();
             }

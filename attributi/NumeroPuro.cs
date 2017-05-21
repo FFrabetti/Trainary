@@ -4,11 +4,11 @@
     {
         private class NumeroPuro : Quantita
         {
-            private double _value;
+            private readonly double _valore;
 
-            public NumeroPuro(double value)
+            public NumeroPuro(double valore)
             {
-                _value = value;
+                _valore = valore;
             }
 
             public override TipoQuantita Tipo
@@ -18,12 +18,12 @@
 
             public override double toStandard()
             {
-                return _value;
+                return _valore;
             }
 
             public override string ToString()
             {
-                return FormatDouble(_value);
+                return FormatDouble(_valore);
             }
         }
     }

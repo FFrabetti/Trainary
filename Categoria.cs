@@ -7,8 +7,8 @@ namespace Trainary
     public class Categoria : IComparable<Categoria>
     {
         private readonly string _nome;
-        private readonly IEnumerable<Attivita> _attivita;
-        private readonly IEnumerable<Categoria> _sottoCategorie;
+        private readonly SortedSet<Attivita> _attivita;
+        private readonly SortedSet<Categoria> _sottoCategorie;
 
         public Categoria(string nome, IEnumerable<Attivita> attivita, IEnumerable<Categoria> sottoCategorie)
         {

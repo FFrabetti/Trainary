@@ -33,22 +33,22 @@ namespace Trainary.attributi
             return _dictionary[simbolo];
         }
 
-        public static UnitaDiMisura GetBase(TipoQuantita type)
+        public static UnitaDiMisura GetBase(TipoQuantita tipo)
         {
             foreach (UnitaDiMisura u in _dictionary.Values)
             {
-                if (u.Tipo == type && u.isBase())
+                if (u.Tipo == tipo && u.isBase())
                     return u;
             }
             return null;
         }
 
-        public static IEnumerable<UnitaDiMisura> GetOfType(TipoQuantita type)
+        public static IEnumerable<UnitaDiMisura> GetAllOfType(TipoQuantita tipo)
         {
             List<UnitaDiMisura> lista = new List<UnitaDiMisura>();
             foreach (UnitaDiMisura u in _dictionary.Values)
             {
-                if (u.Tipo == type)
+                if (u.Tipo == tipo)
                     lista.Add(u);
             }
             return lista;
@@ -87,7 +87,7 @@ namespace Trainary.attributi
             return _base == null;
         }
 
-        public UnitaDiMisura getBase() // ricorsivo
+        public UnitaDiMisura getBase() // ricorsiva
         {
             if (isBase())
                 return this;
@@ -95,10 +95,10 @@ namespace Trainary.attributi
                 return _base.getBase();
         }
 
-        public bool isOmogenea(UnitaDiMisura that)
-        {
-            return getBase() == that.getBase();
-        }
+        //public bool isOmogenea(UnitaDiMisura that)
+        //{
+        //    return getBase() == that.getBase();
+        //}
 
         public abstract double toSI(double value);
         public abstract double fromSI(double value);
