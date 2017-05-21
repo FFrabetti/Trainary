@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Trainary
 {
@@ -14,9 +15,14 @@ namespace Trainary
             {
                 if (!(opzione is Scheda))
                     throw new ArgumentException("opzione is not Scheda");
-
-                List<Allenamento> allenamentiFiltrati = new List<Allenamento>();
                 Scheda scheda = (Scheda)opzione;
+
+                return (from AllenamentoProgrammato allenamento in listaAllenamenti
+                        where scheda.Sedute.Contains(allenamento.Seduta)
+                        select allenamento);
+
+                /*
+                List<Allenamento> allenamentiFiltrati = new List<Allenamento>();
 
                 foreach (Allenamento allenamento in listaAllenamenti)
                 {
@@ -29,6 +35,7 @@ namespace Trainary
                     }
                 }
                 return allenamentiFiltrati;
+                */
             }
         }
     }

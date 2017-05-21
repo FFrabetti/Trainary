@@ -11,6 +11,8 @@ namespace Trainary
         {
             _dictionary = new Dictionary<string, IFiltroAllenamenti>();
             _dictionary.Add("Filtro per scheda", new FiltroPerScheda());
+            _dictionary.Add("Filtro per periodo", new FiltroPerPeriodo());
+            _dictionary.Add("Filtro per Tipo", new FiltroPerTipo());
         }
 
         public static IFiltroAllenamenti GetFiltroAllenamento(string nomeFiltro)
