@@ -17,8 +17,9 @@ namespace Trainary
                     throw new ArgumentException("opzione is not Scheda");
                 Scheda scheda = (Scheda)opzione;
 
-                return (from AllenamentoProgrammato allenamento in listaAllenamenti
-                        where scheda.Sedute.Contains(allenamento.Seduta)
+                return (from Allenamento allenamento in listaAllenamenti
+                        where allenamento is AllenamentoProgrammato
+                        where scheda.Sedute.Contains((allenamento as AllenamentoProgrammato).Seduta)
                         select allenamento);
 
                 /*
