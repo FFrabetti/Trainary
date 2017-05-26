@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Trainary.attributi;
 
 namespace Trainary
@@ -6,9 +7,9 @@ namespace Trainary
     public abstract class Esercizio
 	{
         private readonly Attivita _attivita;
-        private readonly IAttributo[] _targets;
+        private readonly Attributo[] _targets;
 
-        public Esercizio(Attivita attivita, IAttributo[] targets)
+        public Esercizio(Attivita attivita, Attributo[] targets)
         {
             if (attivita == null)
                 throw new ArgumentNullException("attivita");
@@ -26,7 +27,7 @@ namespace Trainary
             }
         }
 
-        public IAttributo[] Targets
+        public Attributo[] Targets
         {
             get
             {
@@ -39,15 +40,19 @@ namespace Trainary
             return new EsercizioSvolto(this);
         }
 
-        public string FullToString()
+        public override string ToString()
         {
-            String targetsToPrint = _attivita.ToString();
-            foreach (IAttributo a in _targets)
+            StringBuilder esBuilder = new StringBuilder(_attivita.ToString() + " [");
+
+            for (int i=0; i < _targets.Length; i++)
             {
-                targetsToPrint += a;
-                targetsToPrint += " ";
+                if (i!=0)
+                    esBuilder.Append(", ");
+                esBuilder.Append(_targets[i]);
             }
-            return targetsToPrint;
+            esBuilder.Append(']');
+
+            return esBuilder.ToString();
         }
     }
 }

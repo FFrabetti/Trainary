@@ -1,32 +1,27 @@
-﻿using System;
-
-namespace Trainary.attributi
+﻿namespace Trainary.attributi
 {
-    static partial class QuantitaFactory
+    public abstract class Quantita
     {
-        private abstract class Quantita : IQuantita
+        public abstract TipoQuantita Tipo { get; }
+        public abstract double toStandard();
+
+        public static string ToMaxTwoDecimals(double value)
         {
-            public abstract TipoQuantita Tipo { get; }
-            public abstract double toStandard();
+            return value.ToString("0.##");
+        }
 
-            public static string FormatDouble(double value)
-            {
-                return FormatUtils.ToMaxTwoDecimals(value);
-            }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Quantita))
+                return false;
 
-            public override bool Equals(object obj)
-            {
-                if (!(obj is IQuantita))
-                    throw new ArgumentException("obj is not IQuantita");
+            Quantita that = (Quantita)obj;
+            return Tipo == that.Tipo && toStandard() == that.toStandard();
+        }
 
-                IQuantita that = (IQuantita)obj;
-                return Tipo == that.Tipo && toStandard() == that.toStandard();
-            }
-
-            public override int GetHashCode()
-            {
-                return base.GetHashCode();
-            }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

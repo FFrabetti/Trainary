@@ -2,15 +2,15 @@
 
 namespace Trainary.attributi
 {
-    public class Attributo : IAttributo
+    public class Attributo
     {
         private readonly string _nome;
-        private readonly IQuantita _quantita;
+        private readonly Quantita _quantita;
 
-        public Attributo(string nome, IQuantita quantita)
+        public Attributo(string nome, Quantita quantita)
         {
             if (string.IsNullOrEmpty(nome))
-                throw new ArgumentException("nome");
+                throw new ArgumentException("nome is null or empty");
             if (quantita == null)
                 throw new ArgumentNullException("quantita");
 
@@ -23,7 +23,7 @@ namespace Trainary.attributi
             get { return _nome; }
         }
 
-        public IQuantita Quantita
+        public Quantita Quantita
         {
             get { return _quantita; }
         }

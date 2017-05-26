@@ -7,14 +7,14 @@ namespace Trainary
     public class EsercizioSvolto
     {
         private readonly Esercizio _esercizio;
-        private readonly List<IAttributo> _dati;
+        private readonly List<Attributo> _dati;
 
         public EsercizioSvolto(Esercizio esercizio)
         {
             if (esercizio == null)
                 throw new ArgumentNullException("esercizio");
             _esercizio = esercizio;
-            _dati = new List<IAttributo>();
+            _dati = new List<Attributo>();
         }
 
         public Esercizio Esercizio
@@ -22,7 +22,7 @@ namespace Trainary
             get { return _esercizio; }
         }
 
-        public List<IAttributo> Dati
+        public List<Attributo> Dati
         {
             get { return _dati; }
         }
