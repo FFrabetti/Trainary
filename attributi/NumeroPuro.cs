@@ -2,7 +2,7 @@
 {
     static partial class QuantitaFactory
     {
-        private class NumeroPuro : Quantita
+        public class NumeroPuro : Quantita
         {
             private readonly double _valore;
 
@@ -23,7 +23,7 @@
 
             public override string ToString()
             {
-                return FormatDouble(_valore);
+                return ToMaxTwoDecimals(_valore);
             }
         }
     }

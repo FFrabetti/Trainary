@@ -1,31 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Trainary.attributi
 {
     public abstract partial class UnitaDiMisura
     {
 
-        #region Factory - scope: class (static)
+        #region Factory (static)
 
         private static readonly Dictionary<string, UnitaDiMisura> _dictionary = new Dictionary<string, UnitaDiMisura>();
 
         static UnitaDiMisura()
         {
-            UnitaDiMisura number = new UnitaBase("numero puro", "", TipoQuantita.PURE_NUMBER);
-            UnitaDiMisura metre = new UnitaBase("metro", "m", TipoQuantita.LENGTH);
-            UnitaDiMisura kilogram = new UnitaBase("kilogrammo", "kg", TipoQuantita.MASS);
-            UnitaDiMisura second = new UnitaBase("secondo", "s", TipoQuantita.TIME);
+            try {
+                UnitaDiMisura number = new UnitaBase("numero puro", "", TipoQuantita.PURE_NUMBER);
+                UnitaDiMisura metre = new UnitaBase("metro", "m", TipoQuantita.LENGTH);
+                UnitaDiMisura kilogram = new UnitaBase("kilogrammo", "kg", TipoQuantita.MASS);
+                UnitaDiMisura second = new UnitaBase("secondo", "s", TipoQuantita.TIME);
 
-            UnitaDiMisura gram = new LinearUnita("grammo", "g", TipoQuantita.MASS, kilogram, 0.001);
-            UnitaDiMisura kilometre = new LinearUnita("kilometro", "km", TipoQuantita.LENGTH, metre, 1000);
+                UnitaDiMisura gram = new LinearUnita("grammo", "g", TipoQuantita.MASS, kilogram, 0.001);
+                UnitaDiMisura kilometre = new LinearUnita("kilometro", "km", TipoQuantita.LENGTH, metre, 1000);
 
-            _dictionary.Add("", number);
-            _dictionary.Add("m", metre);
-            _dictionary.Add("kg", kilogram);
-            _dictionary.Add("s", second);
-            _dictionary.Add("g", gram);
-            _dictionary.Add("km", kilometre);
+                _dictionary.Add("", number);
+                _dictionary.Add("m", metre);
+                _dictionary.Add("kg", kilogram);
+                _dictionary.Add("s", second);
+                _dictionary.Add("g", gram);
+                _dictionary.Add("km", kilometre);
+
+                InitializeDictionary();
+            }
+            catch (Exception e)
+            {
+                // static constructors cannot throw exceptions!
+            }
+        }
+
+        private static void InitializeDictionary()
+        {
+            ConstructorInfo constructor;
+            UnitaDiMisura u = null;
+            foreach (Type t in typeof(UnitaDiMisura).GetNestedTypes())
+            {
+                if (
+                     t.IsSubclassOf(typeof(UnitaDiMisura)) &&
+                     !t.IsAbstract &&
+                     (constructor = t.GetConstructor(Type.EmptyTypes)) != null
+                  )
+                {
+                    try
+                    {
+                        u = (UnitaDiMisura)constructor.Invoke(null);
+                        if (u != null && u.Simbolo != null)
+                            _dictionary.Add(u.Simbolo, u);
+                    }
+                    catch (Exception e)
+                    {
+                        // skip
+                    }
+                }
+            }
         }
 
         public static UnitaDiMisura Get(string simbolo)
@@ -56,25 +91,28 @@ namespace Trainary.attributi
 
         #endregion
 
-        #region scope: instance
+        #region Scope: instance
 
         private readonly string _nome;
         private readonly string _simbolo;
         private readonly TipoQuantita _tipo;
-        private readonly UnitaDiMisura _base;
+        private readonly UnitaDiMisura _unitaSuper;
 
-        private UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura uBase)
+        private UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura unitaSuper)
         {
             if (string.IsNullOrEmpty(nome))
-                throw new ArgumentException("nome");
+                throw new ArgumentException("nome is null or empty");
             if (simbolo == null)
                 throw new ArgumentNullException("simbolo");
 
             _nome = nome;
             _simbolo = simbolo;
             _tipo = tipo;
-            _base = uBase;
+            _unitaSuper = unitaSuper;
         }
+
+        private UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo)
+            : this(nome, simbolo, tipo, GetBase(tipo)) { }
 
         public string Nome { get { return _nome; } }
 
@@ -82,23 +120,23 @@ namespace Trainary.attributi
 
         public TipoQuantita Tipo { get { return _tipo; } }
 
+        public UnitaDiMisura Super { get { return _unitaSuper; } }
+
+        public UnitaDiMisura Base // ricorsiva
+        {
+            get
+            {
+                if (isBase())
+                    return this;
+                else
+                    return _unitaSuper.Base;
+            }
+        }
+
         public bool isBase()
         {
-            return _base == null;
+            return _unitaSuper == null;
         }
-
-        public UnitaDiMisura getBase() // ricorsiva
-        {
-            if (isBase())
-                return this;
-            else
-                return _base.getBase();
-        }
-
-        //public bool isOmogenea(UnitaDiMisura that)
-        //{
-        //    return getBase() == that.getBase();
-        //}
 
         public abstract double toSI(double value);
         public abstract double fromSI(double value);
@@ -119,8 +157,8 @@ namespace Trainary.attributi
         {
             private readonly double _k;
 
-            public LinearUnita(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura uBase, double k)
-                : base(nome, simbolo, tipo, uBase)
+            public LinearUnita(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura unitaSuper, double k)
+                : base(nome, simbolo, tipo, unitaSuper)
             {
                 if (k == 0)
                     throw new ArgumentException("k == 0");

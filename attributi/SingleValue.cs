@@ -4,7 +4,7 @@ namespace Trainary.attributi
 {
     static partial class QuantitaFactory
     {
-        private class SingleValue : Quantita
+        public class SingleValue : Quantita
         {
             private readonly double _valore;
             private readonly UnitaDiMisura _unita;
@@ -18,6 +18,12 @@ namespace Trainary.attributi
                 _unita = unita;
             }
 
+            public SingleValue(double valore, TipoQuantita tipo) : 
+                this(valore, UnitaDiMisura.GetBase(tipo)) { }
+
+            public SingleValue(double valore, string simbolo) :
+                this(valore, UnitaDiMisura.Get(simbolo)) { }
+
             public override TipoQuantita Tipo
             {
                 get { return _unita.Tipo; }
@@ -30,7 +36,7 @@ namespace Trainary.attributi
 
             public override string ToString()
             {
-                return FormatDouble(_valore) + _unita.Simbolo;
+                return ToMaxTwoDecimals(_valore) + _unita.Simbolo;
             }
         }
     }

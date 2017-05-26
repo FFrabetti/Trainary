@@ -1,35 +1,61 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Trainary.attributi
 {
     public static partial class QuantitaFactory
     {
-        // può trovare dinamicamente le classi che implementano IQuantita e i loro costruttori
-        // invocandoli secondo bisogno
 
-        public static IQuantita newQuantita(double value, TipoQuantita tipo)
+        public static Quantita NewQuantita(params object[] args)
         {
-            return newQuantita(value, UnitaDiMisura.GetBase(tipo));
+            Type[] types = new Type[args.Length];
+            for(int i=0; i<args.Length; i++)
+                types[i] = args[i].GetType();
+
+            ConstructorInfo constructor;
+            foreach(Type t in typeof(QuantitaFactory).GetNestedTypes())
+            {
+               if(
+                    t.IsSubclassOf(typeof(Quantita)) &&
+                    !t.IsAbstract &&
+                    (constructor=t.GetConstructor(types)) != null
+                 )
+                {
+                    return (Quantita) constructor.Invoke(args);
+                    //Activator.CreateInstance(t, args);
+                }
+            }
+
+            throw new ArgumentException("No constructor found for the given arguments");
         }
 
-        public static IQuantita newQuantita(double value, UnitaDiMisura unita)
+        public static Quantita TryNewQuantita(params object[] args)
         {
-            return new SingleValue(value, unita);
+            Quantita result = null;
+            try
+            {
+                result = NewQuantita(args);
+            } catch(Exception e)
+            {
+                // do nothing
+            }
+            return result;
         }
 
-        public static IQuantita newQuantita(TimeSpan timeSpan)
+        // debug only
+        internal static string StrTryNewQuantita(params object[] args)
         {
-            return new Durata(timeSpan);
+            string result;
+            try
+            {
+                result = NewQuantita(args).ToString();
+            }
+            catch (Exception e)
+            {
+                result = e.GetType().Name + ": " + e.Message;
+            }
+            return result;
         }
 
-        public static IQuantita newQuantita(int h, int m, int s)
-        {
-            return new Durata(h, m, s);
-        }
-
-        public static IQuantita newQuantita(double value)
-        {
-            return new NumeroPuro(value);
-        }
     }
 }

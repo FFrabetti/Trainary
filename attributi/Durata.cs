@@ -5,14 +5,14 @@ namespace Trainary.attributi
 {
     static partial class QuantitaFactory
     {
-        private class Durata : Quantita
+        public class Durata : Quantita
         {
             private readonly TimeSpan _durata;
 
             public Durata(TimeSpan durata)
             {
                 if (durata == null)
-                    throw new ArgumentNullException("timeSpan");
+                    throw new ArgumentNullException("durata");
 
                 _durata = durata;
             }
@@ -42,7 +42,7 @@ namespace Trainary.attributi
                 if (_durata.Minutes != 0)
                     sb.Append(_durata.Minutes + "m ");
                 if (_durata.Seconds != 0 || _durata.Milliseconds != 0)
-                    sb.Append((_durata.Seconds + _durata.Milliseconds / 1000.0) + "s");
+                    sb.Append((_durata.Seconds + _durata.Milliseconds/1000.0) + "s");
 
                 return sb.ToString().TrimEnd();
             }
