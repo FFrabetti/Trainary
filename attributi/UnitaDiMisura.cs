@@ -39,7 +39,7 @@ namespace Trainary.attributi
 
         private static void InitializeDictionary()
         {
-            ConstructorInfo constructor;
+            ConstructorInfo constructor = null;
             UnitaDiMisura u = null;
             foreach (Type t in typeof(UnitaDiMisura).GetNestedTypes())
             {
@@ -52,7 +52,7 @@ namespace Trainary.attributi
                     try
                     {
                         u = (UnitaDiMisura)constructor.Invoke(null);
-                        if (u != null && u.Simbolo != null)
+                        if (u != null)
                             _dictionary.Add(u.Simbolo, u);
                     }
                     catch (Exception e)
