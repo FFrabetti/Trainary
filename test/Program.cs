@@ -129,7 +129,7 @@ namespace Trainary
         {
             DateTime inizio = DateTime.Today;
             DateTime fine = inizio.Add(new TimeSpan(1, 0, 0, 0));
-            PeriodoDiValidita periodo = new PeriodoDiValidita(inizio, fine);
+            Periodo periodo = new Periodo(inizio, fine);
             DateTime prova = default(DateTime);
             Console.WriteLine("default = {1} ({0})", periodo.IsNelPeriodo(prova), default(DateTime));
             Console.WriteLine("ToString = {0}", periodo);

@@ -2,12 +2,17 @@
 
 namespace Trainary
 {
-    public struct PeriodoDiValidita
+    public struct Periodo
     {
+        public static string ToStringDate(DateTime dateTime)
+        {
+            return dateTime.ToString("d");
+        }
+
         private readonly DateTime _dataInizio;
         private readonly DateTime _dataFine;
 
-        public PeriodoDiValidita(DateTime dataInizio, DateTime dataFine)
+        public Periodo(DateTime dataInizio, DateTime dataFine)
         {
             if (DateTime.Compare(dataFine, dataInizio) < 0)
                 throw new ArgumentException("dataFine is before dataInizio");
@@ -16,7 +21,7 @@ namespace Trainary
             _dataFine = dataFine.Date;
         }
 
-        public PeriodoDiValidita(DateTime dataInizio, TimeSpan durata) : this(dataInizio, dataInizio+durata)
+        public Periodo(DateTime dataInizio, TimeSpan durata) : this(dataInizio, dataInizio+durata)
         {
         }
 
@@ -36,14 +41,14 @@ namespace Trainary
 
         public override string ToString()
         {
-            return FormatUtils.ToStringDate(_dataInizio) + "-" + FormatUtils.ToStringDate(_dataFine);
+            return ToStringDate(_dataInizio) + "-" + ToStringDate(_dataFine);
         }
 
         public string FullToString()
         {
             return "Periodo di validità: da " +
-                FormatUtils.ToStringDate(_dataInizio) + " a " +
-                FormatUtils.ToStringDate(_dataFine);
+                ToStringDate(_dataInizio) + " a " +
+                ToStringDate(_dataFine);
         }
     }
 }
