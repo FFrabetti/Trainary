@@ -21,22 +21,6 @@ namespace Trainary
                         where allenamento is AllenamentoProgrammato
                         where scheda.Sedute.Contains((allenamento as AllenamentoProgrammato).Seduta)
                         select allenamento);
-
-                /*
-                List<Allenamento> allenamentiFiltrati = new List<Allenamento>();
-
-                foreach (Allenamento allenamento in listaAllenamenti)
-                {
-                    if (allenamento is AllenamentoProgrammato)
-                    {
-                        AllenamentoProgrammato allenamentoProgrammato = (AllenamentoProgrammato)allenamento;
-                        Seduta sedutaAllenamento = allenamentoProgrammato.Seduta;
-                        if (scheda.Sedute.Contains(sedutaAllenamento))
-                            allenamentiFiltrati.Add(allenamento);
-                    }
-                }
-                return allenamentiFiltrati;
-                */
             }
         }
     }

@@ -17,26 +17,15 @@ namespace Trainary
                     throw new ArgumentException("opzione");
                 ScopoDellaScheda scopo = (ScopoDellaScheda)opzione;
 
-                List<Allenamento> allenamentiFiltrati = new List<Allenamento>();
-
                 IEnumerable<Seduta> sedute = (from Scheda scheda in GestoreSchede.GetSchede()
                                        where scheda.Scopo.Equals(scopo)
                                        select scheda.Sedute);
 
-                IEnumerable<Allenamento> allenamentiProgrammati =   (from allenamento in listaAllenamenti
-                                                                    where allenamento is AllenamentoProgrammato
-                                                                    select allenamento);
+                return
+                    from AllenamentoProgrammato allenamento in listaAllenamenti.OfType<AllenamentoProgrammato>()
+                    where sedute.Contains<Seduta>(allenamento.Seduta)
+                    select allenamento;
 
-                foreach (AllenamentoProgrammato allenamento in allenamentiProgrammati)
-                    {
-                        foreach (Seduta seduta in sedute)
-                        {
-                            if (seduta.Equals(allenamento.Seduta))
-                                allenamentiFiltrati.Add(allenamento);
-                        }
-                    }
-
-                return allenamentiFiltrati;
             }
         }
     }

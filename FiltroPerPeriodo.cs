@@ -18,8 +18,7 @@ namespace Trainary
                 PeriodoDiValidita periodo = (PeriodoDiValidita)opzione;
 
                 return (from Allenamento allenamento in listaAllenamenti
-                        where DateTime.Compare(periodo.DataInizio, allenamento.Data) >= 0
-                        && DateTime.Compare(periodo.DataFine, allenamento.Data) <= 0
+                        where periodo.IsNelPeriodo(allenamento.Data)
                         select allenamento);
             }
         }
