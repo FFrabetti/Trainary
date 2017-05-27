@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
+using System.Windows.Forms;
 using Trainary.attributi;
+using Trainary.test;
 
 namespace Trainary
 {
     class Program
     {
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new TestForm());
+        }
+
+        /*
         public static void Main(string[] args)
         {
             //TestCategoriaAttivita();
@@ -19,6 +31,7 @@ namespace Trainary
 
             Console.ReadLine(); 
         }
+        */
 
         public static void Separator()
         {
