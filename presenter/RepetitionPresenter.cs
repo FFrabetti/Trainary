@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Trainary.attributi;
-using Trainary.view;
+using Trainary.model.attributi;
+using Trainary.utils;
 
 namespace Trainary.presenter
 {

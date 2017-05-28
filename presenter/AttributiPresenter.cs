@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Trainary.attributi;
+using Trainary.model.attributi;
 using Trainary.view;
 
 namespace Trainary.presenter
@@ -14,27 +11,41 @@ namespace Trainary.presenter
     {
         private AttributiControl _control;
         private QuantitaPresenter _currentQPresenter;
+        private List<QuantitaPresenter> _presenters;
 
         public AttributiPresenter(AttributiControl control)
         {
-            if (control == null)
-                throw new ArgumentNullException("control");
-
-            _control = control;
-
+            _presenters = new List<QuantitaPresenter>();
             Inizialize();
-            SelectedPresenter(_control.TipoComboBox);
+            UserControl = control;
         }
 
-        public AttributiControl Control
+        public AttributiControl UserControl
         {
             get { return _control; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("user control");
+
+                _control = value;
+                InizializeComboBox();
+            }
+        }
+
+        private void InizializeComboBox()
+        {
+            _control.TipoComboBox.DataSource = _presenters;
+            _control.TipoComboBox.DisplayMember = "LabelAttribute";
+
+            SelectedPresenter(_control.TipoComboBox);
+
+            _control.TipoComboBox.SelectedValueChanged += ComboChangeHandler;
         }
 
         private void Inizialize()
         {
             QuantitaPresenter presenter = null;
-            List<QuantitaPresenter> presenters = new List<QuantitaPresenter>();
             ConstructorInfo constructor = null;
 
             foreach(Type tipo in Assembly.GetExecutingAssembly().GetTypes())
@@ -49,7 +60,7 @@ namespace Trainary.presenter
                     {
                         presenter = (QuantitaPresenter) constructor.Invoke(null);
                         if (presenter != null)
-                            presenters.Add(presenter);
+                            _presenters.Add(presenter);
                     }
                     catch(Exception e)
                     {
@@ -57,11 +68,6 @@ namespace Trainary.presenter
                     }
                 }
             }
-
-            _control.TipoComboBox.DataSource = presenters;
-            _control.TipoComboBox.DisplayMember = "Label";
-
-            _control.TipoComboBox.SelectedValueChanged += ComboChangeHandler;
         }
 
         private void ComboChangeHandler(object sender, EventArgs e)

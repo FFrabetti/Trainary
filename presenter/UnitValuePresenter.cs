@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Trainary.attributi;
+using Trainary.model.attributi;
 
 namespace Trainary.presenter
 {
