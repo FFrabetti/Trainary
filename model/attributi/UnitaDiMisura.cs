@@ -72,7 +72,7 @@ namespace Trainary.model.attributi
         {
             foreach (UnitaDiMisura u in _dictionary.Values)
             {
-                if (u.Tipo == tipo && u.isBase())
+                if (u.Tipo == tipo && u.IsBase())
                     return u;
             }
             return null;
@@ -126,20 +126,20 @@ namespace Trainary.model.attributi
         {
             get
             {
-                if (isBase())
+                if (IsBase())
                     return this;
                 else
                     return _unitaSuper.Base;
             }
         }
 
-        public bool isBase()
+        public bool IsBase()
         {
             return _unitaSuper == null;
         }
 
-        public abstract double toSI(double value);
-        public abstract double fromSI(double value);
+        public abstract double ToSI(double value);
+        public abstract double FromSI(double value);
 
         #endregion
 
@@ -148,9 +148,9 @@ namespace Trainary.model.attributi
             public UnitaBase(string nome, string simbolo, TipoQuantita tipo)
                 : base(nome, simbolo, tipo, null) { }
 
-            public override double fromSI(double value) { return value; }
+            public override double FromSI(double value) { return value; }
 
-            public override double toSI(double value) { return value; }
+            public override double ToSI(double value) { return value; }
         }
 
         private class LinearUnita : UnitaDiMisura
@@ -166,12 +166,12 @@ namespace Trainary.model.attributi
                 _k = k;
             }
 
-            public override double toSI(double value)
+            public override double ToSI(double value)
             {
                 return value * _k;
             }
 
-            public override double fromSI(double value)
+            public override double FromSI(double value)
             {
                 return value / _k;
             }

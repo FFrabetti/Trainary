@@ -12,10 +12,8 @@ namespace Trainary.model
 
         public Categoria(string nome, IEnumerable<Attivita> attivita, IEnumerable<Categoria> sottoCategorie)
         {
-            if (nome == null)
-                throw new ArgumentNullException("nome");
-            if (nome.Length == 0)
-                throw new ArgumentException("empty nome");
+            if (string.IsNullOrEmpty(nome))
+                throw new ArgumentException("nome is null or empty");
 
             _nome = nome;
             _attivita = attivita != null ? new SortedSet<Attivita>(attivita) : new SortedSet<Attivita>();

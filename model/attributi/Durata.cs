@@ -27,7 +27,7 @@ namespace Trainary.model.attributi
                 get { return TipoQuantita.TIME; }
             }
 
-            public override double toStandard()
+            public override double ToStandard()
             {
                 return _durata.TotalSeconds;
             }

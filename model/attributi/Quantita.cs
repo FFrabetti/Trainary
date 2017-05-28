@@ -3,7 +3,7 @@
     public abstract class Quantita
     {
         public abstract TipoQuantita Tipo { get; }
-        public abstract double toStandard();
+        public abstract double ToStandard();
 
         public static string ToMaxTwoDecimals(double value)
         {
@@ -16,7 +16,7 @@
                 return false;
 
             Quantita that = (Quantita)obj;
-            return Tipo == that.Tipo && toStandard() == that.toStandard();
+            return Tipo == that.Tipo && ToStandard() == that.ToStandard();
         }
 
         public override int GetHashCode()

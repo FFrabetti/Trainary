@@ -29,9 +29,9 @@ namespace Trainary.model.attributi
                 get { return _unita.Tipo; }
             }
 
-            public override double toStandard()
+            public override double ToStandard()
             {
-                return _unita.toSI(_valore);
+                return _unita.ToSI(_valore);
             }
 
             public override string ToString()

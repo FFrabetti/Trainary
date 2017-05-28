@@ -29,7 +29,7 @@ namespace Trainary.test.model
             Attributo sum = new Attributo(
                 "somma",
                 QuantitaFactory.NewQuantita(
-                    attr3.Quantita.toStandard() + attr4.Quantita.toStandard(),
+                    attr3.Quantita.ToStandard() + attr4.Quantita.ToStandard(),
                     attr3.Quantita.Tipo
                 )
             );

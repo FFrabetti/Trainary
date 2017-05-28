@@ -16,7 +16,7 @@
                 get { return TipoQuantita.PURE_NUMBER; }
             }
 
-            public override double toStandard()
+            public override double ToStandard()
             {
                 return _valore;
             }

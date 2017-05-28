@@ -11,10 +11,8 @@ namespace Trainary.model
 
         public Attivita(string nome, string descrizione, string[] attrezzi)
         {
-            if (nome == null)
-                throw new ArgumentNullException("nome");
-            if (nome.Length == 0)
-                throw new ArgumentException("empty nome");
+            if (string.IsNullOrEmpty(nome))
+                throw new ArgumentException("nome is null or empty");
 
             _nome = nome;
             // attributi opzionali
