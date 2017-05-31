@@ -12,7 +12,7 @@ namespace Trainary.test.model
             List<string> list = new List<string>();
             try
             {
-                list.Add(QuantitaFactory.StrTryNewQuantita(1, UnitaDiMisura.Get("km")));
+                list.Add(QuantitaFactory.StrTryNewQuantita(1, UnitaFactory.Get("km")));
                 list.Add(QuantitaFactory.StrTryNewQuantita(2.8643, TipoQuantita.MASS));
                 list.Add(QuantitaFactory.StrTryNewQuantita(-2.0, TipoQuantita.PURE_NUMBER));
                 list.Add(QuantitaFactory.StrTryNewQuantita(-3.3789, "g"));
@@ -20,8 +20,8 @@ namespace Trainary.test.model
                 list.Add(QuantitaFactory.StrTryNewQuantita(new TimeSpan(2, -3, -4, 5, 667455467)));
                 list.Add(QuantitaFactory.StrTryNewQuantita(7, 88, 9));
                 list.Add(QuantitaFactory.StrTryNewQuantita(4456313.45630));
-                list.Add(QuantitaFactory.StrTryNewQuantita(46, UnitaDiMisura.Get("yd")));
-                list.Add(QuantitaFactory.StrTryNewQuantita(46, UnitaDiMisura.Get("")));
+                list.Add(QuantitaFactory.StrTryNewQuantita(46, UnitaFactory.Get("yd")));
+                list.Add(QuantitaFactory.StrTryNewQuantita(46, UnitaFactory.Get("")));
 
                 // fail
                 list.Add(QuantitaFactory.StrTryNewQuantita(2.200000, 2));

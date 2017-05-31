@@ -19,10 +19,10 @@ namespace Trainary.model.attributi
             }
 
             public UnitValue(double valore, TipoQuantita tipo) : 
-                this(valore, UnitaDiMisura.GetBase(tipo)) { }
+                this(valore, UnitaFactory.GetBase(tipo)) { }
 
             public UnitValue(double valore, string simbolo) :
-                this(valore, UnitaDiMisura.Get(simbolo)) { }
+                this(valore, UnitaFactory.Get(simbolo)) { }
 
             public override TipoQuantita Tipo
             {

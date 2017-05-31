@@ -1,6 +1,6 @@
 ﻿namespace Trainary.model.attributi
 {
-    public abstract partial class UnitaDiMisura
+    public static partial class UnitaFactory
     {
         public class Yard : UnitaDiMisura
         {

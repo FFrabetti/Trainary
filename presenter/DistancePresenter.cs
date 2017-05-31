@@ -11,7 +11,7 @@ namespace Trainary.presenter
         {
             base.DrawControls(panel);
 
-            ComboBox.DataSource = UnitaDiMisura.GetAllOfType(TipoQuantita.LENGTH);
+            ComboBox.DataSource = UnitaFactory.GetAllOfType(TipoQuantita.LENGTH);
             ComboBox.DisplayMember = "Simbolo";
         }
     }
