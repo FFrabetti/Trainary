@@ -11,10 +11,8 @@ namespace Trainary.model.attributi
 
             public Durata(TimeSpan durata)
             {
-                if (durata == null)
-                    throw new ArgumentNullException("durata");
-
-                _durata = durata;
+                // abs. value
+                _durata = durata.Duration();
             }
 
             public Durata(int h, int m, int s) : this(new TimeSpan(h, m, s))

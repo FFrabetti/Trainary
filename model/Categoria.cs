@@ -34,12 +34,12 @@ namespace Trainary.model
             get { return _nome; }
         }
 
-        public IEnumerable<Attivita> Attivita
+        public ICollection<Attivita> Attivita
         {
             get { return _attivita; }
         }
 
-        public IEnumerable<Categoria> SottoCategorie
+        public ICollection<Categoria> SottoCategorie
         {
             get { return _sottoCategorie; }
         }
