@@ -6,10 +6,12 @@ namespace Trainary.model
     {
         private readonly Seduta _seduta;
 
-        public AllenamentoProgrammato(DateTime data, EsercizioSvolto[] eserciziSvolti, Seduta seduta) : base(data, eserciziSvolti)
+        public AllenamentoProgrammato(DateTime data, EsercizioSvolto[] eserciziSvolti, Seduta seduta)
+            : base(data, eserciziSvolti)
         {
             if (seduta == null)
                 throw new ArgumentNullException("seduta");
+
             _seduta = seduta;
         }
 

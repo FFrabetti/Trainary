@@ -6,15 +6,14 @@ namespace Trainary.model
     {
         private string _nome;
 
-        public AllenamentoExtra(DateTime data, EsercizioSvolto[] eserciziSvolti, string nome) : base(data, eserciziSvolti)
+        public AllenamentoExtra(DateTime data, EsercizioSvolto[] eserciziSvolti, string nome)
+            : base(data, eserciziSvolti)
         {
             Nome = nome;
         }
 
-        public AllenamentoExtra(DateTime data, EsercizioSvolto[] eserciziSvolti) : this(data, eserciziSvolti, null)
-        {
-
-        }
+        public AllenamentoExtra(DateTime data, EsercizioSvolto[] eserciziSvolti)
+            : this(data, eserciziSvolti, null) { }
 
         public string Nome
         {

@@ -9,11 +9,12 @@ namespace Trainary.model
 
         public Allenamento(DateTime data, EsercizioSvolto[] eserciziSvolti)
         {
-            if (data == null)
-                throw new ArgumentNullException("data");
-            if (eserciziSvolti == null || eserciziSvolti.Length == 0)
-                throw new ArgumentException("esercizi svolti");
-            _data = data;
+            if (eserciziSvolti == null)
+                throw new ArgumentNullException("esercizi svolti");
+            if (eserciziSvolti.Length == 0)
+                throw new ArgumentException("empty esercizi svolti");
+
+            _data = data.Date;
             _eserciziSvolti = eserciziSvolti;
         }
 
