@@ -19,6 +19,9 @@ namespace Trainary.model
             _targets = targets;
         }
 
+        public Esercizio(Attivita attivita) : this(attivita, new Attributo[0])
+        { }
+
         public Attivita Attivita
         {
             get
