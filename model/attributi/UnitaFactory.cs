@@ -29,7 +29,7 @@ namespace Trainary.model.attributi
 
                 InitializeDictionary();
             }
-            catch (Exception e)
+            catch
             {
                 // static constructors cannot throw exceptions!
             }
@@ -53,7 +53,7 @@ namespace Trainary.model.attributi
                         if (u != null)
                             _dictionary.Add(u.Simbolo, u);
                     }
-                    catch (Exception e)
+                    catch
                     {
                         // skip
                     }

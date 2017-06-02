@@ -62,7 +62,7 @@ namespace Trainary.presenter
                         if (presenter != null)
                             _presenters.Add(presenter);
                     }
-                    catch(Exception e)
+                    catch
                     {
                         // skip
                     }

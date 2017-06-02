@@ -35,7 +35,7 @@ namespace Trainary.model.attributi
             try
             {
                 result = NewQuantita(args);
-            } catch(Exception e)
+            } catch
             {
                 // do nothing
             }
