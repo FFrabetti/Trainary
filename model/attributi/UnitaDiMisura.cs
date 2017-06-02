@@ -9,7 +9,7 @@ namespace Trainary.model.attributi
         private readonly TipoQuantita _tipo;
         private readonly UnitaDiMisura _unitaSuper;
 
-        protected UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura unitaSuper)
+        public UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo, UnitaDiMisura unitaSuper)
         {
             if (string.IsNullOrEmpty(nome))
                 throw new ArgumentException("nome is null or empty");
@@ -24,8 +24,8 @@ namespace Trainary.model.attributi
             _unitaSuper = unitaSuper;
         }
 
-        public UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo)
-            : this(nome, simbolo, tipo, UnitaFactory.GetBase(tipo)) { }
+        //public UnitaDiMisura(string nome, string simbolo, TipoQuantita tipo)
+        //    : this(nome, simbolo, tipo, UnitaFactory.GetBase(tipo)) { }
 
         public UnitaDiMisura(string nome, string simbolo, UnitaDiMisura unitaSuper)
             : this(nome, simbolo, unitaSuper.Tipo, unitaSuper) { }

@@ -5,7 +5,8 @@
         public class Yard : UnitaDiMisura
         {
             // it has to have a constructor with no arguments
-            public Yard() : base("yard", "yd", TipoQuantita.LENGTH) { }
+            public Yard() : base("yard", "yd", GetBase(TipoQuantita.LENGTH))
+            { }
 
             public override double FromSI(double value)
             {
