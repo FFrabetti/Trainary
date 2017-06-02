@@ -14,29 +14,34 @@ namespace Trainary.model
 
         public Periodo(DateTime dataInizio, DateTime dataFine)
         {
-            if (DateTime.Compare(dataFine, dataInizio) < 0)
+            if (dataFine < dataInizio)
                 throw new ArgumentException("dataFine is before dataInizio");
 
             _dataInizio = dataInizio.Date;
             _dataFine = dataFine.Date;
         }
 
-        public Periodo(DateTime dataInizio, TimeSpan durata) : this(dataInizio, dataInizio+durata)
+        public Periodo(DateTime dataInizio, TimeSpan durata)
+            : this(dataInizio, dataInizio+durata) { }
+
+        public DateTime DataInizio
         {
+            get { return _dataInizio; }
         }
 
-        public DateTime DataInizio { get { return _dataInizio; } }
+        public DateTime DataFine
+        {
+            get { return _dataFine; }
+        }
 
-        public DateTime DataFine { get { return _dataFine; } }
+        public TimeSpan Durata
+        {
+            get { return DataFine - DataInizio; }
+        }
 
         public bool IsNelPeriodo(DateTime data)
         {
-            return _dataInizio.CompareTo(data) <= 0 && _dataFine.CompareTo(data) >= 0;
-        }
-
-        public TimeSpan GetDurata()
-        {
-            return DataFine - DataInizio;
+            return _dataInizio <= data && _dataFine >= data;
         }
 
         public override string ToString()
@@ -44,9 +49,9 @@ namespace Trainary.model
             return ToStringDate(_dataInizio) + "-" + ToStringDate(_dataFine);
         }
 
-        public string FullToString()
+        internal string FullToString()
         {
-            return "Periodo di validità: da " +
+            return "Periodo: da " +
                 ToStringDate(_dataInizio) + " a " +
                 ToStringDate(_dataFine);
         }
