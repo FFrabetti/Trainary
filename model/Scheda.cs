@@ -14,7 +14,7 @@ namespace Trainary.model
         public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita, ISet<Seduta> sedute)
         {
             if (String.IsNullOrEmpty(nome))
-                throw new ArgumentNullException("nome");
+                throw new ArgumentException("nome");
             if (sedute == null)
                 throw new ArgumentNullException("sedute");
 
@@ -87,8 +87,6 @@ namespace Trainary.model
 
         public bool isValida(DateTime giorno)
         {
-            if (giorno == null)
-                throw new ArgumentNullException("giorno");
             return PeriodoDiValidita.IsNelPeriodo(giorno);
         }
 

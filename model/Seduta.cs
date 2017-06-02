@@ -11,7 +11,7 @@ namespace Trainary.model
         public Seduta(string codice, ISet<Esercizio> esercizi)
         {
             if (String.IsNullOrEmpty(codice))
-                throw new ArgumentNullException("codice");
+                throw new ArgumentException("codice");
             if (esercizi == null)
                 throw new ArgumentNullException("esercizi");
 
