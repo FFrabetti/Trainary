@@ -26,5 +26,8 @@ namespace Trainary.model
         {
             get { return _dati; }
         }
+
+        public abstract List<EsercizioSvolto> SottoEserciziSvolti
+        { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Trainary.model
 {
@@ -10,7 +11,7 @@ namespace Trainary.model
         private ScopoDellaScheda _scopo;
         private string _descrizione;
         private Periodo _periodoDiValidita;
-        private readonly ISet<Seduta> _sedute = new HashSet<Seduta>();
+        private readonly Dictionary<int, Seduta> _sedute = new Dictionary<int, Seduta>();
 		
         public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita)
         {
@@ -120,7 +121,7 @@ namespace Trainary.model
 
         private string OttieniCodice()
         {
-            throw new NotImplementedException();
+
         }
 
         public bool isValida(DateTime giorno)
