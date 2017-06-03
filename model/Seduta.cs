@@ -35,6 +35,18 @@ namespace Trainary.model
             }
         }
 
+        public string Nome
+        {
+            get; set;
+        }
+        public Scheda Scheda
+        {
+            get
+            {
+                return _scheda;
+            }
+        }
+
         public override string ToString()
         {
             string result = "Seduta ";

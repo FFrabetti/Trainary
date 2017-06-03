@@ -13,6 +13,7 @@ namespace Trainary.model
         {
             if (esercizio == null)
                 throw new ArgumentNullException("esercizio");
+
             _esercizio = esercizio;
             _dati = new List<Attributo>();
         }

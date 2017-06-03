@@ -13,7 +13,7 @@ namespace Trainary.model
         public CircuitoSvolto(Circuito esercizio) : base(esercizio)
         {
         }
-        public List<EsercizioSvolto> SottoEserciziSvolti
+        public override List<EsercizioSvolto> SottoEserciziSvolti
         {
             get
             {

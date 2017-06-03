@@ -14,6 +14,16 @@ namespace Trainary.model
             if (seduta == null)
                 throw new ArgumentNullException("seduta");
 
+            foreach (EsercizioSvolto esercizioSvolto in eserciziSvolti)
+            {
+
+                if (!seduta.Esercizi.Contains(esercizioSvolto.Esercizio))
+                    throw new ArgumentException("Tutti gli esercizi svolti devono appartenere alla seduta.");
+            }
+
+            if (!seduta.Scheda.PeriodoDiValidita.IsNelPeriodo(data))
+                throw new ArgumentException("un allenamento programmato non può essere fatto in una data in cui la scheda non è valida");
+
             _seduta = seduta;
         }
 

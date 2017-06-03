@@ -84,9 +84,11 @@ namespace Trainary.model
             }
         }
 
-        public void AggiungiSeduta(IList<Esercizio> esercizi)
+        public Seduta AggiungiSeduta(IList<Esercizio> esercizi)
         {
-            _sedute.Add(new Seduta(this, esercizi));
+            Seduta s = new Seduta(this, esercizi);
+            _sedute.Add(s);
+            return s;
         }
 
        public int GetCodiceProgressivo(Seduta seduta)
