@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trainary.model
 {
-    class SvolgiVisitor : Visitor
+    public class SvolgiVisitor : Visitor
     {
         private EsercizioSvolto _esercizioSvolto = null ;
         public void Visit(EsercizioSingolo esercizioSingolo)

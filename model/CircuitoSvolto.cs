@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trainary.model
 {
-    class CircuitoSvolto : EsercizioSvolto
+    public class CircuitoSvolto : EsercizioSvolto
     {
         List<EsercizioSvolto> _sottoEserciziSvolti = new List<EsercizioSvolto>();
 

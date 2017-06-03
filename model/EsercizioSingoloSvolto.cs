@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trainary.model
 {
-    class EsercizioSingoloSvolto : EsercizioSvolto
+    public class EsercizioSingoloSvolto : EsercizioSvolto
     {
         public EsercizioSingoloSvolto(EsercizioSingolo esercizio) : base(esercizio)
         {
