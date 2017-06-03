@@ -15,8 +15,7 @@ namespace Trainary.model
         public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita)
         {
             if (String.IsNullOrEmpty(nome))
-                throw new ArgumentNullException("nome");
-            
+                throw new ArgumentException("nome");
 
             _nome = nome;
             _scopo = scopo;
@@ -77,29 +76,29 @@ namespace Trainary.model
             }
         }
 
-        public Seduta[] Sedute
-        {
+        public Seduta[] Sedute {
             get
             {
                 return _sedute.ToArray();
             }
         }
 
-
         public void AggiungiSeduta(ISet<Esercizio> esercizi)
         {
             _sedute.Add(new Seduta(OttieniCodice(), esercizi));
         }
 
-        public void ModificaNomeSeduta(string vecchioCodice,string nuovoCodice)
+        public void ModificaNomeSeduta(string vecchioCodice, string nuovoCodice)
         {
             if (!isCodiceUnivocoNellaScheda(nuovoCodice))
-                throw new ArgumentException("Esiste già una seduta con questo codice.");
+                throw new ArgumentException("Esiste già una seduta con questo codice");
             if (!isCodiceEsistente(vecchioCodice))
                 throw new ArgumentException("Non c'è una seduta nella scheda con il codice che si cerca di modificare.");
-            foreach(Seduta s in _sedute)
+
+            foreach (Seduta s in _sedute)
             {
-                if (s.Codice.Equals(vecchioCodice)){
+                if (s.Codice.Equals(vecchioCodice))
+                {
                     s.Codice = nuovoCodice;
                     break;
                 }
@@ -109,7 +108,8 @@ namespace Trainary.model
         private bool isCodiceEsistente(string vecchioCodice)
         {
             IEnumerable<string> codiciPresenti = from Seduta s in _sedute
-                                          select s.Codice;
+                                                 select s.Codice;
+
             return codiciPresenti.Contains(vecchioCodice);
         }
 
@@ -125,8 +125,6 @@ namespace Trainary.model
 
         public bool isValida(DateTime giorno)
         {
-            if (giorno == null)
-                throw new ArgumentNullException("giorno");
             return PeriodoDiValidita.IsNelPeriodo(giorno);
         }
 
