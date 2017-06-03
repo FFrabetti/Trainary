@@ -79,7 +79,7 @@ namespace Trainary.presenter
 
                 periodo = new Periodo(dataInizio, dataFine);
             } 
-            catch (Exception e)
+            catch
             {
 
             }

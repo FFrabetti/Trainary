@@ -46,7 +46,7 @@ namespace Trainary.presenter
             {
                 scheda = (Scheda)_comboBox.SelectedItem;
             }
-            catch (Exception e)
+            catch
             {
 
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Trainary.utils;
 
-namespace Trainary
+namespace Trainary.model.filtri
 {
     public static partial class FiltroFactory
     {
@@ -24,7 +24,7 @@ namespace Trainary
                         if (filtroAllenamenti != null)
                             _dictionary.Add(LabelExtensions.GetLabelAttribute(filtroAllenamenti), filtroAllenamenti);
                     }
-                    catch (Exception e)
+                    catch
                     {
 
                     }

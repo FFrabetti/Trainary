@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Trainary
+namespace Trainary.model.filtri
 {
     public interface IFiltroAllenamenti
     {

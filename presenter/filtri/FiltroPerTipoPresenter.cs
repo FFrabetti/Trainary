@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 using Trainary.model;
+using Trainary.presenter.filtri;
 using Trainary.utils;
 
 namespace Trainary.presenter
@@ -13,7 +14,7 @@ namespace Trainary.presenter
         private Label _tipoLabel = new Label();
         private ComboBox _comboBox = new ComboBox();
 
-        private List<Type> _types = new List<Type>();   
+        private List<TipoLabelWrapper> _types = new List<TipoLabelWrapper>();   
 
         public FiltroPerTipoPresenter()
         {
@@ -32,7 +33,8 @@ namespace Trainary.presenter
             this._comboBox.Location = new System.Drawing.Point(154, 20);
             this._comboBox.Size = new System.Drawing.Size(154, 21);
             this._comboBox.TabIndex = 11;
-            this._comboBox.DisplayMember = "Name";
+            this._comboBox.DisplayMember = "Label";
+            _comboBox.ValueMember = "Tipo";
 
             InizializeCombo();
         }
@@ -41,15 +43,8 @@ namespace Trainary.presenter
         {
             foreach (Type tipo in Assembly.GetExecutingAssembly().GetTypes())
             {
-                if (tipo.IsSubclassOf(typeof(Allenamento))
-                    && !tipo.IsAbstract)
-                    try
-                    {
-                        if (tipo != null)
-                            _types.Add(tipo);
-                    }
-                    catch (Exception e)
-                    { }
+                if (tipo.IsSubclassOf(typeof(Allenamento)) && !tipo.IsAbstract)
+                   _types.Add(new TipoLabelWrapper(tipo));
             }
             _comboBox.DataSource = _types;
         }
@@ -67,7 +62,7 @@ namespace Trainary.presenter
             {
                 tipo = (Type)_comboBox.SelectedItem;
             }
-            catch (Exception e)
+            catch
             {
 
             }

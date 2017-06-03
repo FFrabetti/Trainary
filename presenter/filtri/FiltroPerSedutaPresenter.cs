@@ -57,7 +57,7 @@ namespace Trainary.presenter
             {
                 seduta = (Seduta)_comboBox.SelectedItem;
             }
-            catch (Exception e)
+            catch
             {
 
             }

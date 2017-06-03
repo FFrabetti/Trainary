@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Trainary.model
 {
@@ -9,30 +11,27 @@ namespace Trainary.model
         private ScopoDellaScheda _scopo;
         private string _descrizione;
         private Periodo _periodoDiValidita;
-        private readonly ISet<Seduta> _sedute;
+        private readonly IList<Seduta> _sedute = new List<Seduta>();
 		
-        public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita, ISet<Seduta> sedute)
+        public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita)
         {
             if (String.IsNullOrEmpty(nome))
                 throw new ArgumentException("nome");
-            if (sedute == null)
-                throw new ArgumentNullException("sedute");
 
             _nome = nome;
             _scopo = scopo;
             _descrizione = descrizione;
             _periodoDiValidita = periodoDiValidita;
-            _sedute = sedute;
         }
 
-        public Scheda(string nome, ScopoDellaScheda scopo, Periodo periodoDiValidita, ISet<Seduta> sedute)
-            : this(nome, scopo, null, periodoDiValidita, sedute) { }
+        public Scheda(string nome, ScopoDellaScheda scopo, Periodo periodoDiValidita)
+            : this(nome, scopo, null, periodoDiValidita) { }
 
-        public Scheda(string nome, string descrizione, Periodo periodoDiValidita, ISet<Seduta> sedute)
-            : this(nome, ScopoDellaScheda.None, descrizione, periodoDiValidita, sedute) { }
+        public Scheda(string nome, string descrizione, Periodo periodoDiValidita)
+            : this(nome, ScopoDellaScheda.Nessuno, descrizione, periodoDiValidita) { }
 
-        public Scheda(string nome, Periodo periodoDiValidita, ISet<Seduta> sedute)
-            : this(nome, ScopoDellaScheda.None, null, periodoDiValidita, sedute) { }
+        public Scheda(string nome, Periodo periodoDiValidita)
+            : this(nome, ScopoDellaScheda.Nessuno, null, periodoDiValidita) { }
 
         public string Nome {
             get
@@ -78,11 +77,23 @@ namespace Trainary.model
             }
         }
 
-        public ISet<Seduta> Sedute {
+        public Seduta[] Sedute {
             get
             {
-                return _sedute;
+                return _sedute.ToArray();
             }
+        }
+
+        public void AggiungiSeduta(IList<Esercizio> esercizi)
+        {
+            _sedute.Add(new Seduta(this, esercizi));
+        }
+
+       public int GetCodiceProgressivo(Seduta seduta)
+        {
+            if (!_sedute.Contains(seduta))
+                throw new ArgumentException("La seduta non è presente.");
+            return _sedute.IndexOf(seduta);
         }
 
         public bool isValida(DateTime giorno)

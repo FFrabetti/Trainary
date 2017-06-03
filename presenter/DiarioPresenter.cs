@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 using Trainary.model;
+using Trainary.model.filtri;
 using Trainary.view;
 
 namespace Trainary.presenter
@@ -62,7 +63,7 @@ namespace Trainary.presenter
                         if (presenter != null)
                             _presenters.Add(presenter);
                     }
-                    catch (Exception e)
+                    catch
                     {
                         // skip
                     }

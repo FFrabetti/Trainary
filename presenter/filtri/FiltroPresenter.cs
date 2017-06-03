@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Trainary.model.filtri;
 using Trainary.utils;
 
 namespace Trainary.presenter

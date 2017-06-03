@@ -4,7 +4,7 @@ using System.Linq;
 using Trainary.model;
 using Trainary.utils;
 
-namespace Trainary
+namespace Trainary.model.filtri
 {
     public static partial class FiltroFactory
     {
