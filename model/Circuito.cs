@@ -7,7 +7,7 @@ namespace Trainary.model
     {
         private readonly Esercizio[] _esercizi;
 
-        public Circuito(Attivita attivita, Attributo[] targets, Esercizio[] esercizi) : base(attivita, targets)
+        public Circuito(Attributo[] targets, Esercizio[] esercizi) : base(null,targets)
         {
             if (esercizi == null)
                 throw new ArgumentNullException("esercizi");
@@ -22,6 +22,11 @@ namespace Trainary.model
             {
                return _esercizi;
             }
+        }
+
+        public override void Accept(Visitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public string FullToString()
