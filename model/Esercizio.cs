@@ -35,10 +35,7 @@ namespace Trainary.model
             }
         }
 
-        public EsercizioSvolto Svolgi()
-        {
-            return new EsercizioSvolto(this);
-        }
+        
 
         public override string ToString()
         {
@@ -54,5 +51,6 @@ namespace Trainary.model
 
             return esBuilder.ToString();
         }
+        public abstract void Accept(Visitor visitor);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using Trainary.utils;
 
 namespace Trainary.model
 {
+    [Label("Allenamento programmato")]
     public class AllenamentoProgrammato : Allenamento
     {
         private readonly Seduta _seduta;
@@ -21,6 +23,11 @@ namespace Trainary.model
             {
                 return _seduta;
             }
+        }
+
+        public override string ToString()
+        {
+            return "Allenamento " + _seduta;
         }
     }
 }
