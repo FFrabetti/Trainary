@@ -4,7 +4,7 @@ using Trainary.model.attributi;
 
 namespace Trainary.model
 {
-    public class EsercizioSvolto
+    public abstract class EsercizioSvolto
     {
         private readonly Esercizio _esercizio;
         private readonly List<Attributo> _dati;
