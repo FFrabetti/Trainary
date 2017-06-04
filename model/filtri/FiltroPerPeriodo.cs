@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Trainary.model;
 using Trainary.utils;
 
 namespace Trainary.model.filtri
@@ -20,9 +19,10 @@ namespace Trainary.model.filtri
                     throw new ArgumentException("opzione is not periodo");
                 Periodo periodo = (Periodo)opzione;
 
-                return (from Allenamento allenamento in listaAllenamenti
-                        where periodo.IsNelPeriodo(allenamento.Data)
-                        select allenamento);
+                return listaAllenamenti.Where(all => periodo.IsNelPeriodo(all.Data));
+                //return (from Allenamento allenamento in listaAllenamenti
+                //        where periodo.IsNelPeriodo(allenamento.Data)
+                //        select allenamento);
             }
         }
     }

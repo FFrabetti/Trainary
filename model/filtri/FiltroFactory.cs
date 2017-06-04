@@ -22,11 +22,11 @@ namespace Trainary.model.filtri
                     {
                         IFiltroAllenamenti filtroAllenamenti = (IFiltroAllenamenti)Activator.CreateInstance(type);
                         if (filtroAllenamenti != null)
-                            _dictionary.Add(LabelExtensions.GetLabelAttribute(filtroAllenamenti), filtroAllenamenti);
+                            _dictionary.Add(filtroAllenamenti.GetLabelAttribute(), filtroAllenamenti);
                     }
                     catch
                     {
-
+                        // skip
                     }
                 }
             }
@@ -34,8 +34,7 @@ namespace Trainary.model.filtri
 
         public static IFiltroAllenamenti GetFiltroAllenamento(string nomeFiltro)
         {
-            if (!_dictionary.ContainsKey(nomeFiltro))
-                throw new ArgumentException("nomeFiltro");
+            // If the specified key is not found, throws a KeyNotFoundException
             return _dictionary[nomeFiltro];
         }
 

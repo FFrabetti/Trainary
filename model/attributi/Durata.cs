@@ -17,7 +17,7 @@ namespace Trainary.model.attributi
 
             public Durata(int h, int m, int s) : this(new TimeSpan(h, m, s))
             {
-                // negative values?
+                // negative values accepted, but then converted into positive ones
             }
 
             public override TipoQuantita Tipo
@@ -41,7 +41,7 @@ namespace Trainary.model.attributi
                     sb.Append(_durata.Minutes + "m ");
                 if (_durata.Seconds != 0 || _durata.Milliseconds != 0)
                     sb.Append((_durata.Seconds + _durata.Milliseconds/1000.0) + "s");
-
+                
                 return sb.ToString().TrimEnd();
             }
         }

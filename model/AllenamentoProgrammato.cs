@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Trainary.utils;
 
 namespace Trainary.model
@@ -14,16 +15,12 @@ namespace Trainary.model
             if (seduta == null)
                 throw new ArgumentNullException("seduta");
 
-            foreach (EsercizioSvolto esercizioSvolto in eserciziSvolti)
-            {
-
-                if (!seduta.Esercizi.Contains(esercizioSvolto.Esercizio))
-                    throw new ArgumentException("Tutti gli esercizi svolti devono appartenere alla seduta.");
-            }
-
             if (!seduta.Scheda.PeriodoDiValidita.IsNelPeriodo(data))
-                throw new ArgumentException("un allenamento programmato non può essere fatto in una data in cui la scheda non è valida");
+                throw new ArgumentException("La data non rientra nel periodo di validità della scheda.");
 
+            if(eserciziSvolti.Any(esSvolto => !seduta.Esercizi.Contains(esSvolto.Esercizio)))
+                throw new ArgumentException("Tutti gli esercizi svolti devono appartenere alla seduta.");
+ 
             _seduta = seduta;
         }
 

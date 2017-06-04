@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Trainary.model;
 using Trainary.utils;
 
 namespace Trainary.model.filtri
@@ -20,10 +19,11 @@ namespace Trainary.model.filtri
                     throw new ArgumentException("opzione is not Seduta");
                 Seduta seduta = (Seduta) opzione;
 
-                return
-                    from AllenamentoProgrammato allenamento in listaAllenamenti.OfType<AllenamentoProgrammato>()
-                    where seduta.Equals(allenamento.Seduta)
-                    select allenamento;
+                return listaAllenamenti.OfType<AllenamentoProgrammato>().Where(all => all.Seduta == seduta);
+                //return
+                //    from AllenamentoProgrammato allenamento in listaAllenamenti.OfType<AllenamentoProgrammato>()
+                //    where seduta.Equals(allenamento.Seduta)
+                //    select allenamento;
             }
         }
     }
