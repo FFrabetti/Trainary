@@ -11,7 +11,7 @@ namespace Trainary.model
         private ScopoDellaScheda _scopo;
         private string _descrizione;
         private Periodo _periodoDiValidita;
-        private readonly IList<Seduta> _sedute = new List<Seduta>();
+        private readonly IList<Seduta> _sedute;
 		
         public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita)
         {
@@ -22,6 +22,7 @@ namespace Trainary.model
             _scopo = scopo;
             _descrizione = descrizione;
             _periodoDiValidita = periodoDiValidita;
+            _sedute = new List<Seduta>();
         }
 
         public Scheda(string nome, ScopoDellaScheda scopo, Periodo periodoDiValidita)
@@ -93,9 +94,10 @@ namespace Trainary.model
 
        public int GetCodiceProgressivo(Seduta seduta)
         {
-            if (!_sedute.Contains(seduta))
+            int i = _sedute.IndexOf(seduta);
+            if (i < 0)
                 throw new ArgumentException("La seduta non è presente.");
-            return _sedute.IndexOf(seduta);
+            return i;
         }
 
         public bool isValida(DateTime giorno)
@@ -106,6 +108,21 @@ namespace Trainary.model
         public override string ToString()
         {
             return _nome;
+        }
+
+        // debug only
+        public string ToFullString()
+        {
+            StringBuilder sb = new StringBuilder(_nome + " ");
+            if (_scopo != ScopoDellaScheda.Nessuno)
+            {
+                sb.Append("(");
+                sb.Append(_scopo);
+                sb.Append(") ");
+            }
+            sb.Append(_periodoDiValidita.ToFullString());
+
+            return sb.ToString();
         }
     }
 }

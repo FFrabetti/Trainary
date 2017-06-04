@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Trainary.model.attributi;
 
 namespace Trainary.model
@@ -16,10 +17,10 @@ namespace Trainary.model
             
             _esercizi = esercizi;
         }
-        public Circuito(Esercizio[] esercizi) : this(new Attributo[0],esercizi)
+        public Circuito(Esercizio[] esercizi) : this(new Attributo[0], esercizi)
         {
-           
         }
+
         public Esercizio[] Esercizi {
             get
             {
@@ -32,17 +33,49 @@ namespace Trainary.model
             visitor.Visit(this);
         }
 
-        public string FullToString()
+        public override string ToString()
         {
-            String circuitoToPrint = "";
-            int i = 1;
-            foreach(Esercizio e in _esercizi)
+            StringBuilder sb = new StringBuilder("Circuito");
+
+            for (int i = 0; i < Targets.Length; i++)
             {
-                circuitoToPrint += (i++) + ") ";
-                circuitoToPrint += e;
-                circuitoToPrint += "\n";
+                if (i == 0)
+                    sb.Append(" [");
+                else
+                    sb.Append(", ");
+
+                sb.Append(Targets[i]);
+
+                if (i == Targets.Length - 1)
+                    sb.Append("]");
             }
-            return circuitoToPrint;
+
+            return sb.ToString();
+        }
+
+        // debug only
+        public override string ToFullString()
+        {
+            StringBuilder result = new StringBuilder();
+            StringBuilder ident = new StringBuilder();
+            RecoursiveToFullString(result, ident, this);
+
+            return result.ToString().Trim();
+        }
+
+        private void RecoursiveToFullString(StringBuilder result, StringBuilder ident, Esercizio e)
+        {
+            if(e is Circuito)
+            {
+                result.Append(Environment.NewLine + ident + e);
+                ident.Append("    ");
+                foreach (Esercizio subEs in ((Circuito)e).Esercizi)
+                    RecoursiveToFullString(result, ident, subEs);
+            }
+            else // caso base
+            {
+                result.Append(Environment.NewLine + ident + e);
+            }
         }
     }
 }

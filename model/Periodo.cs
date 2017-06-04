@@ -49,7 +49,7 @@ namespace Trainary.model
             return ToStringDate(_dataInizio) + "-" + ToStringDate(_dataFine);
         }
 
-        internal string FullToString()
+        internal string ToFullString()
         {
             return "Periodo: da " +
                 ToStringDate(_dataInizio) + " a " +

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Trainary.model
 {
@@ -39,6 +40,7 @@ namespace Trainary.model
         {
             get; set;
         }
+
         public Scheda Scheda
         {
             get
@@ -49,13 +51,14 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            string result = "Seduta ";
-            if (_nome != null)
-                result += _nome;
+            StringBuilder result = new StringBuilder("Seduta ");
+            if (!string.IsNullOrEmpty(_nome))
+                result.Append(_nome);
             else
-                result += _scheda.GetCodiceProgressivo(this).ToString();
+                result.Append(_scheda.GetCodiceProgressivo(this));
 
-            return result + " (" + _scheda + ")";
+            result.Append(" (" + _scheda + ")");
+            return result.ToString();
         }
     }
 }

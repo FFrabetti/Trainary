@@ -29,5 +29,11 @@ namespace Trainary.model
         }
 
         public abstract void Accept(Visitor visitor);
+
+        // debug only
+        public virtual string ToFullString()
+        {
+            return ToString();
+        }
     }
 }
