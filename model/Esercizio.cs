@@ -6,29 +6,19 @@ namespace Trainary.model
 {
     public abstract class Esercizio
 	{
-        private readonly Attivita _attivita;
+        
         private readonly Attributo[] _targets;
 
-        public Esercizio(Attivita attivita, Attributo[] targets)
+        public Esercizio(Attributo[] targets)
         {
-            if (attivita == null)
-                throw new ArgumentNullException("attivita");
             if (targets == null)
-                throw new ArgumentNullException("targets");
-            _attivita = attivita;
-            _targets = targets;
+                _targets = new Attributo[0];
+            else
+                _targets = targets;
         }
 
-        public Esercizio(Attivita attivita) : this(attivita, new Attributo[0])
+        public Esercizio() : this(null)
         { }
-
-        public Attivita Attivita
-        {
-            get
-            {
-                return _attivita;
-            }
-        }
 
         public Attributo[] Targets
         {
@@ -38,24 +28,6 @@ namespace Trainary.model
             }
         }
 
-        public EsercizioSvolto Svolgi()
-        {
-            return new EsercizioSvolto(this);
-        }
-
-        public override string ToString()
-        {
-            StringBuilder esBuilder = new StringBuilder(_attivita.ToString() + " [");
-
-            for (int i=0; i < _targets.Length; i++)
-            {
-                if (i!=0)
-                    esBuilder.Append(", ");
-                esBuilder.Append(_targets[i]);
-            }
-            esBuilder.Append(']');
-
-            return esBuilder.ToString();
-        }
+        public abstract void Accept(Visitor visitor);
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using Trainary.utils;
 
 namespace Trainary.model
 {
+    [Label("Allenamento extra")]
     public class AllenamentoExtra : Allenamento
     {
         private string _nome;
@@ -27,6 +29,11 @@ namespace Trainary.model
                    value = "";
                 _nome = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return Nome.Length > 0 ? Nome : "Allenamento extra";
         }
     }
 }

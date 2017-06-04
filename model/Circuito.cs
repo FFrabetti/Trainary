@@ -7,21 +7,29 @@ namespace Trainary.model
     {
         private readonly Esercizio[] _esercizi;
 
-        public Circuito(Attivita attivita, Attributo[] targets, Esercizio[] esercizi) : base(attivita, targets)
+        public Circuito(Attributo[] targets, Esercizio[] esercizi) : base(targets)
         {
             if (esercizi == null)
                 throw new ArgumentNullException("esercizi");
             if (esercizi.Length < 2)
                 throw new ArgumentException("un circuito deve contenere almeno 2 esercizi");
-
+            
             _esercizi = esercizi;
         }
-
+        public Circuito(Esercizio[] esercizi) : this(new Attributo[0],esercizi)
+        {
+           
+        }
         public Esercizio[] Esercizi {
             get
             {
                return _esercizi;
             }
+        }
+
+        public override void Accept(Visitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public string FullToString()

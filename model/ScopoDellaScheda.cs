@@ -2,6 +2,6 @@
 {
     public enum ScopoDellaScheda
     {
-        None, Potenziamento, Dimagrimento, Tonificazione, Riabilitazione
+        Nessuno, Potenziamento, Dimagrimento, Tonificazione, Riabilitazione
     }
 }

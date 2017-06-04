@@ -5,7 +5,6 @@ namespace Trainary.model.attributi
 {
     public static partial class QuantitaFactory
     {
-
         public static Quantita NewQuantita(params object[] args)
         {
             Type[] types = new Type[args.Length];

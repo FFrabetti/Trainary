@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Trainary.model.attributi
@@ -68,23 +69,12 @@ namespace Trainary.model.attributi
 
         public static UnitaDiMisura GetBase(TipoQuantita tipo)
         {
-            foreach (UnitaDiMisura u in _dictionary.Values)
-            {
-                if (u.Tipo == tipo && u.IsBase())
-                    return u;
-            }
-            return null;
+            return _dictionary.Values.SingleOrDefault(unita => unita.Tipo == tipo && unita.IsBase());
         }
 
         public static IEnumerable<UnitaDiMisura> GetAllOfType(TipoQuantita tipo)
         {
-            List<UnitaDiMisura> lista = new List<UnitaDiMisura>();
-            foreach (UnitaDiMisura u in _dictionary.Values)
-            {
-                if (u.Tipo == tipo)
-                    lista.Add(u);
-            }
-            return lista;
+            return _dictionary.Values.Where(unita => unita.Tipo == tipo);
         }
 
 

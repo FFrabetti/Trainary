@@ -5,34 +5,29 @@ namespace Trainary.model
 {
     public class Seduta
     {
-        private string _codice;
-        private readonly ISet<Esercizio> _esercizi;
+        
+        private readonly IList<Esercizio> _esercizi;
+        private readonly Scheda _scheda;
+        private readonly string _nome;
 
-        public Seduta(string codice, ISet<Esercizio> esercizi)
+        public Seduta(Scheda scheda,IList<Esercizio> esercizi,string nome)
         {
-            if (String.IsNullOrEmpty(codice))
-                throw new ArgumentException("codice");
+            if (scheda == null)
+                throw new ArgumentNullException("scheda");
             if (esercizi == null)
                 throw new ArgumentNullException("esercizi");
 
-            _codice = codice;
+            _scheda = scheda;
             _esercizi = esercizi;
+            _nome = nome;
         }
 
-        public string Codice
+        public Seduta(Scheda scheda, IList<Esercizio> esercizi) : this(scheda,esercizi,null)
         {
-            get
-            {
-                return _codice;
-            }
 
-            set
-            {
-                _codice = value;
-            }
         }
 
-        public ISet<Esercizio> Esercizi
+        public IList<Esercizio> Esercizi
         {
             get
             {
@@ -40,9 +35,27 @@ namespace Trainary.model
             }
         }
 
+        public string Nome
+        {
+            get; set;
+        }
+        public Scheda Scheda
+        {
+            get
+            {
+                return _scheda;
+            }
+        }
+
         public override string ToString()
         {
-            return _codice;
+            string result = "Seduta ";
+            if (_nome != null)
+                result += _nome;
+            else
+                result += _scheda.GetCodiceProgressivo(this).ToString();
+
+            return result + " (" + _scheda + ")";
         }
     }
 }
