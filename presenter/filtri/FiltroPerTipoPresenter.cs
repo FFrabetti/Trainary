@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 using Trainary.model;
-using Trainary.presenter.filtri;
 using Trainary.utils;
 
-namespace Trainary.presenter
+namespace Trainary.presenter.filtri
 {
     [Label("Filtro per tipo")]
     public class FiltroPerTipoPresenter : FiltroPresenter

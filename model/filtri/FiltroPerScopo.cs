@@ -10,7 +10,6 @@ namespace Trainary.model.filtri
         [Label("Filtro per scopo")]
         private class FiltroPerScopo : IFiltroAllenamenti
         {
-
             public FiltroPerScopo() //Filtro per scopo di una scheda
             { }
 

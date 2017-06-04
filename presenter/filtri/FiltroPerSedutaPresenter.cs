@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using Trainary.model;
 using Trainary.utils;
 
-namespace Trainary.presenter
+namespace Trainary.presenter.filtri
 {
     [Label("Filtro per seduta")]
     public class FiltroPerSedutaPresenter : FiltroPresenter

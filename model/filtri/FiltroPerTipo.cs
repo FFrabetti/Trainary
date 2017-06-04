@@ -10,6 +10,7 @@ namespace Trainary.model.filtri
         [Label("Filtro per tipo")]
         private class FiltroPerTipo : IFiltroAllenamenti
         {
+            
             public FiltroPerTipo()
             { }
 

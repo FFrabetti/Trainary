@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.filtri;
+using Trainary.presenter.filtri;
 using Trainary.view;
 
 namespace Trainary.presenter
