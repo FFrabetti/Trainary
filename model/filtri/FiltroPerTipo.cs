@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Trainary.model;
 using Trainary.utils;
 
 namespace Trainary.model.filtri
@@ -11,6 +10,7 @@ namespace Trainary.model.filtri
         [Label("Filtro per tipo")]
         private class FiltroPerTipo : IFiltroAllenamenti
         {
+            
             public FiltroPerTipo()
             { }
 
@@ -22,9 +22,6 @@ namespace Trainary.model.filtri
                 if (!tipo.IsSubclassOf(typeof(Allenamento)))
                     throw new ArgumentException("opzione is not allenamento");
 
-                //return (from Allenamento allenamento in listaAllenamenti
-                //        where allenamento.GetType().Equals(tipo)
-                //        select allenamento);
                 return listaAllenamenti.Where(a => a.GetType().Equals(tipo));
             }
         }

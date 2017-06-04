@@ -2,7 +2,7 @@
 using Trainary.model.filtri;
 using Trainary.utils;
 
-namespace Trainary.presenter
+namespace Trainary.presenter.filtri
 {
     public abstract class FiltroPresenter
     {

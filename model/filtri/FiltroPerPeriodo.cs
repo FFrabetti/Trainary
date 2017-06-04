@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Trainary.model;
 using Trainary.utils;
 
 namespace Trainary.model.filtri

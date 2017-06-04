@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Trainary.model;
+using Trainary.model.filtri;
 using Trainary.utils;
 
 namespace Trainary.model.filtri
 {
+    
     public static partial class FiltroFactory
     {
         [Label("Filtro per seduta")]
         private class FiltroPerSeduta : IFiltroAllenamenti
         {
+            
             public FiltroPerSeduta()
             { }
 
