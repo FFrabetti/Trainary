@@ -12,8 +12,11 @@ namespace Trainary
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDiario());
 
+            Application.Run(new FormDiario());
+           
+		    //Application.Run(new TestForm());
+            //Application.Run(new EserciziListForm());
 
             //AttributoTempoTest.Test();
             //Separator();

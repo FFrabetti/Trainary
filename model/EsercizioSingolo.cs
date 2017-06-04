@@ -30,6 +30,8 @@ namespace Trainary.model
             }
         }
 
+        public EsercizioSingolo(Attivita attivita) : base(attivita) { }
+
         public override string ToString()
         {
             return base.ToString();

@@ -18,10 +18,8 @@ namespace Trainary.model
                 _targets = targets;
         }
 
-       public Esercizio() : this(null)
-        {
-
-        }
+		public Esercizio() : this(null)
+        { }
 
         public Attributo[] Targets
         {
