@@ -16,10 +16,12 @@ namespace Trainary.model
             
             _esercizi = esercizi;
         }
+
         public Circuito(Esercizio[] esercizi) : this(new Attributo[0],esercizi)
         {
            
         }
+
         public Esercizio[] Esercizi {
             get
             {

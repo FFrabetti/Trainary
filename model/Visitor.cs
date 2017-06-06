@@ -10,5 +10,6 @@ namespace Trainary.model
     {
         void Visit(EsercizioSingolo esercizioSingolo);
         void Visit(Circuito circuito);
+        void Visit(Esercizio esercizio);
     }
 }

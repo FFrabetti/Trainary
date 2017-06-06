@@ -25,6 +25,30 @@ namespace Trainary.model
             }
             _esercizioSvolto = circuitoSvolto;
         }
+
+        public void Visit(Esercizio esercizio)
+        {
+            //Type type = esercizio.GetType();
+            //switch (type)
+            //{
+            //    case typeof(EsercizioSingolo):
+            //        Visit((EsercizioSingolo)esercizio);
+            //        break;
+            //    case typeof(Circuito):
+            //        Visit((Circuito)esercizio);
+            //        break;
+            //    default:
+            //        throw new ArgumentException("esercizio");
+
+            //}
+
+            if (esercizio.GetType().Equals(typeof(EsercizioSingolo)))
+                Visit((EsercizioSingolo)esercizio);
+            else if (esercizio.GetType().Equals(typeof(Circuito)))
+                Visit((Circuito)esercizio);
+            else throw new ArgumentException("esercizio");
+        }
+
         public EsercizioSvolto EsercizioSvolto
         {
             get
