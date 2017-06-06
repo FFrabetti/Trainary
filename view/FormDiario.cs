@@ -36,7 +36,7 @@ namespace Trainary
             }
         }
 
-        public Button Ok_button
+        public Button OkButton
         {
             get
             {
@@ -44,11 +44,19 @@ namespace Trainary
             }
         }
 
-        public Button AnnullaButton_button
+        public Button AnnullaButton
         {
             get
             {
-                return _okButton;
+                return _annullaButton;
+            }
+        }
+
+        public Label FiltriLabel
+        {
+            get
+            {
+                return _filtriLabel;
             }
         }
 
