@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Trainary.model.filtri;
+using Trainary.persistence;
 
 namespace Trainary.model
 {
@@ -12,7 +13,8 @@ namespace Trainary.model
 
         private Diario()
         {
-            _allenamenti = new List<Allenamento>();
+            IDataManager<Allenamento> allenamentiDM = new AllenamentiDataManager();
+            _allenamenti = new List<Allenamento>(allenamentiDM.GetElements());
         }
 
         public static Diario GetInstance()

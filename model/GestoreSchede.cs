@@ -2,23 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using Trainary.model;
+using Trainary.persistence;
 
 namespace Trainary
 {
-    public static class GestoreSchede
+    public class GestoreSchede
     {
-        private static readonly List<Scheda> _schede = new List<Scheda>();
+        private static GestoreSchede _instance;
 
-        public static List<Scheda> GetSchede()
+        private readonly List<Scheda> _schede;
+
+        private GestoreSchede()
+        {
+            IDataManager<Scheda> dm = new SchedeDataManager();
+            _schede = new List<Scheda>(dm.GetElements());
+        }
+
+        public static GestoreSchede GetInstance()
+        {
+            if (_instance == null)
+                _instance = new GestoreSchede();
+
+            return _instance;
+        }
+
+        public List<Scheda> GetSchede()
         {
             return _schede;
         }
 
-        public static IEnumerable<Scheda> GetSchedeValide(DateTime data)
+        public IEnumerable<Scheda> GetSchedeValide(DateTime data)
         {
-            return from Scheda s in _schede
-                   where s.isValida(data)
-                   select s;
+            return _schede.Where(scheda => scheda.isValida(data));
         }
     }
 }
