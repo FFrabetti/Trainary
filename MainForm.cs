@@ -21,5 +21,10 @@ namespace Trainary
         {
             get { return _menuStrip; }
         }
+
+        public Panel Panel
+        {
+            get { return _panel; }
+        }
     }
 }

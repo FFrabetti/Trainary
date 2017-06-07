@@ -29,21 +29,31 @@
         private void InitializeComponent()
         {
             this._menuStrip = new System.Windows.Forms.MenuStrip();
+            this._panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // _menuStrip
             // 
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(284, 24);
+            this._menuStrip.Size = new System.Drawing.Size(538, 24);
             this._menuStrip.TabIndex = 0;
             this._menuStrip.Text = "menuStrip1";
+            // 
+            // _panel
+            // 
+            this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._panel.Location = new System.Drawing.Point(0, 24);
+            this._panel.Name = "_panel";
+            this._panel.Size = new System.Drawing.Size(538, 368);
+            this._panel.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(538, 392);
+            this.Controls.Add(this._panel);
             this.Controls.Add(this._menuStrip);
             this.MainMenuStrip = this._menuStrip;
             this.Name = "MainForm";
@@ -56,5 +66,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip _menuStrip;
+        private System.Windows.Forms.Panel _panel;
     }
 }

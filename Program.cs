@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Trainary.Presentation;
 using Trainary.utils;
+using Trainary.view;
 
 namespace Trainary
 {
     class Program
     {
+        private static MainForm _mainForm;
 
         [STAThread]
         public static void Main(string[] args)
@@ -17,10 +20,19 @@ namespace Trainary
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainForm mainForm = new MainForm();
-            MenuPresenter menuPresenter = new MenuPresenter(typeof(Program), mainForm.MenuStrip);
-            Application.Run(mainForm);
+            _mainForm = new MainForm();
+            MenuPresenter menuPresenter = new MenuPresenter(typeof(Program), _mainForm.MenuStrip);
+            Application.Run(_mainForm);
         }
+
+        private static void AddControl(Control control)
+        {
+            _mainForm.Panel.Controls.Clear();
+            _mainForm.Panel.Controls.Add(control);
+        }
+
+
+        // ------------------------------ MENU ------------------------------
 
         [MenuLabel("Exit", "Trainary")]
         public static void Exit()
@@ -31,18 +43,32 @@ namespace Trainary
         [MenuLabel("Diario")]
         public static void MostraDiario()
         {
+            Control control = new DiarioControl();
+            AddControl(control);
+
             Console.WriteLine("mostra diario");
         }
 
         [MenuLabel("Gestione Schede", "Schede")]
         public static void MostraGestioneSchede()
         {
+            Control control = new GestioneSchedeControl();
+            AddControl(control);
+
             Console.WriteLine("gestione schede");
         }
 
         [MenuLabel("Aggiungi Scheda", "Schede")]
         public static void AggiungiScheda()
         {
+            using (SchedaForm schedaForm = new SchedaForm())
+            {
+                if (schedaForm.ShowDialog() == DialogResult.OK)
+                    Console.WriteLine("ok!");
+                else
+                    Console.WriteLine("cancel");
+            }
+
             Console.WriteLine("aggiungi scheda");
         }
 
@@ -57,5 +83,6 @@ namespace Trainary
         {
             Console.WriteLine("nuovo all extra");
         }
+
     }
 }
