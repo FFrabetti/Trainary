@@ -36,8 +36,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this._seduteLabel = new System.Windows.Forms.Label();
-            this._annullaButton = new System.Windows.Forms.Button();
-            this._salvaButton = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this._nuovoEsercizioButton = new System.Windows.Forms.Button();
@@ -52,6 +50,7 @@
             this._eliminaSedutaButton = new System.Windows.Forms.Button();
             this._dataFineRadioButton = new System.Windows.Forms.RadioButton();
             this._durataRadioButton = new System.Windows.Forms.RadioButton();
+            this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
             this.SuspendLayout();
             // 
             // _nomeLabel
@@ -128,25 +127,6 @@
             this._seduteLabel.Size = new System.Drawing.Size(68, 19);
             this._seduteLabel.TabIndex = 13;
             this._seduteLabel.Text = "Sedute*:";
-            // 
-            // _annullaButton
-            // 
-            this._annullaButton.Location = new System.Drawing.Point(370, 554);
-            this._annullaButton.Name = "_annullaButton";
-            this._annullaButton.Size = new System.Drawing.Size(75, 23);
-            this._annullaButton.TabIndex = 14;
-            this._annullaButton.Text = "Annulla";
-            this._annullaButton.UseVisualStyleBackColor = true;
-            // 
-            // _salvaButton
-            // 
-            this._salvaButton.Enabled = false;
-            this._salvaButton.Location = new System.Drawing.Point(370, 525);
-            this._salvaButton.Name = "_salvaButton";
-            this._salvaButton.Size = new System.Drawing.Size(75, 23);
-            this._salvaButton.TabIndex = 15;
-            this._salvaButton.Text = "Salva";
-            this._salvaButton.UseVisualStyleBackColor = true;
             // 
             // treeView1
             // 
@@ -278,12 +258,22 @@
             this._durataRadioButton.TabIndex = 34;
             this._durataRadioButton.UseVisualStyleBackColor = true;
             // 
-            // NuovaSchedaForm
+            // dialogButtonsControl1
+            // 
+            this.dialogButtonsControl1.AutoSize = true;
+            this.dialogButtonsControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dialogButtonsControl1.Location = new System.Drawing.Point(0, 552);
+            this.dialogButtonsControl1.Name = "dialogButtonsControl1";
+            this.dialogButtonsControl1.Size = new System.Drawing.Size(459, 59);
+            this.dialogButtonsControl1.TabIndex = 35;
+            // 
+            // SchedaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this._durataRadioButton);
             this.Controls.Add(this._dataFineRadioButton);
             this.Controls.Add(this._eliminaSedutaButton);
@@ -298,8 +288,6 @@
             this.Controls.Add(this._nuovaSedutaButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.treeView1);
-            this.Controls.Add(this._salvaButton);
-            this.Controls.Add(this._annullaButton);
             this.Controls.Add(this._seduteLabel);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -308,7 +296,7 @@
             this.Controls.Add(this._dataInizioLabel);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this._nomeLabel);
-            this.Name = "NuovaSchedaForm";
+            this.Name = "SchedaForm";
             this.Text = "Nuova scheda";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -325,8 +313,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label _seduteLabel;
-        private System.Windows.Forms.Button _annullaButton;
-        private System.Windows.Forms.Button _salvaButton;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _nuovoEsercizioButton;
@@ -341,5 +327,6 @@
         private System.Windows.Forms.Button _eliminaSedutaButton;
         private System.Windows.Forms.RadioButton _dataFineRadioButton;
         private System.Windows.Forms.RadioButton _durataRadioButton;
+        private view.DialogButtonsControl dialogButtonsControl1;
     }
 }
