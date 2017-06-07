@@ -3,7 +3,7 @@
 /Properties
 *.config
 *.xaml
-*.csproj
+*.csproj*
+*.user
 App.xaml.cs
 MainWindow.xaml.cs
-*.user
