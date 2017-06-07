@@ -14,33 +14,33 @@ namespace Trainary.presenter
     public class DiarioPresenter
     {
         private List<FiltroPresenter> _presenters;
-        private FormDiario _formDiario;
+        private DiarioControl _diarioControl;
         private FiltroPresenter _currentFiltroPresenter;
 
         private IEnumerable<Allenamento> _listaAllenamenti = new List<Allenamento>();
         private StringBuilder _currentFiltriLabel = new StringBuilder();
 
-        public DiarioPresenter (FormDiario formDiario)
+        public DiarioPresenter (DiarioControl diarioControl)
         {
             _presenters = new List<FiltroPresenter>();
-            _formDiario = formDiario;
+            _diarioControl = diarioControl;
 
             ResetListView();
             Inizialize();
             InizializeComboBox();
-          
-            formDiario.OkButton.Click += _okButton_Click;
-            formDiario.AnnullaButton.Click += _annullaButton_Click;
+
+            diarioControl.OkButton.Click += _okButton_Click;
+            diarioControl.AnnullaButton.Click += _annullaButton_Click;
         }
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
         {
-            _formDiario.ListView.Items.Clear();
+            _diarioControl.ListView.Items.Clear();
             foreach(Allenamento a in listaAllenamenti)
             {
                 ListViewItem item = new ListViewItem(ToStringDate(a.Data));
                 item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
-                _formDiario.ListView.Items.Add(item);
+                _diarioControl.ListView.Items.Add(item);
             }
         }
 
@@ -76,20 +76,20 @@ namespace Trainary.presenter
 
         private void InizializeComboBox()
         {
-            _formDiario.ComboBox.DataSource = _presenters;
-            _formDiario.ComboBox.DisplayMember = "LabelAttribute";
+            _diarioControl.ComboBox.DataSource = _presenters;
+            _diarioControl.ComboBox.DisplayMember = "LabelAttribute";
 
-            SelectedPresenter(_formDiario.ComboBox);
+            SelectedPresenter(_diarioControl.ComboBox);
 
-            _formDiario.ComboBox.SelectedValueChanged += _comboBox_SelectedIndexChanged;
+            _diarioControl.ComboBox.SelectedValueChanged += _comboBox_SelectedIndexChanged;
         }
 
         private void SelectedPresenter(ComboBox combo)
         {
             _currentFiltroPresenter = (FiltroPresenter)combo.SelectedItem;
 
-            _formDiario.Panel.Controls.Clear();
-            _currentFiltroPresenter.DrawControls(_formDiario.Panel);
+            _diarioControl.Panel.Controls.Clear();
+            _currentFiltroPresenter.DrawControls(_diarioControl.Panel);
         }
 
         private void _comboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,7 +99,7 @@ namespace Trainary.presenter
 
         private void _okButton_Click(object sender, EventArgs e)
         {
-            _currentFiltroPresenter = (FiltroPresenter)_formDiario.ComboBox.SelectedItem;
+            _currentFiltroPresenter = (FiltroPresenter)_diarioControl.ComboBox.SelectedItem;
 
             IFiltroAllenamenti filtroAllenamenti = _currentFiltroPresenter.NewFiltro;
             object opzione = _currentFiltroPresenter.GetOpzione();
@@ -134,7 +134,7 @@ namespace Trainary.presenter
 
         private void SetLabelFiltri(string label)
         {
-            _formDiario.FiltriLabel.Text = label;
+            _diarioControl.FiltriLabel.Text = label;
         }
 
         private void _annullaButton_Click(object sender, EventArgs e)

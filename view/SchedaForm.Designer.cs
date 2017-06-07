@@ -1,6 +1,6 @@
 ﻿namespace Trainary.Presentation
 {
-    partial class NuovaSchedaView
+    partial class SchedaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,13 @@
             this._dataInizio = new System.Windows.Forms.DateTimePicker();
             this._dataFine = new System.Windows.Forms.DateTimePicker();
             this._dataFineLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this._rinominaSedutaButton = new System.Windows.Forms.Button();
+            this._eliminaEsercizioButton = new System.Windows.Forms.Button();
+            this._eliminaSedutaButton = new System.Windows.Forms.Button();
+            this._dataFineRadioButton = new System.Windows.Forms.RadioButton();
+            this._durataRadioButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // _nomeLabel
@@ -116,7 +123,7 @@
             this._seduteLabel.AutoSize = true;
             this._seduteLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._seduteLabel.ForeColor = System.Drawing.Color.Black;
-            this._seduteLabel.Location = new System.Drawing.Point(22, 235);
+            this._seduteLabel.Location = new System.Drawing.Point(22, 282);
             this._seduteLabel.Name = "_seduteLabel";
             this._seduteLabel.Size = new System.Drawing.Size(68, 19);
             this._seduteLabel.TabIndex = 13;
@@ -124,7 +131,7 @@
             // 
             // _annullaButton
             // 
-            this._annullaButton.Location = new System.Drawing.Point(370, 507);
+            this._annullaButton.Location = new System.Drawing.Point(370, 554);
             this._annullaButton.Name = "_annullaButton";
             this._annullaButton.Size = new System.Drawing.Size(75, 23);
             this._annullaButton.TabIndex = 14;
@@ -134,7 +141,7 @@
             // _salvaButton
             // 
             this._salvaButton.Enabled = false;
-            this._salvaButton.Location = new System.Drawing.Point(370, 478);
+            this._salvaButton.Location = new System.Drawing.Point(370, 525);
             this._salvaButton.Name = "_salvaButton";
             this._salvaButton.Size = new System.Drawing.Size(75, 23);
             this._salvaButton.TabIndex = 15;
@@ -143,7 +150,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(26, 257);
+            this.treeView1.Location = new System.Drawing.Point(26, 304);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(301, 174);
             this.treeView1.TabIndex = 16;
@@ -152,18 +159,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Red;
-            this.label1.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(23, 457);
+            this.label1.Location = new System.Drawing.Point(23, 504);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(331, 15);
+            this.label1.Size = new System.Drawing.Size(344, 15);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Nota: i campi contrassegnati con * sono obbligatori";
+            this.label1.Text = "Nota 1: i campi contrassegnati con * sono obbligatori";
             // 
             // _nuovoEsercizioButton
             // 
             this._nuovoEsercizioButton.Enabled = false;
-            this._nuovoEsercizioButton.Location = new System.Drawing.Point(344, 286);
+            this._nuovoEsercizioButton.Location = new System.Drawing.Point(344, 393);
             this._nuovoEsercizioButton.Name = "_nuovoEsercizioButton";
             this._nuovoEsercizioButton.Size = new System.Drawing.Size(101, 23);
             this._nuovoEsercizioButton.TabIndex = 23;
@@ -172,7 +179,7 @@
             // 
             // _nuovaSedutaButton
             // 
-            this._nuovaSedutaButton.Location = new System.Drawing.Point(344, 257);
+            this._nuovaSedutaButton.Location = new System.Drawing.Point(344, 304);
             this._nuovaSedutaButton.Name = "_nuovaSedutaButton";
             this._nuovaSedutaButton.Size = new System.Drawing.Size(101, 23);
             this._nuovaSedutaButton.TabIndex = 22;
@@ -181,14 +188,14 @@
             // 
             // _dataInizio
             // 
-            this._dataInizio.Location = new System.Drawing.Point(172, 156);
+            this._dataInizio.Location = new System.Drawing.Point(185, 156);
             this._dataInizio.Name = "_dataInizio";
             this._dataInizio.Size = new System.Drawing.Size(182, 20);
             this._dataInizio.TabIndex = 24;
             // 
             // _dataFine
             // 
-            this._dataFine.Location = new System.Drawing.Point(172, 189);
+            this._dataFine.Location = new System.Drawing.Point(185, 188);
             this._dataFine.Name = "_dataFine";
             this._dataFine.Size = new System.Drawing.Size(182, 20);
             this._dataFine.TabIndex = 26;
@@ -200,16 +207,90 @@
             this._dataFineLabel.ForeColor = System.Drawing.Color.Black;
             this._dataFineLabel.Location = new System.Drawing.Point(22, 189);
             this._dataFineLabel.Name = "_dataFineLabel";
-            this._dataFineLabel.Size = new System.Drawing.Size(84, 19);
+            this._dataFineLabel.Size = new System.Drawing.Size(76, 19);
             this._dataFineLabel.TabIndex = 25;
-            this._dataFineLabel.Text = "Data fine*:";
+            this._dataFineLabel.Text = "Data fine:";
             // 
-            // NuovaSchedaView
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(23, 222);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 19);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Durata (giorni):";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(185, 222);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(182, 20);
+            this.textBox4.TabIndex = 29;
+            // 
+            // _rinominaSedutaButton
+            // 
+            this._rinominaSedutaButton.Enabled = false;
+            this._rinominaSedutaButton.Location = new System.Drawing.Point(344, 333);
+            this._rinominaSedutaButton.Name = "_rinominaSedutaButton";
+            this._rinominaSedutaButton.Size = new System.Drawing.Size(101, 23);
+            this._rinominaSedutaButton.TabIndex = 31;
+            this._rinominaSedutaButton.Text = "Rinomina seduta";
+            this._rinominaSedutaButton.UseVisualStyleBackColor = true;
+            // 
+            // _eliminaEsercizioButton
+            // 
+            this._eliminaEsercizioButton.Enabled = false;
+            this._eliminaEsercizioButton.Location = new System.Drawing.Point(344, 422);
+            this._eliminaEsercizioButton.Name = "_eliminaEsercizioButton";
+            this._eliminaEsercizioButton.Size = new System.Drawing.Size(101, 23);
+            this._eliminaEsercizioButton.TabIndex = 30;
+            this._eliminaEsercizioButton.Text = "Elimina esercizio";
+            this._eliminaEsercizioButton.UseVisualStyleBackColor = true;
+            // 
+            // _eliminaSedutaButton
+            // 
+            this._eliminaSedutaButton.Location = new System.Drawing.Point(344, 362);
+            this._eliminaSedutaButton.Name = "_eliminaSedutaButton";
+            this._eliminaSedutaButton.Size = new System.Drawing.Size(101, 23);
+            this._eliminaSedutaButton.TabIndex = 32;
+            this._eliminaSedutaButton.Text = "Elimina seduta";
+            this._eliminaSedutaButton.UseVisualStyleBackColor = true;
+            // 
+            // _dataFineRadioButton
+            // 
+            this._dataFineRadioButton.AutoSize = true;
+            this._dataFineRadioButton.Checked = true;
+            this._dataFineRadioButton.Location = new System.Drawing.Point(165, 193);
+            this._dataFineRadioButton.Name = "_dataFineRadioButton";
+            this._dataFineRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._dataFineRadioButton.TabIndex = 33;
+            this._dataFineRadioButton.TabStop = true;
+            this._dataFineRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _durataRadioButton
+            // 
+            this._durataRadioButton.AutoSize = true;
+            this._durataRadioButton.Location = new System.Drawing.Point(165, 225);
+            this._durataRadioButton.Name = "_durataRadioButton";
+            this._durataRadioButton.Size = new System.Drawing.Size(14, 13);
+            this._durataRadioButton.TabIndex = 34;
+            this._durataRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // NuovaSchedaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(459, 553);
+            this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this._durataRadioButton);
+            this.Controls.Add(this._dataFineRadioButton);
+            this.Controls.Add(this._eliminaSedutaButton);
+            this.Controls.Add(this._rinominaSedutaButton);
+            this.Controls.Add(this._eliminaEsercizioButton);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this._dataFine);
             this.Controls.Add(this._dataFineLabel);
             this.Controls.Add(this._dataInizio);
@@ -227,7 +308,7 @@
             this.Controls.Add(this._dataInizioLabel);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this._nomeLabel);
-            this.Name = "NuovaSchedaView";
+            this.Name = "NuovaSchedaForm";
             this.Text = "Nuova scheda";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,5 +334,12 @@
         private System.Windows.Forms.DateTimePicker _dataInizio;
         private System.Windows.Forms.DateTimePicker _dataFine;
         private System.Windows.Forms.Label _dataFineLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button _rinominaSedutaButton;
+        private System.Windows.Forms.Button _eliminaEsercizioButton;
+        private System.Windows.Forms.Button _eliminaSedutaButton;
+        private System.Windows.Forms.RadioButton _dataFineRadioButton;
+        private System.Windows.Forms.RadioButton _durataRadioButton;
     }
 }

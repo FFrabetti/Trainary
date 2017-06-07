@@ -1,6 +1,6 @@
 ﻿namespace Trainary.Presentation
 {
-    partial class AllenamentoExtraView
+    partial class AllenamentoExtraForm
     {
         /// <summary>
         /// Required designer variable.

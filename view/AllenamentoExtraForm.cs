@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Trainary.Presentation
 {
-    public partial class AllenamentoExtraView: Form
+    public partial class AllenamentoExtraForm: Form
     {
-        public AllenamentoExtraView()
+        public AllenamentoExtraForm()
         {
             InitializeComponent();
         }

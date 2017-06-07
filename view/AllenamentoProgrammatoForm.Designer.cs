@@ -1,6 +1,6 @@
 ﻿namespace Trainary.Presentation
 {
-    partial class AllenamentoProgrammatoView
+    partial class AllenamentoProgrammatoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 51);
+            this.label1.Location = new System.Drawing.Point(27, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 16);
             this.label1.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 136);
+            this.label2.Location = new System.Drawing.Point(27, 127);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 16);
             this.label2.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(27, 91);
+            this.label3.Location = new System.Drawing.Point(27, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 16);
             this.label3.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(109, 47);
+            this.textBox1.Location = new System.Drawing.Point(109, 88);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(165, 20);
             this.textBox1.TabIndex = 4;
@@ -91,7 +91,7 @@
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(109, 87);
+            this.textBox2.Location = new System.Drawing.Point(109, 50);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(165, 20);
             this.textBox2.TabIndex = 5;
@@ -100,11 +100,11 @@
             // 
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(109, 136);
+            this.textBox3.Location = new System.Drawing.Point(109, 127);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox3.Size = new System.Drawing.Size(264, 122);
+            this.textBox3.Size = new System.Drawing.Size(264, 132);
             this.textBox3.TabIndex = 6;
             // 
             // _indietroButton
@@ -116,7 +116,7 @@
             this._indietroButton.Text = "Indietro";
             this._indietroButton.UseVisualStyleBackColor = true;
             // 
-            // AllenamentoProgrammatoView
+            // AllenamentoProgrammatoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +130,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._allenamentoProgrammatoLabel);
-            this.Name = "AllenamentoProgrammatoView";
+            this.Name = "AllenamentoProgrammatoForm";
             this.Text = "Allenamento Programmato";
             this.ResumeLayout(false);
             this.PerformLayout();

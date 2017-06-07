@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Trainary.Presentation
+namespace Trainary.view
 {
-    public partial class NuovaSchedaView : Form
+    public partial class GestioneSchedeControl : UserControl
     {
-        public NuovaSchedaView()
+        public GestioneSchedeControl()
         {
             InitializeComponent();
         }
