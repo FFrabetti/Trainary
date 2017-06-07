@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.filtri;
 using Trainary.presenter.filtri;
+using Trainary.utils;
 using Trainary.view;
 
 namespace Trainary.presenter
@@ -16,18 +18,19 @@ namespace Trainary.presenter
         private FiltroPresenter _currentFiltroPresenter;
 
         private IEnumerable<Allenamento> _listaAllenamenti = new List<Allenamento>();
+        private StringBuilder _currentFiltriLabel = new StringBuilder();
 
         public DiarioPresenter (FormDiario formDiario)
         {
             _presenters = new List<FiltroPresenter>();
             _formDiario = formDiario;
-            ResetListView();
 
+            ResetListView();
             Inizialize();
             InizializeComboBox();
           
-            formDiario.Ok_button.Click += _okButton_Click;
-            formDiario.AnnullaButton_button.Click += _annullaButton_Click;
+            formDiario.OkButton.Click += _okButton_Click;
+            formDiario.AnnullaButton.Click += _annullaButton_Click;
         }
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
@@ -36,6 +39,7 @@ namespace Trainary.presenter
             foreach(Allenamento a in listaAllenamenti)
             {
                 ListViewItem item = new ListViewItem(ToStringDate(a.Data));
+                item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
                 _formDiario.ListView.Items.Add(item);
             }
         }
@@ -65,9 +69,7 @@ namespace Trainary.presenter
                             _presenters.Add(presenter);
                     }
                     catch
-                    {
-                        // skip
-                    }
+                    { }
                 }
             }
         }
@@ -104,11 +106,47 @@ namespace Trainary.presenter
 
             _listaAllenamenti = filtroAllenamenti.Filtra(_listaAllenamenti, opzione);
             InizializeListView(_listaAllenamenti);
+
+            SetInfoLabel(filtroAllenamenti);
+            SetLabelFiltri(_currentFiltriLabel.ToString());
+        }
+
+        private void SetInfoLabel(IFiltroAllenamenti filtroAllenamenti)
+        {
+            if (_currentFiltriLabel.Length == 0)
+            {
+                _currentFiltriLabel.Append("Filtri applicati: ");
+                _currentFiltriLabel.Append(LabelAttribute(filtroAllenamenti));
+            }
+
+            else if (_currentFiltriLabel.Length > 0
+                && !_currentFiltriLabel.ToString().Contains(LabelAttribute(filtroAllenamenti)))
+            {
+                _currentFiltriLabel.Append(", ");
+                _currentFiltriLabel.Append(LabelAttribute(filtroAllenamenti));
+            }
+        }
+
+        private string LabelAttribute(IFiltroAllenamenti filtroAllenamenti)
+        {
+            return LabelExtensions.GetLabelAttribute(filtroAllenamenti).ToLower();
+        }
+
+        private void SetLabelFiltri(string label)
+        {
+            _formDiario.FiltriLabel.Text = label;
         }
 
         private void _annullaButton_Click(object sender, EventArgs e)
         {
             ResetListView();
+            ResetLabelFiltri();
+        }
+
+        private void ResetLabelFiltri()
+        {
+            _currentFiltriLabel.Clear();
+            SetLabelFiltri(_currentFiltriLabel.ToString());
         }
 
         private void ResetListView()
@@ -121,18 +159,5 @@ namespace Trainary.presenter
         {
 
         }
-
-        //private void SelectedListViewPresenter(ComboBox combo)
-        //{
-        //    _currentFiltroPresenter = (FiltroPresenter)combo.SelectedItem;
-
-        //    _formDiario.Panel.Controls.Clear();
-        //    _currentFiltroPresenter.DrawControls(_formDiario.Panel);
-        //}
-
-        //private void _comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    SelectedPresenter((ComboBox)sender);
-        //}
     }
 }

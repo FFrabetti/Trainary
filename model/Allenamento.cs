@@ -13,6 +13,8 @@ namespace Trainary.model
                 throw new ArgumentNullException("esercizi svolti");
             if (eserciziSvolti.Length == 0)
                 throw new ArgumentException("empty esercizi svolti");
+            if(data > DateTime.Today)
+                throw new ArgumentException("data futura");
 
             _data = data.Date;
             _eserciziSvolti = eserciziSvolti;

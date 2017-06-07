@@ -10,11 +10,13 @@ namespace Trainary
         [STAThread]
         public static void Main(string[] args)
         {
+            DiarioTest.Test();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(new FormDiario());
-           
+
 		    //Application.Run(new TestForm());
             //Application.Run(new EserciziListForm());
             // Application.Run(new FormDiario());

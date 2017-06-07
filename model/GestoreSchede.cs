@@ -8,10 +8,12 @@ namespace Trainary
     public static class GestoreSchede
     {
         private static readonly List<Scheda> _schede = new List<Scheda>();
-        public static IEnumerable<Scheda> GetSchede()
+
+        public static List<Scheda> GetSchede()
         {
             return _schede;
         }
+
         public static IEnumerable<Scheda> GetSchedeValide(DateTime data)
         {
             return from Scheda s in _schede

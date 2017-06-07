@@ -28,23 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new System.Windows.Forms.ListViewItem.ListViewSubItem[] {
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Data1"),
-            new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "Esercizi1 + Esercizi 2" + "\n" + "Esercizi 3 Esercizi 4 Esercizi 5 Esercizi 6 Esercizi 7 Ese" +
-                    "rcizi 8", System.Drawing.SystemColors.WindowText, System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192))))), new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))))}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Data2",
-            "Esercizi 2"}, -1);
             this._selezionaFiltroLabel = new System.Windows.Forms.Label();
             this._comboBox = new System.Windows.Forms.ComboBox();
             this._allenamentiLabel = new System.Windows.Forms.Label();
             this._annullaButton = new System.Windows.Forms.Button();
             this._listView = new System.Windows.Forms.ListView();
             this._dataColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._eserciziColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._nomeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._indietroButton = new System.Windows.Forms.Button();
             this._panel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
+            this._filtriLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // _selezionaFiltroLabel
@@ -72,12 +66,12 @@
             // _allenamentiLabel
             // 
             this._allenamentiLabel.AutoSize = true;
-            this._allenamentiLabel.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._allenamentiLabel.Location = new System.Drawing.Point(181, 192);
+            this._allenamentiLabel.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._allenamentiLabel.Location = new System.Drawing.Point(56, 196);
             this._allenamentiLabel.Name = "_allenamentiLabel";
-            this._allenamentiLabel.Size = new System.Drawing.Size(156, 17);
+            this._allenamentiLabel.Size = new System.Drawing.Size(150, 17);
             this._allenamentiLabel.TabIndex = 4;
-            this._allenamentiLabel.Text = "Allenamenti svolti: ";
+            this._allenamentiLabel.Text = "Allenamenti svolti";
             // 
             // _annullaButton
             // 
@@ -95,15 +89,10 @@
             this._listView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._dataColumn,
-            this._eserciziColumn});
+            this._nomeColumn});
             this._listView.FullRowSelect = true;
             this._listView.GridLines = true;
-            listViewItem1.Checked = true;
-            listViewItem1.StateImageIndex = 1;
-            this._listView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this._listView.Location = new System.Drawing.Point(38, 221);
+            this._listView.Location = new System.Drawing.Point(49, 234);
             this._listView.MultiSelect = false;
             this._listView.Name = "_listView";
             this._listView.Size = new System.Drawing.Size(444, 200);
@@ -115,12 +104,12 @@
             // _dataColumn
             // 
             this._dataColumn.Text = "Data";
-            this._dataColumn.Width = 173;
+            this._dataColumn.Width = 193;
             // 
-            // _eserciziColumn
+            // _nomeColumn
             // 
-            this._eserciziColumn.Text = "Esercizi";
-            this._eserciziColumn.Width = 264;
+            this._nomeColumn.Text = "Nome";
+            this._nomeColumn.Width = 243;
             // 
             // _indietroButton
             // 
@@ -149,12 +138,21 @@
             this._okButton.UseVisualStyleBackColor = true;
             this._okButton.Click += new System.EventHandler(this._okButton_Click);
             // 
+            // _filtriLabel
+            // 
+            this._filtriLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._filtriLabel.Location = new System.Drawing.Point(228, 187);
+            this._filtriLabel.Name = "_filtriLabel";
+            this._filtriLabel.Size = new System.Drawing.Size(215, 44);
+            this._filtriLabel.TabIndex = 16;
+            // 
             // FormDiario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(534, 482);
+            this.Controls.Add(this._filtriLabel);
             this.Controls.Add(this._okButton);
             this.Controls.Add(this._panel);
             this.Controls.Add(this._indietroButton);
@@ -182,6 +180,7 @@
         private System.Windows.Forms.Button _indietroButton;
         private System.Windows.Forms.Panel _panel;
         private System.Windows.Forms.Button _okButton;
-        private System.Windows.Forms.ColumnHeader _eserciziColumn;
+        private System.Windows.Forms.Label _filtriLabel;
+        private System.Windows.Forms.ColumnHeader _nomeColumn;
     }
 }

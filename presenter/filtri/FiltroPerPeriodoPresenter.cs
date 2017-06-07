@@ -64,11 +64,6 @@ namespace Trainary.presenter.filtri
             panel.Controls.Add(_dataFine);
         }
 
-        //public override IFiltroAllenamenti GetNewFiltro()
-        //{
-        //    return FiltroFactory.GetFiltroAllenamento(LabelAttribute);
-        //}
-
         public override object GetOpzione()
         {
             Periodo periodo = default(Periodo);

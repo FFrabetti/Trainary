@@ -97,7 +97,8 @@ namespace Trainary.model
             int i = _sedute.IndexOf(seduta);
             if (i < 0)
                 throw new ArgumentException("La seduta non è presente.");
-            return i;
+
+            return i+1;
         }
 
         public bool isValida(DateTime giorno)

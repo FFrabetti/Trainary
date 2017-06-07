@@ -20,9 +20,6 @@ namespace Trainary.model.filtri
                 Periodo periodo = (Periodo)opzione;
 
                 return listaAllenamenti.Where(all => periodo.IsNelPeriodo(all.Data));
-                //return (from Allenamento allenamento in listaAllenamenti
-                //        where periodo.IsNelPeriodo(allenamento.Data)
-                //        select allenamento);
             }
         }
     }

@@ -59,7 +59,7 @@ namespace Trainary.presenter.filtri
             Type tipo = null;
             try
             {
-                tipo = (Type)_comboBox.SelectedItem;
+                tipo = (Type)_comboBox.SelectedValue;
             }
             catch
             {
