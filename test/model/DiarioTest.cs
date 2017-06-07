@@ -54,8 +54,8 @@ namespace Trainary.test.model
             Scheda s1 = new Scheda("myScheda1", ScopoDellaScheda.Dimagrimento, new Periodo(DateTime.Today, DateTime.Today.AddDays(60)));
             Scheda s2 = new Scheda("myScheda2", ScopoDellaScheda.Dimagrimento, new Periodo(DateTime.Today, DateTime.Today.AddDays(60)));
 
-            GestoreSchede.GetSchede().Add(s1);
-            GestoreSchede.GetSchede().Add(s2);
+            GestoreSchede.GetInstance().GetSchede().Add(s1);
+            GestoreSchede.GetInstance().GetSchede().Add(s2);
 
             Seduta sed1 = s1.AggiungiSeduta(esercizi1);
             Seduta sed2 = s1.AggiungiSeduta(c1.Esercizi);

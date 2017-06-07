@@ -30,7 +30,7 @@ namespace Trainary.presenter.filtri
             this._comboBox.Size = new System.Drawing.Size(154, 21);
             this._comboBox.TabIndex = 11;
 
-            _comboBox.DataSource = GestoreSchede.GetSchede();
+            _comboBox.DataSource = GestoreSchede.GetInstance().GetSchede();
         }
 
         public override void DrawControls(Panel panel)

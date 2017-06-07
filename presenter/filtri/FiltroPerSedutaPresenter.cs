@@ -54,7 +54,7 @@ namespace Trainary.presenter.filtri
 
         private void InizializeSchedeCombo()
         {
-            foreach (Scheda scheda in GestoreSchede.GetSchede())
+            foreach (Scheda scheda in GestoreSchede.GetInstance().GetSchede())
                 _schede.Add(scheda);
 
             _schedeCombo.DataSource = _schede;
