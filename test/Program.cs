@@ -17,6 +17,9 @@ namespace Trainary
            
 		    //Application.Run(new TestForm());
             //Application.Run(new EserciziListForm());
+            // Application.Run(new FormDiario());
+
+            // Application.Run(new EserciziListForm());
 
             //AttributoTempoTest.Test();
             //Separator();
@@ -29,7 +32,8 @@ namespace Trainary
             //QuantitaFactoryTest.Test();
             //Separator();
 
-            //Console.ReadLine(); 
+            DataManagerTest.Test();
+            Console.ReadLine(); 
         }
         
         public static void Separator()

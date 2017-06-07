@@ -14,7 +14,7 @@ namespace Trainary.test.model
             DateTime prova = default(DateTime);
             Console.WriteLine("default = {1} ({0})", periodo.IsNelPeriodo(prova), default(DateTime));
             Console.WriteLine("ToString = {0}", periodo);
-            Console.WriteLine("FullToString = {0}", periodo.FullToString());
+            Console.WriteLine("FullToString = {0}", periodo.ToFullString());
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Trainary.model
         
         private readonly Attributo[] _targets;
 
-
         public Esercizio(Attributo[] targets)
         {
             if (targets == null)
@@ -29,7 +28,12 @@ namespace Trainary.model
             }
         }
 
-     
         public abstract void Accept(Visitor visitor);
+
+        // debug only
+        public virtual string ToFullString()
+        {
+            return ToString();
+        }
     }
 }
