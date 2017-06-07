@@ -6,12 +6,11 @@ namespace Trainary.model
 {
     public class Seduta
     {
-        
         private readonly IList<Esercizio> _esercizi;
         private readonly Scheda _scheda;
-        private readonly string _nome;
+        private string _nome;
 
-        public Seduta(Scheda scheda,IList<Esercizio> esercizi,string nome)
+        public Seduta(Scheda scheda, IList<Esercizio> esercizi, string nome)
         {
             if (scheda == null)
                 throw new ArgumentNullException("scheda");
@@ -20,10 +19,10 @@ namespace Trainary.model
 
             _scheda = scheda;
             _esercizi = esercizi;
-            _nome = nome;
+            Nome = nome;
         }
 
-        public Seduta(Scheda scheda, IList<Esercizio> esercizi) : this(scheda,esercizi,null)
+        public Seduta(Scheda scheda, IList<Esercizio> esercizi) : this(scheda, esercizi, null)
         {
 
         }
@@ -38,7 +37,16 @@ namespace Trainary.model
 
         public string Nome
         {
-            get; set;
+            get { return _nome; }
+            set
+            {
+                if (value == null)
+                    _nome = "";
+                else if (_scheda.IsNomeUnivoco(value))
+                    _nome = value;
+                else
+                    throw new ArgumentException("Nome già in uso da un'altra seduta nella stessa scheda");
+            }
         }
 
         public Scheda Scheda

@@ -15,12 +15,9 @@ namespace Trainary.model
 		
         public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita)
         {
-            if (String.IsNullOrEmpty(nome))
-                throw new ArgumentException("nome");
-
-            _nome = nome;
+            Nome = nome;
             _scopo = scopo;
-            _descrizione = descrizione;
+            Descrizione = descrizione;
             _periodoDiValidita = periodoDiValidita;
             _sedute = new List<Seduta>();
         }
@@ -41,6 +38,9 @@ namespace Trainary.model
             }
             set
             {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentException("nome");
+
                 _nome = value;
             }
         }
@@ -63,6 +63,9 @@ namespace Trainary.model
             }
             set
             {
+                if (value.DataInizio != _periodoDiValidita.DataInizio || value.DataFine < _periodoDiValidita.DataFine)
+                    throw new ArgumentException("Il periodo di validità può solo essere esteso.");
+
                 _periodoDiValidita = value;
             }
         }
@@ -74,7 +77,10 @@ namespace Trainary.model
             }
             set
             {
-                _descrizione = value;
+                if (value == null)
+                    _descrizione = "";
+                else
+                    _descrizione = value;
             }
         }
 
@@ -92,7 +98,17 @@ namespace Trainary.model
             return s;
         }
 
-       public int GetCodiceProgressivo(Seduta seduta)
+        public bool RimuoviSeduta(Seduta seduta)
+        {
+            return _sedute.Remove(seduta);
+        }
+
+        public bool IsNomeUnivoco(string nome)
+        {
+            return ! _sedute.Any(s => s.Nome == nome);
+        }
+
+        public int GetCodiceProgressivo(Seduta seduta)
         {
             int i = _sedute.IndexOf(seduta);
             if (i < 0)
