@@ -1,14 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Trainary.model.attributi;
 using Trainary.utils;
 
-namespace Trainary.presenter
+namespace Trainary.presenter.attributi
 {
     public abstract class QuantitaPresenter
     {
-        public Exception LastException { get; set; }
-
         public abstract Quantita GetNewQuantita();
 
         public abstract void Refresh();

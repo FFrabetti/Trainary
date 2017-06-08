@@ -5,32 +5,29 @@ using System.Windows.Forms;
 using Trainary.model.attributi;
 using Trainary.view;
 
-namespace Trainary.presenter
+namespace Trainary.presenter.attributi
 {
     public class AttributiPresenter
     {
         private AttributiControl _control;
+
         private QuantitaPresenter _currentQPresenter;
         private List<QuantitaPresenter> _presenters;
 
         public AttributiPresenter(AttributiControl control)
         {
+            if (control == null)
+                throw new ArgumentNullException("attributi control");
+            _control = control;
+
             _presenters = new List<QuantitaPresenter>();
-            Inizialize();
-            UserControl = control;
+            InizializeQuantitaPresenters();
+            InizializeComboBox();
         }
 
-        public AttributiControl UserControl
+        public AttributiControl AttributiControl
         {
             get { return _control; }
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("user control");
-
-                _control = value;
-                InizializeComboBox();
-            }
         }
 
         private void InizializeComboBox()
@@ -38,12 +35,11 @@ namespace Trainary.presenter
             _control.TipoComboBox.DataSource = _presenters;
             _control.TipoComboBox.DisplayMember = "LabelAttribute";
 
-            SelectedPresenter(_control.TipoComboBox);
-
-            _control.TipoComboBox.SelectedValueChanged += ComboChangeHandler;
+            _control.TipoComboBox.SelectedValueChanged += ComboChangedHandler;
+            ComboChangedHandler(_control.TipoComboBox, null);
         }
 
-        private void Inizialize()
+        private void InizializeQuantitaPresenters()
         {
             QuantitaPresenter presenter = null;
             ConstructorInfo constructor = null;
@@ -70,13 +66,9 @@ namespace Trainary.presenter
             }
         }
 
-        private void ComboChangeHandler(object sender, EventArgs e)
+        private void ComboChangedHandler(object sender, EventArgs e)
         {
-            SelectedPresenter((ComboBox)sender);
-        }
-
-        private void SelectedPresenter(ComboBox combo)
-        {
+            ComboBox combo = ((ComboBox)sender);
             _currentQPresenter = (QuantitaPresenter)combo.SelectedValue;
 
             _control.QuantitaPanel.Controls.Clear();
