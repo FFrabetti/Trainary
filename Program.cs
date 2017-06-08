@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Trainary.model;
 using Trainary.Presentation;
+using Trainary.presenter;
 using Trainary.utils;
 using Trainary.view;
 
@@ -82,6 +84,26 @@ namespace Trainary
         public static void NuovoAllenamentoExtra()
         {
             Console.WriteLine("nuovo all extra");
+        }
+
+        // Test only
+        [MenuLabel("Nuovo eserczio", "Test")]
+        public static void NuovoEsercizio()
+        {
+            using (NewEsercizioForm newEsForm = new NewEsercizioForm())
+            {
+                NewEsercizioPresenter presenter = new NewEsercizioPresenter(newEsForm);
+
+                if (newEsForm.ShowDialog() == DialogResult.OK)
+                {
+                    Console.WriteLine("ok!");
+
+                    Esercizio esercizio = presenter.NewEsercizio();
+                    Console.WriteLine(esercizio);
+                }
+                else
+                    Console.WriteLine("cancel");
+            }
         }
 
     }
