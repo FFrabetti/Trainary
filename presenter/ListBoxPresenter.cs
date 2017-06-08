@@ -31,6 +31,10 @@ namespace Trainary.presenter
             SelectionHandler(null, null);
         }
 
+        public ListBoxPresenter(ListBoxControl listControl) : this(listControl, new T[0])
+        {
+        }
+
         private void SelectionHandler(object sender, EventArgs e)
         {
             _control.RemoveButton.Enabled = SelectedItems.Count > 0;

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Trainary.presenter;
+using Trainary.presenter.attributi;
 using Trainary.view;
 
 namespace Trainary.test.view
@@ -15,7 +16,7 @@ namespace Trainary.test.view
 
         public Control UserControl
         {
-            get { return _presenter.UserControl; }
+            get { return _presenter.AttributiControl; }
         }
 
         public object Item
