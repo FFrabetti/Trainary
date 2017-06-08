@@ -32,10 +32,10 @@
             this._label = new System.Windows.Forms.Label();
             this._removeButton = new System.Windows.Forms.Button();
             this._addButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this._mainPanel = new System.Windows.Forms.Panel();
             this._listBox = new System.Windows.Forms.ListBox();
             this._buttonsPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this._mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _buttonsPanel
@@ -46,7 +46,7 @@
             this._buttonsPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._buttonsPanel.Location = new System.Drawing.Point(0, 0);
             this._buttonsPanel.Name = "_buttonsPanel";
-            this._buttonsPanel.Size = new System.Drawing.Size(449, 47);
+            this._buttonsPanel.Size = new System.Drawing.Size(322, 47);
             this._buttonsPanel.TabIndex = 1;
             // 
             // _label
@@ -61,7 +61,7 @@
             // _removeButton
             // 
             this._removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._removeButton.Location = new System.Drawing.Point(374, 12);
+            this._removeButton.Location = new System.Drawing.Point(247, 12);
             this._removeButton.Name = "_removeButton";
             this._removeButton.Size = new System.Drawing.Size(75, 23);
             this._removeButton.TabIndex = 1;
@@ -71,31 +71,34 @@
             // _addButton
             // 
             this._addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._addButton.Location = new System.Drawing.Point(293, 12);
+            this._addButton.Location = new System.Drawing.Point(166, 12);
             this._addButton.Name = "_addButton";
             this._addButton.Size = new System.Drawing.Size(75, 23);
             this._addButton.TabIndex = 0;
             this._addButton.Text = "Add";
             this._addButton.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // _mainPanel
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this._listBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 47);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(449, 254);
-            this.panel1.TabIndex = 2;
+            this._mainPanel.AutoSize = true;
+            this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
+            this._mainPanel.Controls.Add(this._listBox);
+            this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._mainPanel.Location = new System.Drawing.Point(0, 47);
+            this._mainPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._mainPanel.Name = "_mainPanel";
+            this._mainPanel.Size = new System.Drawing.Size(322, 114);
+            this._mainPanel.TabIndex = 2;
             // 
             // _listBox
             // 
             this._listBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._listBox.FormattingEnabled = true;
             this._listBox.Location = new System.Drawing.Point(0, 0);
+            this._listBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this._listBox.Name = "_listBox";
             this._listBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._listBox.Size = new System.Drawing.Size(449, 254);
+            this._listBox.Size = new System.Drawing.Size(322, 114);
             this._listBox.TabIndex = 0;
             // 
             // ListBoxControl
@@ -103,14 +106,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this._mainPanel);
             this.Controls.Add(this._buttonsPanel);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.Name = "ListBoxControl";
-            this.Size = new System.Drawing.Size(449, 301);
+            this.Size = new System.Drawing.Size(322, 161);
             this._buttonsPanel.ResumeLayout(false);
             this._buttonsPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this._mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -119,7 +125,7 @@
         private System.Windows.Forms.Label _label;
         private System.Windows.Forms.Button _removeButton;
         private System.Windows.Forms.Button _addButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel _mainPanel;
         private System.Windows.Forms.ListBox _listBox;
     }
 }

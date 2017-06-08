@@ -17,39 +17,92 @@ namespace Trainary.view
             InitializeComponent();
         }
 
+        //public SplitContainer SplitContainer
+        //{
+        //    get { return _splitContainer; }
+        //}
+
         public TreeView TreeView
         {
             get { return _treeView; }
         }
 
+        #region TableLayoutPanel
+
+        public TableLayoutPanel TableLayoutPanel
+        {
+            get { return _tableLayoutPanel; }
+        }
+
         public Label AttivitaLabel
         {
-            get { return _nameValueLabel; }
+            get { return _attivitaLabel; }
         }
 
         public Label DescrizioneLabel
         {
-            get { return _descValueLabel; }
+            get { return _descLabel; }
         }
 
         public Label AttrezziLabel
         {
-            get { return _toolsValueLabel; }
+            get { return _attrezziLabel; }
         }
+
+        public Label AttivitaValue
+        {
+            get { return _attivitaValueLabel; }
+        }
+
+        public Label DescrizioneValue
+        {
+            get { return _descValueLabel; }
+        }
+
+        public Label AttrezziValue
+        {
+            get { return _attrezziValueLabel; }
+        }
+
+        #endregion
+
+        #region Nuovo target
+
+        //public Panel CentrePanel
+        //{
+        //    get { return _centrePanel; }
+        //}
+
+        public Label CentreLabel
+        {
+            get { return _centreTitleLabel; }
+        }
+
+        public AttributiControl AttributiControl
+        {
+            get { return _attributiControl; }
+        }
+
+        #endregion
 
         public ListBoxControl ListBoxControl
         {
             get { return _listBoxControl; }
         }
 
-        public Button OkButton
+        //public Panel BottomPanel
+        //{
+        //    get { return _bottomPanel; }
+        //}
+
+        public DialogButtonsControl DialogButtonsControl
         {
-            get { return _okButton; }
+            get { return _dialogButtonsControl; }
         }
 
-        public Button CancelButton
+        public ErrorProvider ErrorProvider
         {
-            get { return _cancelButton; }
+            get { return _errorProvider; }
         }
     }
 }

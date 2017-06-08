@@ -47,19 +47,5 @@ namespace Trainary.view
             get { return _valuePanel; }
         }
 
-        public Button OkButton
-        {
-            get { return _okButton; }
-        }
-
-        public Button CancelButton
-        {
-            get { return _cancelButton; }
-        }
-
-        public ErrorProvider ErrorProvider
-        {
-            get { return _errorProvider; }
-        }
     }
 }
