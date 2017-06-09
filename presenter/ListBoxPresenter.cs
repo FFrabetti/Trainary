@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using Trainary.view;
 
@@ -49,19 +50,19 @@ namespace Trainary.presenter
             get { return (T)(_control.ListBox.SelectedItem ?? default(T)); }
         }
 
-        public IList SelectedItems
+        public IEnumerable<T> SelectedItems
         {
-            get { return _control.ListBox.SelectedItems; }
+            get { return _control.ListBox.SelectedItems.Cast<T>(); }
         }
 
         private void SelectionHandler(object sender, EventArgs e)
         {
-            _control.RemoveButton.Enabled = SelectedItems.Count == 1;
+            _control.RemoveButton.Enabled = _control.ListBox.SelectedItems.Count == 1;
         }
 
         private void RemoveButtonHandler(object sender, EventArgs e)
         {
-            if (SelectedItems.Count == 1)
+            if (_control.ListBox.SelectedItems.Count == 1)
                 RemoveItem(SelectedItem);
         }
 

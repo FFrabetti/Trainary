@@ -30,7 +30,7 @@ namespace Trainary.test.view
         /// </summary>
         private void InitializeComponent()
         {
-            this._attributiControl = new Trainary.view.AttributiControl();
+            this._attributiControl = new Trainary.view.NewAttributoControl();
             this.SuspendLayout();
             // 
             // _attributiControl
@@ -58,6 +58,6 @@ namespace Trainary.test.view
 
         #endregion
 
-        private AttributiControl _attributiControl;
+        private NewAttributoControl _attributiControl;
     }
 }

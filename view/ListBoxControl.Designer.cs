@@ -52,7 +52,7 @@
             // _label
             // 
             this._label.AutoSize = true;
-            this._label.Location = new System.Drawing.Point(3, 17);
+            this._label.Location = new System.Drawing.Point(3, 27);
             this._label.Name = "_label";
             this._label.Size = new System.Drawing.Size(29, 13);
             this._label.TabIndex = 2;
@@ -61,7 +61,7 @@
             // _removeButton
             // 
             this._removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._removeButton.Location = new System.Drawing.Point(247, 12);
+            this._removeButton.Location = new System.Drawing.Point(247, 17);
             this._removeButton.Name = "_removeButton";
             this._removeButton.Size = new System.Drawing.Size(75, 23);
             this._removeButton.TabIndex = 1;
@@ -71,7 +71,7 @@
             // _addButton
             // 
             this._addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._addButton.Location = new System.Drawing.Point(166, 12);
+            this._addButton.Location = new System.Drawing.Point(166, 17);
             this._addButton.Name = "_addButton";
             this._addButton.Size = new System.Drawing.Size(75, 23);
             this._addButton.TabIndex = 0;

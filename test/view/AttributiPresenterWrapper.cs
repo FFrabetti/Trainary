@@ -7,16 +7,16 @@ namespace Trainary.test.view
 {
     class AttributiPresenterWrapper : IControlPresenter
     {
-        private AttributiPresenter _presenter;
+        private NewAttributoPresenter _presenter;
 
         public AttributiPresenterWrapper()
         {
-            _presenter = new AttributiPresenter(new AttributiControl());
+            _presenter = new NewAttributoPresenter(new NewAttributoControl());
         }
 
         public Control UserControl
         {
-            get { return _presenter.AttributiControl; }
+            get { return _presenter.NewAttributoControl; }
         }
 
         public object Item

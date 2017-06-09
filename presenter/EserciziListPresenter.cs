@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.view;
@@ -32,7 +33,7 @@ namespace Trainary.presenter
 
         private void SelectionHandler(object sender, EventArgs e)
         {
-            _circuitoButton.Enabled = SelectedItems.Count >= 2;
+            _circuitoButton.Enabled = SelectedItems.Count() >= 2;
         }
 
         private void AddButtonHandler(object sender, EventArgs e)
@@ -42,7 +43,7 @@ namespace Trainary.presenter
 
         private void CircuitoHandler(object sender, EventArgs e)
         {
-            if(SelectedItems.Count >= 2)
+            if(SelectedItems.Count() >= 2)
             {
                 throw new NotImplementedException();
             }

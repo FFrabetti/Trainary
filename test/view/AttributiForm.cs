@@ -9,7 +9,7 @@ namespace Trainary.test.view
         public AttributiForm()
         {
             InitializeComponent();
-            AttributiPresenter presenter = new AttributiPresenter(_attributiControl);
+            NewAttributoPresenter presenter = new NewAttributoPresenter(_attributiControl);
         }
 
     }

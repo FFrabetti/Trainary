@@ -34,7 +34,7 @@ namespace Trainary.test.view
 
         private void AddButtonHandler(object sender, EventArgs e)
         {
-            _textBox.Text = "Count = " + presenter.SelectedItems.Count + Environment.NewLine;
+            _textBox.Text = "Count = " + presenter.SelectedItems.Count() + Environment.NewLine;
             foreach (String s in presenter.SelectedItems)
             {
                 _textBox.AppendText(s + Environment.NewLine);
