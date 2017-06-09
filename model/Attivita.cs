@@ -15,8 +15,7 @@ namespace Trainary.model
                 throw new ArgumentException("nome is null or empty");
 
             _nome = nome;
-            // attributi opzionali
-            // usano il micro-pattern nella get
+            // attributi opzionali, usano il micro-pattern nella get
             _descrizione = descrizione;
             _attrezzi = attrezzi;
         }
@@ -40,7 +39,7 @@ namespace Trainary.model
             get
             {
                 if (_descrizione == null)
-                    _descrizione = "";
+                    _descrizione = String.Empty;
                 return _descrizione;
             }
         }

@@ -41,7 +41,7 @@ namespace Trainary.model
             set
             {
                 if (value == null)
-                    _nome = "";
+                    _nome = String.Empty;
                 else if (_scheda.IsNomeUnivoco(value))
                     _nome = value;
                 else

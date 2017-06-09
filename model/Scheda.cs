@@ -73,14 +73,11 @@ namespace Trainary.model
         public string Descrizione {
             get
             {
-               return _descrizione;
+                return _descrizione;
             }
             set
             {
-                if (value == null)
-                    _descrizione = "";
-                else
-                    _descrizione = value;
+                _descrizione = value == null ? String.Empty : value;
             }
         }
 

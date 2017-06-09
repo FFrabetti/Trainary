@@ -25,9 +25,7 @@ namespace Trainary.model
             }
             set
             {
-                if (value == null)
-                   value = "";
-                _nome = value;
+                _nome = value == null ? String.Empty : value;
             }
         }
 
