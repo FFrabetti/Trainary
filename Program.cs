@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Trainary.model;
+using Trainary.persistence;
 using Trainary.Presentation;
 using Trainary.presenter;
 using Trainary.utils;
@@ -94,6 +96,25 @@ namespace Trainary
                 {
                     Esercizio esercizio = presenter.NewEsercizio();
                     Console.WriteLine(esercizio);
+                }
+                else
+                    Console.WriteLine("cancel");
+            }
+        }
+
+        [MenuLabel("Nuovo circuito", "Test")]
+        public static void NuovoCircuito()
+        {
+            IDataManager<Esercizio> eserciziDM = new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager());
+
+            using (NewCircuitoForm newCircuitoForm = new NewCircuitoForm())
+            {
+                NewCircuitoPresenter presenter = new NewCircuitoPresenter(newCircuitoForm, new List<Esercizio>(eserciziDM.GetElements()));
+
+                if (newCircuitoForm.ShowDialog() == DialogResult.OK)
+                {
+                    Circuito circuito = presenter.NewCircuito();
+                    Console.WriteLine(circuito.ToFullString());
                 }
                 else
                     Console.WriteLine("cancel");
