@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this._treeView = new System.Windows.Forms.TreeView();
             this._splitContainer = new System.Windows.Forms.SplitContainer();
-            this._bottomPanel = new System.Windows.Forms.Panel();
-            this._listBoxControl = new Trainary.view.ListBoxControl();
-            this._centrePanel = new System.Windows.Forms.Panel();
-            this._attributiControl = new Trainary.view.AttributiControl();
-            this._centreTitleLabel = new System.Windows.Forms.Label();
             this._tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._attivitaLabel = new System.Windows.Forms.Label();
             this._descLabel = new System.Windows.Forms.Label();
@@ -44,13 +39,12 @@
             this._descValueLabel = new System.Windows.Forms.Label();
             this._attrezziValueLabel = new System.Windows.Forms.Label();
             this._errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this._attributiControl = new Trainary.view.AttributiControl();
             this._dialogButtonsControl = new Trainary.view.DialogButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer)).BeginInit();
             this._splitContainer.Panel1.SuspendLayout();
             this._splitContainer.Panel2.SuspendLayout();
             this._splitContainer.SuspendLayout();
-            this._bottomPanel.SuspendLayout();
-            this._centrePanel.SuspendLayout();
             this._tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +54,7 @@
             this._treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._treeView.Location = new System.Drawing.Point(0, 0);
             this._treeView.Name = "_treeView";
-            this._treeView.Size = new System.Drawing.Size(216, 422);
+            this._treeView.Size = new System.Drawing.Size(213, 350);
             this._treeView.TabIndex = 0;
             // 
             // _splitContainer
@@ -75,67 +69,11 @@
             // 
             // _splitContainer.Panel2
             // 
-            this._splitContainer.Panel2.Controls.Add(this._bottomPanel);
-            this._splitContainer.Panel2.Controls.Add(this._centrePanel);
+            this._splitContainer.Panel2.Controls.Add(this._attributiControl);
             this._splitContainer.Panel2.Controls.Add(this._tableLayoutPanel);
-            this._splitContainer.Size = new System.Drawing.Size(651, 422);
-            this._splitContainer.SplitterDistance = 216;
+            this._splitContainer.Size = new System.Drawing.Size(644, 350);
+            this._splitContainer.SplitterDistance = 213;
             this._splitContainer.TabIndex = 1;
-            // 
-            // _bottomPanel
-            // 
-            this._bottomPanel.Controls.Add(this._listBoxControl);
-            this._bottomPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._bottomPanel.Location = new System.Drawing.Point(0, 214);
-            this._bottomPanel.Name = "_bottomPanel";
-            this._bottomPanel.Size = new System.Drawing.Size(431, 208);
-            this._bottomPanel.TabIndex = 8;
-            // 
-            // _listBoxControl
-            // 
-            this._listBoxControl.AutoSize = true;
-            this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
-            this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._listBoxControl.Location = new System.Drawing.Point(0, 0);
-            this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._listBoxControl.Name = "_listBoxControl";
-            this._listBoxControl.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this._listBoxControl.Size = new System.Drawing.Size(431, 208);
-            this._listBoxControl.TabIndex = 0;
-            // 
-            // _centrePanel
-            // 
-            this._centrePanel.AutoSize = true;
-            this._centrePanel.Controls.Add(this._attributiControl);
-            this._centrePanel.Controls.Add(this._centreTitleLabel);
-            this._centrePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._centrePanel.Location = new System.Drawing.Point(0, 80);
-            this._centrePanel.Name = "_centrePanel";
-            this._centrePanel.Size = new System.Drawing.Size(431, 134);
-            this._centrePanel.TabIndex = 7;
-            // 
-            // _attributiControl
-            // 
-            this._attributiControl.AutoSize = true;
-            this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._attributiControl.Location = new System.Drawing.Point(0, 34);
-            this._attributiControl.MinimumSize = new System.Drawing.Size(400, 100);
-            this._attributiControl.Name = "_attributiControl";
-            this._attributiControl.Size = new System.Drawing.Size(431, 100);
-            this._attributiControl.TabIndex = 10;
-            // 
-            // _centreTitleLabel
-            // 
-            this._centreTitleLabel.AutoSize = true;
-            this._centreTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._centreTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._centreTitleLabel.Location = new System.Drawing.Point(0, 0);
-            this._centreTitleLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this._centreTitleLabel.Name = "_centreTitleLabel";
-            this._centreTitleLabel.Padding = new System.Windows.Forms.Padding(0, 10, 0, 7);
-            this._centreTitleLabel.Size = new System.Drawing.Size(102, 34);
-            this._centreTitleLabel.TabIndex = 9;
-            this._centreTitleLabel.Text = "Nuovo target";
             // 
             // _tableLayoutPanel
             // 
@@ -156,7 +94,7 @@
             this._tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this._tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this._tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this._tableLayoutPanel.Size = new System.Drawing.Size(431, 80);
+            this._tableLayoutPanel.Size = new System.Drawing.Size(427, 80);
             this._tableLayoutPanel.TabIndex = 6;
             // 
             // _attivitaLabel
@@ -192,7 +130,7 @@
             // _attivitaValueLabel
             // 
             this._attivitaValueLabel.AutoSize = true;
-            this._attivitaValueLabel.Location = new System.Drawing.Point(146, 10);
+            this._attivitaValueLabel.Location = new System.Drawing.Point(145, 10);
             this._attivitaValueLabel.Margin = new System.Windows.Forms.Padding(3);
             this._attivitaValueLabel.Name = "_attivitaValueLabel";
             this._attivitaValueLabel.Size = new System.Drawing.Size(97, 13);
@@ -202,7 +140,7 @@
             // _descValueLabel
             // 
             this._descValueLabel.AutoSize = true;
-            this._descValueLabel.Location = new System.Drawing.Point(146, 30);
+            this._descValueLabel.Location = new System.Drawing.Point(145, 30);
             this._descValueLabel.Margin = new System.Windows.Forms.Padding(3);
             this._descValueLabel.Name = "_descValueLabel";
             this._descValueLabel.Size = new System.Drawing.Size(89, 13);
@@ -212,7 +150,7 @@
             // _attrezziValueLabel
             // 
             this._attrezziValueLabel.AutoSize = true;
-            this._attrezziValueLabel.Location = new System.Drawing.Point(146, 50);
+            this._attrezziValueLabel.Location = new System.Drawing.Point(145, 50);
             this._attrezziValueLabel.Margin = new System.Windows.Forms.Padding(3);
             this._attrezziValueLabel.Name = "_attrezziValueLabel";
             this._attrezziValueLabel.Size = new System.Drawing.Size(99, 13);
@@ -223,20 +161,31 @@
             // 
             this._errorProvider.ContainerControl = this;
             // 
+            // _attributiControl
+            // 
+            this._attributiControl.AutoSize = true;
+            this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._attributiControl.Location = new System.Drawing.Point(0, 80);
+            this._attributiControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._attributiControl.Name = "_attributiControl";
+            this._attributiControl.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this._attributiControl.Size = new System.Drawing.Size(427, 270);
+            this._attributiControl.TabIndex = 7;
+            // 
             // _dialogButtonsControl
             // 
             this._dialogButtonsControl.AutoSize = true;
             this._dialogButtonsControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._dialogButtonsControl.Location = new System.Drawing.Point(0, 422);
+            this._dialogButtonsControl.Location = new System.Drawing.Point(0, 350);
             this._dialogButtonsControl.Name = "_dialogButtonsControl";
-            this._dialogButtonsControl.Size = new System.Drawing.Size(651, 51);
+            this._dialogButtonsControl.Size = new System.Drawing.Size(644, 51);
             this._dialogButtonsControl.TabIndex = 0;
             // 
             // NewEsercizioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 473);
+            this.ClientSize = new System.Drawing.Size(644, 401);
             this.Controls.Add(this._splitContainer);
             this.Controls.Add(this._dialogButtonsControl);
             this.Name = "NewEsercizioForm";
@@ -246,10 +195,6 @@
             this._splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer)).EndInit();
             this._splitContainer.ResumeLayout(false);
-            this._bottomPanel.ResumeLayout(false);
-            this._bottomPanel.PerformLayout();
-            this._centrePanel.ResumeLayout(false);
-            this._centrePanel.PerformLayout();
             this._tableLayoutPanel.ResumeLayout(false);
             this._tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider)).EndInit();
@@ -263,9 +208,6 @@
         private DialogButtonsControl _dialogButtonsControl;
         private System.Windows.Forms.TreeView _treeView;
         private System.Windows.Forms.SplitContainer _splitContainer;
-        private System.Windows.Forms.Panel _bottomPanel;
-        private System.Windows.Forms.Panel _centrePanel;
-        private System.Windows.Forms.Label _centreTitleLabel;
         private System.Windows.Forms.TableLayoutPanel _tableLayoutPanel;
         private System.Windows.Forms.Label _attivitaLabel;
         private System.Windows.Forms.Label _descLabel;
@@ -273,7 +215,6 @@
         private System.Windows.Forms.Label _attivitaValueLabel;
         private System.Windows.Forms.Label _descValueLabel;
         private System.Windows.Forms.Label _attrezziValueLabel;
-        private ListBoxControl _listBoxControl;
         private System.Windows.Forms.ErrorProvider _errorProvider;
         private AttributiControl _attributiControl;
     }

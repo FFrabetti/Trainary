@@ -18,7 +18,6 @@ namespace Trainary.presenter.attributi
             _timePicker.ShowUpDown = true;
             _timePicker.Location = new Point(0, 4);
             _timePicker.Size = new Size(121, 20);
-            _timePicker.Margin = new Padding(3);
         }
 
         public override void DrawControls(Panel panel)
@@ -33,6 +32,9 @@ namespace Trainary.presenter.attributi
 
         public override Quantita GetNewQuantita()
         {
+            if (_timePicker.Value.TimeOfDay.TotalSeconds == 0)
+                throw new ArgumentException("Una durata nulla non è valida");
+
             return QuantitaFactory.NewQuantita(_timePicker.Value.TimeOfDay);
         }
 

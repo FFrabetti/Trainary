@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Trainary.view
 {
@@ -16,11 +8,6 @@ namespace Trainary.view
         {
             InitializeComponent();
         }
-
-        //public SplitContainer SplitContainer
-        //{
-        //    get { return _splitContainer; }
-        //}
 
         public TreeView TreeView
         {
@@ -66,38 +53,14 @@ namespace Trainary.view
 
         #endregion
 
-        #region Nuovo target
-
-        //public Panel CentrePanel
-        //{
-        //    get { return _centrePanel; }
-        //}
-
-        public Label CentreLabel
-        {
-            get { return _centreTitleLabel; }
-        }
-
         public AttributiControl AttributiControl
         {
             get { return _attributiControl; }
         }
 
-        #endregion
-
-        public ListBoxControl ListBoxControl
+        public Button OkButton
         {
-            get { return _listBoxControl; }
-        }
-
-        //public Panel BottomPanel
-        //{
-        //    get { return _bottomPanel; }
-        //}
-
-        public DialogButtonsControl DialogButtonsControl
-        {
-            get { return _dialogButtonsControl; }
+            get { return _dialogButtonsControl.OkButton; }
         }
 
         public ErrorProvider ErrorProvider

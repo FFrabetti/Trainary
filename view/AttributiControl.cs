@@ -17,35 +17,39 @@ namespace Trainary.view
             InitializeComponent();
         }
 
-        public Label NomeLabel
+        public Label TitleLabel
         {
-            get { return _nameLabel; }
+            get { return _titleLabel; }
         }
 
-        public Label TipoLabel
+        public NewAttributoControl NewAttributoControl
         {
-            get { return _typeLabel; }
+            get { return _newAttributoControl; }
         }
 
-        public Label ValoreLabel
+        public ListBoxControl ListBoxControl
         {
-            get { return _valueLabel; }
+            get { return _listBoxControl; }
         }
 
-        public TextBox NomeTextBox
+        public Button AddButton
         {
-            get { return _nameTextBox; }
+            get { return _listBoxControl.AddButton; }
         }
 
-        public ComboBox TipoComboBox
+        public Button RemoveButton
         {
-            get { return _typeComboBox; }
+            get { return _listBoxControl.RemoveButton; }
         }
 
-        public Panel QuantitaPanel
+        public Label ListLabel
         {
-            get { return _valuePanel; }
+            get { return _listBoxControl.TitleLabel; }
         }
 
+        public ErrorProvider ErrorProvider
+        {
+            get { return _errorProvider; }
+        }
     }
 }

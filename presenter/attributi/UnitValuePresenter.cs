@@ -17,11 +17,9 @@ namespace Trainary.presenter.attributi
 
             _textBox.Location = new Point(0, 5);
             _textBox.Size = new Size(57, 20);
-            _textBox.Margin = new Padding(3);
 
             _comboBox.Location = new Point(64, 4);
             _comboBox.Size = new Size(57, 20);
-            _comboBox.Margin = new Padding(3);
         }
 
         // used by sub-classes to fill the combo box

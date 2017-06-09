@@ -16,7 +16,6 @@ namespace Trainary.presenter.attributi
             _textBox = new TextBox();
             _textBox.Size = new Size(57, 20);
             _textBox.Location = new Point(0, 4);
-            _textBox.Margin = new Padding(3);
         }
 
         public override void DrawControls(Panel panel)

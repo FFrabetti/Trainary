@@ -1,30 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 using Trainary.model.attributi;
+using Trainary.utils;
 using Trainary.view;
 
 namespace Trainary.presenter.attributi
 {
     public class AttributiPresenter
     {
-        public event EventHandler Refreshed;
+        private NewAttributoPresenter _newAttributoPresenter;
+        private ListBoxPresenter<Attributo> _listBoxPresenter;
 
         private AttributiControl _control;
-
-        private QuantitaPresenter _currentQPresenter;
-        private List<QuantitaPresenter> _presenters;
 
         public AttributiPresenter(AttributiControl control)
         {
             if (control == null)
-                throw new ArgumentNullException("attributi control");
+                throw new ArgumentNullException("control");
             _control = control;
 
-            _presenters = new List<QuantitaPresenter>();
-            InizializeQuantitaPresenters();
-            InizializeComboBox();
+            _newAttributoPresenter = new NewAttributoPresenter(_control.NewAttributoControl);
+            _listBoxPresenter = new ListBoxPresenter<Attributo>(_control.ListBoxControl);
+
+            _control.ListBoxControl.ListBox.SelectionMode = SelectionMode.One;
+
+            _control.AddButton.Click += AddTargetHandler;
+            Application.Idle += ApplicationIdle;
+            _newAttributoPresenter.Refreshed += NewAttributoRefreshed;
         }
 
         public AttributiControl AttributiControl
@@ -32,66 +35,40 @@ namespace Trainary.presenter.attributi
             get { return _control; }
         }
 
-        private void InizializeComboBox()
+        public Control ErrorControl
         {
-            _control.TipoComboBox.DataSource = _presenters;
-            _control.TipoComboBox.DisplayMember = "LabelAttribute";
-
-            _control.TipoComboBox.SelectedValueChanged += ComboChangedHandler;
-            ComboChangedHandler(_control.TipoComboBox, null);
+            get { return _control.NewAttributoControl.ValoreLabel; }
         }
 
-        private void InizializeQuantitaPresenters()
+        public List<Attributo> Attributi
         {
-            QuantitaPresenter presenter = null;
-            ConstructorInfo constructor = null;
+            get { return _listBoxPresenter.Items; }
+        }
 
-            foreach(Type tipo in Assembly.GetExecutingAssembly().GetTypes())
+        private void ApplicationIdle(object sender, EventArgs e)
+        {
+            _control.AddButton.Enabled = _control.NewAttributoControl.NomeTextBox.Text.Length > 0;
+            // RemoveButton gestito da ListBoxPresenter   
+        }
+
+        private void NewAttributoRefreshed(object sender, EventArgs e)
+        {
+            _control.ErrorProvider.UnsetError(ErrorControl);
+        }
+
+        private void AddTargetHandler(object sender, EventArgs e)
+        {
+            try
             {
-                if(
-                    tipo.IsSubclassOf(typeof(QuantitaPresenter)) &&
-                    !tipo.IsAbstract &&
-                    (constructor = tipo.GetConstructor(Type.EmptyTypes)) != null
-                )
-                {
-                    try
-                    {
-                        presenter = (QuantitaPresenter) constructor.Invoke(null);
-                        if (presenter != null)
-                            _presenters.Add(presenter);
-                    }
-                    catch
-                    {
-                        // skip
-                    }
-                }
+                Attributo attributo = _newAttributoPresenter.NewAttributo();
+                _listBoxPresenter.AddItem(attributo);
+
+                _newAttributoPresenter.Refresh();
             }
-        }
-
-        private void ComboChangedHandler(object sender, EventArgs e)
-        {
-            ComboBox combo = ((ComboBox)sender);
-            _currentQPresenter = (QuantitaPresenter)combo.SelectedValue;
-
-            _control.QuantitaPanel.Controls.Clear();
-            _currentQPresenter.DrawControls(_control.QuantitaPanel);
-            Refresh();
-        }
-
-        public Attributo NewAttributo()
-        {
-            string nome = _control.NomeTextBox.Text;
-            Quantita quantita = _currentQPresenter.GetNewQuantita();
-            return new Attributo(nome, quantita);
-        }
-
-        public void Refresh()
-        {
-            _control.NomeTextBox.Clear();
-            _currentQPresenter.Refresh();
-
-            if (Refreshed != null)
-                Refreshed(this, EventArgs.Empty);
+            catch (Exception ex)
+            {
+                _control.ErrorProvider.SetError(ErrorControl, ex.Message);
+            }
         }
     }
 }

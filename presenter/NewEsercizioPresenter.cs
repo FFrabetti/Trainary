@@ -3,18 +3,16 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Trainary.model;
-using Trainary.model.attributi;
 using Trainary.presenter.attributi;
+using Trainary.utils;
 using Trainary.view;
 
 namespace Trainary.presenter
 {
-    class NewEsercizioPresenter
+    public class NewEsercizioPresenter
     {
         private NewEsercizioForm _form;
-
         private AttributiPresenter _attributiPresenter;
-        private ListBoxPresenter<Attributo> _listBoxPresenter;
 
         private Attivita _selectedAttivita;
 
@@ -25,12 +23,10 @@ namespace Trainary.presenter
             _form = form;
 
             _attributiPresenter = new AttributiPresenter(_form.AttributiControl);
-            _listBoxPresenter = new ListBoxPresenter<Attributo>(_form.ListBoxControl);
 
             InitializeTreeView();
             InitializeTableLayout();
             InitializeAttributiControl();
-            InitializeListBoxControl();
 
             // abilito/disabilito pulsanti e rimuovo eventuali error providers
             Application.Idle += ApplicationIdle;
@@ -43,18 +39,16 @@ namespace Trainary.presenter
             if(_form.DialogResult == DialogResult.OK && _selectedAttivita == null)
             {
                 e.Cancel = true;
-                SetError(_form.AttivitaLabel, "Devi selezionare un'attività");
+                _form.ErrorProvider.SetError(_form.AttivitaLabel, "Devi selezionare un'attività");
             }
         }
 
         private void ApplicationIdle(object sender, EventArgs e)
         {
-            _form.DialogButtonsControl.OkButton.Enabled = _selectedAttivita != null;
-            _form.ListBoxControl.AddButton.Enabled = _form.AttributiControl.NomeTextBox.Text.Length > 0;
-            // RemoveButton gestito da ListBoxPresenter
+            _form.OkButton.Enabled = _selectedAttivita != null;
 
             if (_selectedAttivita != null)
-                RemoveError(_form.AttivitaLabel);
+                _form.ErrorProvider.UnsetError(_form.AttivitaLabel);
         }
 
         private void InitializeTreeView()
@@ -124,49 +118,13 @@ namespace Trainary.presenter
 
         private void InitializeAttributiControl()
         {
-            _attributiPresenter.Refreshed += AttributiRefreshed;
+            _form.AttributiControl.ListLabel.Text = "Targets";
         }
 
-        private void AttributiRefreshed(object sender, EventArgs e)
-        {
-            RemoveError(_form.AttributiControl.ValoreLabel);
-        }
-
-        private void InitializeListBoxControl()
-        {
-            _form.ListBoxControl.TitleLabel.Text = "Atttributi target";
-            _form.ListBoxControl.AddButton.Click += AddTargetHandler;
-            _form.ListBoxControl.ListBox.SelectionMode = SelectionMode.One;
-        }
-
-        private void AddTargetHandler(object sender, EventArgs e)
-        {
-            try
-            {
-                Attributo attributo = _attributiPresenter.NewAttributo();
-                _listBoxPresenter.AddItem(attributo);
-
-                _attributiPresenter.Refresh();
-            }
-            catch (Exception ex)
-            {
-                SetError(_form.AttributiControl.ValoreLabel, ex.Message);
-            }
-        }
-        
         public Esercizio NewEsercizio()
         {
-            return new EsercizioSingolo(_selectedAttivita, _listBoxPresenter.Items.ToArray());
+            return new EsercizioSingolo(_selectedAttivita, _attributiPresenter.Attributi.ToArray());
         }
 
-        private void SetError(Control control, string message)
-        {
-            _form.ErrorProvider.SetError(control, message);
-        }
-
-        private void RemoveError(Control control)
-        {
-            _form.ErrorProvider.SetError(control, null);
-        }
     }
 }

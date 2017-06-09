@@ -28,113 +28,89 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this._nameLabel = new System.Windows.Forms.Label();
-            this._nameTextBox = new System.Windows.Forms.TextBox();
-            this._typeLabel = new System.Windows.Forms.Label();
-            this._typeComboBox = new System.Windows.Forms.ComboBox();
-            this._valueLabel = new System.Windows.Forms.Label();
-            this._valuePanel = new System.Windows.Forms.Panel();
-            this._tableLayoutPanel.SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this._titleLabel = new System.Windows.Forms.Label();
+            this._topPanel = new System.Windows.Forms.Panel();
+            this._newAttributoControl = new Trainary.view.NewAttributoControl();
+            this._listBoxControl = new Trainary.view.ListBoxControl();
+            this._errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this._topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // _tableLayoutPanel
+            // _titleLabel
             // 
-            this._tableLayoutPanel.AutoSize = true;
-            this._tableLayoutPanel.ColumnCount = 2;
-            this._tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this._tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this._tableLayoutPanel.Controls.Add(this._nameLabel, 0, 0);
-            this._tableLayoutPanel.Controls.Add(this._nameTextBox, 1, 0);
-            this._tableLayoutPanel.Controls.Add(this._typeLabel, 0, 1);
-            this._tableLayoutPanel.Controls.Add(this._typeComboBox, 1, 1);
-            this._tableLayoutPanel.Controls.Add(this._valueLabel, 0, 2);
-            this._tableLayoutPanel.Controls.Add(this._valuePanel, 1, 2);
-            this._tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this._tableLayoutPanel.Name = "_tableLayoutPanel";
-            this._tableLayoutPanel.RowCount = 3;
-            this._tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this._tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this._tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this._tableLayoutPanel.Size = new System.Drawing.Size(393, 149);
-            this._tableLayoutPanel.TabIndex = 1;
+            this._titleLabel.AutoSize = true;
+            this._titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._titleLabel.Location = new System.Drawing.Point(0, 0);
+            this._titleLabel.Margin = new System.Windows.Forms.Padding(3);
+            this._titleLabel.Name = "_titleLabel";
+            this._titleLabel.Size = new System.Drawing.Size(121, 17);
+            this._titleLabel.TabIndex = 0;
+            this._titleLabel.Text = "Nuovo Attributo";
             // 
-            // _nameLabel
+            // _topPanel
             // 
-            this._nameLabel.AutoSize = true;
-            this._nameLabel.Location = new System.Drawing.Point(3, 3);
-            this._nameLabel.Margin = new System.Windows.Forms.Padding(3);
-            this._nameLabel.Name = "_nameLabel";
-            this._nameLabel.Size = new System.Drawing.Size(35, 13);
-            this._nameLabel.TabIndex = 0;
-            this._nameLabel.Text = "Nome";
+            this._topPanel.AutoSize = true;
+            this._topPanel.Controls.Add(this._newAttributoControl);
+            this._topPanel.Controls.Add(this._titleLabel);
+            this._topPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._topPanel.Location = new System.Drawing.Point(3, 3);
+            this._topPanel.Name = "_topPanel";
+            this._topPanel.Size = new System.Drawing.Size(412, 95);
+            this._topPanel.TabIndex = 1;
             // 
-            // _nameTextBox
+            // _newAttributoControl
             // 
-            this._nameTextBox.Location = new System.Drawing.Point(134, 3);
-            this._nameTextBox.Name = "_nameTextBox";
-            this._nameTextBox.Size = new System.Drawing.Size(121, 20);
-            this._nameTextBox.TabIndex = 1;
+            this._newAttributoControl.AutoSize = true;
+            this._newAttributoControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._newAttributoControl.Location = new System.Drawing.Point(0, 17);
+            this._newAttributoControl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this._newAttributoControl.Name = "_newAttributoControl";
+            this._newAttributoControl.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this._newAttributoControl.Size = new System.Drawing.Size(412, 78);
+            this._newAttributoControl.TabIndex = 1;
             // 
-            // _typeLabel
+            // _listBoxControl
             // 
-            this._typeLabel.AutoSize = true;
-            this._typeLabel.Location = new System.Drawing.Point(3, 29);
-            this._typeLabel.Margin = new System.Windows.Forms.Padding(3);
-            this._typeLabel.Name = "_typeLabel";
-            this._typeLabel.Size = new System.Drawing.Size(28, 13);
-            this._typeLabel.TabIndex = 2;
-            this._typeLabel.Text = "Tipo";
+            this._listBoxControl.AutoSize = true;
+            this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
+            this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._listBoxControl.Location = new System.Drawing.Point(3, 98);
+            this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._listBoxControl.Name = "_listBoxControl";
+            this._listBoxControl.Size = new System.Drawing.Size(412, 168);
+            this._listBoxControl.TabIndex = 2;
             // 
-            // _typeComboBox
+            // _errorProvider
             // 
-            this._typeComboBox.FormattingEnabled = true;
-            this._typeComboBox.Location = new System.Drawing.Point(134, 29);
-            this._typeComboBox.Name = "_typeComboBox";
-            this._typeComboBox.Size = new System.Drawing.Size(121, 21);
-            this._typeComboBox.TabIndex = 3;
-            // 
-            // _valueLabel
-            // 
-            this._valueLabel.AutoSize = true;
-            this._valueLabel.Location = new System.Drawing.Point(3, 49);
-            this._valueLabel.Margin = new System.Windows.Forms.Padding(3);
-            this._valueLabel.Name = "_valueLabel";
-            this._valueLabel.Size = new System.Drawing.Size(37, 13);
-            this._valueLabel.TabIndex = 4;
-            this._valueLabel.Text = "Valore";
-            // 
-            // _valuePanel
-            // 
-            this._valuePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._valuePanel.Location = new System.Drawing.Point(134, 49);
-            this._valuePanel.Name = "_valuePanel";
-            this._valuePanel.Size = new System.Drawing.Size(256, 97);
-            this._valuePanel.TabIndex = 5;
+            this._errorProvider.ContainerControl = this;
             // 
             // AttributiControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this._tableLayoutPanel);
+            this.Controls.Add(this._listBoxControl);
+            this.Controls.Add(this._topPanel);
             this.Name = "AttributiControl";
-            this.Size = new System.Drawing.Size(393, 149);
-            this._tableLayoutPanel.ResumeLayout(false);
-            this._tableLayoutPanel.PerformLayout();
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(418, 269);
+            this._topPanel.ResumeLayout(false);
+            this._topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel _tableLayoutPanel;
-        private System.Windows.Forms.Label _nameLabel;
-        private System.Windows.Forms.TextBox _nameTextBox;
-        private System.Windows.Forms.Label _typeLabel;
-        private System.Windows.Forms.ComboBox _typeComboBox;
-        private System.Windows.Forms.Label _valueLabel;
-        private System.Windows.Forms.Panel _valuePanel;
+
+        private System.Windows.Forms.Label _titleLabel;
+        private System.Windows.Forms.Panel _topPanel;
+        private NewAttributoControl _newAttributoControl;
+        private ListBoxControl _listBoxControl;
+        private System.Windows.Forms.ErrorProvider _errorProvider;
     }
 }
