@@ -32,39 +32,37 @@ namespace Trainary.presenter
         }
 
         public ListBoxPresenter(ListBoxControl listControl) : this(listControl, new T[0])
-        {
-        }
-
-        private void SelectionHandler(object sender, EventArgs e)
-        {
-            _control.RemoveButton.Enabled = SelectedItems.Count > 0;
-        }
-
-        private void RemoveButtonHandler(object sender, EventArgs e)
-        {
-            if (SelectedItems.Count > 0)
-                RemoveItem(SelectedItem);
-        }
+        { }
 
         public ListBoxControl ListBoxControl
         {
             get { return _control; }
         }
 
+        public List<T> Items
+        {
+            get { return _items; }
+        }
+
         public T SelectedItem
         {
-            get
-            {
-                return (T)(_control.ListBox.SelectedItem ?? default(T));
-            }
+            get { return (T)(_control.ListBox.SelectedItem ?? default(T)); }
         }
 
         public IList SelectedItems
         {
-            get
-            {
-                return _control.ListBox.SelectedItems;
-            }
+            get { return _control.ListBox.SelectedItems; }
+        }
+
+        private void SelectionHandler(object sender, EventArgs e)
+        {
+            _control.RemoveButton.Enabled = SelectedItems.Count == 1;
+        }
+
+        private void RemoveButtonHandler(object sender, EventArgs e)
+        {
+            if (SelectedItems.Count == 1)
+                RemoveItem(SelectedItem);
         }
 
         public void AddItem(T item)

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.Presentation;
@@ -96,8 +92,6 @@ namespace Trainary
 
                 if (newEsForm.ShowDialog() == DialogResult.OK)
                 {
-                    Console.WriteLine("ok!");
-
                     Esercizio esercizio = presenter.NewEsercizio();
                     Console.WriteLine(esercizio);
                 }

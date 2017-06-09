@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Trainary.model.attributi;
 
@@ -50,6 +51,9 @@ namespace Trainary.presenter.attributi
         public override Quantita GetNewQuantita()
         {
             double value = double.Parse(_textBox.Text);
+            if (value < 0)
+                throw new ArgumentException("La quantità non può essere negativa");
+
             UnitaDiMisura unita = (UnitaDiMisura) _comboBox.SelectedItem;
             return QuantitaFactory.NewQuantita(value, unita);
         }

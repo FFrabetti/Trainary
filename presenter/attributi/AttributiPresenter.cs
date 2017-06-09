@@ -9,6 +9,8 @@ namespace Trainary.presenter.attributi
 {
     public class AttributiPresenter
     {
+        public event EventHandler Refreshed;
+
         private AttributiControl _control;
 
         private QuantitaPresenter _currentQPresenter;
@@ -73,6 +75,7 @@ namespace Trainary.presenter.attributi
 
             _control.QuantitaPanel.Controls.Clear();
             _currentQPresenter.DrawControls(_control.QuantitaPanel);
+            Refresh();
         }
 
         public Attributo NewAttributo()
@@ -82,5 +85,13 @@ namespace Trainary.presenter.attributi
             return new Attributo(nome, quantita);
         }
 
+        public void Refresh()
+        {
+            _control.NomeTextBox.Clear();
+            _currentQPresenter.Refresh();
+
+            if (Refreshed != null)
+                Refreshed(this, EventArgs.Empty);
+        }
     }
 }

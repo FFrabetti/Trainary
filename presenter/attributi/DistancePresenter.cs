@@ -22,7 +22,6 @@ namespace Trainary.presenter.attributi
             // richiede una IList o una IListSource
             ComboBox.DataSource = _unitaList;
             ComboBox.DisplayMember = "Simbolo";
-            Refresh();
         }
     }
 }

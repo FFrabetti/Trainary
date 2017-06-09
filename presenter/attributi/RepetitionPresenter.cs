@@ -21,7 +21,6 @@ namespace Trainary.presenter.attributi
 
         public override void DrawControls(Panel panel)
         {
-            Refresh();
             panel.Controls.Add(_textBox);
         }
 

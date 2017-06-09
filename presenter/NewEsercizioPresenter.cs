@@ -4,7 +4,6 @@ using System.Text;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.attributi;
-using Trainary.presenter;
 using Trainary.presenter.attributi;
 using Trainary.view;
 
@@ -28,28 +27,23 @@ namespace Trainary.presenter
             _attributiPresenter = new AttributiPresenter(_form.AttributiControl);
             _listBoxPresenter = new ListBoxPresenter<Attributo>(_form.ListBoxControl);
 
-            _form.ListBoxControl.TitleLabel.Text = "Atttributi target";
             InitializeTreeView();
             InitializeTableLayout();
+            InitializeAttributiControl();
+            InitializeListBoxControl();
 
             // abilito/disabilito pulsanti e rimuovo eventuali error providers
             Application.Idle += ApplicationIdle;
-            // controlli in chiusura --- come farli solo se OK è stato premuto?
+            // controlli in chiusura, validazione
             _form.FormClosing += FormClosingHandler;
         }
 
         private void FormClosingHandler(object sender, FormClosingEventArgs e)
         {
-            // da sistemare
-            Console.WriteLine("FormClosing: " + sender);
-
-            if(
-                //sender is Button && ((Button)sender) == _form.DialogButtonsControl.OkButton &&
-                _selectedAttivita == null
-            )
+            if(_form.DialogResult == DialogResult.OK && _selectedAttivita == null)
             {
                 e.Cancel = true;
-                _form.ErrorProvider.SetError(_form.AttivitaLabel, "Devi selezionare un'attivita'");
+                SetError(_form.AttivitaLabel, "Devi selezionare un'attività");
             }
         }
 
@@ -57,10 +51,10 @@ namespace Trainary.presenter
         {
             _form.DialogButtonsControl.OkButton.Enabled = _selectedAttivita != null;
             _form.ListBoxControl.AddButton.Enabled = _form.AttributiControl.NomeTextBox.Text.Length > 0;
-            _form.ListBoxControl.RemoveButton.Enabled = _form.ListBoxControl.ListBox.SelectedItems.Count == 1;
+            // RemoveButton gestito da ListBoxPresenter
 
-            if(_selectedAttivita != null)
-                _form.ErrorProvider.SetError(_form.AttivitaLabel, "");
+            if (_selectedAttivita != null)
+                RemoveError(_form.AttivitaLabel);
         }
 
         private void InitializeTreeView()
@@ -76,7 +70,7 @@ namespace Trainary.presenter
         private void PopulateTree(TreeNodeCollection nodes, Categoria categoria)
         {
             TreeNode node = new TreeNode(categoria.ToString());
-            node.ForeColor = Color.Gray;
+            node.NodeFont = new Font(_form.TreeView.Font, FontStyle.Bold);
             nodes.Add(node);
 
             foreach(Categoria subCat in categoria.SottoCategorie)
@@ -107,7 +101,7 @@ namespace Trainary.presenter
         private string AttrezziToString(string[] attrezzi)
         {
             if (attrezzi.Length == 0)
-                return "";
+                return String.Empty;
 
             StringBuilder sb = new StringBuilder();
 
@@ -123,15 +117,56 @@ namespace Trainary.presenter
 
         private void InitializeTableLayout()
         {
-            _form.AttivitaValue.Text = "";
-            _form.DescrizioneValue.Text = "";
-            _form.AttrezziValue.Text = "";
+            _form.AttivitaValue.Text = 
+                _form.DescrizioneValue.Text = 
+                    _form.AttrezziValue.Text = String.Empty;
         }
 
+        private void InitializeAttributiControl()
+        {
+            _attributiPresenter.Refreshed += AttributiRefreshed;
+        }
+
+        private void AttributiRefreshed(object sender, EventArgs e)
+        {
+            RemoveError(_form.AttributiControl.ValoreLabel);
+        }
+
+        private void InitializeListBoxControl()
+        {
+            _form.ListBoxControl.TitleLabel.Text = "Atttributi target";
+            _form.ListBoxControl.AddButton.Click += AddTargetHandler;
+            _form.ListBoxControl.ListBox.SelectionMode = SelectionMode.One;
+        }
+
+        private void AddTargetHandler(object sender, EventArgs e)
+        {
+            try
+            {
+                Attributo attributo = _attributiPresenter.NewAttributo();
+                _listBoxPresenter.AddItem(attributo);
+
+                _attributiPresenter.Refresh();
+            }
+            catch (Exception ex)
+            {
+                SetError(_form.AttributiControl.ValoreLabel, ex.Message);
+            }
+        }
+        
         public Esercizio NewEsercizio()
         {
-            // da sistemare
-            return new EsercizioSingolo(_selectedAttivita);
+            return new EsercizioSingolo(_selectedAttivita, _listBoxPresenter.Items.ToArray());
+        }
+
+        private void SetError(Control control, string message)
+        {
+            _form.ErrorProvider.SetError(control, message);
+        }
+
+        private void RemoveError(Control control)
+        {
+            _form.ErrorProvider.SetError(control, null);
         }
     }
 }
