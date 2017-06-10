@@ -9,7 +9,7 @@ namespace Trainary.model
         private string _descrizione;
         private string[] _attrezzi;
 
-        public Attivita(string nome, string descrizione, string[] attrezzi)
+        public Attivita(string nome, string descrizione = null, string[] attrezzi = null)
         {
             if (string.IsNullOrEmpty(nome))
                 throw new ArgumentException("nome is null or empty");
@@ -20,14 +20,8 @@ namespace Trainary.model
             _attrezzi = attrezzi;
         }
 
-        public Attivita(string nome, string descrizione)
-            : this(nome, descrizione, null) { }
-
         public Attivita(string nome, string[] attrezzi)
             : this(nome, null, attrezzi) { }
-
-        public Attivita(string nome)
-            : this(nome, null, null) { }
 
         public string Nome
         {
@@ -73,8 +67,11 @@ namespace Trainary.model
             return sb.ToString();
         }
 
-        private string AttrezziToString()
+        public string AttrezziToString()
         {
+            if (Attrezzi.Length == 0)
+                return String.Empty;
+
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < Attrezzi.Length; i++)
             {

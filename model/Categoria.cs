@@ -10,7 +10,7 @@ namespace Trainary.model
         private readonly SortedSet<Attivita> _attivita;
         private readonly SortedSet<Categoria> _sottoCategorie;
 
-        public Categoria(string nome, IEnumerable<Attivita> attivita, IEnumerable<Categoria> sottoCategorie)
+        public Categoria(string nome, IEnumerable<Attivita> attivita = null, IEnumerable<Categoria> sottoCategorie = null)
         {
             if (string.IsNullOrEmpty(nome))
                 throw new ArgumentException("nome is null or empty");
@@ -20,14 +20,8 @@ namespace Trainary.model
             _sottoCategorie = sottoCategorie != null ? new SortedSet<Categoria>(sottoCategorie) : new SortedSet<Categoria>();
         }
 
-        public Categoria(string nome, IEnumerable<Attivita> attivita) 
-            : this(nome, attivita, null) { }
-
         public Categoria(string nome, IEnumerable<Categoria> sottoCategorie)
             : this(nome, null, sottoCategorie) { }
-
-        // per la radice
-        public Categoria(string nome) : this(nome, null, null) { }
 
         public string Nome
         {
