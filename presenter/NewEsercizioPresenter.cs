@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.presenter.attributi;
@@ -88,25 +87,8 @@ namespace Trainary.presenter
                 _selectedAttivita = (Attivita)treeView.SelectedNode.Tag;
                 _form.AttivitaValue.Text = _selectedAttivita.Nome;
                 _form.DescrizioneValue.Text = _selectedAttivita.Descrizione;
-                _form.AttrezziValue.Text = AttrezziToString(_selectedAttivita.Attrezzi);
+                _form.AttrezziValue.Text = _selectedAttivita.AttrezziToString();
             }
-        }
-
-        private string AttrezziToString(string[] attrezzi)
-        {
-            if (attrezzi.Length == 0)
-                return String.Empty;
-
-            StringBuilder sb = new StringBuilder();
-
-            for(int i=0; i<attrezzi.Length; i++)
-            {
-                if (i != 0)
-                    sb.Append(", ");
-                sb.Append(attrezzi[i]);
-            }
-
-            return sb.ToString();
         }
 
         private void InitializeTableLayout()
