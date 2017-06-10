@@ -34,7 +34,7 @@ namespace Trainary
 
         // ------------------------------ MENU ------------------------------
 
-        [MenuLabel("Exit", "Trainary")]
+        [MenuLabel("Trainary", "Exit")]
         public static void Exit()
         {
             Application.Exit();
@@ -49,7 +49,7 @@ namespace Trainary
             Console.WriteLine("mostra diario");
         }
 
-        [MenuLabel("Gestione Schede", "Schede")]
+        [MenuLabel("Schede", "Gestione Schede")]
         public static void MostraGestioneSchede()
         {
             Control control = new GestioneSchedeControl();
@@ -58,7 +58,7 @@ namespace Trainary
             Console.WriteLine("gestione schede");
         }
 
-        [MenuLabel("Aggiungi Scheda", "Schede")]
+        [MenuLabel("Schede", "Aggiungi Scheda")]
         public static void AggiungiScheda()
         {
             using (SchedaForm schedaForm = new SchedaForm())
@@ -72,20 +72,20 @@ namespace Trainary
             Console.WriteLine("aggiungi scheda");
         }
 
-        [MenuLabel("Nuovo Allenamento Programmato", "Allenamenti")]
+        [MenuLabel("Allenamenti", "Nuovo Allenamento Programmato")]
         public static void NuovoAllenamentoProgrammato()
         {
             Console.WriteLine("nuovo all programmato");
         }
 
-        [MenuLabel("Nuovo Allenamento Extra", "Allenamenti")]
+        [MenuLabel("Allenamenti", "Nuovo Allenamento Extra")]
         public static void NuovoAllenamentoExtra()
         {
             Console.WriteLine("nuovo all extra");
         }
 
         // Test only
-        [MenuLabel("Nuovo eserczio", "Test")]
+        [MenuLabel("Test", "Nuovo eserczio")]
         public static void NuovoEsercizio()
         {
             using (NewEsercizioForm newEsForm = new NewEsercizioForm())
@@ -102,7 +102,7 @@ namespace Trainary
             }
         }
 
-        [MenuLabel("Nuovo circuito", "Test")]
+        [MenuLabel("Test", "Test2", "Nuovo Circuito")]
         public static void NuovoCircuito()
         {
             IDataManager<Esercizio> eserciziDM = new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager());

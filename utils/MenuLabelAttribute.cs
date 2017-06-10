@@ -1,31 +1,25 @@
 ﻿using System;
+using System.Linq;
 
 namespace Trainary.utils
 {
-    public class MenuLabelAttribute : LabelAttribute
+    public class MenuLabelAttribute : Attribute
     {
-        private string _group;
+        private string[] _args;
 
-        public MenuLabelAttribute(string label, string group)
-            : base(label)
+        public MenuLabelAttribute(params string[] args)
         {
-            if (group != null && group.Length == 0)
-                throw new ArgumentException("group is empty");
+            if (args == null || args.Length == 0)
+                throw new ArgumentException("null or empty arguments");
+            if(args.Any(str => str.Length == 0))
+                throw new ArgumentException("invalid empty label");
 
-            _group = group;
+            _args = args;
         }
 
-        public MenuLabelAttribute(string label) : base(label)
-        { }
-
-        public string Group
+        public string[] LabelPath
         {
-            get { return _group; }
-        }
-
-        public bool HasGroup()
-        {
-            return _group != null;
+            get { return _args; }
         }
 
     }

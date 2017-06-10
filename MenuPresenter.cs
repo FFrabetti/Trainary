@@ -1,29 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trainary.utils;
 
 namespace Trainary
 {
-    class MenuPresenter
+    public class MenuPresenter
     {
         private Type _tipo;
         private MenuStrip _menu;
-
-        private Dictionary<string, ToolStripMenuItem> _dictionary;
-
-        private Attribute GetCustomAttribute(MethodInfo mi, Type tipo)
-        {
-            object[] attrs = mi.GetCustomAttributes(tipo, false);
-            if (attrs.Length == 0)
-                return null;
-            else
-                return (Attribute) attrs[0];
-        }
 
         public MenuPresenter(Type tipo, MenuStrip menu)
         {
@@ -35,9 +21,16 @@ namespace Trainary
             _tipo = tipo;
             _menu = menu;
 
-            _dictionary = new Dictionary<string, ToolStripMenuItem>();
-
             InizializeMenu();
+        }
+
+        private MenuLabelAttribute GetMenuLabelAttribute(MethodInfo mi)
+        {
+            object[] attrs = mi.GetCustomAttributes(typeof(MenuLabelAttribute), false);
+            if (attrs.Length == 0)
+                return null;
+            else
+                return (MenuLabelAttribute)attrs[0];
         }
 
         private void InizializeMenu()
@@ -47,32 +40,37 @@ namespace Trainary
                 if (methodInfo.GetParameters().Length != 0)
                     continue;
 
-                MenuLabelAttribute labelAttr = (MenuLabelAttribute)GetCustomAttribute(methodInfo, typeof(LabelAttribute));
+                MenuLabelAttribute menuLabelAttr = GetMenuLabelAttribute(methodInfo);
 
-                if (labelAttr == null)
+                if (menuLabelAttr == null)
                     continue;
 
-                // text, image, event
-                ToolStripMenuItem item = new ToolStripMenuItem(labelAttr.Label, null, MenuClickHandler);
+                Queue<string> queue = new Queue<string>(menuLabelAttr.LabelPath);
+
+                ToolStripMenuItem item = InsertPath(queue, _menu.Items);
                 item.Tag = methodInfo;
+                item.Click += MenuClickHandler;
+            }
+        }
 
-                if (!labelAttr.HasGroup()) // elemento di 1° lv
-                {
-                    _menu.Items.Add(item);
-                    continue;
-                }
+        private ToolStripMenuItem InsertPath(Queue<string> queue, ToolStripItemCollection collection)
+        {
+            string label = queue.Dequeue();
+            ToolStripMenuItem item = new ToolStripMenuItem(label);
+            item.Name = label; // per ContainsKey e indexer
 
-                // elemento di 2° livello
-                if (!_dictionary.ContainsKey(labelAttr.Group))
-                {
-                    // il parent non esiste, lo aggiungo al dizionario e al menu
-                    ToolStripMenuItem parent = new ToolStripMenuItem(labelAttr.Group);
-                    _dictionary.Add(labelAttr.Group, parent);
-                    _menu.Items.Add(parent);
-                }
+            // caso base: la coda conteneva 1 elem prima del dequeue
+            if (queue.Count == 0)
+            {
+                collection.Add(item);
+                return item;
+            }
+            else
+            {
+                if (!collection.ContainsKey(label))
+                    collection.Add(item);
 
-                // (il parent esiste) aggiungo il figlio
-                _dictionary[labelAttr.Group].DropDownItems.Add(item);
+                return InsertPath(queue, ((ToolStripMenuItem)collection[label]).DropDownItems);
             }
         }
 
