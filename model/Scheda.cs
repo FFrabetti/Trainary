@@ -29,7 +29,7 @@ namespace Trainary.model
             : this(nome, ScopoDellaScheda.Nessuno, descrizione, periodoDiValidita) { }
 
         public Scheda(string nome, Periodo periodoDiValidita)
-            : this(nome, ScopoDellaScheda.Nessuno, null, periodoDiValidita) { }
+            : this(nome, null, periodoDiValidita) { }
 
         public string Nome {
             get
@@ -39,7 +39,7 @@ namespace Trainary.model
             set
             {
                 if (String.IsNullOrEmpty(value))
-                    throw new ArgumentException("nome");
+                    throw new ArgumentException("nome is null or empty");
 
                 _nome = value;
             }
@@ -93,6 +93,15 @@ namespace Trainary.model
             Seduta s = new Seduta(this, esercizi);
             _sedute.Add(s);
             return s;
+        }
+
+        internal void RegisterSeduta(Seduta s)
+        {
+            if (s.Scheda != this)
+                throw new ArgumentException("La seduta non appartiene a questa scheda");
+
+            if (!_sedute.Contains(s))
+                _sedute.Add(s);
         }
 
         public bool RimuoviSeduta(Seduta seduta)

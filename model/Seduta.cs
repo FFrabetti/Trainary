@@ -10,7 +10,7 @@ namespace Trainary.model
         private readonly Scheda _scheda;
         private string _nome;
 
-        public Seduta(Scheda scheda, IList<Esercizio> esercizi, string nome)
+        public Seduta(Scheda scheda, IList<Esercizio> esercizi, string nome = null)
         {
             if (scheda == null)
                 throw new ArgumentNullException("scheda");
@@ -18,13 +18,9 @@ namespace Trainary.model
                 throw new ArgumentNullException("esercizi");
 
             _scheda = scheda;
+            _scheda.RegisterSeduta(this);
             _esercizi = esercizi;
             Nome = nome;
-        }
-
-        public Seduta(Scheda scheda, IList<Esercizio> esercizi) : this(scheda, esercizi, null)
-        {
-
         }
 
         public IList<Esercizio> Esercizi
