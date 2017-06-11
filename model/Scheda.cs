@@ -90,9 +90,9 @@ namespace Trainary.model
 
         public Seduta AggiungiSeduta(IList<Esercizio> esercizi)
         {
-            Seduta s = new Seduta(this, esercizi);
-            _sedute.Add(s);
-            return s;
+            return new Seduta(this, esercizi);
+            // il costruttore di Seduta chiama RegisterSeduta,
+            // aggiungendosi alla lista _sedute
         }
 
         internal void RegisterSeduta(Seduta s)
