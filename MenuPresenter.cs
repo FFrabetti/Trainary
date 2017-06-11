@@ -37,11 +37,10 @@ namespace Trainary
         {
             foreach (MethodInfo methodInfo in _tipo.GetMethods())
             {
-                if (methodInfo.GetParameters().Length != 0)
+                if (methodInfo.GetParameters().Length != 0 || !methodInfo.IsStatic)
                     continue;
 
                 MenuLabelAttribute menuLabelAttr = GetMenuLabelAttribute(methodInfo);
-
                 if (menuLabelAttr == null)
                     continue;
 

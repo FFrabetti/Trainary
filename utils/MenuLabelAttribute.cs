@@ -10,9 +10,9 @@ namespace Trainary.utils
         public MenuLabelAttribute(params string[] args)
         {
             if (args == null || args.Length == 0)
-                throw new ArgumentException("null or empty arguments");
-            if(args.Any(str => str.Length == 0))
-                throw new ArgumentException("invalid empty label");
+                throw new ArgumentException("null or zero arguments");
+            if(args.Any(str => string.IsNullOrEmpty(str)))
+                throw new ArgumentException("invalid null or empty label");
 
             _args = args;
         }
