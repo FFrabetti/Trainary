@@ -9,24 +9,29 @@ namespace Trainary.model.attributi
     {
         private static readonly Dictionary<string, UnitaDiMisura> _dictionary = new Dictionary<string, UnitaDiMisura>();
 
+        private static void AddToDictionary(UnitaDiMisura u)
+        {
+            _dictionary.Add(u.Simbolo, u);
+        }
+
         static UnitaFactory()
         {
             try
             {
-                UnitaDiMisura number = new UnitaBase("numero puro", "", TipoQuantita.PURE_NUMBER);
-                UnitaDiMisura metre = new UnitaBase("metro", "m", TipoQuantita.LENGTH);
-                UnitaDiMisura kilogram = new UnitaBase("kilogrammo", "kg", TipoQuantita.MASS);
-                UnitaDiMisura second = new UnitaBase("secondo", "s", TipoQuantita.TIME);
+                UnitaDiMisura number = new UnitaDiMisuraBase("numero puro", "", TipoQuantita.PURE_NUMBER);
+                UnitaDiMisura metre = new UnitaDiMisuraBase("metro", "m", TipoQuantita.LENGTH);
+                UnitaDiMisura kilogram = new UnitaDiMisuraBase("kilogrammo", "kg", TipoQuantita.MASS);
+                UnitaDiMisura second = new UnitaDiMisuraBase("secondo", "s", TipoQuantita.TIME);
 
-                UnitaDiMisura gram = new LinearUnita("grammo", "g", kilogram, 0.001);
-                UnitaDiMisura kilometre = new LinearUnita("kilometro", "km", metre, 1000);
+                UnitaDiMisura gram = new UnitaDiMisuraDerivata("grammo", "g", kilogram, 0.001);
+                UnitaDiMisura kilometre = new UnitaDiMisuraDerivata("kilometro", "km", metre, 1000);
 
-                _dictionary.Add("", number);
-                _dictionary.Add("m", metre);
-                _dictionary.Add("kg", kilogram);
-                _dictionary.Add("s", second);
-                _dictionary.Add("g", gram);
-                _dictionary.Add("km", kilometre);
+                AddToDictionary(number);
+                AddToDictionary(metre);
+                AddToDictionary(kilogram);
+                AddToDictionary(second);
+                AddToDictionary(gram);
+                AddToDictionary(kilometre);
 
                 InitializeDictionary();
             }
@@ -69,47 +74,59 @@ namespace Trainary.model.attributi
 
         public static UnitaDiMisura GetBase(TipoQuantita tipo)
         {
-            return _dictionary.Values.SingleOrDefault(unita => unita.Tipo == tipo && unita.IsBase());
+            return _dictionary.Values.SingleOrDefault(unita => unita.TipoQuantita == tipo && unita.IsBase());
         }
 
         public static IEnumerable<UnitaDiMisura> GetAllOfType(TipoQuantita tipo)
         {
-            return _dictionary.Values.Where(unita => unita.Tipo == tipo);
+            return _dictionary.Values.Where(unita => unita.TipoQuantita == tipo);
         }
 
-
-        private class UnitaBase : UnitaDiMisura
+ 
+        private class UnitaDiMisuraBase : UnitaDiMisura
         {
-            public UnitaBase(string nome, string simbolo, TipoQuantita tipo)
-                : base(nome, simbolo, tipo, null)
+            public UnitaDiMisuraBase(string nome, string simbolo, TipoQuantita tipo)
+                : base(nome, simbolo, tipo)
             { }
 
-            public override double FromSI(double value) { return value; }
+            public override UnitaDiMisura UnitaBase
+            {
+                get { return this; }
+            }
 
-            public override double ToSI(double value) { return value; }
+            public override double FromUnitaBase(double value) { return value; }
+
+            public override double ToUnitaBase(double value) { return value; }
         }
 
-        private class LinearUnita : UnitaDiMisura
+        private class UnitaDiMisuraDerivata : UnitaDiMisura
         {
+            private readonly UnitaDiMisura _unitaSuper;
             private readonly double _k;
 
-            public LinearUnita(string nome, string simbolo, UnitaDiMisura unitaSuper, double k)
-                : base(nome, simbolo, unitaSuper)
+            public UnitaDiMisuraDerivata(string nome, string simbolo, UnitaDiMisura unitaSuper, double k)
+                : base(nome, simbolo, unitaSuper.TipoQuantita)
             {
                 if (k == 0)
                     throw new ArgumentException("k == 0");
 
+                _unitaSuper = unitaSuper;
                 _k = k;
             }
 
-            public override double ToSI(double value)
+            public override UnitaDiMisura UnitaBase
             {
-                return value * _k;
+                get { return _unitaSuper.UnitaBase; }
             }
 
-            public override double FromSI(double value)
+            public override double ToUnitaBase(double value)
             {
-                return value / _k;
+                return _unitaSuper.ToUnitaBase(value * _k);
+            }
+
+            public override double FromUnitaBase(double value)
+            {
+                return _unitaSuper.FromUnitaBase(value) / _k;
             }
         }
     }

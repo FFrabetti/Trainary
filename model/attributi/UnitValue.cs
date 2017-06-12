@@ -26,12 +26,12 @@ namespace Trainary.model.attributi
 
             public override TipoQuantita Tipo
             {
-                get { return _unita.Tipo; }
+                get { return _unita.TipoQuantita; }
             }
 
             public override double ToStandard()
             {
-                return _unita.ToSI(_valore);
+                return _unita.ToUnitaBase(_valore);
             }
 
             public override string ToString()

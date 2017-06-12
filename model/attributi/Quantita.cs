@@ -5,23 +5,33 @@
         public abstract TipoQuantita Tipo { get; }
         public abstract double ToStandard();
 
-        public static string ToMaxTwoDecimals(double value)
+        protected string ToMaxTwoDecimals(double value)
         {
             return value.ToString("0.##");
         }
 
         public override bool Equals(object obj)
         {
-            if (!(obj is Quantita))
-                return false;
-
-            Quantita that = (Quantita)obj;
-            return Tipo == that.Tipo && ToStandard() == that.ToStandard();
+            Quantita that = obj as Quantita;
+            return that != null && Tipo == that.Tipo && ToStandard() == that.ToStandard();
         }
 
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public static bool operator ==(Quantita thisQ, Quantita thatQ)
+        {
+            if ((object)thisQ == null)
+                return (object)thatQ == null;
+
+            return thisQ.Equals(thatQ);
+        }
+
+        public static bool operator !=(Quantita thisQ, Quantita thatQ)
+        {
+            return !(thisQ == thatQ);
         }
     }
 }

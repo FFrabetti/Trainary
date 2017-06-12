@@ -4,16 +4,25 @@
     {
         public class Yard : UnitaDiMisura
         {
-            // it has to have a constructor with no arguments
-            public Yard() : base("yard", "yd", GetBase(TipoQuantita.LENGTH))
-            { }
+            private UnitaDiMisura _base;
 
-            public override double FromSI(double value)
+            // it has to have a constructor with no arguments
+            public Yard() : base("yard", "yd", TipoQuantita.LENGTH)
+            {
+                _base = GetBase(TipoQuantita);
+            }
+
+            public override UnitaDiMisura UnitaBase
+            {
+                get { return _base; }
+            }
+
+            public override double FromUnitaBase(double value)
             {
                 return value / 0.9144;
             }
 
-            public override double ToSI(double value)
+            public override double ToUnitaBase(double value)
             {
                 return value * 0.9144;
             }

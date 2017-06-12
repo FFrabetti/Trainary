@@ -32,6 +32,10 @@ namespace Trainary.model.attributi
 
             public override string ToString()
             {
+                // senza questa condizione nel caso di durata nulla avrebbe restituito una stringa vuota
+                if (_durata.TotalSeconds == 0)
+                    return "0s";
+
                 StringBuilder sb = new StringBuilder();
                 if (_durata.Days != 0)
                     sb.Append(_durata.Days + " days ");
