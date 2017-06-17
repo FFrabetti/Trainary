@@ -52,7 +52,8 @@ namespace Trainary
         [MenuLabel("Schede", "Gestione Schede")]
         public static void MostraGestioneSchede()
         {
-            Control control = new GestioneSchedeControl();
+            GestioneSchedeControl control = new GestioneSchedeControl();
+            GestioneSchedePresenter presenter = new GestioneSchedePresenter(control);
             AddControl(control);
 
             Console.WriteLine("gestione schede");
@@ -75,13 +76,18 @@ namespace Trainary
         [MenuLabel("Allenamenti", "Nuovo Allenamento Programmato")]
         public static void NuovoAllenamentoProgrammato()
         {
-            Console.WriteLine("nuovo all programmato");
+            AllenamentoForm form = new AllenamentoForm();
+            InserisciAllenamentoProgrammatoPresenter presenter = new InserisciAllenamentoProgrammatoPresenter(form);
+            form.Show();
         }
 
         [MenuLabel("Allenamenti", "Nuovo Allenamento Extra")]
         public static void NuovoAllenamentoExtra()
         {
-            Console.WriteLine("nuovo all extra");
+
+            AllenamentoForm form = new AllenamentoForm();
+            InserisciAllenamentoExtraPresenter presenter = new InserisciAllenamentoExtraPresenter(form);
+            form.Show();
         }
 
         // Test only
