@@ -2,21 +2,22 @@
 
 namespace Trainary.model
 {
-    public abstract class Allenamento
+    public abstract class Allenamento : IComparable<Allenamento>
     {
         private readonly DateTime _data;
         private readonly EsercizioSvolto[] _eserciziSvolti;
 
         public Allenamento(DateTime data, EsercizioSvolto[] eserciziSvolti)
         {
+            _data = data.Date;
+
             if (eserciziSvolti == null)
                 throw new ArgumentNullException("esercizi svolti");
             if (eserciziSvolti.Length == 0)
                 throw new ArgumentException("empty esercizi svolti");
-            if(data > DateTime.Today)
+            if(_data > DateTime.Today)
                 throw new ArgumentException("data futura");
 
-            _data = data.Date;
             _eserciziSvolti = eserciziSvolti;
         }
 
@@ -35,6 +36,12 @@ namespace Trainary.model
                 return _eserciziSvolti;
             }
         }
+
+        public int CompareTo(Allenamento other)
+        {
+            return Data.CompareTo(other.Data);
+        }
+
         public override string ToString()
         {
             return ToStringDate(this.Data);

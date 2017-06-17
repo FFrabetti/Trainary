@@ -14,11 +14,11 @@ namespace Trainary.model
 
         public Periodo(DateTime dataInizio, DateTime dataFine)
         {
-            if (dataFine < dataInizio)
-                throw new ArgumentException("dataFine is before dataInizio");
-
             _dataInizio = dataInizio.Date;
             _dataFine = dataFine.Date;
+
+            if (_dataFine < _dataInizio)
+                throw new ArgumentException("dataFine is before dataInizio");
         }
 
         public Periodo(DateTime dataInizio, TimeSpan durata)
