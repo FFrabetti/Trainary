@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using Trainary.model;
 using Trainary.persistence;
@@ -10,7 +12,9 @@ namespace Trainary
     {
         private static GestoreSchede _instance;
 
-        private readonly List<Scheda> _schede;
+        private readonly ObservableCollection<Scheda> _schede;
+
+        public event EventHandler SchedeChanged;
 
         private GestoreSchede()
         {
@@ -21,7 +25,14 @@ namespace Trainary
             );
             sedute.GetElements(); // "riempie" le schede
 
-            _schede = new List<Scheda>(dataManager.GetElements());
+            _schede = new ObservableCollection<Scheda>(dataManager.GetElements());
+            _schede.CollectionChanged += OnSchedeChanged;
+        }
+
+        private void OnSchedeChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (SchedeChanged != null)
+                SchedeChanged(this, EventArgs.Empty);
         }
 
         public static GestoreSchede GetInstance()
@@ -32,7 +43,7 @@ namespace Trainary
             return _instance;
         }
 
-        public List<Scheda> GetSchede()
+        public Collection<Scheda> GetSchede()
         {
             return _schede;
         }

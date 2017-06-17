@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Trainary.model.filtri;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Trainary.persistence;
 
 namespace Trainary.model
 {
     public class Diario
     {
-        private readonly List<Allenamento> _allenamenti;
+        private readonly ObservableCollection<Allenamento> _allenamenti;
 
         private static Diario _instance;
+
+        public event EventHandler DiarioChanged;
 
         private Diario()
         {
@@ -19,10 +22,17 @@ namespace Trainary.model
             );
             IDataManager<Allenamento> allenamentiDM = new AllenamentiDataManager(
                 eserciziDM,
-                new SeduteDataManager(new SchedeDataManager(), eserciziDM)  
+                new SeduteAdapterDM()
             );
 
-            _allenamenti = new List<Allenamento>(allenamentiDM.GetElements());
+            _allenamenti = new ObservableCollection<Allenamento>(allenamentiDM.GetElements());
+            _allenamenti.CollectionChanged += OnDiarioChanged;
+        }
+
+        private void OnDiarioChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (DiarioChanged != null)
+                DiarioChanged(this, EventArgs.Empty);
         }
 
         public static Diario GetInstance()
@@ -32,7 +42,7 @@ namespace Trainary.model
             return _instance;
         }
 
-        public List<Allenamento> Allenamenti
+        public Collection<Allenamento> Allenamenti
         {
             get
             {
@@ -40,13 +50,22 @@ namespace Trainary.model
             }
         }
 
-        public IEnumerable<Allenamento> FiltraAllenamenti(IFiltroAllenamenti filtro, object opzione)
+        private class SeduteAdapterDM : IDataManager<Seduta>
         {
-            if (filtro == null)
-                throw new ArgumentNullException("filtro");
-            if (opzione == null)
-                throw new ArgumentNullException("opzione");
-            return filtro.Filtra(_allenamenti, opzione);
+            public IEnumerable<Seduta> GetElements()
+            {
+                List<Seduta> sedute = new List<Seduta>();
+                foreach (Scheda s in GestoreSchede.GetInstance().GetSchede())
+                    sedute.AddRange(s.Sedute);
+
+                return sedute;
+            }
+
+            public void SaveElements(IEnumerable<Seduta> elements)
+            {
+                throw new NotImplementedException();
+            }
         }
+
     }
 }
