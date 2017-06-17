@@ -63,7 +63,8 @@ namespace Trainary.persistence
                 lista.Add(new AllenamentoExtra(
                     DateTime.Today.AddDays(-random.Next(31)),
                     GetEserciziSvolti().ToArray(),
-                    "AllExtra " + i
+                    // proviamo anche allenamenti senza nome
+                    ((random.NextDouble()>0.7) ? "" : "AllExtra " + i)
                 ));
             }
 
