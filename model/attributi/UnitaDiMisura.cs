@@ -38,7 +38,8 @@ namespace Trainary.model.attributi
 
         public override string ToString()
         {
-            return _nome + " (" + _simbolo + ")";
+            string simbolo = Simbolo.Length > 0 ? " (" + Simbolo + ")" : String.Empty;
+            return _nome + simbolo;
         }
     }
 

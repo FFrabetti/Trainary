@@ -20,18 +20,5 @@
         {
             return base.GetHashCode();
         }
-
-        public static bool operator ==(Quantita thisQ, Quantita thatQ)
-        {
-            if ((object)thisQ == null)
-                return (object)thatQ == null;
-
-            return thisQ.Equals(thatQ);
-        }
-
-        public static bool operator !=(Quantita thisQ, Quantita thatQ)
-        {
-            return !(thisQ == thatQ);
-        }
     }
 }

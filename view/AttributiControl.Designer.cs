@@ -58,7 +58,7 @@
             this._topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._topPanel.Location = new System.Drawing.Point(3, 3);
             this._topPanel.Name = "_topPanel";
-            this._topPanel.Size = new System.Drawing.Size(412, 95);
+            this._topPanel.Size = new System.Drawing.Size(412, 109);
             this._topPanel.TabIndex = 1;
             // 
             // _newAttributoControl
@@ -69,7 +69,7 @@
             this._newAttributoControl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this._newAttributoControl.Name = "_newAttributoControl";
             this._newAttributoControl.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this._newAttributoControl.Size = new System.Drawing.Size(412, 78);
+            this._newAttributoControl.Size = new System.Drawing.Size(412, 92);
             this._newAttributoControl.TabIndex = 1;
             // 
             // _listBoxControl
@@ -77,10 +77,10 @@
             this._listBoxControl.AutoSize = true;
             this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
             this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._listBoxControl.Location = new System.Drawing.Point(3, 98);
+            this._listBoxControl.Location = new System.Drawing.Point(3, 112);
             this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this._listBoxControl.Name = "_listBoxControl";
-            this._listBoxControl.Size = new System.Drawing.Size(412, 168);
+            this._listBoxControl.Size = new System.Drawing.Size(412, 154);
             this._listBoxControl.TabIndex = 2;
             // 
             // _errorProvider

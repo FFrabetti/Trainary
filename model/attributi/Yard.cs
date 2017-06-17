@@ -6,6 +6,8 @@
         {
             private UnitaDiMisura _base;
 
+            private static readonly double k = 0.9144;
+
             // it has to have a constructor with no arguments
             public Yard() : base("yard", "yd", TipoQuantita.LENGTH)
             {
@@ -19,12 +21,12 @@
 
             public override double FromUnitaBase(double value)
             {
-                return value / 0.9144;
+                return value / k;
             }
 
             public override double ToUnitaBase(double value)
             {
-                return value * 0.9144;
+                return value * k;
             }
         }
     }
