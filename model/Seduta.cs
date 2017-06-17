@@ -55,14 +55,9 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            StringBuilder result = new StringBuilder("Seduta ");
-            if (!string.IsNullOrEmpty(_nome))
-                result.Append(_nome);
-            else
-                result.Append(_scheda.GetCodiceProgressivo(this));
-
-            result.Append(" (" + _scheda + ")");
-            return result.ToString();
+            return "Seduta " + 
+                (string.IsNullOrEmpty(_nome) ? _scheda.GetCodiceProgressivo(this).ToString() : _nome);
         }
+
     }
 }

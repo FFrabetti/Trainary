@@ -37,18 +37,15 @@ namespace Trainary.model
             }
         }
 
+        protected string ToStringData()
+        {
+            return _data.ToString("d");
+        }
+
         public int CompareTo(Allenamento other)
         {
             return Data.CompareTo(other.Data);
         }
 
-        public override string ToString()
-        {
-            return ToStringDate(this.Data);
-        }
-        private string ToStringDate(DateTime dateTime)
-        {
-            return dateTime.ToString("d")+"                           ";
-        }
     }
 }

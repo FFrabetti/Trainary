@@ -34,7 +34,7 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            return base.ToString() + " "+"Allenamento " + _seduta;
+            return ToStringData() + " Allenamento " + _seduta + " " + _seduta.Scheda;
         }
     }
 }
