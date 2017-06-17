@@ -42,6 +42,8 @@
             // 
             // _panel
             // 
+            this._panel.AutoSize = true;
+            this._panel.BackColor = System.Drawing.SystemColors.Control;
             this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel.Location = new System.Drawing.Point(0, 24);
             this._panel.Name = "_panel";
@@ -52,12 +54,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(538, 392);
             this.Controls.Add(this._panel);
             this.Controls.Add(this._menuStrip);
             this.MainMenuStrip = this._menuStrip;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Trainary";
             this.ResumeLayout(false);
             this.PerformLayout();
 

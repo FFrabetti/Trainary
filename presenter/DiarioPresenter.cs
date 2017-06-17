@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
@@ -18,8 +19,11 @@ namespace Trainary.presenter
         private DiarioControl _diarioControl;
         private FiltroPresenter _currentFiltroPresenter;
 
+        private IFiltroAllenamenti _lastFiltro;
+
+        object _lastOpzione;
+        private IEnumerable<Allenamento> _listaAllenamentiPrec = new List<Allenamento>();
         private IEnumerable<Allenamento> _listaAllenamenti = new List<Allenamento>();
-        private StringBuilder _currentFiltriLabel = new StringBuilder();
 
         public DiarioPresenter (DiarioControl diarioControl)
         {
@@ -29,11 +33,17 @@ namespace Trainary.presenter
             ResetListView();
             Inizialize();
             InizializeComboBox();
+            ResetFilterHistory();
 
             diarioControl.OkButton.Click += _okButton_Click;
             diarioControl.AnnullaButton.Click += _annullaButton_Click;
             diarioControl.ListBox.SelectedIndexChanged += _listView_SelectedIndexChanged;
-            //diarioControl.ListView.SelectedIndexChanged += _listView_SelectedIndexChanged;
+            Application.Idle += AbilitaBottoni;
+        }
+
+        private void AbilitaBottoni(object sender, EventArgs e)
+        {
+            _diarioControl.AnnullaButton.Enabled = _lastFiltro != null;
         }
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
@@ -110,50 +120,55 @@ namespace Trainary.presenter
             IFiltroAllenamenti filtroAllenamenti = _currentFiltroPresenter.NewFiltro;
             object opzione = _currentFiltroPresenter.GetOpzione();
 
-            //_listaAllenamenti = Diario.GetInstance().FiltraAllenamenti(filtroAllenamenti, opzione);
-            _listaAllenamenti = filtroAllenamenti.Filtra(_listaAllenamenti, opzione);
-            InizializeListView(_listaAllenamenti);
+            IEnumerable<Allenamento> allenamentiDaFiltrare;
 
-            SetInfoLabel(filtroAllenamenti);
-            SetLabelFiltri(_currentFiltriLabel.ToString());
+            if (filtroAllenamenti == _lastFiltro)
+            {
+                // se è esattamente lo stesso (quindi anche stessa opzione)
+                // non faccio niente
+                if (opzione == _lastOpzione)
+                    return;
+
+                // altrimenti applico il filtro alla vecchia selezione
+                allenamentiDaFiltrare = _listaAllenamentiPrec;
+            }
+            else
+            {
+                // filtro diverso:
+                //  applicarlo alla selezione corrente
+                SetInfoLabel(filtroAllenamenti);
+                allenamentiDaFiltrare = _listaAllenamenti;
+
+                _listaAllenamentiPrec = _listaAllenamenti;
+            }
+
+            _lastOpzione = opzione;
+            _lastFiltro = filtroAllenamenti;
+
+            _listaAllenamenti = filtroAllenamenti.Filtra(allenamentiDaFiltrare, opzione);
+            InizializeListView(_listaAllenamenti);
         }
 
         private void SetInfoLabel(IFiltroAllenamenti filtroAllenamenti)
         {
-            if (_currentFiltriLabel.Length == 0)
-            {
-                _currentFiltriLabel.Append("Filtri applicati: ");
-                _currentFiltriLabel.Append(LabelAttribute(filtroAllenamenti));
-            }
+            if (_lastFiltro != null)
+                _diarioControl.FiltriLabel.Text += ", ";
 
-            else if (_currentFiltriLabel.Length > 0
-                && !_currentFiltriLabel.ToString().Contains(LabelAttribute(filtroAllenamenti)))
-            {
-                _currentFiltriLabel.Append(", ");
-                _currentFiltriLabel.Append(LabelAttribute(filtroAllenamenti));
-            }
-        }
-
-        private string LabelAttribute(IFiltroAllenamenti filtroAllenamenti)
-        {
-            return LabelExtensions.GetLabelAttribute(filtroAllenamenti).ToLower();
-        }
-
-        private void SetLabelFiltri(string label)
-        {
-            _diarioControl.FiltriLabel.Text = label;
-        }
+            _diarioControl.FiltriLabel.Text += filtroAllenamenti.GetLabelAttribute().ToLower();
+       }
 
         private void _annullaButton_Click(object sender, EventArgs e)
         {
             ResetListView();
-            ResetLabelFiltri();
+            ResetFilterHistory();
         }
 
-        private void ResetLabelFiltri()
+        private void ResetFilterHistory()
         {
-            _currentFiltriLabel.Clear();
-            SetLabelFiltri(_currentFiltriLabel.ToString());
+            _diarioControl.FiltriLabel.Text = "Filtri applicati: ";
+            _lastFiltro = null;
+            _lastOpzione = null;
+            _listaAllenamentiPrec = null;
         }
 
         private void ResetListView()

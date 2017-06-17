@@ -22,6 +22,10 @@ namespace Trainary
 
             _mainForm = new MainForm();
             MenuPresenter menuPresenter = new MenuPresenter(typeof(Program), _mainForm.MenuStrip);
+
+            // Schermata iniziale
+            MostraDiario();
+
             Application.Run(_mainForm);
         }
 
@@ -29,6 +33,7 @@ namespace Trainary
         {
             _mainForm.Panel.Controls.Clear();
             _mainForm.Panel.Controls.Add(control);
+            control.Dock = DockStyle.Fill;
         }
 
 
