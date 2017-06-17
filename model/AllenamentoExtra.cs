@@ -31,7 +31,8 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            return Nome.Length > 0 ? Nome : "Allenamento extra";
+            string nome = Nome.Length > 0 ? Nome : "Allenamento extra";
+            return base.ToString() + " " + nome;
         }
     }
 }

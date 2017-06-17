@@ -35,5 +35,13 @@ namespace Trainary.model
                 return _eserciziSvolti;
             }
         }
-     }
+        public override string ToString()
+        {
+            return ToStringDate(this.Data);
+        }
+        private string ToStringDate(DateTime dateTime)
+        {
+            return dateTime.ToString("d")+"                           ";
+        }
+    }
 }

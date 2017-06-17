@@ -44,7 +44,7 @@ namespace Trainary.model
                 if (i == 0)
                     sb.Append(" [");
                 else
-                    sb.Append("; ");
+                    sb.Append(", ");
 
                 sb.Append(Targets[i]);
 
