@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Trainary.presenter;
 
 namespace Trainary.view
 {
@@ -15,6 +16,7 @@ namespace Trainary.view
         public NewEsercizioForm()
         {
             InitializeComponent();
+            NewEsercizioPresenter nep = new NewEsercizioPresenter(this);
         }
 
         //public SplitContainer SplitContainer

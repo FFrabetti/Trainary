@@ -10,24 +10,29 @@ using System.Windows.Forms;
 
 namespace Trainary.view
 {
-    public partial class GestioneSchedeControl : UserControl
+    public partial class InserisciDataEserciziControl : UserControl
     {
-        public GestioneSchedeControl()
+        public InserisciDataEserciziControl()
         {
             InitializeComponent();
         }
-        public ListView ListView
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        public DateTimePicker Data
         {
             get
             {
-                return listView1;
+                return dateTimePicker1;
             }
         }
-        public Button AggiungiSedutaButton
+        public ListBox EserciziListBox
         {
             get
             {
-                return button1;
+                return listBox1;
             }
         }
     }

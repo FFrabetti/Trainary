@@ -1,34 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Trainary.view;
 
-namespace Trainary.Presentation
+namespace Trainary.view
 {
-    public partial class NuovaSedutaView : Form
+    public partial class VisualizzaSchedaSeduta : UserControl
     {
-        public NuovaSedutaView()
+        public VisualizzaSchedaSeduta()
         {
             InitializeComponent();
         }
-        public Panel Panel
+        public TextBox Scheda
         {
             get
             {
-                return panel1;
+                return textBox1;
             }
         }
-        public DialogButtonsControl Buttons{
+        public TextBox Seduta
+        {
             get
             {
-                return dialogButtonsControl1;
+                return textBox2;
             }
-           }
+        }
     }
 }

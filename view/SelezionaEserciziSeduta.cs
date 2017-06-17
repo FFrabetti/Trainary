@@ -7,28 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Trainary.view;
 
-namespace Trainary.Presentation
+namespace Trainary.view
 {
-    public partial class NuovaSedutaView : Form
+    public partial class SelezionaEserciziSeduta : Form
     {
-        public NuovaSedutaView()
+        public SelezionaEserciziSeduta()
         {
             InitializeComponent();
         }
-        public Panel Panel
+        public ListBox ListBox
         {
             get
             {
-                return panel1;
+                return listBox1;
             }
         }
-        public DialogButtonsControl Buttons{
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+        public DialogButtonsControl Buttons
+        {
             get
             {
                 return dialogButtonsControl1;
             }
-           }
+        }
     }
 }

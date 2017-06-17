@@ -35,7 +35,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this._indietroButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _allenamentoProgrammatoLabel
@@ -107,22 +106,12 @@
             this.textBox3.Size = new System.Drawing.Size(264, 132);
             this.textBox3.TabIndex = 6;
             // 
-            // _indietroButton
-            // 
-            this._indietroButton.Location = new System.Drawing.Point(324, 284);
-            this._indietroButton.Name = "_indietroButton";
-            this._indietroButton.Size = new System.Drawing.Size(75, 23);
-            this._indietroButton.TabIndex = 11;
-            this._indietroButton.Text = "Indietro";
-            this._indietroButton.UseVisualStyleBackColor = true;
-            // 
             // AllenamentoProgrammatoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(411, 319);
-            this.Controls.Add(this._indietroButton);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -146,6 +135,5 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button _indietroButton;
     }
 }
