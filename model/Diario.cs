@@ -13,7 +13,15 @@ namespace Trainary.model
 
         private Diario()
         {
-            IDataManager<Allenamento> allenamentiDM = new AllenamentiDataManager();
+            IDataManager<Esercizio> eserciziDM = new EserciziDataManager(
+                new CategorieDataManager(),
+                new AttributiDataManager()
+            );
+            IDataManager<Allenamento> allenamentiDM = new AllenamentiDataManager(
+                eserciziDM,
+                new SeduteDataManager(new SchedeDataManager(), eserciziDM)  
+            );
+
             _allenamenti = new List<Allenamento>(allenamentiDM.GetElements());
         }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Trainary.model;
 
 namespace Trainary.persistence
@@ -13,10 +11,10 @@ namespace Trainary.persistence
         private IDataManager<Esercizio> _eserciziDM;
         private IDataManager<Seduta> _seduteDM;
 
-        public AllenamentiDataManager()
+        public AllenamentiDataManager(IDataManager<Esercizio> eserciziDM, IDataManager<Seduta> seduteDM)
         {
-            _eserciziDM = new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager());
-            _seduteDM = new SeduteDataManager(new SchedeDataManager(), _eserciziDM);
+            _eserciziDM = eserciziDM;
+            _seduteDM = seduteDM;
         }
 
         private List<EsercizioSvolto> GetEserciziSvolti()
@@ -39,7 +37,7 @@ namespace Trainary.persistence
 
             foreach (Esercizio es in s.Esercizi)
             {
-                if (random.NextDouble() >= 0.5)
+                if (random.NextDouble() >= 0.7)
                     continue;
 
                 SvolgiVisitor visitor = new SvolgiVisitor();

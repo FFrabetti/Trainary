@@ -14,8 +14,14 @@ namespace Trainary
 
         private GestoreSchede()
         {
-            IDataManager<Scheda> dm = new SchedeDataManager();
-            _schede = new List<Scheda>(dm.GetElements());
+            IDataManager<Scheda> dataManager = new SchedeDataManager();
+            IDataManager<Seduta> sedute = new SeduteDataManager(
+                dataManager, 
+                new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager())
+            );
+            sedute.GetElements(); // "riempie" le schede
+
+            _schede = new List<Scheda>(dataManager.GetElements());
         }
 
         public static GestoreSchede GetInstance()

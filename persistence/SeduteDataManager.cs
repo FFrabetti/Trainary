@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Trainary.model;
 
 namespace Trainary.persistence
@@ -25,14 +23,7 @@ namespace Trainary.persistence
             int n = schede.Count();
             int i = random.Next(n);
 
-            try
-            {
-                return schede.ElementAt(i);
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                throw new ArgumentOutOfRangeException("n=" + n + ", i=" + i);
-            }
+            return schede.ElementAt(i);
         }
 
         public IEnumerable<Seduta> GetElements()
