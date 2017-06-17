@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Trainary.model.attributi;
 
 namespace Trainary.model
@@ -30,5 +31,24 @@ namespace Trainary.model
 
         public abstract List<EsercizioSvolto> SottoEserciziSvolti
         { get; }
+       
+             public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Esercizio.ToString());
+            sb.Append(" ");
+            
+            foreach (Attributo dato in _dati)
+            {
+                sb.Append(dato);
+                sb.Append(" ");
+            }
+            foreach(EsercizioSvolto es in SottoEserciziSvolti)
+            {
+                sb.Append(es);
+            }
+            return sb.ToString();
+        }
+    
     }
 }

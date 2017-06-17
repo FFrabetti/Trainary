@@ -1,34 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Trainary.view;
 
-namespace Trainary.Presentation
+namespace Trainary.view
 {
-    public partial class NuovaSedutaView : Form
+    public partial class SelezionaSedutaControl : UserControl
     {
-        public NuovaSedutaView()
+        public SelezionaSedutaControl()
         {
             InitializeComponent();
         }
-        public Panel Panel
+        public ComboBox ComboSchede
         {
             get
             {
-                return panel1;
+                return comboBox1;
             }
         }
-        public DialogButtonsControl Buttons{
+        public ComboBox ComboSedute
+        {
             get
             {
-                return dialogButtonsControl1;
+                return comboBox2;
             }
-           }
+        }
     }
 }

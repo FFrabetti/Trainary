@@ -32,13 +32,11 @@
             this._okButton = new System.Windows.Forms.Button();
             this._panel = new System.Windows.Forms.Panel();
             this._indietroButton = new System.Windows.Forms.Button();
-            this._listView = new System.Windows.Forms.ListView();
-            this._dataColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._nomeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._annullaButton = new System.Windows.Forms.Button();
             this._allenamentiLabel = new System.Windows.Forms.Label();
             this._comboBox = new System.Windows.Forms.ComboBox();
             this._selezionaFiltroLabel = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // _filtriLabel
@@ -74,32 +72,6 @@
             this._indietroButton.TabIndex = 22;
             this._indietroButton.Text = "Indietro";
             this._indietroButton.UseVisualStyleBackColor = true;
-            // 
-            // _listView
-            // 
-            this._listView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this._listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._dataColumn,
-            this._nomeColumn});
-            this._listView.FullRowSelect = true;
-            this._listView.GridLines = true;
-            this._listView.Location = new System.Drawing.Point(49, 278);
-            this._listView.MultiSelect = false;
-            this._listView.Name = "_listView";
-            this._listView.Size = new System.Drawing.Size(444, 200);
-            this._listView.TabIndex = 21;
-            this._listView.UseCompatibleStateImageBehavior = false;
-            this._listView.View = System.Windows.Forms.View.Details;
-            // 
-            // _dataColumn
-            // 
-            this._dataColumn.Text = "Data";
-            this._dataColumn.Width = 193;
-            // 
-            // _nomeColumn
-            // 
-            this._nomeColumn.Text = "Nome";
-            this._nomeColumn.Width = 243;
             // 
             // _annullaButton
             // 
@@ -142,16 +114,25 @@
             this._selezionaFiltroLabel.TabIndex = 17;
             this._selezionaFiltroLabel.Text = "Seleziona filtro:";
             // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(71, 281);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(330, 95);
+            this.listBox2.TabIndex = 28;
+            // 
             // DiarioControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this._filtriLabel);
             this.Controls.Add(this._okButton);
             this.Controls.Add(this._panel);
             this.Controls.Add(this._indietroButton);
-            this.Controls.Add(this._listView);
             this.Controls.Add(this._annullaButton);
             this.Controls.Add(this._allenamentiLabel);
             this.Controls.Add(this._comboBox);
@@ -169,12 +150,10 @@
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Panel _panel;
         private System.Windows.Forms.Button _indietroButton;
-        private System.Windows.Forms.ListView _listView;
-        private System.Windows.Forms.ColumnHeader _dataColumn;
-        private System.Windows.Forms.ColumnHeader _nomeColumn;
         private System.Windows.Forms.Button _annullaButton;
         private System.Windows.Forms.Label _allenamentiLabel;
         private System.Windows.Forms.ComboBox _comboBox;
         private System.Windows.Forms.Label _selezionaFiltroLabel;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }

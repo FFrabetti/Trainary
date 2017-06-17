@@ -28,11 +28,11 @@ namespace Trainary.view
             }
         }
 
-        public ListView ListView
+        public ListBox ListBox
         {
             get
             {
-                return _listView;
+                return listBox2;
             }
         }
 
@@ -76,6 +76,11 @@ namespace Trainary.view
         }
 
         private void _annullaButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _listView_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

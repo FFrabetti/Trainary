@@ -10,24 +10,17 @@ using System.Windows.Forms;
 
 namespace Trainary.view
 {
-    public partial class GestioneSchedeControl : UserControl
+    public partial class NomeUserControl : UserControl
     {
-        public GestioneSchedeControl()
+        public NomeUserControl()
         {
             InitializeComponent();
         }
-        public ListView ListView
+        public TextBox Nome
         {
             get
             {
-                return listView1;
-            }
-        }
-        public Button AggiungiSedutaButton
-        {
-            get
-            {
-                return button1;
+                return textBox3;
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.filtri;
+using Trainary.Presentation;
 using Trainary.presenter.filtri;
 using Trainary.utils;
 using Trainary.view;
@@ -31,16 +32,21 @@ namespace Trainary.presenter
 
             diarioControl.OkButton.Click += _okButton_Click;
             diarioControl.AnnullaButton.Click += _annullaButton_Click;
+            diarioControl.ListBox.SelectedIndexChanged += _listView_SelectedIndexChanged;
+            //diarioControl.ListView.SelectedIndexChanged += _listView_SelectedIndexChanged;
         }
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
         {
-            _diarioControl.ListView.Items.Clear();
-            foreach(Allenamento a in listaAllenamenti)
+            _diarioControl.ListBox.Items.Clear();
+            //_diarioControl.ListView.Items.Clear();
+            foreach (Allenamento a in listaAllenamenti)
             {
-                ListViewItem item = new ListViewItem(ToStringDate(a.Data));
-                item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
-                _diarioControl.ListView.Items.Add(item);
+                //ListViewItem item = new ListViewItem(ToStringDate(a.Data));
+                //item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
+                //item.SubItems.Add(new ListViewItem(a));
+                //_diarioControl.ListView.Items.Add(item);
+                _diarioControl.ListBox.Items.Add(a);
             }
         }
 
@@ -104,6 +110,7 @@ namespace Trainary.presenter
             IFiltroAllenamenti filtroAllenamenti = _currentFiltroPresenter.NewFiltro;
             object opzione = _currentFiltroPresenter.GetOpzione();
 
+            //_listaAllenamenti = Diario.GetInstance().FiltraAllenamenti(filtroAllenamenti, opzione);
             _listaAllenamenti = filtroAllenamenti.Filtra(_listaAllenamenti, opzione);
             InizializeListView(_listaAllenamenti);
 
@@ -157,7 +164,20 @@ namespace Trainary.presenter
 
         private void _listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ListBox listBox = (ListBox)sender;
+            Allenamento allenamento = (Allenamento)listBox.SelectedItem;
+            AllenamentoForm form = new AllenamentoForm();
+            if (allenamento is AllenamentoExtra)
+            {
+                
+                VisualizzaAllenamentoExtraPresenter presenter = new VisualizzaAllenamentoExtraPresenter(form, allenamento as AllenamentoExtra);
+                
+            }
+            else
+            {
+                VisualizzaAllenamentoProgrammatoPresenter presenter = new VisualizzaAllenamentoProgrammatoPresenter(form, allenamento as AllenamentoProgrammato);
+            }
+            form.Show();
         }
     }
 }

@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this._nomeLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._nome = new System.Windows.Forms.TextBox();
             this._dataInizioLabel = new System.Windows.Forms.Label();
             this._descrizioneLabel = new System.Windows.Forms.Label();
             this._scopoLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this._descrizione = new System.Windows.Forms.TextBox();
             this._seduteLabel = new System.Windows.Forms.Label();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this._seduteTreeView = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this._nuovoEsercizioButton = new System.Windows.Forms.Button();
             this._nuovaSedutaButton = new System.Windows.Forms.Button();
@@ -44,13 +43,14 @@
             this._dataFine = new System.Windows.Forms.DateTimePicker();
             this._dataFineLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this._durata = new System.Windows.Forms.TextBox();
             this._rinominaSedutaButton = new System.Windows.Forms.Button();
             this._eliminaEsercizioButton = new System.Windows.Forms.Button();
             this._eliminaSedutaButton = new System.Windows.Forms.Button();
             this._dataFineRadioButton = new System.Windows.Forms.RadioButton();
             this._durataRadioButton = new System.Windows.Forms.RadioButton();
             this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
+            this._scopo = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // _nomeLabel
@@ -63,12 +63,12 @@
             this._nomeLabel.TabIndex = 1;
             this._nomeLabel.Text = "Nome*:";
             // 
-            // textBox1
+            // _nome
             // 
-            this.textBox1.Location = new System.Drawing.Point(172, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 20);
-            this.textBox1.TabIndex = 2;
+            this._nome.Location = new System.Drawing.Point(172, 17);
+            this._nome.Name = "_nome";
+            this._nome.Size = new System.Drawing.Size(190, 20);
+            this._nome.TabIndex = 2;
             // 
             // _dataInizioLabel
             // 
@@ -101,21 +101,14 @@
             this._scopoLabel.TabIndex = 9;
             this._scopoLabel.Text = "Scopo:";
             // 
-            // textBox2
+            // _descrizione
             // 
-            this.textBox2.Location = new System.Drawing.Point(172, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(190, 20);
-            this.textBox2.TabIndex = 10;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(172, 86);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(190, 52);
-            this.textBox3.TabIndex = 11;
+            this._descrizione.Location = new System.Drawing.Point(172, 86);
+            this._descrizione.Multiline = true;
+            this._descrizione.Name = "_descrizione";
+            this._descrizione.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._descrizione.Size = new System.Drawing.Size(190, 52);
+            this._descrizione.TabIndex = 11;
             // 
             // _seduteLabel
             // 
@@ -128,12 +121,12 @@
             this._seduteLabel.TabIndex = 13;
             this._seduteLabel.Text = "Sedute*:";
             // 
-            // treeView1
+            // _seduteTreeView
             // 
-            this.treeView1.Location = new System.Drawing.Point(26, 304);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(301, 174);
-            this.treeView1.TabIndex = 16;
+            this._seduteTreeView.Location = new System.Drawing.Point(26, 304);
+            this._seduteTreeView.Name = "_seduteTreeView";
+            this._seduteTreeView.Size = new System.Drawing.Size(301, 174);
+            this._seduteTreeView.TabIndex = 16;
             // 
             // label1
             // 
@@ -165,6 +158,7 @@
             this._nuovaSedutaButton.TabIndex = 22;
             this._nuovaSedutaButton.Text = "Nuova seduta";
             this._nuovaSedutaButton.UseVisualStyleBackColor = true;
+            this._nuovaSedutaButton.Click += new System.EventHandler(this._nuovaSedutaButton_Click);
             // 
             // _dataInizio
             // 
@@ -202,12 +196,12 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Durata (giorni):";
             // 
-            // textBox4
+            // _durata
             // 
-            this.textBox4.Location = new System.Drawing.Point(185, 222);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(182, 20);
-            this.textBox4.TabIndex = 29;
+            this._durata.Location = new System.Drawing.Point(185, 222);
+            this._durata.Name = "_durata";
+            this._durata.Size = new System.Drawing.Size(182, 20);
+            this._durata.TabIndex = 29;
             // 
             // _rinominaSedutaButton
             // 
@@ -267,19 +261,27 @@
             this.dialogButtonsControl1.Size = new System.Drawing.Size(459, 59);
             this.dialogButtonsControl1.TabIndex = 35;
             // 
+            // _scopo
+            // 
+            this._scopo.Location = new System.Drawing.Point(172, 51);
+            this._scopo.Name = "_scopo";
+            this._scopo.Size = new System.Drawing.Size(195, 19);
+            this._scopo.TabIndex = 36;
+            // 
             // SchedaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this._scopo);
             this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this._durataRadioButton);
             this.Controls.Add(this._dataFineRadioButton);
             this.Controls.Add(this._eliminaSedutaButton);
             this.Controls.Add(this._rinominaSedutaButton);
             this.Controls.Add(this._eliminaEsercizioButton);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this._durata);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._dataFine);
             this.Controls.Add(this._dataFineLabel);
@@ -287,14 +289,13 @@
             this.Controls.Add(this._nuovoEsercizioButton);
             this.Controls.Add(this._nuovaSedutaButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this._seduteTreeView);
             this.Controls.Add(this._seduteLabel);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this._descrizione);
             this.Controls.Add(this._scopoLabel);
             this.Controls.Add(this._descrizioneLabel);
             this.Controls.Add(this._dataInizioLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._nome);
             this.Controls.Add(this._nomeLabel);
             this.Name = "SchedaForm";
             this.Text = "Nuova scheda";
@@ -306,14 +307,13 @@
         #endregion
 
         private System.Windows.Forms.Label _nomeLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _nome;
         private System.Windows.Forms.Label _dataInizioLabel;
         private System.Windows.Forms.Label _descrizioneLabel;
         private System.Windows.Forms.Label _scopoLabel;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox _descrizione;
         private System.Windows.Forms.Label _seduteLabel;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView _seduteTreeView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _nuovoEsercizioButton;
         private System.Windows.Forms.Button _nuovaSedutaButton;
@@ -321,12 +321,13 @@
         private System.Windows.Forms.DateTimePicker _dataFine;
         private System.Windows.Forms.Label _dataFineLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox _durata;
         private System.Windows.Forms.Button _rinominaSedutaButton;
         private System.Windows.Forms.Button _eliminaEsercizioButton;
         private System.Windows.Forms.Button _eliminaSedutaButton;
         private System.Windows.Forms.RadioButton _dataFineRadioButton;
         private System.Windows.Forms.RadioButton _durataRadioButton;
         private view.DialogButtonsControl dialogButtonsControl1;
+        private System.Windows.Forms.Panel _scopo;
     }
 }
