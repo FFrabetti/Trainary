@@ -158,7 +158,6 @@
             this._nuovaSedutaButton.TabIndex = 22;
             this._nuovaSedutaButton.Text = "Nuova seduta";
             this._nuovaSedutaButton.UseVisualStyleBackColor = true;
-            this._nuovaSedutaButton.Click += new System.EventHandler(this._nuovaSedutaButton_Click);
             // 
             // _dataInizio
             // 

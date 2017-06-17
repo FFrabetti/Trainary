@@ -54,28 +54,29 @@
             // 
             // _okButton
             // 
-            this._okButton.Location = new System.Drawing.Point(283, 141);
+            this._okButton.Location = new System.Drawing.Point(320, 141);
             this._okButton.Name = "_okButton";
             this._okButton.Size = new System.Drawing.Size(75, 23);
             this._okButton.TabIndex = 24;
-            this._okButton.Text = "OK";
+            this._okButton.Text = "Applica filtro";
             this._okButton.UseVisualStyleBackColor = true;
             // 
             // _panel
             // 
             this._panel.Location = new System.Drawing.Point(28, 41);
             this._panel.Name = "_panel";
-            this._panel.Size = new System.Drawing.Size(330, 94);
+            this._panel.Size = new System.Drawing.Size(367, 94);
             this._panel.TabIndex = 23;
             // 
             // _annullaButton
             // 
+            this._annullaButton.AutoSize = true;
             this._annullaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._annullaButton.Location = new System.Drawing.Point(283, 12);
             this._annullaButton.Name = "_annullaButton";
-            this._annullaButton.Size = new System.Drawing.Size(75, 23);
+            this._annullaButton.Size = new System.Drawing.Size(112, 23);
             this._annullaButton.TabIndex = 20;
-            this._annullaButton.Text = "Annulla";
+            this._annullaButton.Text = "Annulla filtri applicati";
             this._annullaButton.UseVisualStyleBackColor = true;
             // 
             // _allenamentiLabel

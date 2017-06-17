@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._indietroButton = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this._nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._scopo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,15 +37,6 @@
             this._allenamentiLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // _indietroButton
-            // 
-            this._indietroButton.Location = new System.Drawing.Point(564, 344);
-            this._indietroButton.Name = "_indietroButton";
-            this._indietroButton.Size = new System.Drawing.Size(75, 23);
-            this._indietroButton.TabIndex = 12;
-            this._indietroButton.Text = "Indietro";
-            this._indietroButton.UseVisualStyleBackColor = true;
-            // 
             // listView1
             // 
             this.listView1.BackColor = System.Drawing.SystemColors.Window;
@@ -55,7 +45,6 @@
             this._scopo,
             this._descrizione,
             this._periodo});
-            this.listView1.Enabled = false;
             this.listView1.Location = new System.Drawing.Point(49, 134);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(597, 183);
@@ -108,7 +97,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.Controls.Add(this._indietroButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this._allenamentiLabel);
@@ -120,8 +108,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button _indietroButton;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader _nome;
         private System.Windows.Forms.ColumnHeader _scopo;

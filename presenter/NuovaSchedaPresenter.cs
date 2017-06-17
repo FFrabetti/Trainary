@@ -70,9 +70,9 @@ namespace Trainary.presenter
         private void OKButtonClick(object sender, EventArgs e)
         {
             GestoreSchede.GetInstance().GetSchede().Add(_scheda);
-            Program.MostraGestioneSchede();
             _schedaForm.Close();
         }
+
         private void _nuovaSedutaButton_Click(object sender, EventArgs e)
         {
             if (_scheda == null)
@@ -93,16 +93,18 @@ namespace Trainary.presenter
 
                 }
             }
-            using (NuovaSedutaView form = new NuovaSedutaView())
-            {
-                NuovaSedutaPresenter presenter = new NuovaSedutaPresenter(form);
 
+            Seduta seduta = _scheda.AggiungiSeduta(new List<Esercizio>());
+            VisualizzaSeduta(seduta);
+
+            using (NewEsercizioForm form = new NewEsercizioForm())
+            {
+                NewEsercizioPresenter presenter = new NewEsercizioPresenter(form);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    Seduta seduta = _scheda.AggiungiSeduta(presenter.Esercizi);
-                    VisualizzaSeduta(seduta);
+                    seduta.Esercizi.Add(presenter.NewEsercizio());
+                    // evento per aggiornare la tree view
                 }
-                form.Close();
             }
         }
 

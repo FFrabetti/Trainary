@@ -18,7 +18,15 @@ namespace Trainary.presenter
             if (control == null)
                 throw new ArgumentNullException("control");
             _control = control;
+
             _control.AggiungiSedutaButton.Click += AggiungiSedutaButtonClick;
+            GestoreSchede.GetInstance().SchedeChanged += OnSchedeChanged;
+
+            OnSchedeChanged(this, EventArgs.Empty);
+        }
+
+        private void OnSchedeChanged(object sender, EventArgs e)
+        {
             VisualizzaSchede();
         }
 

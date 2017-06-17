@@ -22,8 +22,8 @@ namespace Trainary.presenter
         private IFiltroAllenamenti _lastFiltro;
 
         object _lastOpzione;
-        private IEnumerable<Allenamento> _listaAllenamentiPrec = new List<Allenamento>();
-        private IEnumerable<Allenamento> _listaAllenamenti = new List<Allenamento>();
+        private IEnumerable<Allenamento> _listaAllenamentiPrec = new SortedSet<Allenamento>();
+        private IEnumerable<Allenamento> _listaAllenamenti = new SortedSet<Allenamento>();
 
         public DiarioPresenter (DiarioControl diarioControl)
         {
@@ -35,10 +35,17 @@ namespace Trainary.presenter
             InizializeComboBox();
             ResetFilterHistory();
 
+            Diario.GetInstance().DiarioChanged += OnDiarioChanged;
+
             diarioControl.OkButton.Click += _okButton_Click;
             diarioControl.AnnullaButton.Click += _annullaButton_Click;
             diarioControl.ListBox.SelectedIndexChanged += _listView_SelectedIndexChanged;
             Application.Idle += AbilitaBottoni;
+        }
+
+        private void OnDiarioChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void AbilitaBottoni(object sender, EventArgs e)
@@ -49,13 +56,14 @@ namespace Trainary.presenter
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
         {
             _diarioControl.ListBox.Items.Clear();
+            //_diarioControl.ListBox.DataSource = listaAllenamenti;
             //_diarioControl.ListView.Items.Clear();
             foreach (Allenamento a in listaAllenamenti)
             {
-                //ListViewItem item = new ListViewItem(ToStringDate(a.Data));
-                //item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
-                //item.SubItems.Add(new ListViewItem(a));
-                //_diarioControl.ListView.Items.Add(item);
+                //    //ListViewItem item = new ListViewItem(ToStringDate(a.Data));
+                //    //item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
+                //    //item.SubItems.Add(new ListViewItem(a));
+                //    //_diarioControl.ListView.Items.Add(item);
                 _diarioControl.ListBox.Items.Add(a);
             }
         }

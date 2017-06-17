@@ -17,12 +17,8 @@ namespace Trainary.Presentation
         public SchedaForm()
         {
             InitializeComponent();
-            NuovaSchedaPresenter nsp = new NuovaSchedaPresenter(this);
         }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
         public TextBox Nome
         {
             get
@@ -94,10 +90,6 @@ namespace Trainary.Presentation
             }
         }
 
-        private void _nuovaSedutaButton_Click(object sender, EventArgs e)
-        {
-
-        }
         public TreeView TreeView
         {
             get

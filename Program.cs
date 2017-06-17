@@ -29,11 +29,12 @@ namespace Trainary
             Application.Run(_mainForm);
         }
 
+
         private static void AddControl(Control control)
         {
             _mainForm.Panel.Controls.Clear();
-            _mainForm.Panel.Controls.Add(control);
             control.Dock = DockStyle.Fill;
+            _mainForm.Panel.Controls.Add(control);
         }
 
 

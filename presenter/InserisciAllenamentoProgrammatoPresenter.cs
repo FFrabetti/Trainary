@@ -45,16 +45,14 @@ namespace Trainary.presenter
 
             _control.ComboSchede.DataSource = _schede;
             _control.ComboSchede.SelectedIndexChanged += SelectedSchedaCombo;
-        
+            SelectedSchedaCombo(this, EventArgs.Empty);
         }
         private void InizializeSeduteCombo()
         {
             Scheda scheda = (Scheda)_control.ComboSchede.SelectedItem;
-            foreach (Seduta seduta in scheda.Sedute)
-                _sedute.Add(seduta);
-
-            _control.ComboSedute.DataSource = _sedute;
+            _control.ComboSedute.DataSource = scheda.Sedute;
         }
+
         private void SelectedSchedaCombo(object sender, EventArgs e)
         {
             InizializeSeduteCombo();
