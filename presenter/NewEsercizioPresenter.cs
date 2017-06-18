@@ -63,13 +63,12 @@ namespace Trainary.presenter
         private void PopulateTree(TreeNodeCollection nodes, Categoria categoria)
         {
             TreeNode node = new TreeNode(categoria.ToString());
-            node.NodeFont = new Font(_form.TreeView.Font, FontStyle.Bold);
+            // bug: taglia le ultime lettere
+            //node.NodeFont = new Font(_form.TreeView.Font, FontStyle.Bold);
             nodes.Add(node);
 
-            foreach(Categoria subCat in categoria.SottoCategorie)
-            {
+            foreach (Categoria subCat in categoria.SottoCategorie)
                 PopulateTree(node.Nodes, subCat);
-            }
 
             foreach(Attivita attivita in categoria.Attivita)
             {

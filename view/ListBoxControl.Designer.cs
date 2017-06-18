@@ -65,7 +65,7 @@
             this._removeButton.Name = "_removeButton";
             this._removeButton.Size = new System.Drawing.Size(75, 23);
             this._removeButton.TabIndex = 1;
-            this._removeButton.Text = "Remove";
+            this._removeButton.Text = "Rimuovi";
             this._removeButton.UseVisualStyleBackColor = true;
             // 
             // _addButton
@@ -75,7 +75,7 @@
             this._addButton.Name = "_addButton";
             this._addButton.Size = new System.Drawing.Size(75, 23);
             this._addButton.TabIndex = 0;
-            this._addButton.Text = "Add";
+            this._addButton.Text = "Aggiungi";
             this._addButton.UseVisualStyleBackColor = true;
             // 
             // _mainPanel

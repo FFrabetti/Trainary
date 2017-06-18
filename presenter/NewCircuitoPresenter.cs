@@ -15,7 +15,7 @@ namespace Trainary.presenter
         private ListBoxPresenter<Esercizio> _eserciziPresenter;
         private AttributiPresenter _attributiPresenter;
 
-        public NewCircuitoPresenter(NewCircuitoForm form, List<Esercizio> esercizi)
+        public NewCircuitoPresenter(NewCircuitoForm form, IList<Esercizio> esercizi)
         {
             if (form == null)
                 throw new ArgumentNullException("form");

@@ -80,9 +80,9 @@
             this._attributiControl.AutoSize = true;
             this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._attributiControl.Location = new System.Drawing.Point(0, 80);
-            this._attributiControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._attributiControl.Margin = new System.Windows.Forms.Padding(0);
             this._attributiControl.Name = "_attributiControl";
-            this._attributiControl.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._attributiControl.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this._attributiControl.Size = new System.Drawing.Size(427, 270);
             this._attributiControl.TabIndex = 7;
             // 

@@ -300,7 +300,8 @@ namespace Trainary.presenter
                 TreeNode nodeEs = new TreeNode(es.ToString());
                 nodeEs.Tag = es;
                 node.Nodes.Add(nodeEs);
-                VisualizzaEserciziSeduta(nodeEs, es.Esercizi);
+                if(es is Circuito)
+                    VisualizzaEserciziSeduta(nodeEs, ((Circuito)es).Esercizi);
             }
         }
     }
