@@ -68,13 +68,22 @@ namespace Trainary
         [MenuLabel("Schede", "Aggiungi Scheda")]
         public static void AggiungiScheda()
         {
-            using (SchedaForm schedaForm = new SchedaForm())
-            {
-                if (schedaForm.ShowDialog() == DialogResult.OK)
-                    Console.WriteLine("ok!");
-                else
-                    Console.WriteLine("cancel");
-            }
+            //using (SchedaForm schedaForm = new SchedaForm())
+            //{
+            //    NuovaSchedaPresenter presenter = new NuovaSchedaPresenter(schedaForm);
+            //    if (schedaForm.ShowDialog() == DialogResult.OK)
+            //        Console.WriteLine("ok!");
+            //    else
+            //        Console.WriteLine("cancel");
+            //}
+
+
+            // Nel caso commentato sopra, se si preme ok e questo genera errore la form si chiude comunque,
+            // cosa che, secondo me, è sbagliata perché l'utente, visualizzato l'errore, deve poter correggere e 
+            // premere nuovamente ok.
+            SchedaForm schedaForm = new SchedaForm();
+            NuovaSchedaPresenter presenter = new NuovaSchedaPresenter(schedaForm);
+            schedaForm.Show();
 
             Console.WriteLine("aggiungi scheda");
         }
