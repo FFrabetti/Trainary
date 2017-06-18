@@ -46,11 +46,12 @@
             this._durata = new System.Windows.Forms.TextBox();
             this._rinominaSedutaButton = new System.Windows.Forms.Button();
             this._eliminaEsercizioButton = new System.Windows.Forms.Button();
-            this._eliminaSedutaButton = new System.Windows.Forms.Button();
             this._dataFineRadioButton = new System.Windows.Forms.RadioButton();
             this._durataRadioButton = new System.Windows.Forms.RadioButton();
             this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
-            this._scopo = new System.Windows.Forms.Panel();
+            this._comboScopo = new System.Windows.Forms.ComboBox();
+            this._rimuoviSedutaButton = new System.Windows.Forms.Button();
+            this._nuovoCircuitoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _nomeLabel
@@ -127,6 +128,7 @@
             this._seduteTreeView.Name = "_seduteTreeView";
             this._seduteTreeView.Size = new System.Drawing.Size(301, 174);
             this._seduteTreeView.TabIndex = 16;
+            this._seduteTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this._seduteTreeView_AfterSelect);
             // 
             // label1
             // 
@@ -215,21 +217,12 @@
             // _eliminaEsercizioButton
             // 
             this._eliminaEsercizioButton.Enabled = false;
-            this._eliminaEsercizioButton.Location = new System.Drawing.Point(344, 422);
+            this._eliminaEsercizioButton.Location = new System.Drawing.Point(344, 455);
             this._eliminaEsercizioButton.Name = "_eliminaEsercizioButton";
             this._eliminaEsercizioButton.Size = new System.Drawing.Size(101, 23);
             this._eliminaEsercizioButton.TabIndex = 30;
             this._eliminaEsercizioButton.Text = "Elimina esercizio";
             this._eliminaEsercizioButton.UseVisualStyleBackColor = true;
-            // 
-            // _eliminaSedutaButton
-            // 
-            this._eliminaSedutaButton.Location = new System.Drawing.Point(344, 362);
-            this._eliminaSedutaButton.Name = "_eliminaSedutaButton";
-            this._eliminaSedutaButton.Size = new System.Drawing.Size(101, 23);
-            this._eliminaSedutaButton.TabIndex = 32;
-            this._eliminaSedutaButton.Text = "Elimina seduta";
-            this._eliminaSedutaButton.UseVisualStyleBackColor = true;
             // 
             // _dataFineRadioButton
             // 
@@ -260,12 +253,31 @@
             this.dialogButtonsControl1.Size = new System.Drawing.Size(459, 59);
             this.dialogButtonsControl1.TabIndex = 35;
             // 
-            // _scopo
+            // _comboScopo
             // 
-            this._scopo.Location = new System.Drawing.Point(172, 51);
-            this._scopo.Name = "_scopo";
-            this._scopo.Size = new System.Drawing.Size(195, 19);
-            this._scopo.TabIndex = 36;
+            this._comboScopo.FormattingEnabled = true;
+            this._comboScopo.Location = new System.Drawing.Point(172, 51);
+            this._comboScopo.Name = "_comboScopo";
+            this._comboScopo.Size = new System.Drawing.Size(190, 21);
+            this._comboScopo.TabIndex = 36;
+            // 
+            // _rimuoviSedutaButton
+            // 
+            this._rimuoviSedutaButton.Location = new System.Drawing.Point(344, 364);
+            this._rimuoviSedutaButton.Name = "_rimuoviSedutaButton";
+            this._rimuoviSedutaButton.Size = new System.Drawing.Size(101, 23);
+            this._rimuoviSedutaButton.TabIndex = 37;
+            this._rimuoviSedutaButton.Text = "Elimina Seduta";
+            this._rimuoviSedutaButton.UseVisualStyleBackColor = true;
+            // 
+            // _nuovoCircuitoButton
+            // 
+            this._nuovoCircuitoButton.Location = new System.Drawing.Point(344, 425);
+            this._nuovoCircuitoButton.Name = "_nuovoCircuitoButton";
+            this._nuovoCircuitoButton.Size = new System.Drawing.Size(101, 23);
+            this._nuovoCircuitoButton.TabIndex = 38;
+            this._nuovoCircuitoButton.Text = "Nuovo Circuito";
+            this._nuovoCircuitoButton.UseVisualStyleBackColor = true;
             // 
             // SchedaForm
             // 
@@ -273,11 +285,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
-            this.Controls.Add(this._scopo);
+            this.Controls.Add(this._nuovoCircuitoButton);
+            this.Controls.Add(this._rimuoviSedutaButton);
+            this.Controls.Add(this._comboScopo);
             this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this._durataRadioButton);
             this.Controls.Add(this._dataFineRadioButton);
-            this.Controls.Add(this._eliminaSedutaButton);
             this.Controls.Add(this._rinominaSedutaButton);
             this.Controls.Add(this._eliminaEsercizioButton);
             this.Controls.Add(this._durata);
@@ -323,10 +336,11 @@
         private System.Windows.Forms.TextBox _durata;
         private System.Windows.Forms.Button _rinominaSedutaButton;
         private System.Windows.Forms.Button _eliminaEsercizioButton;
-        private System.Windows.Forms.Button _eliminaSedutaButton;
         private System.Windows.Forms.RadioButton _dataFineRadioButton;
         private System.Windows.Forms.RadioButton _durataRadioButton;
         private view.DialogButtonsControl dialogButtonsControl1;
-        private System.Windows.Forms.Panel _scopo;
+        private System.Windows.Forms.ComboBox _comboScopo;
+        private System.Windows.Forms.Button _rimuoviSedutaButton;
+        private System.Windows.Forms.Button _nuovoCircuitoButton;
     }
 }

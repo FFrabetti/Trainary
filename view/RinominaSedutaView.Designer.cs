@@ -30,34 +30,33 @@
         {
             this._codiceLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this._okButton = new System.Windows.Forms.Button();
+            this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
             this.SuspendLayout();
             // 
             // _codiceLabel
             // 
             this._codiceLabel.AutoSize = true;
             this._codiceLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._codiceLabel.Location = new System.Drawing.Point(29, 19);
+            this._codiceLabel.Location = new System.Drawing.Point(12, 9);
             this._codiceLabel.Name = "_codiceLabel";
-            this._codiceLabel.Size = new System.Drawing.Size(60, 19);
+            this._codiceLabel.Size = new System.Drawing.Size(155, 19);
             this._codiceLabel.TabIndex = 9;
-            this._codiceLabel.Text = "Codice:";
+            this._codiceLabel.Text = "Inserisci nuovo nome:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(104, 18);
+            this.textBox1.Location = new System.Drawing.Point(16, 31);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(148, 20);
             this.textBox1.TabIndex = 10;
             // 
-            // _okButton
+            // dialogButtonsControl1
             // 
-            this._okButton.Location = new System.Drawing.Point(212, 55);
-            this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(75, 23);
-            this._okButton.TabIndex = 11;
-            this._okButton.Text = "OK";
-            this._okButton.UseVisualStyleBackColor = true;
+            this.dialogButtonsControl1.AutoSize = true;
+            this.dialogButtonsControl1.Location = new System.Drawing.Point(97, 57);
+            this.dialogButtonsControl1.Name = "dialogButtonsControl1";
+            this.dialogButtonsControl1.Size = new System.Drawing.Size(202, 41);
+            this.dialogButtonsControl1.TabIndex = 11;
             // 
             // RinominaSedutaView
             // 
@@ -65,7 +64,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(299, 97);
-            this.Controls.Add(this._okButton);
+            this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this._codiceLabel);
             this.Name = "RinominaSedutaView";
@@ -79,6 +78,6 @@
 
         private System.Windows.Forms.Label _codiceLabel;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button _okButton;
+        private view.DialogButtonsControl dialogButtonsControl1;
     }
 }

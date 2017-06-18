@@ -16,5 +16,12 @@ namespace Trainary.Presentation
         {
             InitializeComponent();
         }
+        public TextBox NuovoNome
+        {
+            get
+            {
+                return textBox1;
+            }
+        }
     }
 }

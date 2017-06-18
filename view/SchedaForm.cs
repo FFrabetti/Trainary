@@ -26,11 +26,11 @@ namespace Trainary.Presentation
                 return _nome;
             }
         }
-        public Panel Scopo
+        public ComboBox Scopo
         {
             get
             {
-                return _scopo;
+                return _comboScopo;
             }
         }
         public TextBox Descrizione
@@ -89,12 +89,52 @@ namespace Trainary.Presentation
                 return _nuovaSedutaButton;
             }
         }
+        public Button EliminaEsercizioButton
+        {
+            get
+            {
+                return _eliminaEsercizioButton;
+            }
+        }
 
         public TreeView TreeView
         {
             get
             {
                 return _seduteTreeView;
+            }
+        }
+        public Button NuovoEsercizioButton
+        {
+            get
+            {
+                return _nuovoEsercizioButton;
+            }
+        }
+
+        private void _seduteTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+        public Button RinominaSedutaButton
+        {
+            get
+            {
+                return _rinominaSedutaButton;
+            }
+        }
+        public Button RimuoviSedutaButton
+        {
+            get
+            {
+                return _rimuoviSedutaButton;
+            }
+        }
+        public Button NuovoCircuitoButton
+        {
+            get
+            {
+                return _nuovoCircuitoButton;
             }
         }
     }
