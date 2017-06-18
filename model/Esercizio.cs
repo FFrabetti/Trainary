@@ -27,6 +27,10 @@ namespace Trainary.model
                 return _targets;
             }
         }
+        public abstract Esercizio[] Esercizi
+        {
+            get;
+        }
 
         public abstract void Accept(Visitor visitor);
 
@@ -35,5 +39,18 @@ namespace Trainary.model
         {
             return ToString();
         }
+        //public override bool Equals(object other)
+        //{
+        //    if (other.GetType().IsSubclassOf(typeof(Esercizio)))
+        //    {
+        //        Esercizio esercizio = (Esercizio) other;
+        //        if (this.EqualsEsercizi(esercizio))
+        //            return true;
+        //    }
+        //    return false;
+        //}
+
+        //protected abstract bool EqualsEsercizi(Esercizio other);
+        
     }
 }
