@@ -109,7 +109,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this._mainPanel);
             this.Controls.Add(this._buttonsPanel);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ListBoxControl";
             this.Size = new System.Drawing.Size(322, 161);
             this._buttonsPanel.ResumeLayout(false);

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this._treeView = new System.Windows.Forms.TreeView();
             this._splitContainer = new System.Windows.Forms.SplitContainer();
+            this._attributiControl = new Trainary.view.AttributiControl();
             this._tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._attivitaLabel = new System.Windows.Forms.Label();
             this._descLabel = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this._descValueLabel = new System.Windows.Forms.Label();
             this._attrezziValueLabel = new System.Windows.Forms.Label();
             this._errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this._attributiControl = new Trainary.view.AttributiControl();
             this._dialogButtonsControl = new Trainary.view.DialogButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer)).BeginInit();
             this._splitContainer.Panel1.SuspendLayout();
@@ -74,6 +74,17 @@
             this._splitContainer.Size = new System.Drawing.Size(644, 350);
             this._splitContainer.SplitterDistance = 213;
             this._splitContainer.TabIndex = 1;
+            // 
+            // _attributiControl
+            // 
+            this._attributiControl.AutoSize = true;
+            this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._attributiControl.Location = new System.Drawing.Point(0, 80);
+            this._attributiControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._attributiControl.Name = "_attributiControl";
+            this._attributiControl.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._attributiControl.Size = new System.Drawing.Size(427, 270);
+            this._attributiControl.TabIndex = 7;
             // 
             // _tableLayoutPanel
             // 
@@ -160,17 +171,6 @@
             // _errorProvider
             // 
             this._errorProvider.ContainerControl = this;
-            // 
-            // _attributiControl
-            // 
-            this._attributiControl.AutoSize = true;
-            this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._attributiControl.Location = new System.Drawing.Point(0, 80);
-            this._attributiControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._attributiControl.Name = "_attributiControl";
-            this._attributiControl.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this._attributiControl.Size = new System.Drawing.Size(427, 270);
-            this._attributiControl.TabIndex = 7;
             // 
             // _dialogButtonsControl
             // 

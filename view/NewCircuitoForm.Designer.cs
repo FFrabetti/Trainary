@@ -30,8 +30,8 @@
         {
             this._dialogButtonsControl = new Trainary.view.DialogButtonsControl();
             this._splitContainer = new System.Windows.Forms.SplitContainer();
-            this._listBoxControl = new Trainary.view.ListBoxControl();
             this._attributiControl = new Trainary.view.AttributiControl();
+            this._listBoxControl = new Trainary.view.ListBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this._splitContainer)).BeginInit();
             this._splitContainer.Panel1.SuspendLayout();
             this._splitContainer.Panel2.SuspendLayout();
@@ -65,17 +65,6 @@
             this._splitContainer.SplitterDistance = 224;
             this._splitContainer.TabIndex = 1;
             // 
-            // _listBoxControl
-            // 
-            this._listBoxControl.AutoSize = true;
-            this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
-            this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._listBoxControl.Location = new System.Drawing.Point(0, 0);
-            this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._listBoxControl.Name = "_listBoxControl";
-            this._listBoxControl.Size = new System.Drawing.Size(511, 181);
-            this._listBoxControl.TabIndex = 0;
-            // 
             // _attributiControl
             // 
             this._attributiControl.AutoSize = true;
@@ -85,6 +74,18 @@
             this._attributiControl.Padding = new System.Windows.Forms.Padding(3);
             this._attributiControl.Size = new System.Drawing.Size(511, 224);
             this._attributiControl.TabIndex = 0;
+            // 
+            // _listBoxControl
+            // 
+            this._listBoxControl.AutoSize = true;
+            this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
+            this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._listBoxControl.Location = new System.Drawing.Point(0, 0);
+            this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this._listBoxControl.Name = "_listBoxControl";
+            this._listBoxControl.Padding = new System.Windows.Forms.Padding(3);
+            this._listBoxControl.Size = new System.Drawing.Size(511, 181);
+            this._listBoxControl.TabIndex = 0;
             // 
             // NewCircuitoForm
             // 

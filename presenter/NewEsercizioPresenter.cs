@@ -25,7 +25,7 @@ namespace Trainary.presenter
 
             InitializeTreeView();
             InitializeTableLayout();
-            InitializeAttributiControl();
+            _form.AttributiControl.ListLabel.Text = "Targets";
 
             // abilito/disabilito pulsanti e rimuovo eventuali error providers
             Application.Idle += EnableButtonsHandler;
@@ -96,11 +96,6 @@ namespace Trainary.presenter
             _form.AttivitaValue.Text = 
                 _form.DescrizioneValue.Text = 
                     _form.AttrezziValue.Text = String.Empty;
-        }
-
-        private void InitializeAttributiControl()
-        {
-            _form.AttributiControl.ListLabel.Text = "Targets";
         }
 
         public Esercizio NewEsercizio()

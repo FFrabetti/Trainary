@@ -123,6 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this._tableLayoutPanel);
             this.Name = "NewAttributoControl";
             this.Size = new System.Drawing.Size(394, 86);
