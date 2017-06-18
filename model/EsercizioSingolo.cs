@@ -7,7 +7,6 @@ namespace Trainary.model
     public class EsercizioSingolo : Esercizio
     {
         private readonly Attivita _attivita;
-        
 
         public EsercizioSingolo(Attivita attivita, Attributo[] targets) : base(targets)
         {
@@ -26,13 +25,7 @@ namespace Trainary.model
         {
             visitor.Visit(this);
         }
-        public override Esercizio[] Esercizi
-        {
-            get
-            {
-                return Array.Empty<Esercizio>();
-            }
-        }
+
         public Attivita Attivita
         {
             get
@@ -61,16 +54,6 @@ namespace Trainary.model
 
             return sb.ToString();
         }
-
-        //protected override bool EqualsEsercizi(Esercizio other)
-        //{
-        //    if (other.GetType() == typeof(EsercizioSingolo)) {
-        //        EsercizioSingolo esSingolo = (EsercizioSingolo)other;
-        //        if (!_attivita.Equals(esSingolo.Attivita)) return false;
-        //        return true;
-        //            }
-        //    return false;
-        //}
     }
     
 }

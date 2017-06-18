@@ -22,7 +22,7 @@ namespace Trainary.model
         {
         }
 
-        public override Esercizio[] Esercizi {
+        public Esercizio[] Esercizi {
             get
             {
                return _esercizi;
@@ -78,24 +78,5 @@ namespace Trainary.model
                 result.Append(Environment.NewLine + ident + e);
             }
         }
-
-        //protected override bool EqualsEsercizi(Esercizio other)
-        //{
-        //    if(other.GetType() == typeof(Circuito))
-        //    {
-        //        bool trovato = false;
-        //        Circuito circuito = (Circuito)other;
-        //        foreach(Esercizio es in Esercizi)
-        //        {
-        //            foreach(Esercizio esOther in circuito.Esercizi)
-        //            {
-        //                if (es.Equals(esOther))
-        //                    trovato = true;
-        //            }
-        //            if (!trovato) return false;
-        //        }
-        //    }
-        //    return false;
-        //}
     }
 }
