@@ -14,7 +14,6 @@ namespace Trainary.presenter.attributi
         private NewAttributoControl _control;
 
         private QuantitaPresenter _currentQPresenter;
-        private List<QuantitaPresenter> _presenters;
 
         public NewAttributoPresenter(NewAttributoControl control)
         {
@@ -22,9 +21,7 @@ namespace Trainary.presenter.attributi
                 throw new ArgumentNullException("new attributo control");
             _control = control;
 
-            _presenters = new List<QuantitaPresenter>();
-            InizializeQuantitaPresenters();
-            InizializeComboBox();
+            InizializeComboBox(GetQuantitaPresenters());
         }
 
         public NewAttributoControl NewAttributoControl
@@ -32,17 +29,25 @@ namespace Trainary.presenter.attributi
             get { return _control; }
         }
 
-        private void InizializeComboBox()
+        public Attributo NewAttributo()
         {
-            _control.TipoComboBox.DataSource = _presenters;
-            _control.TipoComboBox.DisplayMember = "LabelAttribute";
-
-            _control.TipoComboBox.SelectedValueChanged += ComboChangedHandler;
-            ComboChangedHandler(_control.TipoComboBox, null);
+            string nome = _control.NomeTextBox.Text;
+            Quantita quantita = _currentQPresenter.GetNewQuantita();
+            return new Attributo(nome, quantita);
         }
 
-        private void InizializeQuantitaPresenters()
+        private void InizializeComboBox(List<QuantitaPresenter> presenters)
         {
+            _control.TipoComboBox.DataSource = presenters;
+            _control.TipoComboBox.DisplayMember = "LabelAttribute";
+
+            _control.TipoComboBox.SelectedValueChanged += OnComboChanged;
+            OnComboChanged(_control.TipoComboBox, EventArgs.Empty);
+        }
+
+        private List<QuantitaPresenter> GetQuantitaPresenters()
+        {
+            List<QuantitaPresenter> presenters = new List<QuantitaPresenter>();
             QuantitaPresenter presenter = null;
             ConstructorInfo constructor = null;
 
@@ -58,7 +63,7 @@ namespace Trainary.presenter.attributi
                     {
                         presenter = (QuantitaPresenter) constructor.Invoke(null);
                         if (presenter != null)
-                            _presenters.Add(presenter);
+                            presenters.Add(presenter);
                     }
                     catch
                     {
@@ -66,9 +71,11 @@ namespace Trainary.presenter.attributi
                     }
                 }
             }
+
+            return presenters;
         }
 
-        private void ComboChangedHandler(object sender, EventArgs e)
+        private void OnComboChanged(object sender, EventArgs e)
         {
             ComboBox combo = ((ComboBox)sender);
             _currentQPresenter = (QuantitaPresenter)combo.SelectedValue;
@@ -76,13 +83,6 @@ namespace Trainary.presenter.attributi
             _control.QuantitaPanel.Controls.Clear();
             _currentQPresenter.DrawControls(_control.QuantitaPanel);
             Refresh();
-        }
-
-        public Attributo NewAttributo()
-        {
-            string nome = _control.NomeTextBox.Text;
-            Quantita quantita = _currentQPresenter.GetNewQuantita();
-            return new Attributo(nome, quantita);
         }
 
         public void Refresh()

@@ -26,8 +26,8 @@ namespace Trainary.presenter.attributi
             _control.ListBoxControl.ListBox.SelectionMode = SelectionMode.One;
 
             _control.AddButton.Click += AddTargetHandler;
-            Application.Idle += ApplicationIdle;
-            _newAttributoPresenter.Refreshed += NewAttributoRefreshed;
+            Application.Idle += EnableButtonsHandler;
+            _newAttributoPresenter.Refreshed += OnNewAttributoRefreshed;
         }
 
         public AttributiControl AttributiControl
@@ -35,23 +35,23 @@ namespace Trainary.presenter.attributi
             get { return _control; }
         }
 
-        public Control ErrorControl
-        {
-            get { return _control.NewAttributoControl.ValoreLabel; }
-        }
-
         public List<Attributo> Attributi
         {
             get { return _listBoxPresenter.Items; }
         }
 
-        private void ApplicationIdle(object sender, EventArgs e)
+        private Control ErrorControl
+        {
+            get { return _control.NewAttributoControl.ValoreLabel; }
+        }
+
+        private void EnableButtonsHandler(object sender, EventArgs e)
         {
             _control.AddButton.Enabled = _control.NewAttributoControl.NomeTextBox.Text.Length > 0;
             // RemoveButton gestito da ListBoxPresenter   
         }
 
-        private void NewAttributoRefreshed(object sender, EventArgs e)
+        private void OnNewAttributoRefreshed(object sender, EventArgs e)
         {
             _control.ErrorProvider.UnsetError(ErrorControl);
         }

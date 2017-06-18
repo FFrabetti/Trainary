@@ -28,12 +28,12 @@ namespace Trainary.presenter
             InitializeAttributiControl();
 
             // abilito/disabilito pulsanti e rimuovo eventuali error providers
-            Application.Idle += ApplicationIdle;
+            Application.Idle += EnableButtonsHandler;
             // controlli in chiusura, validazione
-            _form.FormClosing += FormClosingHandler;
+            _form.FormClosing += OnFormClosing;
         }
 
-        private void FormClosingHandler(object sender, FormClosingEventArgs e)
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             if(_form.DialogResult == DialogResult.OK && _selectedAttivita == null)
             {
@@ -42,7 +42,7 @@ namespace Trainary.presenter
             }
         }
 
-        private void ApplicationIdle(object sender, EventArgs e)
+        private void EnableButtonsHandler(object sender, EventArgs e)
         {
             _form.OkButton.Enabled = _selectedAttivita != null;
 
@@ -57,7 +57,7 @@ namespace Trainary.presenter
             PopulateTree(_form.TreeView.Nodes, root);
             _form.TreeView.ExpandAll();
 
-            _form.TreeView.AfterSelect += OnSelectNode;
+            _form.TreeView.AfterSelect += OnNodeSelected;
         }
 
         private void PopulateTree(TreeNodeCollection nodes, Categoria categoria)
@@ -79,7 +79,7 @@ namespace Trainary.presenter
             }
         }
 
-        private void OnSelectNode(object sender, TreeViewEventArgs e)
+        private void OnNodeSelected(object sender, TreeViewEventArgs e)
         {
             TreeView treeView = (TreeView)sender;
             if(treeView.SelectedNode.Tag is Attivita)

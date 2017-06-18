@@ -12,6 +12,7 @@ namespace Trainary.presenter.attributi
 
         public abstract void DrawControls(Panel panel);
 
+        // Proprietà da mostrare nella combo
         public string LabelAttribute
         {
             get { return this.GetLabelAttribute(); }

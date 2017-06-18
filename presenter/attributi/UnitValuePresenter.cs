@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Trainary.model.attributi;
@@ -23,20 +24,19 @@ namespace Trainary.presenter.attributi
         }
 
         // used by sub-classes to fill the combo box
-        public ComboBox ComboBox
+        protected abstract IList<UnitaDiMisura> UnitaDiMisura
         {
-            get { return _comboBox; }
-        }
-
-        public TextBox TextBox
-        {
-            get { return _textBox; }
+            get;
         }
 
         public override void DrawControls(Panel panel)
         {
             panel.Controls.Add(_textBox);
             panel.Controls.Add(_comboBox);
+
+            // richiede una IList o una IListSource
+            _comboBox.DataSource = UnitaDiMisura;
+            _comboBox.DisplayMember = "Simbolo";
         }
 
         public override void Refresh()
