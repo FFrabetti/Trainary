@@ -35,5 +35,6 @@ namespace Trainary.model
         {
             return ToString();
         }
+        
     }
 }

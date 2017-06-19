@@ -38,18 +38,18 @@ namespace Trainary.model
         {
             StringBuilder sb = new StringBuilder("Circuito");
 
-            for (int i = 0; i < Targets.Length; i++)
-            {
-                if (i == 0)
-                    sb.Append(" [");
-                else
-                    sb.Append(", ");
+            //for (int i = 0; i < Targets.Length; i++)
+            //{
+            //    if (i == 0)
+            //        sb.Append(" [");
+            //    else
+            //        sb.Append(", ");
 
-                sb.Append(Targets[i]);
+            //    sb.Append(Targets[i]);
 
-                if (i == Targets.Length - 1)
-                    sb.Append("]");
-            }
+            //    if (i == Targets.Length - 1)
+            //        sb.Append("]");
+            //}
 
             return sb.ToString();
         }

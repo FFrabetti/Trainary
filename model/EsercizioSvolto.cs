@@ -36,17 +36,17 @@ namespace Trainary.model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(Esercizio.ToString());
-            sb.Append(" ");
+            //sb.Append(" ");
             
-            foreach (Attributo dato in _dati)
-            {
-                sb.Append(dato);
-                sb.Append(" ");
-            }
-            foreach(EsercizioSvolto es in SottoEserciziSvolti)
-            {
-                sb.Append(es);
-            }
+            //foreach (Attributo dato in _dati)
+            //{
+            //    sb.Append(dato);
+            //    sb.Append(" ");
+            //}
+            //foreach(EsercizioSvolto es in SottoEserciziSvolti)
+            //{
+            //    sb.Append(es);
+            //}
             return sb.ToString();
         }
     
