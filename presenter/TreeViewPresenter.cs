@@ -10,10 +10,10 @@ using Trainary.view;
 
 namespace Trainary.presenter
 {
-    class InserisciDataEserciziPresenter
+    class TreeViewPresenter
     {
         private TreeView _treeView;
-        public InserisciDataEserciziPresenter(TreeView treeView)
+        public TreeViewPresenter(TreeView treeView)
         {
             _treeView = treeView;
         }

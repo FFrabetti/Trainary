@@ -15,7 +15,7 @@ namespace Trainary.presenter
     {
         private SchedaForm _schedaForm;
         private ComboBox _comboBox = new ComboBox();
-        private InserisciDataEserciziPresenter _presenter;
+        private TreeViewPresenter _presenter;
         private IList<Seduta> _sedute = new List<Seduta>();
         private Scheda _scheda = null;
         public event EventHandler SeduteChanged;
@@ -24,7 +24,7 @@ namespace Trainary.presenter
             if (schedaForm == null)
                 throw new ArgumentNullException("scheda form");
             _schedaForm = schedaForm;
-            _presenter = new InserisciDataEserciziPresenter(_schedaForm.TreeView);
+            _presenter = new TreeViewPresenter(_schedaForm.TreeView);
             InizializeScopoCombo();
             AssegnaGestori();
             

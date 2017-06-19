@@ -15,7 +15,7 @@ namespace Trainary.presenter
         private SchedaForm _form;
         private Scheda _scheda;
         private TextBox _scopoTextBox = new TextBox();
-        private InserisciDataEserciziPresenter _presenter;
+        private TreeViewPresenter _presenter;
         public VisualizzaSchedaPresenter(SchedaForm form,Scheda scheda)
         {
             if (form == null)
@@ -24,7 +24,7 @@ namespace Trainary.presenter
                 throw new ArgumentNullException("scheda");
             _form = form;
             _scheda = scheda;
-            _presenter = new InserisciDataEserciziPresenter(_form.TreeView);
+            _presenter = new TreeViewPresenter(_form.TreeView);
             Inizializza();
             VisualizzaScheda();
         }

@@ -14,7 +14,7 @@ namespace Trainary.presenter
     {
         private AllenamentoForm _form;
         private SelezionaSedutaControl _control = new SelezionaSedutaControl();
-        private InserisciDataEserciziPresenter _presenter;
+        private TreeViewPresenter _presenter;
         private List<EsercizioSvolto> _eserciziSvolti = new List<EsercizioSvolto>();
         private List<Scheda> _schede;
         //private List<Seduta> _sedute = new List<Seduta>();
@@ -24,7 +24,7 @@ namespace Trainary.presenter
             if (form == null)
                 throw new ArgumentNullException("form");
             _form = form;
-            _presenter = new InserisciDataEserciziPresenter(_form.TreeView);
+            _presenter = new TreeViewPresenter(_form.TreeView);
             _form.Panel.Controls.Add(_control);
             _form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioButton;
             _form.AggiungiCircuitoButton.Visible = false;
