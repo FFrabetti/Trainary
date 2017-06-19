@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Trainary.model;
 using Trainary.view;
+
 
 namespace Trainary.presenter
 {
@@ -12,6 +14,7 @@ namespace Trainary.presenter
     {
         private SelezionaEserciziSeduta _form;
         private Seduta _seduta;
+        private TreeViewPresenter _presenter;
         public SelezionaEserciziSedutaPresenter(SelezionaEserciziSeduta form,Seduta seduta)
         {
             if (form == null)
@@ -20,26 +23,20 @@ namespace Trainary.presenter
                 throw new ArgumentNullException("seduta");
             _form = form;
             _seduta = seduta;
-            //_form.OkButton.Click += Ok_Click;
-            VisualizzaSeduta();
+            _presenter = new TreeViewPresenter(form.TreeView);
+            Application.Idle += OnIdle;
+          
+            _presenter.VisualizzaSeduta(_seduta);
         }
 
-        private void VisualizzaSeduta()
+        private void OnIdle(object sender, EventArgs e)
         {
-            _form.ListBox.DataSource = _seduta.Esercizi;
+            _form.Buttons.OkButton.Enabled = _form.TreeView.SelectedNode != null && _form.TreeView.SelectedNode.Tag != null && _form.TreeView.SelectedNode.Tag.GetType().IsSubclassOf(typeof(Esercizio));
         }
-        private void Ok_Click(object sender, EventArgs e)
+
+        public Esercizio GetEsercizio()
         {
-            _form.Close();
-        }
-        public EsercizioSvolto GetEsercizioSvolto()
-        {
-            Esercizio esercizio = (Esercizio)_form.ListBox.SelectedItem;
-            SvolgiVisitor sv = new SvolgiVisitor();
-            esercizio.Accept(sv);
-            EsercizioSvolto eSvolto = sv.EsercizioSvolto;
-            // eSvolto.AddDati();
-            return eSvolto;
+            return  (Esercizio)_form.TreeView.SelectedNode.Tag;
         }
     }
 }

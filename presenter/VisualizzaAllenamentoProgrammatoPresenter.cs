@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Trainary.model;
+using Trainary.model.attributi;
 using Trainary.Presentation;
 using Trainary.view;
 
@@ -14,13 +16,21 @@ namespace Trainary.presenter
         private AllenamentoForm _form;
         private AllenamentoProgrammato _allenamento;
         private VisualizzaSchedaSeduta _control = new VisualizzaSchedaSeduta();
+        private TreeViewPresenter _presenter;
         public VisualizzaAllenamentoProgrammatoPresenter(AllenamentoForm form, AllenamentoProgrammato allenamento)
         {
             _form = form;
             _allenamento = allenamento;
+            _presenter = new TreeViewPresenter(_form.TreeView);
             _form.Panel.Controls.Add(_control);
             _form.AllenamentoLabel.Text = "Allenamento Programmato";
-
+            _control.Scheda.Enabled = false;
+            _control.Seduta.Enabled = false;
+            _form.Data.Enabled = false;
+            _form.Buttons.Visible = false;
+            _form.AggiungiEsercizioButton.Visible = false;
+            _form.AggiungiCircuitoButton.Visible = false;
+            _form.AggiungiDatiButton.Visible = false;
             VisualizzaAllenamento();
         }
 
@@ -28,13 +38,10 @@ namespace Trainary.presenter
         {
             _control.Scheda.Text = _allenamento.Seduta.Scheda.ToString();
             _control.Seduta.Text = _allenamento.Seduta.ToString();
-            _control.Scheda.Enabled = false;
-            _control.Seduta.Enabled = false;
-            _form.DataEsercizi.Data.Value = _allenamento.Data;
-            _form.DataEsercizi.Data.Enabled = false;
-            _form.DataEsercizi.EserciziListBox.DataSource = _allenamento.EserciziSvolti;
-            _form.Buttons.Visible = false;
-            _form.ButtonPiu.Visible = false;
+            _form.Data.Value = _allenamento.Data;
+            _presenter.VisualizzaEserciziSvolti(_allenamento.EserciziSvolti);
+           
         }
+        
     }
 }

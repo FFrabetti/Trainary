@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trainary.model;
+using Trainary.model.attributi;
 using Trainary.Presentation;
 using Trainary.view;
 
@@ -13,7 +14,8 @@ namespace Trainary.presenter
     class NuovaSchedaPresenter
     {
         private SchedaForm _schedaForm;
-       
+        private ComboBox _comboBox = new ComboBox();
+        private InserisciDataEserciziPresenter _presenter;
         private IList<Seduta> _sedute = new List<Seduta>();
         private Scheda _scheda = null;
         public event EventHandler SeduteChanged;
@@ -22,17 +24,19 @@ namespace Trainary.presenter
             if (schedaForm == null)
                 throw new ArgumentNullException("scheda form");
             _schedaForm = schedaForm;
+            _presenter = new InserisciDataEserciziPresenter(_schedaForm.TreeView);
             InizializeScopoCombo();
             AssegnaGestori();
-            Application.Idle += OnIdle;
+            
         }
 
         private void AssegnaGestori()
         {
+            Application.Idle += OnIdle;
             _schedaForm.Buttons.OkButton.Click += OKButtonClick;
             _schedaForm.NuovaSedutaButton.Click += _nuovaSedutaButton_Click;
             _schedaForm.TreeView.AfterSelect += OnSelectedNode;
-             SeduteChanged += OnSchedeChanged;
+             SeduteChanged += OnSeduteChanged;
             _schedaForm.NuovoEsercizioButton.Click += OnNuovoEsercizioButton;
             _schedaForm.EliminaEsercizioButton.Click += OnEliminaEsercizioButton;
             _schedaForm.RimuoviSedutaButton.Click += OnRimuoviSedutaButton;
@@ -149,16 +153,16 @@ namespace Trainary.presenter
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Esercizio esercizio = presenter.NewEsercizio();
-                    if (selected.Esercizi.Contains(esercizio))
-                    {
-                        string messageBoxText = "Non è possibile inserire più volte lo stesso esercizio all'interno della stessa seduta";
-                        string caption = "Errore";
-                        MessageBoxButtons buttons = MessageBoxButtons.OK;
-                        MessageBoxIcon icon = MessageBoxIcon.Warning;
+                    //if (selected.Esercizi.Contains(esercizio))
+                    //{
+                    //    string messageBoxText = "Non è possibile inserire più volte lo stesso esercizio all'interno della stessa seduta";
+                    //    string caption = "Errore";
+                    //    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    //    MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-                        MessageBox.Show(messageBoxText, caption, buttons, icon);
-                        return;
-                    }
+                    //    MessageBox.Show(messageBoxText, caption, buttons, icon);
+                    //    return;
+                    //}
                     selected.Esercizi.Add(esercizio);
                     SeduteChanged(this, EventArgs.Empty);
                 }
@@ -185,18 +189,19 @@ namespace Trainary.presenter
             return false;
         }
 
-        private void OnSchedeChanged(object sender, EventArgs e)
+        private void OnSeduteChanged(object sender, EventArgs e)
         {
             _schedaForm.TreeView.Nodes.Clear();
-            foreach (Seduta s in _scheda.Sedute)
-            {
-                VisualizzaSeduta(s);
-            }
+            _presenter.VisualizzaSedute(_scheda.Sedute);
         }
         private void InizializeScopoCombo()
         {
-            
-            _schedaForm.Scopo.DataSource = Enum.GetValues(typeof(ScopoDellaScheda));
+            _comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            _comboBox.FormattingEnabled = true;
+            _comboBox.Dock = DockStyle.Fill;
+            _comboBox.TabIndex = 11;
+            _comboBox.DataSource = Enum.GetValues(typeof(ScopoDellaScheda));
+            _schedaForm.Scopo.Controls.Add(_comboBox);
            
         }
         private Scheda NuovaScheda()
@@ -204,7 +209,7 @@ namespace Trainary.presenter
             Periodo periodo;
             
             string nome = _schedaForm.Nome.Text;
-            ScopoDellaScheda scopo = (ScopoDellaScheda)_schedaForm.Scopo.SelectedItem;
+            ScopoDellaScheda scopo = (ScopoDellaScheda)_comboBox.SelectedItem;
             string decrizione = _schedaForm.Descrizione.Text;
             DateTime dataInizio = _schedaForm.DataInizio.Value;
 
@@ -277,33 +282,38 @@ namespace Trainary.presenter
             }
            
                 Seduta seduta = _scheda.AggiungiSeduta(new List<Esercizio>());
-                VisualizzaSeduta(seduta);
+                SeduteChanged(this, EventArgs.Empty);
             
 
            
         }
 
-        private void VisualizzaSeduta(Seduta seduta)
-        {
-            TreeNode node = new TreeNode(seduta.ToString());
-            node.Tag = seduta;
-            VisualizzaEserciziSeduta(node,seduta.Esercizi);
-            _schedaForm.TreeView.Nodes.Add(node);
-        }
+        //private void VisualizzaSeduta(Seduta seduta)
+        //{
+        //    TreeNode node = new TreeNode(seduta.ToString());
+        //    node.Tag = seduta;
+        //    VisualizzaEserciziSeduta(node,seduta.Esercizi);
+        //    _schedaForm.TreeView.Nodes.Add(node);
+        //}
 
-        private void VisualizzaEserciziSeduta(TreeNode node, IList<Esercizio> esercizi)
-        {
-            if (esercizi.Count == 0)
-                return;
-            foreach (Esercizio es in esercizi)
-            {
-                TreeNode nodeEs = new TreeNode(es.ToString());
-                nodeEs.Tag = es;
-                node.Nodes.Add(nodeEs);
-                if(es is Circuito)
-                    VisualizzaEserciziSeduta(nodeEs, ((Circuito)es).Esercizi);
-            }
-        }
+        //private void VisualizzaEserciziSeduta(TreeNode node, IList<Esercizio> esercizi)
+        //{
+        //    if (esercizi.Count == 0)
+        //        return;
+        //    foreach (Esercizio es in esercizi)
+        //    {
+        //        TreeNode nodeEs = new TreeNode(es.ToString());
+        //        nodeEs.Tag = es;
+        //        foreach(Attributo target in es.Targets)
+        //        {
+        //            TreeNode nodoTarget = new TreeNode(target.ToString());
+        //            nodeEs.Nodes.Add(nodoTarget);
+        //        }
+        //        node.Nodes.Add(nodeEs);
+        //        if(es is Circuito)
+        //            VisualizzaEserciziSeduta(nodeEs, ((Circuito)es).Esercizi);
+        //    }
+        //}
     }
     }
 

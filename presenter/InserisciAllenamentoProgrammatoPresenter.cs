@@ -14,22 +14,50 @@ namespace Trainary.presenter
     {
         private AllenamentoForm _form;
         private SelezionaSedutaControl _control = new SelezionaSedutaControl();
+        private InserisciDataEserciziPresenter _presenter;
         private List<EsercizioSvolto> _eserciziSvolti = new List<EsercizioSvolto>();
-        private List<Scheda> _schede = new List<Scheda>();
-        private List<Seduta> _sedute = new List<Seduta>();
+        private List<Scheda> _schede;
+        //private List<Seduta> _sedute = new List<Seduta>();
         private Seduta _seduta;
         public InserisciAllenamentoProgrammatoPresenter(AllenamentoForm form)
         {
             if (form == null)
                 throw new ArgumentNullException("form");
             _form = form;
+            _presenter = new InserisciDataEserciziPresenter(_form.TreeView);
             _form.Panel.Controls.Add(_control);
-            _form.ButtonPiu.Click += ButtonPiu_Click;
+            _form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioButton;
+            _form.AggiungiCircuitoButton.Visible = false;
             _form.Buttons.OkButton.Click += OkButton_Click;
+            _form.Data.ValueChanged += OnDataValueChanged;
             _form.AllenamentoLabel.Text = "Allenamento Programmato";
-
-            InizializeSchedeCombo();
+            _form.AggiungiDatiButton.Click += OnAggiungiDatiButton;
+            Application.Idle += OnIdle;
+            _form.TreeView.AfterSelect += OnSelectedNode;
+            OnDataValueChanged(this, EventArgs.Empty);
         }
+
+        private void OnIdle(object sender, EventArgs e)
+        {
+            if (_form.TreeView.SelectedNode == null)
+                _form.AggiungiDatiButton.Enabled = false;
+        }
+        private void OnSelectedNode(object sender, TreeViewEventArgs e)
+        {
+            _form.AggiungiDatiButton.Enabled = _form.TreeView.SelectedNode.Tag != null;
+
+        }
+
+        private void OnAggiungiDatiButton(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnDataValueChanged(object sender, EventArgs e)
+        {
+            InizializeSchedeCombo(_form.Data.Value);
+        }
+
         private Seduta Seduta
         {
             get
@@ -38,9 +66,10 @@ namespace Trainary.presenter
                 return _seduta;
             }
         }
-        private void InizializeSchedeCombo()
+        private void InizializeSchedeCombo(DateTime value)
         {
-            foreach (Scheda scheda in GestoreSchede.GetInstance().GetSchede())
+            _schede = new List<Scheda>();
+            foreach (Scheda scheda in GestoreSchede.GetInstance().GetSchedeValide(value))
                 _schede.Add(scheda);
 
             _control.ComboSchede.DataSource = _schede;
@@ -49,15 +78,23 @@ namespace Trainary.presenter
         }
         private void InizializeSeduteCombo()
         {
-            Scheda scheda = (Scheda)_control.ComboSchede.SelectedItem;
-            _control.ComboSedute.DataSource = scheda.Sedute;
+            if (_control.ComboSchede.SelectedItem != null)
+            {
+                Scheda scheda = (Scheda)_control.ComboSchede.SelectedItem;
+                _control.ComboSedute.DataSource = scheda.Sedute;
+            }
+            else
+            {
+                _control.ComboSedute.DataSource = new List<Seduta>();
+
+            }
         }
 
         private void SelectedSchedaCombo(object sender, EventArgs e)
         {
             InizializeSeduteCombo();
         }
-        private void ButtonPiu_Click(object sender, EventArgs e)
+        private void OnAggiungiEsercizioButton(object sender, EventArgs e)
         {
 
            // _seduta = Seduta;
@@ -82,10 +119,26 @@ namespace Trainary.presenter
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     
-                    EsercizioSvolto ev = presenter.GetEsercizioSvolto();
-                    _eserciziSvolti.Add(ev);
+                    Esercizio es = presenter.GetEsercizio();
+                    foreach(EsercizioSvolto ev in _eserciziSvolti)
+                    {
+                        if (ev.Esercizio.Equals(es))
+                        {
+                            string messageBoxText = "Non è possibile aggiungere un esercizio più volte nello stesso allenamento";
+                            string caption = "Errore";
+                            MessageBoxButtons buttons = MessageBoxButtons.OK;
+                            MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-                    _form.DataEsercizi.EserciziListBox.Items.Add(ev);
+                            MessageBox.Show(messageBoxText, caption, buttons, icon);
+                            return;
+                        }
+                    }
+                    SvolgiVisitor sv = new SvolgiVisitor();
+                    es.Accept(sv);
+                    EsercizioSvolto eSvolto = sv.EsercizioSvolto;
+                    _eserciziSvolti.Add(eSvolto);
+                    _presenter.VisualizzaEserciziSvolti(_eserciziSvolti.ToArray());
+                   
                 }
                
             }
@@ -95,7 +148,7 @@ namespace Trainary.presenter
         }
         private void OkButton_Click(object sender, EventArgs e)
         {
-            DateTime data = _form.DataEsercizi.Data.Value;
+            DateTime data = _form.Data.Value;
             AllenamentoProgrammato allenamento;
             try
             {
