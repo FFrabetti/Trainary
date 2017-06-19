@@ -28,12 +28,23 @@ namespace Trainary.view
                 return dateTimePicker1;
             }
         }
-        public ListBox EserciziListBox
+        public TreeView EserciziTreeView
         {
             get
             {
-                return listBox1;
+                return treeView1;
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -49,9 +49,9 @@
             this._dataFineRadioButton = new System.Windows.Forms.RadioButton();
             this._durataRadioButton = new System.Windows.Forms.RadioButton();
             this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
-            this._comboScopo = new System.Windows.Forms.ComboBox();
             this._rimuoviSedutaButton = new System.Windows.Forms.Button();
             this._nuovoCircuitoButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // _nomeLabel
@@ -253,14 +253,6 @@
             this.dialogButtonsControl1.Size = new System.Drawing.Size(459, 59);
             this.dialogButtonsControl1.TabIndex = 35;
             // 
-            // _comboScopo
-            // 
-            this._comboScopo.FormattingEnabled = true;
-            this._comboScopo.Location = new System.Drawing.Point(172, 51);
-            this._comboScopo.Name = "_comboScopo";
-            this._comboScopo.Size = new System.Drawing.Size(190, 21);
-            this._comboScopo.TabIndex = 36;
-            // 
             // _rimuoviSedutaButton
             // 
             this._rimuoviSedutaButton.Location = new System.Drawing.Point(344, 364);
@@ -279,15 +271,22 @@
             this._nuovoCircuitoButton.Text = "Nuovo Circuito";
             this._nuovoCircuitoButton.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(172, 51);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(190, 29);
+            this.panel1.TabIndex = 39;
+            // 
             // SchedaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this._nuovoCircuitoButton);
             this.Controls.Add(this._rimuoviSedutaButton);
-            this.Controls.Add(this._comboScopo);
             this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this._durataRadioButton);
             this.Controls.Add(this._dataFineRadioButton);
@@ -339,8 +338,8 @@
         private System.Windows.Forms.RadioButton _dataFineRadioButton;
         private System.Windows.Forms.RadioButton _durataRadioButton;
         private view.DialogButtonsControl dialogButtonsControl1;
-        private System.Windows.Forms.ComboBox _comboScopo;
         private System.Windows.Forms.Button _rimuoviSedutaButton;
         private System.Windows.Forms.Button _nuovoCircuitoButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }

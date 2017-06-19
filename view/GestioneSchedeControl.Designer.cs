@@ -35,6 +35,7 @@
             this._periodo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this._allenamentiLabel = new System.Windows.Forms.Label();
+            this._rimuoviSchedaButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -51,6 +52,7 @@
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // _nome
             // 
@@ -91,12 +93,22 @@
             this._allenamentiLabel.TabIndex = 9;
             this._allenamentiLabel.Text = "Schede:";
             // 
+            // _rimuoviSchedaButton
+            // 
+            this._rimuoviSchedaButton.Location = new System.Drawing.Point(536, 99);
+            this._rimuoviSchedaButton.Name = "_rimuoviSchedaButton";
+            this._rimuoviSchedaButton.Size = new System.Drawing.Size(103, 23);
+            this._rimuoviSchedaButton.TabIndex = 12;
+            this._rimuoviSchedaButton.Text = "Rimuovi ";
+            this._rimuoviSchedaButton.UseVisualStyleBackColor = true;
+            // 
             // GestioneSchedeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
+            this.Controls.Add(this._rimuoviSchedaButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this._allenamentiLabel);
@@ -115,5 +127,6 @@
         private System.Windows.Forms.ColumnHeader _periodo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label _allenamentiLabel;
+        private System.Windows.Forms.Button _rimuoviSchedaButton;
     }
 }

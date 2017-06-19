@@ -28,20 +28,28 @@ namespace Trainary.Presentation
         {
 
         }
-        public Button ButtonPiu
+        public Button AggiungiEsercizioButton
         {
             get
             {
-                return button1;
+                return _aggiungiEsercizioButton;
             }
         }
-        public InserisciDataEserciziControl DataEsercizi
+        public Button AggiungiCircuitoButton
         {
             get
             {
-                return inserisciDataEserciziControl1;
+                return _aggiungiCircuitoButton;
             }
         }
+        public Button AggiungiDatiButton
+        {
+            get
+            {
+                return _aggiungiDatiButton;
+            }
+        }
+
         public DialogButtonsControl Buttons
         {
             get
@@ -70,6 +78,30 @@ namespace Trainary.Presentation
             {
                 return _allenamentoLabel;
             }
+        }
+        public DateTimePicker Data
+        {
+            get
+            {
+                return dateTimePicker1;
+            }
+        }
+        public TreeView TreeView
+        {
+            get
+            {
+                return treeView1;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

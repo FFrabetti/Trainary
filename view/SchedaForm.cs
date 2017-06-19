@@ -18,7 +18,34 @@ namespace Trainary.Presentation
         {
             InitializeComponent();
         }
-
+        public Label CambiObbligatori
+        {
+            get
+            {
+                return label1;
+            }
+        }
+        public Label NomeLabel
+        {
+            get
+            {
+                return _nomeLabel;
+            }
+        }
+        public Label DataInizioLabel
+        {
+            get
+            {
+                return _dataInizioLabel;
+            }
+        }
+        public Label SeduteLabel
+        {
+            get
+            {
+                return _seduteLabel;
+            }
+        }
         public TextBox Nome
         {
             get
@@ -26,11 +53,11 @@ namespace Trainary.Presentation
                 return _nome;
             }
         }
-        public ComboBox Scopo
+        public Panel Scopo
         {
             get
             {
-                return _comboScopo;
+                return panel1;
             }
         }
         public TextBox Descrizione

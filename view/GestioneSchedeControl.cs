@@ -30,5 +30,16 @@ namespace Trainary.view
                 return button1;
             }
         }
+        public Button RimuoviSchedaButton
+        {
+            get
+            {
+                return _rimuoviSchedaButton;
+            }
+        }
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

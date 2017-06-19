@@ -28,28 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this._treeView = new System.Windows.Forms.TreeView();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(0, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(285, 121);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(166, 177);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Aggiungi dati";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // dialogButtonsControl1
             // 
@@ -59,25 +42,40 @@
             this.dialogButtonsControl1.Size = new System.Drawing.Size(285, 48);
             this.dialogButtonsControl1.TabIndex = 2;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this._treeView);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(285, 187);
+            this.panel1.TabIndex = 3;
+            // 
+            // _treeView
+            // 
+            this._treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._treeView.Location = new System.Drawing.Point(0, 0);
+            this._treeView.Name = "_treeView";
+            this._treeView.Size = new System.Drawing.Size(285, 187);
+            this._treeView.TabIndex = 0;
+            // 
             // SelezionaEserciziSeduta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dialogButtonsControl1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
             this.Name = "SelezionaEserciziSeduta";
             this.Text = "SelezionaEserciziSeduta";
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
         private DialogButtonsControl dialogButtonsControl1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TreeView _treeView;
     }
 }

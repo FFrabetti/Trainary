@@ -16,13 +16,7 @@ namespace Trainary.view
         {
             InitializeComponent();
         }
-        public ListBox ListBox
-        {
-            get
-            {
-                return listBox1;
-            }
-        }
+        
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -32,6 +26,13 @@ namespace Trainary.view
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+        public TreeView TreeView
+        {
+            get
+            {
+                return _treeView;
+            }
         }
         public DialogButtonsControl Buttons
         {
