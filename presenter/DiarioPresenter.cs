@@ -22,8 +22,9 @@ namespace Trainary.presenter
         private IFiltroAllenamenti _lastFiltro;
 
         object _lastOpzione;
-        private IEnumerable<Allenamento> _listaAllenamentiPrec = new SortedSet<Allenamento>();
-        private IEnumerable<Allenamento> _listaAllenamenti = new SortedSet<Allenamento>();
+        private IEnumerable<Allenamento> _listaAllenamentiPrec = new List<Allenamento>();
+        private IEnumerable<Allenamento> _listaAllenamenti = new List<Allenamento>();
+        private Dictionary<object, IFiltroAllenamenti> _filtriApplicati = new Dictionary<object, IFiltroAllenamenti>();
 
         public DiarioPresenter (DiarioControl diarioControl)
         {
@@ -45,7 +46,12 @@ namespace Trainary.presenter
 
         private void OnDiarioChanged(object sender, EventArgs e)
         {
-
+            _listaAllenamenti = Diario.GetInstance().Allenamenti;
+            foreach (object opzione in _filtriApplicati.Keys)
+            {
+                _listaAllenamenti = _filtriApplicati[opzione].Filtra(_listaAllenamenti,opzione); 
+            }
+            InizializeListView(_listaAllenamenti);
         }
 
         private void AbilitaBottoni(object sender, EventArgs e)
@@ -55,10 +61,11 @@ namespace Trainary.presenter
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
         {
+            IEnumerable<Allenamento> allenamentiOrdinati = listaAllenamenti.OrderBy(a => a.Data);
             _diarioControl.ListBox.Items.Clear();
             //_diarioControl.ListBox.DataSource = listaAllenamenti;
             //_diarioControl.ListView.Items.Clear();
-            foreach (Allenamento a in listaAllenamenti)
+            foreach (Allenamento a in allenamentiOrdinati)
             {
                 //    //ListViewItem item = new ListViewItem(ToStringDate(a.Data));
                 //    //item.SubItems.Add(new ListViewItem.ListViewSubItem(null, a.ToString()));
@@ -127,7 +134,7 @@ namespace Trainary.presenter
 
             IFiltroAllenamenti filtroAllenamenti = _currentFiltroPresenter.NewFiltro;
             object opzione = _currentFiltroPresenter.GetOpzione();
-
+           
             IEnumerable<Allenamento> allenamentiDaFiltrare;
 
             if (filtroAllenamenti == _lastFiltro)
@@ -138,6 +145,8 @@ namespace Trainary.presenter
                     return;
 
                 // altrimenti applico il filtro alla vecchia selezione
+                _filtriApplicati.Remove(_lastOpzione);
+                _filtriApplicati.Add(opzione, filtroAllenamenti);
                 allenamentiDaFiltrare = _listaAllenamentiPrec;
             }
             else
@@ -148,11 +157,13 @@ namespace Trainary.presenter
                 allenamentiDaFiltrare = _listaAllenamenti;
 
                 _listaAllenamentiPrec = _listaAllenamenti;
+                _filtriApplicati.Add(opzione, filtroAllenamenti);
             }
 
             _lastOpzione = opzione;
             _lastFiltro = filtroAllenamenti;
 
+            
             _listaAllenamenti = filtroAllenamenti.Filtra(allenamentiDaFiltrare, opzione);
             InizializeListView(_listaAllenamenti);
         }
@@ -177,6 +188,7 @@ namespace Trainary.presenter
             _lastFiltro = null;
             _lastOpzione = null;
             _listaAllenamentiPrec = null;
+            _filtriApplicati.Clear();
         }
 
         private void ResetListView()
