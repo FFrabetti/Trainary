@@ -7,54 +7,37 @@ using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.attributi;
 using Trainary.Presentation;
+using Trainary.presenter.attributi;
 using Trainary.view;
 
 namespace Trainary.presenter
 {
-    class InserisciAllenamentoExtraPresenter
+    class InserisciAllenamentoExtraPresenter : InserisciAllenamentoPresenter
     {
-        private AllenamentoForm _form;
-        private TreeViewPresenter _presenter;
-        private IList<EsercizioSvolto> _eserciziSvolti = new List<EsercizioSvolto>();
         private NomeUserControl _control = new NomeUserControl();
+
         public InserisciAllenamentoExtraPresenter(AllenamentoForm form)
+            : base(form)
         {
-            if (form == null)
-                throw new ArgumentNullException("form");
-            _form = form;
-            _presenter = new TreeViewPresenter(_form.TreeView);
-            _form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioButton;
-            _form.AggiungiCircuitoButton.Click += OnAggiungiCircuitoButton;
-            _form.Buttons.OkButton.Click += OkButton_Click;
-            _form.Panel.Controls.Add(_control);
-            _form.AllenamentoLabel.Text = "Allenamento Extra";
+            Form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioButton;
+            Form.AggiungiCircuitoButton.Click += OnAggiungiCircuitoButton;
+            Form.Buttons.OkButton.Click += OkButton_Click;
+            Form.Panel.Controls.Add(_control);
+            Form.AllenamentoLabel.Text = "Allenamento Extra";
+
             Application.Idle += OnIdle;
-            _form.TreeView.AfterSelect += OnSelectedNode;
-            _form.AggiungiDatiButton.Click += OnAggiungiDatiButton;
         }
 
-        private void OnAggiungiDatiButton(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnSelectedNode(object sender, TreeViewEventArgs e)
-        {
-            _form.AggiungiDatiButton.Enabled = _form.TreeView.SelectedNode.Tag != null;
-           
-        }
 
         private void OnIdle(object sender, EventArgs e)
         {
-            if (_form.TreeView.SelectedNode == null )
-                _form.AggiungiDatiButton.Enabled = false;
-            _form.AggiungiCircuitoButton.Enabled = _eserciziSvolti.Count >= 2;
+            Form.AggiungiCircuitoButton.Enabled = EserciziSvolti.Count >= 2;
         }
 
         private void OnAggiungiCircuitoButton(object sender, EventArgs e)
         {
             IList<Esercizio> esercizi = new List<Esercizio>();
-            foreach(EsercizioSvolto es in _eserciziSvolti)
+            foreach(EsercizioSvolto es in EserciziSvolti)
             {
                 esercizi.Add(es.Esercizio);
             }
@@ -66,7 +49,7 @@ namespace Trainary.presenter
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Circuito circuito = presenter.NewCircuito();
-                    foreach (EsercizioSvolto ev in _eserciziSvolti)
+                    foreach (EsercizioSvolto ev in EserciziSvolti)
                     {
                         if (ev.Esercizio.Equals(circuito))
                         {
@@ -85,23 +68,23 @@ namespace Trainary.presenter
                     }
                     circuito.Accept(sv);
                     CircuitoSvolto cSvolto = (CircuitoSvolto)sv.EsercizioSvolto;
-                    _eserciziSvolti.Clear();
+                    EserciziSvolti.Clear();
                     foreach(Esercizio es in esercizi)
                     {
                         es.Accept(sv);
                         EsercizioSvolto eSvolto = sv.EsercizioSvolto;
-                        _eserciziSvolti.Add(eSvolto);
+                        EserciziSvolti.Add(eSvolto);
                     }
                     
                     //foreach(EsercizioSvolto es in cSvolto.SottoEserciziSvolti)
                     //{
                     //    _eserciziSvolti.Remove(es);
                     //}
-                    _eserciziSvolti.Add(cSvolto);
-                    
+                    EserciziSvolti.Add(cSvolto);
+                    AggiornaTreeView();
                 }
             }
-            _presenter.VisualizzaEserciziSvolti(_eserciziSvolti.ToArray());
+            
         }
 
         private void OnAggiungiEsercizioButton(object sender, EventArgs e)
@@ -117,7 +100,7 @@ namespace Trainary.presenter
                 if (newEsForm.ShowDialog() == DialogResult.OK)
                 {
                     esercizio = presenter.NewEsercizio();
-                    foreach (EsercizioSvolto svolto in _eserciziSvolti)
+                    foreach (EsercizioSvolto svolto in EserciziSvolti)
                     {
                         if (svolto.Esercizio.Equals(esercizio))
                         {
@@ -132,8 +115,8 @@ namespace Trainary.presenter
                     }
                     esercizio.Accept(sv);
                     EsercizioSvolto ev = sv.EsercizioSvolto;
-                    _eserciziSvolti.Add(ev);
-                    _presenter.VisualizzaEserciziSvolti(_eserciziSvolti.ToArray());
+                    EserciziSvolti.Add(ev);
+                    AggiornaTreeView();
                 }
                
             }
@@ -145,12 +128,12 @@ namespace Trainary.presenter
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            DateTime data = _form.Data.Value;
+            DateTime data = Form.Data.Value;
             string nome = _control.Nome.Text;
             AllenamentoExtra allenamentoExtra;
             try
             {
-                allenamentoExtra = new AllenamentoExtra(data, _eserciziSvolti.ToArray(), nome);
+                allenamentoExtra = new AllenamentoExtra(data, EserciziSvolti.ToArray(), nome);
             }
             catch (Exception ex)
             {
@@ -163,7 +146,7 @@ namespace Trainary.presenter
                 return;
             }
             Diario.GetInstance().Allenamenti.Add(allenamentoExtra);
-            _form.Close();
+            Form.Close();
         }
     }
 }
