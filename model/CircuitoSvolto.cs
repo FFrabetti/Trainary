@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Trainary.model
 {
@@ -13,6 +9,7 @@ namespace Trainary.model
         public CircuitoSvolto(Circuito esercizio) : base(esercizio)
         {
         }
+
         public override List<EsercizioSvolto> SottoEserciziSvolti
         {
             get
@@ -20,5 +17,6 @@ namespace Trainary.model
                 return _sottoEserciziSvolti;
             }
         }
+
     }
 }

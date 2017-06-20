@@ -34,6 +34,14 @@ namespace Trainary.model
             visitor.Visit(this);
         }
 
+        public override string Label
+        {
+            get
+            {
+                return "Circuito";
+            }
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder("Circuito [");

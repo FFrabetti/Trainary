@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using Trainary.model.attributi;
+﻿using Trainary.model.attributi;
 
 namespace Trainary.model
 {
@@ -26,6 +24,11 @@ namespace Trainary.model
             {
                 return _targets;
             }
+        }
+
+        public abstract string Label
+        {
+            get;
         }
 
         public abstract void Accept(Visitor visitor);

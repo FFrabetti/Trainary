@@ -33,7 +33,7 @@ namespace Trainary.persistence
             List<Attributo> list = new List<Attributo>();
 
             Attributo a = null;
-            for (int i = 0; i<random.Next(4) + 4; i++)
+            for (int i = 0; i<random.Next(4); i++)
             {
                 switch (random.Next(4))
                 {

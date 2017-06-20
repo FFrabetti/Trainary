@@ -75,7 +75,7 @@ namespace Trainary.presenter
         {
             foreach (Esercizio es in esercizi)
             {
-                TreeNode nodeEs = new TreeNode( (es is Circuito) ? "Circuito" : es.ToString());
+                TreeNode nodeEs = new TreeNode(es.Label);
                 nodeEs.Tag = es;
                 foreach (Attributo target in es.Targets)
                 {
