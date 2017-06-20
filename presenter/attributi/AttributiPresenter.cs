@@ -15,13 +15,17 @@ namespace Trainary.presenter.attributi
         private AttributiControl _control;
 
         public AttributiPresenter(AttributiControl control)
+            : this(control, new Attributo[0])
+        { }
+
+        public AttributiPresenter(AttributiControl control, IEnumerable<Attributo> attributi)
         {
             if (control == null)
                 throw new ArgumentNullException("control");
             _control = control;
 
             _newAttributoPresenter = new NewAttributoPresenter(_control.NewAttributoControl);
-            _listBoxPresenter = new ListBoxPresenter<Attributo>(_control.ListBoxControl);
+            _listBoxPresenter = new ListBoxPresenter<Attributo>(_control.ListBoxControl, attributi);
 
             _control.ListBoxControl.ListBox.SelectionMode = SelectionMode.One;
 

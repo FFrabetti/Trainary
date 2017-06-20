@@ -54,7 +54,7 @@
             this._treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._treeView.Location = new System.Drawing.Point(0, 0);
             this._treeView.Name = "_treeView";
-            this._treeView.Size = new System.Drawing.Size(213, 350);
+            this._treeView.Size = new System.Drawing.Size(213, 357);
             this._treeView.TabIndex = 0;
             // 
             // _splitContainer
@@ -71,7 +71,7 @@
             // 
             this._splitContainer.Panel2.Controls.Add(this._attributiControl);
             this._splitContainer.Panel2.Controls.Add(this._tableLayoutPanel);
-            this._splitContainer.Size = new System.Drawing.Size(644, 350);
+            this._splitContainer.Size = new System.Drawing.Size(644, 357);
             this._splitContainer.SplitterDistance = 213;
             this._splitContainer.TabIndex = 1;
             // 
@@ -83,7 +83,7 @@
             this._attributiControl.Margin = new System.Windows.Forms.Padding(0);
             this._attributiControl.Name = "_attributiControl";
             this._attributiControl.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this._attributiControl.Size = new System.Drawing.Size(427, 270);
+            this._attributiControl.Size = new System.Drawing.Size(427, 277);
             this._attributiControl.TabIndex = 7;
             // 
             // _tableLayoutPanel
@@ -176,7 +176,7 @@
             // 
             this._dialogButtonsControl.AutoSize = true;
             this._dialogButtonsControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._dialogButtonsControl.Location = new System.Drawing.Point(0, 350);
+            this._dialogButtonsControl.Location = new System.Drawing.Point(0, 357);
             this._dialogButtonsControl.Name = "_dialogButtonsControl";
             this._dialogButtonsControl.Size = new System.Drawing.Size(644, 51);
             this._dialogButtonsControl.TabIndex = 0;
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 401);
+            this.ClientSize = new System.Drawing.Size(644, 408);
             this.Controls.Add(this._splitContainer);
             this.Controls.Add(this._dialogButtonsControl);
             this.Name = "NewEsercizioForm";
