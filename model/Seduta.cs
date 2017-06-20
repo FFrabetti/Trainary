@@ -36,7 +36,7 @@ namespace Trainary.model
             get { return _nome; }
             set
             {
-                if (value == null)
+                if (string.IsNullOrEmpty(value))
                     _nome = String.Empty;
                 else if (_scheda.IsNomeUnivoco(value))
                     _nome = value;
@@ -55,8 +55,7 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            return "Seduta " + 
-                (string.IsNullOrEmpty(_nome) ? _scheda.GetCodiceProgressivo(this).ToString() : _nome);
+            return (string.IsNullOrEmpty(_nome) ? "Seduta " + _scheda.GetCodiceProgressivo(this).ToString() : _nome);
         }
 
     }

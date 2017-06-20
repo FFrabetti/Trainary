@@ -32,7 +32,7 @@ namespace Trainary.model
         public override string ToString()
         {
             string nome = Nome.Length > 0 ? Nome : "Allenamento extra";
-            return ToStringData() + " " + nome;
+            return ToStringData() + " - " + nome;
         }
     }
 }

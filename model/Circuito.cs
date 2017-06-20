@@ -36,20 +36,16 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder("Circuito");
+            StringBuilder sb = new StringBuilder("Circuito [");
 
-            //for (int i = 0; i < Targets.Length; i++)
-            //{
-            //    if (i == 0)
-            //        sb.Append(" [");
-            //    else
-            //        sb.Append(", ");
+            for (int i = 0; i < Esercizi.Length; i++)
+            {
+                if (i != 0)
+                    sb.Append(", ");
 
-            //    sb.Append(Targets[i]);
-
-            //    if (i == Targets.Length - 1)
-            //        sb.Append("]");
-            //}
+                sb.Append(Esercizi[i]);
+            }
+            sb.Append("]");
 
             return sb.ToString();
         }
