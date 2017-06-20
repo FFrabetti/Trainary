@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.attributi;
-using Trainary.view;
 
 namespace Trainary.presenter
 {
-    class TreeViewPresenter
+    public class TreeViewPresenter
     {
         private TreeView _treeView;
+
         public TreeViewPresenter(TreeView treeView)
         {
             _treeView = treeView;
         }
-        public void VisualizzaEserciziSvolti(EsercizioSvolto[] eserciziSvolti)
+
+        public void VisualizzaEserciziSvolti(IEnumerable<EsercizioSvolto> eserciziSvolti)
         {
             _treeView.Nodes.Clear();
             TreeNode treeNode = new TreeNode("Esercizi Svolti");
             VisualizzaSottoEsercizi(eserciziSvolti, treeNode);
             _treeView.Nodes.Add(treeNode);
         }
-        private void VisualizzaSottoEsercizi(EsercizioSvolto[] esercizi, TreeNode nodeEs)
+
+        private void VisualizzaSottoEsercizi(IEnumerable<EsercizioSvolto> esercizi, TreeNode nodeEs)
         {
-            if (esercizi.Length == 0)
-                return;
             foreach (EsercizioSvolto es in esercizi)
             {
                 TreeNode node = new TreeNode(es.ToString());
@@ -53,12 +49,12 @@ namespace Trainary.presenter
                     node.Nodes.Add(nodoDati);
                 }
                 nodeEs.Nodes.Add(node);
-                if (es is CircuitoSvolto)
-                    VisualizzaSottoEsercizi(((CircuitoSvolto)es).SottoEserciziSvolti.ToArray(), node);
 
+                VisualizzaSottoEsercizi(es.SottoEserciziSvolti, node);
             }
         }
-        public void VisualizzaSedute(Seduta[] sedute)
+
+        public void VisualizzaSedute(IEnumerable<Seduta> sedute)
         {
             _treeView.Nodes.Clear();
             foreach (Seduta seduta in sedute)
@@ -66,6 +62,7 @@ namespace Trainary.presenter
                 VisualizzaSeduta(seduta);
             }
         }
+
         public void VisualizzaSeduta(Seduta seduta)
         {
             TreeNode node = new TreeNode(seduta.ToString());
@@ -73,13 +70,12 @@ namespace Trainary.presenter
             VisualizzaEserciziSeduta(node, seduta.Esercizi);
             _treeView.Nodes.Add(node);
         }
+
         private void VisualizzaEserciziSeduta(TreeNode node, IList<Esercizio> esercizi)
         {
-            if (esercizi.Count == 0)
-                return;
             foreach (Esercizio es in esercizi)
             {
-                TreeNode nodeEs = new TreeNode(es.ToString());
+                TreeNode nodeEs = new TreeNode( (es is Circuito) ? "Circuito" : es.ToString());
                 nodeEs.Tag = es;
                 foreach (Attributo target in es.Targets)
                 {
