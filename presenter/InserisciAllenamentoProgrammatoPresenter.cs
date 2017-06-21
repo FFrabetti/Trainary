@@ -16,7 +16,7 @@ namespace Trainary.presenter
         private SelezionaSedutaControl _control = new SelezionaSedutaControl();
         private List<Scheda> _schede;
         //private List<Seduta> _sedute = new List<Seduta>();
-        private Seduta _seduta;
+        private Seduta _seduta = null;
 
         public InserisciAllenamentoProgrammatoPresenter(AllenamentoForm form)
             : base(form)
@@ -36,14 +36,7 @@ namespace Trainary.presenter
             InizializeSchedeCombo(Form.Data.Value);
         }
 
-        private Seduta Seduta
-        {
-            get
-            {
-                _seduta = (Seduta)_control.ComboSedute.SelectedItem;
-                return _seduta;
-            }
-        }
+     
 
         private void InizializeSchedeCombo(DateTime value)
         {
@@ -78,13 +71,24 @@ namespace Trainary.presenter
         private void OnAggiungiEsercizioButton(object sender, EventArgs e)
         {
 
-           // _seduta = Seduta;
+            if (EserciziSvolti.Count > 0 && (Seduta)_control.ComboSedute.SelectedItem != _seduta)
+            {
+                string messageBoxText = "Non è possibile svolgere esercizi di sedute e/o schede diverse nello stesso allenamento programmato";
+                string caption = "Errore";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBoxIcon icon = MessageBoxIcon.Warning;
+
+                MessageBox.Show(messageBoxText, caption, buttons, icon);
+                return;
+            }
+
+            _seduta = (Seduta)_control.ComboSedute.SelectedItem;
             using (SelezionaEserciziSeduta form = new SelezionaEserciziSeduta())
             {
                 SelezionaEserciziSedutaPresenter presenter;
                 try
                 {
-                    presenter = new SelezionaEserciziSedutaPresenter(form, Seduta);
+                    presenter = new SelezionaEserciziSedutaPresenter(form, _seduta);
                 }
                 catch(Exception ex)
                 {
@@ -154,7 +158,7 @@ namespace Trainary.presenter
                 return;
             }
             Diario.GetInstance().Allenamenti.Add(allenamento);
-            Form.Close();
+            
         }
     }
 }
