@@ -101,6 +101,16 @@ namespace Trainary.presenter
                 {
                     
                     Esercizio es = presenter.GetEsercizio();
+                    if(es == null)
+                    {
+                        string messageBoxText = "Non è possibile svolgere solo alcuni esercizi di un circuito. Devi svolgere l'intero circuito per poterlo inserire in un allenamento!";
+                        string caption = "Errore";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        MessageBoxIcon icon = MessageBoxIcon.Warning;
+
+                        MessageBox.Show(messageBoxText, caption, buttons, icon);
+                        return;
+                    }
                     foreach(EsercizioSvolto ev in EserciziSvolti)
                     {
                         if (ev.Esercizio.Equals(es))

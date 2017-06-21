@@ -36,6 +36,8 @@ namespace Trainary.presenter
 
         public Esercizio GetEsercizio()
         {
+            if (_form.TreeView.SelectedNode.Parent.Tag != null && _form.TreeView.SelectedNode.Parent.Tag is Circuito)
+                return null;
             return  (Esercizio)_form.TreeView.SelectedNode.Tag;
         }
     }
