@@ -31,6 +31,7 @@ namespace Trainary.presenter
 
         private void Inizializza()
         {
+            _form.Text = "Visualizza scheda";
             _form.Nome.Enabled = false;
             _scopoTextBox.Dock = DockStyle.Fill;
             _form.Scopo.Controls.Add(_scopoTextBox);
