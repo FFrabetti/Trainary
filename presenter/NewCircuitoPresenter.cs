@@ -38,7 +38,7 @@ namespace Trainary.presenter
 
         public Circuito NewCircuito()
         {
-            return new Circuito(_attributiPresenter.Attributi.ToArray(), _eserciziPresenter.SelectedItems.ToArray());
+            return new Circuito(_attributiPresenter.Attributi.ToArray(), _eserciziPresenter.SelectedItems.ToList());
         }
     }
 }

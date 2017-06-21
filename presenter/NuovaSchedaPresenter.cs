@@ -116,11 +116,44 @@ namespace Trainary.presenter
             if(node.Tag.GetType().IsSubclassOf(typeof(Esercizio)))
             {
                 Esercizio esercizioDaEliminare = (Esercizio)node.Tag;
+                
                 TreeNode superNode = node.Parent;
+                if(superNode.Tag != null && superNode.Tag is Circuito && (superNode.Tag as Circuito).Esercizi.Count == 2)
+                {
+                    string messageBoxText = "Un circuito non può contenere meno di 2 esercizi";
+                    string caption = "Errore";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBoxIcon icon = MessageBoxIcon.Warning;
+
+                    MessageBox.Show(messageBoxText, caption, buttons, icon);
+                    return;
+                }
+                while (!(superNode.Tag is Seduta))
+                {
+                    superNode = superNode.Parent;
+                }
                 Seduta seduta = (Seduta)superNode.Tag;
-                if (seduta.Esercizi.Contains(esercizioDaEliminare))
-                    seduta.Esercizi.Remove(esercizioDaEliminare);
+               
+                EliminaEsercizio(seduta.Esercizi, esercizioDaEliminare);
+                
                 SeduteChanged(this, EventArgs.Empty);
+            }
+        }
+
+        private void EliminaEsercizio(IList<Esercizio> esercizi, Esercizio esercizioDaEliminare)
+        {
+            if (esercizi.Contains(esercizioDaEliminare))
+             esercizi.Remove(esercizioDaEliminare);
+            else
+            {
+                foreach (Esercizio es in esercizi)
+                {
+                    if (es is Circuito)
+                    {
+                        Circuito circuito = (Circuito)es;
+                        EliminaEsercizio(circuito.Esercizi, esercizioDaEliminare);
+                    }
+                }
             }
         }
 
