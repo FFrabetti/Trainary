@@ -42,6 +42,14 @@ namespace Trainary.Presentation
                 return _aggiungiCircuitoButton;
             }
         }
+
+        public Button EliminaEsercizioButton
+        {
+            get
+            {
+                return _eliminaEsercizioButton;
+            }
+        }
         public Button AggiungiDatiButton
         {
             get

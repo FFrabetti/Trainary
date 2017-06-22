@@ -39,6 +39,7 @@
             this._aggiungiEsercizioButton = new System.Windows.Forms.Button();
             this._aggiungiCircuitoButton = new System.Windows.Forms.Button();
             this._aggiungiDatiButton = new System.Windows.Forms.Button();
+            this._eliminaEsercizioButton = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -149,13 +150,23 @@
             this._aggiungiDatiButton.Text = "Aggiungi dati";
             this._aggiungiDatiButton.UseVisualStyleBackColor = true;
             // 
+            // _eliminaEsercizioButton
+            // 
+            this._eliminaEsercizioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this._eliminaEsercizioButton.Location = new System.Drawing.Point(289, 179);
+            this._eliminaEsercizioButton.Name = "_eliminaEsercizioButton";
+            this._eliminaEsercizioButton.Size = new System.Drawing.Size(107, 23);
+            this._eliminaEsercizioButton.TabIndex = 18;
+            this._eliminaEsercizioButton.Text = "Elimina esercizio";
+            this._eliminaEsercizioButton.UseVisualStyleBackColor = true;
+            // 
             // AllenamentoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(417, 368);
+            this.Controls.Add(this._eliminaEsercizioButton);
             this.Controls.Add(this._aggiungiDatiButton);
             this.Controls.Add(this._aggiungiCircuitoButton);
             this.Controls.Add(this._aggiungiEsercizioButton);
@@ -187,5 +198,6 @@
         private System.Windows.Forms.Button _aggiungiCircuitoButton;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button _aggiungiDatiButton;
+        private System.Windows.Forms.Button _eliminaEsercizioButton;
     }
 }
