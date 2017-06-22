@@ -27,6 +27,7 @@ namespace Trainary.presenter
             _presenter = new TreeViewPresenter(_schedaForm.TreeView);
             InizializeScopoCombo();
             AssegnaGestori();
+            _schedaForm.Buttons.CancelButton.Enabled = false;
             
         }
 
@@ -53,12 +54,16 @@ namespace Trainary.presenter
             _schedaForm.DataInizio.Value = DateTime.Today.Date;
             _schedaForm.DataFine.Value = DateTime.Today.Date;
             _schedaForm.Durata.Text = String.Empty;
-            foreach (Seduta s in _scheda.Sedute)
+            _schedaForm.DataFineRadioButton.Select();
+            if (_scheda != null)
             {
-                _scheda.RimuoviSeduta(s);
+                foreach (Seduta s in _scheda.Sedute)
+                {
+                    _scheda.RimuoviSeduta(s);
+                }
+                SeduteChanged(this, EventArgs.Empty);
+                _scheda = null;
             }
-            SeduteChanged(this, EventArgs.Empty);
-            _scheda = null;
         }
 
         private void OnNuovoCircuitoButton(object sender, EventArgs e)
@@ -177,7 +182,8 @@ namespace Trainary.presenter
 
         private void OnIdle(object sender, EventArgs e)
         {
-           _schedaForm.NuovaSedutaButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
+            _schedaForm.Buttons.CancelButton.Enabled = EnableCancel();
+            _schedaForm.NuovaSedutaButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
             _schedaForm.Buttons.OkButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
            
             if (_schedaForm.TreeView.SelectedNode == null) //|| _schedaForm.TreeView.SelectedNode.Tag.GetType() == typeof(Seduta))
@@ -192,6 +198,24 @@ namespace Trainary.presenter
                 _schedaForm.NuovoEsercizioButton.Enabled = false;
                 _schedaForm.NuovoCircuitoButton.Enabled = false;
             }
+        }
+
+        private bool EnableCancel()
+        {
+            if (_schedaForm.Nome.Text.Trim() != String.Empty)
+                return true;
+            if (_schedaForm.Descrizione.Text.Trim() != String.Empty)
+                return true;
+            if ((ScopoDellaScheda)_comboBox.SelectedItem != ScopoDellaScheda.Nessuno)
+                return true;
+            if (_schedaForm.DataInizio.Value.Date != DateTime.Today.Date)
+                return true;
+            if (_schedaForm.DataFine.Value.Date != DateTime.Today.Date)
+                return true;
+            if (_schedaForm.Durata.Text.Trim() != String.Empty)
+                return true;
+
+            return false;
         }
 
         private void OnNuovoEsercizioButton(object sender, EventArgs e)
@@ -271,7 +295,7 @@ namespace Trainary.presenter
             }
             else
             {
-                string durata = _schedaForm.Durata.Text;
+                string durata = _schedaForm.Durata.Text.Trim();
                 int giorni = 0;
                 try
                 {
@@ -331,7 +355,7 @@ namespace Trainary.presenter
 
                 }
             }
-           
+            _schedaForm.Buttons.CancelButton.Enabled = true;   
                 Seduta seduta = _scheda.AggiungiSeduta(new List<Esercizio>());
                 SeduteChanged(this, EventArgs.Empty);
             
