@@ -14,15 +14,18 @@ namespace Trainary.presenter
             _treeView = treeView;
         }
 
-        public void VisualizzaEserciziSvolti(IEnumerable<EsercizioSvolto> eserciziSvolti)
+        public void VisualizzaEserciziSvolti(IList<EsercizioSvolto> eserciziSvolti)
         {
             _treeView.Nodes.Clear();
-            TreeNode treeNode = new TreeNode("Esercizi Svolti");
-            VisualizzaSottoEsercizi(eserciziSvolti, treeNode);
-            _treeView.Nodes.Add(treeNode);
+            if (eserciziSvolti.Count > 0)
+            {
+                TreeNode treeNode = new TreeNode("Esercizi Svolti");
+                VisualizzaSottoEsercizi(eserciziSvolti, treeNode);
+                _treeView.Nodes.Add(treeNode);
+            }
         }
 
-        private void VisualizzaSottoEsercizi(IEnumerable<EsercizioSvolto> esercizi, TreeNode nodeEs)
+        private void VisualizzaSottoEsercizi(IList<EsercizioSvolto> esercizi, TreeNode nodeEs)
         {
             foreach (EsercizioSvolto es in esercizi)
             {
@@ -54,7 +57,7 @@ namespace Trainary.presenter
             }
         }
 
-        public void VisualizzaSedute(IEnumerable<Seduta> sedute)
+        public void VisualizzaSedute(IList<Seduta> sedute)
         {
             _treeView.Nodes.Clear();
             foreach (Seduta seduta in sedute)
