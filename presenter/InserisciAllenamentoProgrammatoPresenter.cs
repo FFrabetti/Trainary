@@ -158,7 +158,18 @@ namespace Trainary.presenter
                 return;
             }
             Diario.GetInstance().Allenamenti.Add(allenamento);
-            
+            Form.Close();
+        }
+        protected override void OnCancelButtonClick(object sender, EventArgs e)
+        {
+            base.OnCancelButtonClick(sender, e);
+            InizializeSchedeCombo(Form.Data.Value);
+        }
+        protected override void OnApplicationIdle(object sender, EventArgs e)
+        {
+            base.OnApplicationIdle(sender, e);
+            Form.Buttons.CancelButton.Enabled = Form.Data.Value.Date != DateTime.Today.Date || EserciziSvolti.Count > 0;
+
         }
     }
 }

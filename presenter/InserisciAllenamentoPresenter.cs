@@ -30,9 +30,10 @@ namespace Trainary.presenter
             _allenamentoForm.Buttons.CancelButton.Click += OnCancelButtonClick;
         }
 
-        private void OnCancelButtonClick(object sender, EventArgs e)
+        protected virtual void OnCancelButtonClick(object sender, EventArgs e)
         {
             _eserciziSvolti.Clear();
+            _allenamentoForm.Data.Value = DateTime.Today.Date;
             AggiornaTreeView();
         }
 
@@ -51,7 +52,7 @@ namespace Trainary.presenter
             get { return _eserciziSvolti; }
         }
 
-        private void OnApplicationIdle(object sender, EventArgs e)
+        protected virtual void OnApplicationIdle(object sender, EventArgs e)
         {
             EnableButtons();
         }
@@ -65,6 +66,7 @@ namespace Trainary.presenter
         {
             _allenamentoForm.AggiungiDatiButton.Enabled = _allenamentoForm.TreeView.SelectedNode != null &&
                            _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto;
+           
         }
 
         protected void AggiornaTreeView()
