@@ -50,14 +50,25 @@ namespace Trainary.presenter
 
         private void OnRimuoviSchedaButtonClick(object sender, EventArgs e)
         {
+            string messageBoxText = "Sicuro di voler cancellare " +
+                (_control.ListView.SelectedItems.Count > 1 ?
+                    _control.ListView.SelectedItems.Count + " schede" :
+                    "la scheda " + _control.ListView.SelectedItems[0].Tag
+                ) + "?";
+            string caption = "Conferma cancellazione";
+            MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+            MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-            foreach (ListViewItem item in _control.ListView.SelectedItems)
+            if (MessageBox.Show(messageBoxText, caption, buttons, icon) == DialogResult.OK)
             {
-                GestoreSchede.GetInstance().GetSchede().Remove((Scheda)item.Tag);
+
+                foreach (ListViewItem item in _control.ListView.SelectedItems)
+                {
+                    GestoreSchede.GetInstance().GetSchede().Remove((Scheda)item.Tag);
+                }
+
+                OnSchedeChanged(this, EventArgs.Empty);
             }
-            
-            
-            OnSchedeChanged(this,EventArgs.Empty);
         }
 
         private void OnSchedeChanged(object sender, EventArgs e)

@@ -41,7 +41,8 @@ namespace Trainary.model
 
         public bool IsNelPeriodo(DateTime data)
         {
-            return _dataInizio <= data && _dataFine >= data;
+            DateTime giorno = data.Date;
+            return _dataInizio <= giorno && _dataFine >= giorno;
         }
 
         public override string ToString()

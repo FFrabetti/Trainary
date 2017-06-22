@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
             this._nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._scopo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,18 +37,32 @@
             this._rimuoviSchedaButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this._allenamentiLabel = new System.Windows.Forms.Label();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
+            // splitContainer1
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel2.Controls.Add(this.listView1);
-            this.panel2.Location = new System.Drawing.Point(10, 113);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(649, 260);
-            this.panel2.TabIndex = 1;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this._allenamentiLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this._rimuoviSchedaButton);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.listView1);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(20);
+            this.splitContainer1.Size = new System.Drawing.Size(713, 507);
+            this.splitContainer1.SplitterDistance = 100;
+            this.splitContainer1.TabIndex = 35;
             // 
             // listView1
             // 
@@ -60,13 +74,12 @@
             this._descrizione,
             this._periodo});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Location = new System.Drawing.Point(20, 20);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(649, 260);
-            this.listView1.TabIndex = 34;
+            this.listView1.Size = new System.Drawing.Size(673, 363);
+            this.listView1.TabIndex = 40;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
             // 
             // _nome
             // 
@@ -90,33 +103,33 @@
             // 
             // _rimuoviSchedaButton
             // 
-            this._rimuoviSchedaButton.Location = new System.Drawing.Point(519, 66);
+            this._rimuoviSchedaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._rimuoviSchedaButton.Location = new System.Drawing.Point(590, 13);
             this._rimuoviSchedaButton.Name = "_rimuoviSchedaButton";
             this._rimuoviSchedaButton.Size = new System.Drawing.Size(103, 23);
-            this._rimuoviSchedaButton.TabIndex = 34;
+            this._rimuoviSchedaButton.TabIndex = 39;
             this._rimuoviSchedaButton.Text = "Rimuovi ";
             this._rimuoviSchedaButton.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(519, 33);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(590, 42);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 26);
-            this.button1.TabIndex = 33;
+            this.button1.TabIndex = 38;
             this.button1.Text = "Nuova scheda";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // _allenamentiLabel
             // 
             this._allenamentiLabel.AutoSize = true;
             this._allenamentiLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._allenamentiLabel.Location = new System.Drawing.Point(286, 73);
+            this._allenamentiLabel.Location = new System.Drawing.Point(17, 14);
             this._allenamentiLabel.Name = "_allenamentiLabel";
             this._allenamentiLabel.Size = new System.Drawing.Size(73, 18);
-            this._allenamentiLabel.TabIndex = 32;
+            this._allenamentiLabel.TabIndex = 37;
             this._allenamentiLabel.Text = "Schede:";
-            this._allenamentiLabel.Click += new System.EventHandler(this._allenamentiLabel_Click);
             // 
             // GestioneSchedeControl
             // 
@@ -124,27 +137,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.Controls.Add(this._rimuoviSchedaButton);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this._allenamentiLabel);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "GestioneSchedeControl";
-            this.Size = new System.Drawing.Size(678, 395);
-            this.panel2.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(713, 507);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel2;
+
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label _allenamentiLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _rimuoviSchedaButton;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader _nome;
         private System.Windows.Forms.ColumnHeader _scopo;
         private System.Windows.Forms.ColumnHeader _descrizione;
         private System.Windows.Forms.ColumnHeader _periodo;
-        private System.Windows.Forms.Button _rimuoviSchedaButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label _allenamentiLabel;
     }
 }

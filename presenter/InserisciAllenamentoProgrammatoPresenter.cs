@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.Presentation;
@@ -14,9 +11,9 @@ namespace Trainary.presenter
     {
 
         private SelezionaSedutaControl _control = new SelezionaSedutaControl();
-        private List<Scheda> _schede;
-        //private List<Seduta> _sedute = new List<Seduta>();
+
         private Seduta _seduta = null;
+        private DateTime _data;
 
         public InserisciAllenamentoProgrammatoPresenter(AllenamentoForm form)
             : base(form)
@@ -25,31 +22,54 @@ namespace Trainary.presenter
             Form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioButton;
             Form.AggiungiCircuitoButton.Visible = false;
             Form.Buttons.OkButton.Click += OkButton_Click;
+
             Form.Data.ValueChanged += OnDataValueChanged;
+            _control.ComboSchede.SelectedIndexChanged += SelectedSchedaCombo;
+            _control.ComboSedute.SelectedIndexChanged += SelectedSeduteCombo;
+            _control.ComboSedute.DataSourceChanged += SelectedSeduteCombo;
+
             Form.AllenamentoLabel.Text = "Allenamento Programmato";
 
             OnDataValueChanged(this, EventArgs.Empty);
         }
 
-        private void OnDataValueChanged(object sender, EventArgs e)
+        private void SelectedSeduteCombo(object sender, EventArgs e)
         {
-            InizializeSchedeCombo(Form.Data.Value);
+            Seduta sedutaSelezionata = (Seduta)((ComboBox)sender).SelectedItem;
+
+            if (sedutaSelezionata != _seduta && EserciziSvolti.Count > 0)
+            {
+                string messageBoxText = "Ci sono degli esercizi svolti non salvati, se si prosegue saranno cancellati";
+                string caption = "Conferma cancellazione";
+                MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+                MessageBoxIcon icon = MessageBoxIcon.Warning;
+
+                if (MessageBox.Show(messageBoxText, caption, buttons, icon) == DialogResult.OK)
+                {
+                    EserciziSvolti.Clear();
+                    AggiornaTreeView();
+                }
+                else // altrimenti cancello l'evento e non faccio nulla
+                {
+                    // ripristino della data
+                    Form.Data.Value = _data;
+                    _control.ComboSchede.SelectedItem = _seduta.Scheda;
+                    ((ComboBox)sender).SelectedItem = _seduta;
+                    return;
+                }
+            }
+
+            _seduta = sedutaSelezionata;
         }
 
-     
-
-        private void InizializeSchedeCombo(DateTime value)
+        private void OnDataValueChanged(object sender, EventArgs e)
         {
-            _schede = new List<Scheda>();
-            foreach (Scheda scheda in GestoreSchede.GetInstance().GetSchedeValide(value))
-                _schede.Add(scheda);
+            _control.ComboSchede.DataSource = new List<Scheda>(GestoreSchede.GetInstance().GetSchedeValide(Form.Data.Value));
 
-            _control.ComboSchede.DataSource = _schede;
-            _control.ComboSchede.SelectedIndexChanged += SelectedSchedaCombo;
             SelectedSchedaCombo(this, EventArgs.Empty);
         }
 
-        private void InizializeSeduteCombo()
+        private void SelectedSchedaCombo(object sender, EventArgs e)
         {
             if (_control.ComboSchede.SelectedItem != null)
             {
@@ -59,17 +79,12 @@ namespace Trainary.presenter
             else
             {
                 _control.ComboSedute.DataSource = new List<Seduta>();
-
             }
-        }
-
-        private void SelectedSchedaCombo(object sender, EventArgs e)
-        {
-            InizializeSeduteCombo();
         }
 
         private void OnAggiungiEsercizioButton(object sender, EventArgs e)
         {
+            _data = Form.Data.Value;
 
             if (EserciziSvolti.Count > 0 && (Seduta)_control.ComboSedute.SelectedItem != _seduta)
             {
@@ -163,7 +178,7 @@ namespace Trainary.presenter
         protected override void OnCancelButtonClick(object sender, EventArgs e)
         {
             base.OnCancelButtonClick(sender, e);
-            InizializeSchedeCombo(Form.Data.Value);
+            OnDataValueChanged(null, EventArgs.Empty);
         }
         protected override void OnApplicationIdle(object sender, EventArgs e)
         {

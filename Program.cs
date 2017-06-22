@@ -106,41 +106,41 @@ namespace Trainary
         }
 
         // Test only
-        [MenuLabel("Test", "Nuovo eserczio")]
-        public static void NuovoEsercizio()
-        {
-            using (NewEsercizioForm newEsForm = new NewEsercizioForm())
-            {
-                NewEsercizioPresenter presenter = new NewEsercizioPresenter(newEsForm);
+        //[MenuLabel("Test", "Nuovo eserczio")]
+        //public static void NuovoEsercizio()
+        //{
+        //    using (NewEsercizioForm newEsForm = new NewEsercizioForm())
+        //    {
+        //        NewEsercizioPresenter presenter = new NewEsercizioPresenter(newEsForm);
 
-                if (newEsForm.ShowDialog() == DialogResult.OK)
-                {
-                    Esercizio esercizio = presenter.NewEsercizio();
-                    Console.WriteLine(esercizio);
-                }
-                else
-                    Console.WriteLine("cancel");
-            }
-        }
+        //        if (newEsForm.ShowDialog() == DialogResult.OK)
+        //        {
+        //            Esercizio esercizio = presenter.NewEsercizio();
+        //            Console.WriteLine(esercizio);
+        //        }
+        //        else
+        //            Console.WriteLine("cancel");
+        //    }
+        //}
 
-        [MenuLabel("Test", "Test2", "Nuovo Circuito")]
-        public static void NuovoCircuito()
-        {
-            IDataManager<Esercizio> eserciziDM = new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager());
+        //[MenuLabel("Test", "Test2", "Nuovo Circuito")]
+        //public static void NuovoCircuito()
+        //{
+        //    IDataManager<Esercizio> eserciziDM = new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager());
 
-            using (NewCircuitoForm newCircuitoForm = new NewCircuitoForm())
-            {
-                NewCircuitoPresenter presenter = new NewCircuitoPresenter(newCircuitoForm, new List<Esercizio>(eserciziDM.GetElements()));
+        //    using (NewCircuitoForm newCircuitoForm = new NewCircuitoForm())
+        //    {
+        //        NewCircuitoPresenter presenter = new NewCircuitoPresenter(newCircuitoForm, new List<Esercizio>(eserciziDM.GetElements()));
 
-                if (newCircuitoForm.ShowDialog() == DialogResult.OK)
-                {
-                    Circuito circuito = presenter.NewCircuito();
-                    Console.WriteLine(circuito.ToFullString());
-                }
-                else
-                    Console.WriteLine("cancel");
-            }
-        }
+        //        if (newCircuitoForm.ShowDialog() == DialogResult.OK)
+        //        {
+        //            Circuito circuito = presenter.NewCircuito();
+        //            Console.WriteLine(circuito.ToFullString());
+        //        }
+        //        else
+        //            Console.WriteLine("cancel");
+        //    }
+        //}
 
     }
 }

@@ -36,7 +36,7 @@
             // 
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(538, 24);
+            this._menuStrip.Size = new System.Drawing.Size(716, 24);
             this._menuStrip.TabIndex = 0;
             this._menuStrip.Text = "menuStrip1";
             // 
@@ -47,7 +47,7 @@
             this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel.Location = new System.Drawing.Point(0, 24);
             this._panel.Name = "_panel";
-            this._panel.Size = new System.Drawing.Size(538, 368);
+            this._panel.Size = new System.Drawing.Size(716, 500);
             this._panel.TabIndex = 1;
             // 
             // MainForm
@@ -55,7 +55,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(538, 392);
+            this.ClientSize = new System.Drawing.Size(716, 524);
             this.Controls.Add(this._panel);
             this.Controls.Add(this._menuStrip);
             this.MainMenuStrip = this._menuStrip;
