@@ -35,17 +35,17 @@
             this._allenamentiLabel = new System.Windows.Forms.Label();
             this._comboBox = new System.Windows.Forms.ComboBox();
             this._selezionaFiltroLabel = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // _filtriLabel
             // 
+            this._filtriLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._filtriLabel.AutoSize = true;
-            this._filtriLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._filtriLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._filtriLabel.Location = new System.Drawing.Point(3, 241);
             this._filtriLabel.Name = "_filtriLabel";
@@ -54,7 +54,8 @@
             // 
             // _okButton
             // 
-            this._okButton.Location = new System.Drawing.Point(320, 141);
+            this._okButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this._okButton.Location = new System.Drawing.Point(375, 153);
             this._okButton.Name = "_okButton";
             this._okButton.Size = new System.Drawing.Size(75, 23);
             this._okButton.TabIndex = 24;
@@ -63,16 +64,18 @@
             // 
             // _panel
             // 
-            this._panel.Location = new System.Drawing.Point(28, 41);
+            this._panel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this._panel.Location = new System.Drawing.Point(83, 53);
             this._panel.Name = "_panel";
             this._panel.Size = new System.Drawing.Size(367, 94);
             this._panel.TabIndex = 23;
             // 
             // _annullaButton
             // 
+            this._annullaButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._annullaButton.AutoSize = true;
             this._annullaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._annullaButton.Location = new System.Drawing.Point(283, 12);
+            this._annullaButton.Location = new System.Drawing.Point(338, 24);
             this._annullaButton.Name = "_annullaButton";
             this._annullaButton.Size = new System.Drawing.Size(112, 23);
             this._annullaButton.TabIndex = 20;
@@ -81,9 +84,10 @@
             // 
             // _allenamentiLabel
             // 
+            this._allenamentiLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._allenamentiLabel.AutoSize = true;
             this._allenamentiLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._allenamentiLabel.Location = new System.Drawing.Point(7, 210);
+            this._allenamentiLabel.Location = new System.Drawing.Point(189, 209);
             this._allenamentiLabel.Name = "_allenamentiLabel";
             this._allenamentiLabel.Size = new System.Drawing.Size(139, 18);
             this._allenamentiLabel.TabIndex = 19;
@@ -91,33 +95,26 @@
             // 
             // _comboBox
             // 
+            this._comboBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._comboBox.BackColor = System.Drawing.Color.White;
             this._comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBox.ForeColor = System.Drawing.Color.Black;
             this._comboBox.FormattingEnabled = true;
-            this._comboBox.Location = new System.Drawing.Point(122, 12);
+            this._comboBox.Location = new System.Drawing.Point(177, 24);
             this._comboBox.Name = "_comboBox";
             this._comboBox.Size = new System.Drawing.Size(155, 21);
             this._comboBox.TabIndex = 18;
             // 
             // _selezionaFiltroLabel
             // 
+            this._selezionaFiltroLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._selezionaFiltroLabel.AutoSize = true;
             this._selezionaFiltroLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._selezionaFiltroLabel.Location = new System.Drawing.Point(6, 14);
+            this._selezionaFiltroLabel.Location = new System.Drawing.Point(61, 26);
             this._selezionaFiltroLabel.Name = "_selezionaFiltroLabel";
             this._selezionaFiltroLabel.Size = new System.Drawing.Size(113, 19);
             this._selezionaFiltroLabel.TabIndex = 17;
             this._selezionaFiltroLabel.Text = "Seleziona filtro:";
-            // 
-            // listBox2
-            // 
-            this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(3, 3);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(538, 108);
-            this.listBox2.TabIndex = 28;
             // 
             // panel1
             // 
@@ -145,6 +142,15 @@
             this.panel2.Size = new System.Drawing.Size(544, 114);
             this.panel2.TabIndex = 30;
             // 
+            // listBox2
+            // 
+            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(3, 3);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(538, 108);
+            this.listBox2.TabIndex = 28;
+            // 
             // DiarioControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,8 +177,8 @@
         private System.Windows.Forms.Label _allenamentiLabel;
         private System.Windows.Forms.ComboBox _comboBox;
         private System.Windows.Forms.Label _selezionaFiltroLabel;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
