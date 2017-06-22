@@ -28,6 +28,18 @@ namespace Trainary.presenter
 
             _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiButton;
             _allenamentoForm.Buttons.CancelButton.Click += OnCancelButtonClick;
+            _allenamentoForm.EliminaEsercizioButton.Click += OnEliminaEsercizioButton;
+        }
+
+        private void OnEliminaEsercizioButton(object sender, EventArgs e)
+        {
+            if (_allenamentoForm.TreeView.SelectedNode.Tag != null && _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto)
+            {
+                EsercizioSvolto eSvolto = (EsercizioSvolto)_allenamentoForm.TreeView.SelectedNode.Tag;
+                
+                _eserciziSvolti.Remove(eSvolto);
+                AggiornaTreeView();
+            }
         }
 
         protected virtual void OnCancelButtonClick(object sender, EventArgs e)
@@ -66,7 +78,8 @@ namespace Trainary.presenter
         {
             _allenamentoForm.AggiungiDatiButton.Enabled = _allenamentoForm.TreeView.SelectedNode != null &&
                            _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto;
-           
+            _allenamentoForm.EliminaEsercizioButton.Enabled = _allenamentoForm.TreeView.SelectedNode != null &&
+                            _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto && !(_allenamentoForm.TreeView.SelectedNode.Parent.Tag is CircuitoSvolto);
         }
 
         protected void AggiornaTreeView()
