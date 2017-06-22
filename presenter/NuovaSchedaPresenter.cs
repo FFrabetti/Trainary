@@ -42,7 +42,25 @@ namespace Trainary.presenter
             _schedaForm.RimuoviSedutaButton.Click += OnRimuoviSedutaButton;
             _schedaForm.RinominaSedutaButton.Click += OnRinominaSedutaButton;
             _schedaForm.NuovoCircuitoButton.Click += OnNuovoCircuitoButton;
+            _schedaForm.Buttons.CancelButton.Click += OnCancelButton;
         }
+
+        private void OnCancelButton(object sender, EventArgs e)
+        {
+            _schedaForm.Nome.Text = String.Empty;
+            InizializeScopoCombo();
+            _schedaForm.Descrizione.Text = String.Empty;
+            _schedaForm.DataInizio.Value = DateTime.Today.Date;
+            _schedaForm.DataFine.Value = DateTime.Today.Date;
+            _schedaForm.Durata.Text = String.Empty;
+            foreach (Seduta s in _scheda.Sedute)
+            {
+                _scheda.RimuoviSeduta(s);
+            }
+            SeduteChanged(this, EventArgs.Empty);
+            _scheda = null;
+        }
+
         private void OnNuovoCircuitoButton(object sender, EventArgs e)
         {
             TreeNode node = _schedaForm.TreeView.SelectedNode;
