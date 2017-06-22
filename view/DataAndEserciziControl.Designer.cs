@@ -36,7 +36,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox2.BackColor = System.Drawing.Color.White;
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(97, 78);
             this.textBox2.Multiline = true;
@@ -47,7 +47,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(97, 34);
             this.textBox1.Name = "textBox1";

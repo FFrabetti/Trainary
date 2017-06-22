@@ -164,5 +164,10 @@ namespace Trainary.Presentation
                 return _nuovoCircuitoButton;
             }
         }
+
+        private void _seduteTreeView_AfterSelect_1(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }

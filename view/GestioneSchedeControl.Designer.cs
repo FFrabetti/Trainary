@@ -28,31 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel2 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this._nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._scopo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._descrizione = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._periodo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._rimuoviSchedaButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this._allenamentiLabel = new System.Windows.Forms.Label();
-            this._rimuoviSchedaButton = new System.Windows.Forms.Button();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.Controls.Add(this.listView1);
+            this.panel2.Location = new System.Drawing.Point(10, 113);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(649, 260);
+            this.panel2.TabIndex = 1;
             // 
             // listView1
             // 
+            this.listView1.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.listView1.BackColor = System.Drawing.SystemColors.Window;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._nome,
             this._scopo,
             this._descrizione,
             this._periodo});
-            this.listView1.Location = new System.Drawing.Point(49, 134);
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(597, 183);
-            this.listView1.TabIndex = 11;
+            this.listView1.Size = new System.Drawing.Size(649, 260);
+            this.listView1.TabIndex = 34;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
             // 
             // _nome
             // 
@@ -67,40 +81,42 @@
             // _descrizione
             // 
             this._descrizione.Text = "Descrizione";
-            this._descrizione.Width = 163;
+            this._descrizione.Width = 173;
             // 
             // _periodo
             // 
             this._periodo.Text = "Periodo di validità";
-            this._periodo.Width = 154;
+            this._periodo.Width = 164;
+            // 
+            // _rimuoviSchedaButton
+            // 
+            this._rimuoviSchedaButton.Location = new System.Drawing.Point(519, 66);
+            this._rimuoviSchedaButton.Name = "_rimuoviSchedaButton";
+            this._rimuoviSchedaButton.Size = new System.Drawing.Size(103, 23);
+            this._rimuoviSchedaButton.TabIndex = 34;
+            this._rimuoviSchedaButton.Text = "Rimuovi ";
+            this._rimuoviSchedaButton.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(536, 66);
+            this.button1.Location = new System.Drawing.Point(519, 33);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 26);
-            this.button1.TabIndex = 10;
+            this.button1.TabIndex = 33;
             this.button1.Text = "Nuova scheda";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // _allenamentiLabel
             // 
             this._allenamentiLabel.AutoSize = true;
             this._allenamentiLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._allenamentiLabel.Location = new System.Drawing.Point(303, 106);
+            this._allenamentiLabel.Location = new System.Drawing.Point(286, 73);
             this._allenamentiLabel.Name = "_allenamentiLabel";
             this._allenamentiLabel.Size = new System.Drawing.Size(73, 18);
-            this._allenamentiLabel.TabIndex = 9;
+            this._allenamentiLabel.TabIndex = 32;
             this._allenamentiLabel.Text = "Schede:";
-            // 
-            // _rimuoviSchedaButton
-            // 
-            this._rimuoviSchedaButton.Location = new System.Drawing.Point(536, 99);
-            this._rimuoviSchedaButton.Name = "_rimuoviSchedaButton";
-            this._rimuoviSchedaButton.Size = new System.Drawing.Size(103, 23);
-            this._rimuoviSchedaButton.TabIndex = 12;
-            this._rimuoviSchedaButton.Text = "Rimuovi ";
-            this._rimuoviSchedaButton.UseVisualStyleBackColor = true;
+            this._allenamentiLabel.Click += new System.EventHandler(this._allenamentiLabel_Click);
             // 
             // GestioneSchedeControl
             // 
@@ -109,24 +125,26 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.Controls.Add(this._rimuoviSchedaButton);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this._allenamentiLabel);
+            this.Controls.Add(this.panel2);
             this.Name = "GestioneSchedeControl";
-            this.Size = new System.Drawing.Size(671, 387);
+            this.Size = new System.Drawing.Size(678, 395);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader _nome;
         private System.Windows.Forms.ColumnHeader _scopo;
         private System.Windows.Forms.ColumnHeader _descrizione;
         private System.Windows.Forms.ColumnHeader _periodo;
+        private System.Windows.Forms.Button _rimuoviSchedaButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label _allenamentiLabel;
-        private System.Windows.Forms.Button _rimuoviSchedaButton;
     }
 }

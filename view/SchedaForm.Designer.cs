@@ -35,7 +35,6 @@
             this._scopoLabel = new System.Windows.Forms.Label();
             this._descrizione = new System.Windows.Forms.TextBox();
             this._seduteLabel = new System.Windows.Forms.Label();
-            this._seduteTreeView = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this._nuovoEsercizioButton = new System.Windows.Forms.Button();
             this._nuovaSedutaButton = new System.Windows.Forms.Button();
@@ -52,10 +51,14 @@
             this._rimuoviSedutaButton = new System.Windows.Forms.Button();
             this._nuovoCircuitoButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this._seduteTreeView = new System.Windows.Forms.TreeView();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // _nomeLabel
             // 
+            this._nomeLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._nomeLabel.AutoSize = true;
             this._nomeLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._nomeLabel.Location = new System.Drawing.Point(22, 18);
@@ -66,6 +69,7 @@
             // 
             // _nome
             // 
+            this._nome.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._nome.Location = new System.Drawing.Point(172, 17);
             this._nome.Name = "_nome";
             this._nome.Size = new System.Drawing.Size(190, 20);
@@ -73,6 +77,7 @@
             // 
             // _dataInizioLabel
             // 
+            this._dataInizioLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._dataInizioLabel.AutoSize = true;
             this._dataInizioLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._dataInizioLabel.ForeColor = System.Drawing.Color.Black;
@@ -84,6 +89,7 @@
             // 
             // _descrizioneLabel
             // 
+            this._descrizioneLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._descrizioneLabel.AutoSize = true;
             this._descrizioneLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._descrizioneLabel.Location = new System.Drawing.Point(22, 86);
@@ -94,6 +100,7 @@
             // 
             // _scopoLabel
             // 
+            this._scopoLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._scopoLabel.AutoSize = true;
             this._scopoLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._scopoLabel.Location = new System.Drawing.Point(22, 51);
@@ -104,6 +111,7 @@
             // 
             // _descrizione
             // 
+            this._descrizione.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._descrizione.Location = new System.Drawing.Point(172, 86);
             this._descrizione.Multiline = true;
             this._descrizione.Name = "_descrizione";
@@ -113,6 +121,7 @@
             // 
             // _seduteLabel
             // 
+            this._seduteLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._seduteLabel.AutoSize = true;
             this._seduteLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._seduteLabel.ForeColor = System.Drawing.Color.Black;
@@ -122,16 +131,9 @@
             this._seduteLabel.TabIndex = 13;
             this._seduteLabel.Text = "Sedute*:";
             // 
-            // _seduteTreeView
-            // 
-            this._seduteTreeView.Location = new System.Drawing.Point(26, 304);
-            this._seduteTreeView.Name = "_seduteTreeView";
-            this._seduteTreeView.Size = new System.Drawing.Size(301, 174);
-            this._seduteTreeView.TabIndex = 16;
-            this._seduteTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this._seduteTreeView_AfterSelect);
-            // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Red;
             this.label1.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,6 +146,7 @@
             // 
             // _nuovoEsercizioButton
             // 
+            this._nuovoEsercizioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._nuovoEsercizioButton.Enabled = false;
             this._nuovoEsercizioButton.Location = new System.Drawing.Point(344, 393);
             this._nuovoEsercizioButton.Name = "_nuovoEsercizioButton";
@@ -154,6 +157,7 @@
             // 
             // _nuovaSedutaButton
             // 
+            this._nuovaSedutaButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._nuovaSedutaButton.Location = new System.Drawing.Point(344, 304);
             this._nuovaSedutaButton.Name = "_nuovaSedutaButton";
             this._nuovaSedutaButton.Size = new System.Drawing.Size(101, 23);
@@ -163,6 +167,7 @@
             // 
             // _dataInizio
             // 
+            this._dataInizio.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._dataInizio.Location = new System.Drawing.Point(185, 156);
             this._dataInizio.Name = "_dataInizio";
             this._dataInizio.Size = new System.Drawing.Size(182, 20);
@@ -170,6 +175,7 @@
             // 
             // _dataFine
             // 
+            this._dataFine.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._dataFine.Location = new System.Drawing.Point(185, 188);
             this._dataFine.Name = "_dataFine";
             this._dataFine.Size = new System.Drawing.Size(182, 20);
@@ -177,6 +183,7 @@
             // 
             // _dataFineLabel
             // 
+            this._dataFineLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._dataFineLabel.AutoSize = true;
             this._dataFineLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._dataFineLabel.ForeColor = System.Drawing.Color.Black;
@@ -188,6 +195,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
@@ -199,6 +207,7 @@
             // 
             // _durata
             // 
+            this._durata.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._durata.Location = new System.Drawing.Point(185, 222);
             this._durata.Name = "_durata";
             this._durata.Size = new System.Drawing.Size(182, 20);
@@ -206,6 +215,7 @@
             // 
             // _rinominaSedutaButton
             // 
+            this._rinominaSedutaButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._rinominaSedutaButton.Enabled = false;
             this._rinominaSedutaButton.Location = new System.Drawing.Point(344, 333);
             this._rinominaSedutaButton.Name = "_rinominaSedutaButton";
@@ -216,6 +226,7 @@
             // 
             // _eliminaEsercizioButton
             // 
+            this._eliminaEsercizioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._eliminaEsercizioButton.Enabled = false;
             this._eliminaEsercizioButton.Location = new System.Drawing.Point(344, 455);
             this._eliminaEsercizioButton.Name = "_eliminaEsercizioButton";
@@ -226,6 +237,7 @@
             // 
             // _dataFineRadioButton
             // 
+            this._dataFineRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._dataFineRadioButton.AutoSize = true;
             this._dataFineRadioButton.Checked = true;
             this._dataFineRadioButton.Location = new System.Drawing.Point(165, 193);
@@ -237,6 +249,7 @@
             // 
             // _durataRadioButton
             // 
+            this._durataRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._durataRadioButton.AutoSize = true;
             this._durataRadioButton.Location = new System.Drawing.Point(165, 225);
             this._durataRadioButton.Name = "_durataRadioButton";
@@ -246,8 +259,8 @@
             // 
             // dialogButtonsControl1
             // 
+            this.dialogButtonsControl1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dialogButtonsControl1.AutoSize = true;
-            this.dialogButtonsControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dialogButtonsControl1.Location = new System.Drawing.Point(0, 552);
             this.dialogButtonsControl1.Name = "dialogButtonsControl1";
             this.dialogButtonsControl1.Size = new System.Drawing.Size(459, 59);
@@ -255,6 +268,7 @@
             // 
             // _rimuoviSedutaButton
             // 
+            this._rimuoviSedutaButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._rimuoviSedutaButton.Location = new System.Drawing.Point(344, 364);
             this._rimuoviSedutaButton.Name = "_rimuoviSedutaButton";
             this._rimuoviSedutaButton.Size = new System.Drawing.Size(101, 23);
@@ -264,6 +278,7 @@
             // 
             // _nuovoCircuitoButton
             // 
+            this._nuovoCircuitoButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._nuovoCircuitoButton.Location = new System.Drawing.Point(344, 425);
             this._nuovoCircuitoButton.Name = "_nuovoCircuitoButton";
             this._nuovoCircuitoButton.Size = new System.Drawing.Size(101, 23);
@@ -273,10 +288,30 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.Location = new System.Drawing.Point(172, 51);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(190, 29);
             this.panel1.TabIndex = 39;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this._seduteTreeView);
+            this.panel2.Location = new System.Drawing.Point(26, 304);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(312, 183);
+            this.panel2.TabIndex = 40;
+            // 
+            // _seduteTreeView
+            // 
+            this._seduteTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._seduteTreeView.Location = new System.Drawing.Point(0, 0);
+            this._seduteTreeView.Name = "_seduteTreeView";
+            this._seduteTreeView.Size = new System.Drawing.Size(312, 183);
+            this._seduteTreeView.TabIndex = 17;
+            this._seduteTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this._seduteTreeView_AfterSelect_1);
             // 
             // SchedaForm
             // 
@@ -284,6 +319,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._nuovoCircuitoButton);
             this.Controls.Add(this._rimuoviSedutaButton);
@@ -300,7 +336,6 @@
             this.Controls.Add(this._nuovoEsercizioButton);
             this.Controls.Add(this._nuovaSedutaButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this._seduteTreeView);
             this.Controls.Add(this._seduteLabel);
             this.Controls.Add(this._descrizione);
             this.Controls.Add(this._scopoLabel);
@@ -310,6 +345,7 @@
             this.Controls.Add(this._nomeLabel);
             this.Name = "SchedaForm";
             this.Text = "Nuova scheda";
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,7 +360,6 @@
         private System.Windows.Forms.Label _scopoLabel;
         private System.Windows.Forms.TextBox _descrizione;
         private System.Windows.Forms.Label _seduteLabel;
-        private System.Windows.Forms.TreeView _seduteTreeView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _nuovoEsercizioButton;
         private System.Windows.Forms.Button _nuovaSedutaButton;
@@ -341,5 +376,7 @@
         private System.Windows.Forms.Button _rimuoviSedutaButton;
         private System.Windows.Forms.Button _nuovoCircuitoButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TreeView _seduteTreeView;
     }
 }
