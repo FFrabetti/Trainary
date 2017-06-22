@@ -27,6 +27,13 @@ namespace Trainary.presenter
             _allenamentoForm.TreeView.AfterSelect += OnSelectedNode;
 
             _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiButton;
+            _allenamentoForm.Buttons.CancelButton.Click += OnCancelButtonClick;
+        }
+
+        private void OnCancelButtonClick(object sender, EventArgs e)
+        {
+            _eserciziSvolti.Clear();
+            AggiornaTreeView();
         }
 
         protected AllenamentoForm Form
