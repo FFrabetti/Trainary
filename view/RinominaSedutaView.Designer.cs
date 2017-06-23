@@ -47,13 +47,13 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(16, 31);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
+            this.textBox1.Size = new System.Drawing.Size(203, 20);
             this.textBox1.TabIndex = 10;
             // 
             // dialogButtonsControl1
             // 
             this.dialogButtonsControl1.AutoSize = true;
-            this.dialogButtonsControl1.Location = new System.Drawing.Point(97, 57);
+            this.dialogButtonsControl1.Location = new System.Drawing.Point(30, 66);
             this.dialogButtonsControl1.Name = "dialogButtonsControl1";
             this.dialogButtonsControl1.Size = new System.Drawing.Size(202, 41);
             this.dialogButtonsControl1.TabIndex = 11;
@@ -63,11 +63,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(299, 97);
+            this.ClientSize = new System.Drawing.Size(244, 113);
             this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this._codiceLabel);
             this.Name = "RinominaSedutaView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rinomina seduta";
             this.ResumeLayout(false);
             this.PerformLayout();

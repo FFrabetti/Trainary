@@ -37,6 +37,7 @@
             // dialogButtonsControl1
             // 
             this.dialogButtonsControl1.AutoSize = true;
+            this.dialogButtonsControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dialogButtonsControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dialogButtonsControl1.Location = new System.Drawing.Point(0, 325);
             this.dialogButtonsControl1.Name = "dialogButtonsControl1";
@@ -66,10 +67,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(444, 370);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dialogButtonsControl1);
             this.Name = "DatiForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aggiungi dati";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -60,6 +60,7 @@
             this.Controls.Add(this._menuStrip);
             this.MainMenuStrip = this._menuStrip;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trainary";
             this.ResumeLayout(false);
             this.PerformLayout();

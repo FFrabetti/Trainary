@@ -53,6 +53,7 @@
             // _topPanel
             // 
             this._topPanel.AutoSize = true;
+            this._topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._topPanel.Controls.Add(this._newAttributoControl);
             this._topPanel.Controls.Add(this._titleLabel);
             this._topPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -64,6 +65,7 @@
             // _newAttributoControl
             // 
             this._newAttributoControl.AutoSize = true;
+            this._newAttributoControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._newAttributoControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._newAttributoControl.Location = new System.Drawing.Point(0, 17);
             this._newAttributoControl.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
@@ -75,7 +77,7 @@
             // _listBoxControl
             // 
             this._listBoxControl.AutoSize = true;
-            this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
+            this._listBoxControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._listBoxControl.Location = new System.Drawing.Point(0, 109);
             this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);

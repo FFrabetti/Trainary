@@ -140,9 +140,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(23, 504);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(344, 15);
+            this.label1.Size = new System.Drawing.Size(335, 15);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Nota 1: i campi contrassegnati con * sono obbligatori";
+            this.label1.Text = "Nota: i campi contrassegnati con * sono obbligatori";
             // 
             // _nuovoEsercizioButton
             // 
@@ -344,6 +344,7 @@
             this.Controls.Add(this._nome);
             this.Controls.Add(this._nomeLabel);
             this.Name = "SchedaForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuova scheda";
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
