@@ -40,6 +40,7 @@
             // 
             // _buttonsPanel
             // 
+            this._buttonsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._buttonsPanel.Controls.Add(this._label);
             this._buttonsPanel.Controls.Add(this._removeButton);
             this._buttonsPanel.Controls.Add(this._addButton);

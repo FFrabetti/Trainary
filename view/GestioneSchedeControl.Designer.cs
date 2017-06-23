@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._allenamentiLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this._rimuoviSchedaButton = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this._nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._scopo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._descrizione = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._periodo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._rimuoviSchedaButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this._allenamentiLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,6 +63,36 @@
             this.splitContainer1.Size = new System.Drawing.Size(713, 507);
             this.splitContainer1.SplitterDistance = 100;
             this.splitContainer1.TabIndex = 35;
+            // 
+            // _allenamentiLabel
+            // 
+            this._allenamentiLabel.AutoSize = true;
+            this._allenamentiLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._allenamentiLabel.Location = new System.Drawing.Point(304, 71);
+            this._allenamentiLabel.Name = "_allenamentiLabel";
+            this._allenamentiLabel.Size = new System.Drawing.Size(73, 18);
+            this._allenamentiLabel.TabIndex = 37;
+            this._allenamentiLabel.Text = "Schede:";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(590, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 26);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "Nuova scheda";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // _rimuoviSchedaButton
+            // 
+            this._rimuoviSchedaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._rimuoviSchedaButton.Location = new System.Drawing.Point(590, 34);
+            this._rimuoviSchedaButton.Name = "_rimuoviSchedaButton";
+            this._rimuoviSchedaButton.Size = new System.Drawing.Size(103, 23);
+            this._rimuoviSchedaButton.TabIndex = 39;
+            this._rimuoviSchedaButton.Text = "Rimuovi ";
+            this._rimuoviSchedaButton.UseVisualStyleBackColor = true;
             // 
             // listView1
             // 
@@ -100,36 +130,6 @@
             // 
             this._periodo.Text = "Periodo di validità";
             this._periodo.Width = 164;
-            // 
-            // _rimuoviSchedaButton
-            // 
-            this._rimuoviSchedaButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._rimuoviSchedaButton.Location = new System.Drawing.Point(590, 13);
-            this._rimuoviSchedaButton.Name = "_rimuoviSchedaButton";
-            this._rimuoviSchedaButton.Size = new System.Drawing.Size(103, 23);
-            this._rimuoviSchedaButton.TabIndex = 39;
-            this._rimuoviSchedaButton.Text = "Rimuovi ";
-            this._rimuoviSchedaButton.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(590, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 26);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Nuova scheda";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // _allenamentiLabel
-            // 
-            this._allenamentiLabel.AutoSize = true;
-            this._allenamentiLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._allenamentiLabel.Location = new System.Drawing.Point(17, 14);
-            this._allenamentiLabel.Name = "_allenamentiLabel";
-            this._allenamentiLabel.Size = new System.Drawing.Size(73, 18);
-            this._allenamentiLabel.TabIndex = 37;
-            this._allenamentiLabel.Text = "Schede:";
             // 
             // GestioneSchedeControl
             // 

@@ -69,6 +69,7 @@
             // 
             // _splitContainer.Panel2
             // 
+            this._splitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._splitContainer.Panel2.Controls.Add(this._attributiControl);
             this._splitContainer.Panel2.Controls.Add(this._tableLayoutPanel);
             this._splitContainer.Size = new System.Drawing.Size(644, 357);
@@ -78,6 +79,7 @@
             // _attributiControl
             // 
             this._attributiControl.AutoSize = true;
+            this._attributiControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._attributiControl.Location = new System.Drawing.Point(0, 80);
             this._attributiControl.Margin = new System.Windows.Forms.Padding(0);
@@ -88,6 +90,7 @@
             // 
             // _tableLayoutPanel
             // 
+            this._tableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._tableLayoutPanel.ColumnCount = 2;
             this._tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this._tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
@@ -175,6 +178,7 @@
             // _dialogButtonsControl
             // 
             this._dialogButtonsControl.AutoSize = true;
+            this._dialogButtonsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._dialogButtonsControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._dialogButtonsControl.Location = new System.Drawing.Point(0, 357);
             this._dialogButtonsControl.Name = "_dialogButtonsControl";
@@ -185,10 +189,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(644, 408);
             this.Controls.Add(this._splitContainer);
             this.Controls.Add(this._dialogButtonsControl);
             this.Name = "NewEsercizioForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuovo Esercizio";
             this._splitContainer.Panel1.ResumeLayout(false);
             this._splitContainer.Panel2.ResumeLayout(false);

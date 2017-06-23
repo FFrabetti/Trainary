@@ -59,6 +59,7 @@
             this.Controls.Add(this.dialogButtonsControl1);
             this.Controls.Add(this.panel1);
             this.Name = "NuovaSedutaView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuova seduta";
             this.ResumeLayout(false);
             this.PerformLayout();

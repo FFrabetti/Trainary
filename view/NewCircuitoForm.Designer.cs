@@ -41,6 +41,7 @@
             // _dialogButtonsControl
             // 
             this._dialogButtonsControl.AutoSize = true;
+            this._dialogButtonsControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._dialogButtonsControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._dialogButtonsControl.Location = new System.Drawing.Point(0, 409);
             this._dialogButtonsControl.Name = "_dialogButtonsControl";
@@ -49,6 +50,7 @@
             // 
             // _splitContainer
             // 
+            this._splitContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._splitContainer.Location = new System.Drawing.Point(0, 0);
             this._splitContainer.Name = "_splitContainer";
@@ -68,22 +70,21 @@
             // _attributiControl
             // 
             this._attributiControl.AutoSize = true;
+            this._attributiControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._attributiControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._attributiControl.Location = new System.Drawing.Point(0, 0);
             this._attributiControl.Name = "_attributiControl";
-            this._attributiControl.Padding = new System.Windows.Forms.Padding(3);
             this._attributiControl.Size = new System.Drawing.Size(511, 224);
             this._attributiControl.TabIndex = 0;
             // 
             // _listBoxControl
             // 
             this._listBoxControl.AutoSize = true;
-            this._listBoxControl.BackColor = System.Drawing.SystemColors.Control;
+            this._listBoxControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this._listBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._listBoxControl.Location = new System.Drawing.Point(0, 0);
             this._listBoxControl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this._listBoxControl.Name = "_listBoxControl";
-            this._listBoxControl.Padding = new System.Windows.Forms.Padding(3);
             this._listBoxControl.Size = new System.Drawing.Size(511, 181);
             this._listBoxControl.TabIndex = 0;
             // 
@@ -91,10 +92,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(511, 457);
             this.Controls.Add(this._splitContainer);
             this.Controls.Add(this._dialogButtonsControl);
             this.Name = "NewCircuitoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuovo Circuito";
             this._splitContainer.Panel1.ResumeLayout(false);
             this._splitContainer.Panel1.PerformLayout();
