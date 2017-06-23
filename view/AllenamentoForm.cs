@@ -20,14 +20,11 @@ namespace Trainary.Presentation
             
         }
 
-        private void _salvaButton_Click(object sender, EventArgs e)
+        public TextBox DebugTextBox
         {
-                    }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            get { return _debugTextBox; }
         }
+
         public Button AggiungiEsercizioButton
         {
             get
@@ -35,6 +32,7 @@ namespace Trainary.Presentation
                 return _aggiungiEsercizioButton;
             }
         }
+
         public Button AggiungiCircuitoButton
         {
             get
@@ -50,6 +48,7 @@ namespace Trainary.Presentation
                 return _eliminaEsercizioButton;
             }
         }
+
         public Button AggiungiDatiButton
         {
             get
@@ -65,14 +64,7 @@ namespace Trainary.Presentation
                 return dialogButtonsControl1;
             }
         }
-        //public TextBox Nome
-        //{
-        //    get
-        //    {
-        //        return textBox3;
-    
-        //    }
-        //}
+
         public Panel Panel
         {
             get
@@ -80,6 +72,7 @@ namespace Trainary.Presentation
                 return panel1;
             }
         }
+
         public Label AllenamentoLabel
         {
             get
@@ -87,6 +80,7 @@ namespace Trainary.Presentation
                 return _allenamentoLabel;
             }
         }
+
         public DateTimePicker Data
         {
             get
@@ -94,6 +88,7 @@ namespace Trainary.Presentation
                 return dateTimePicker1;
             }
         }
+
         public TreeView TreeView
         {
             get
@@ -102,14 +97,5 @@ namespace Trainary.Presentation
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

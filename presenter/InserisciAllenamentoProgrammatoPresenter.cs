@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.Presentation;
@@ -9,101 +10,165 @@ namespace Trainary.presenter
 {
     class InserisciAllenamentoProgrammatoPresenter : InserisciAllenamentoPresenter
     {
+        private SelezionaSedutaControl _selSedutaControl = new SelezionaSedutaControl();
 
-        private SelezionaSedutaControl _control = new SelezionaSedutaControl();
+        private void Debug(string txt)
+        {
+            Form.DebugTextBox.Text += txt + Environment.NewLine;
+        }
 
-        private Seduta _seduta = null;
+        // Variabili che registrano lo stato associato agli esercizi svolti inseriti
+        private Seduta _seduta;
         private DateTime _data;
+
+        #region operazioni di alto livello
+
+        private void PopolaSchedeCombo(List<Scheda> schede)
+        {
+            _selSedutaControl.ComboSchede.DataSource = null;
+            _selSedutaControl.ComboSchede.DataSource = schede;
+        }
+
+        private void PopolaSeduteCombo(Seduta[] sedute)
+        {
+            _selSedutaControl.ComboSedute.Items.Clear();
+            _selSedutaControl.ComboSedute.Items.AddRange(sedute);
+            if(sedute.Length > 0)
+                _selSedutaControl.ComboSedute.SelectedIndex = 0;
+
+            //_selSedutaControl.ComboSedute.DataSource = null;
+            //_selSedutaControl.ComboSedute.DataSource = sedute;
+
+            Debug("SedutaCombo: " + sedute.Length);
+            Debug("DataSource: " + _selSedutaControl.ComboSedute.Items.Count);
+        }
+
+        private Scheda SelectedScheda
+        {
+            get { return (Scheda)_selSedutaControl.ComboSchede.SelectedItem; }
+            set { _selSedutaControl.ComboSchede.SelectedItem = value; }
+        }
+
+        private Seduta SelectedSeduta
+        {
+            get { return (Seduta)_selSedutaControl.ComboSedute.SelectedItem; }
+            set { _selSedutaControl.ComboSedute.SelectedItem = value; }
+        }
+
+        private DateTime Data
+        {
+            get { return Form.Data.Value; }
+            set { Form.Data.Value = value; }
+        }
+
+        #endregion
 
         public InserisciAllenamentoProgrammatoPresenter(AllenamentoForm form)
             : base(form)
         {
-            Form.Panel.Controls.Add(_control);
+            Form.Panel.Controls.Add(_selSedutaControl);
             Form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioButton;
             Form.AggiungiCircuitoButton.Visible = false;
             Form.Buttons.OkButton.Click += OkButton_Click;
 
             Form.Data.ValueChanged += OnDataValueChanged;
-            _control.ComboSchede.SelectedIndexChanged += SelectedSchedaCombo;
-            _control.ComboSedute.SelectedIndexChanged += SelectedSeduteCombo;
-            _control.ComboSedute.DataSourceChanged += SelectedSeduteCombo;
+            _selSedutaControl.ComboSchede.SelectedIndexChanged += OnSelectedSchedaCombo;
+            _selSedutaControl.ComboSedute.SelectedIndexChanged += OnSelectedSedutaCombo;
+            //_selSedutaControl.ComboSedute.DataSourceChanged += SelectedSeduteCombo;
 
             Form.AllenamentoLabel.Text = "Allenamento Programmato";
 
-            OnDataValueChanged(this, EventArgs.Empty);
+            OnDataValueChanged(null, EventArgs.Empty);
         }
 
-        private void SelectedSeduteCombo(object sender, EventArgs e)
+        private void OnDataValueChanged(object sender, EventArgs e)
         {
-            Seduta sedutaSelezionata = (Seduta)((ComboBox)sender).SelectedItem;
+            Debug("OnDataValueChanged");
 
-            if (sedutaSelezionata != _seduta && EserciziSvolti.Count > 0)
+            PopolaSchedeCombo(new List<Scheda>(GestoreSchede.GetInstance().GetSchedeValide(Data)));
+        }
+
+        private void OnSelectedSchedaCombo(object sender, EventArgs e)
+        {
+            Debug("OnSelectedSchedaCombo");
+
+           PopolaSeduteCombo(SelectedScheda != null ? SelectedScheda.Sedute : new Seduta[0]);
+        }
+
+        private void OnSelectedSedutaCombo(object sender, EventArgs e)
+        {
+            Debug("OnSelectedSedutaCombo");
+
+            if (EserciziSvolti.Count > 0 && SelectedSeduta != _seduta)
             {
                 string messageBoxText = "Ci sono degli esercizi svolti non salvati, se si prosegue saranno cancellati";
-                string caption = "Conferma cancellazione";
+                string caption = "Conferma";
                 MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
                 MessageBoxIcon icon = MessageBoxIcon.Warning;
 
                 if (MessageBox.Show(messageBoxText, caption, buttons, icon) == DialogResult.OK)
                 {
-                    EserciziSvolti.Clear();
+                    EserciziSvolti.Clear(); // Eventuali altre chiamate vedranno Count == 0
+                    ClearSnapshot();
+
                     AggiornaTreeView();
                 }
-                else // altrimenti cancello l'evento e non faccio nulla
+                else // altrimenti cancello la modifica e non faccio nulla
                 {
-                    // ripristino della data
-                    Form.Data.Value = _data;
-                    _control.ComboSchede.SelectedItem = _seduta.Scheda;
-                    ((ComboBox)sender).SelectedItem = _seduta;
-                    return;
+                    Debug(_data + " " + _seduta + " " + _seduta.Scheda);
+
+                    Rollback();
                 }
             }
-
-            _seduta = sedutaSelezionata;
         }
 
-        private void OnDataValueChanged(object sender, EventArgs e)
+        private void Rollback()
         {
-            _control.ComboSchede.DataSource = new List<Scheda>(GestoreSchede.GetInstance().GetSchedeValide(Form.Data.Value));
+            // interrompo le dipendenze tra i 3 controlli
+            Form.Data.ValueChanged -= OnDataValueChanged;
+            _selSedutaControl.ComboSchede.SelectedIndexChanged -= OnSelectedSchedaCombo;
+            _selSedutaControl.ComboSedute.SelectedIndexChanged -= OnSelectedSedutaCombo;
 
-            SelectedSchedaCombo(this, EventArgs.Empty);
+            Data = _data;
+            // ripopolo la combo delle schede
+            OnDataValueChanged(null, EventArgs.Empty);
+            // seleziono la scheda precedente
+            SelectedScheda = _seduta.Scheda;
+            // ripopolo la combo delle sedute
+            //OnSelectedSchedaCombo(null, EventArgs.Empty);
+            PopolaSeduteCombo(_seduta.Scheda.Sedute);
+            // seleziono la seduta precedente
+            SelectedSeduta = _seduta;
+
+            Form.Data.ValueChanged += OnDataValueChanged;
+            _selSedutaControl.ComboSchede.SelectedIndexChanged += OnSelectedSchedaCombo;
+            _selSedutaControl.ComboSedute.SelectedIndexChanged += OnSelectedSedutaCombo;
         }
 
-        private void SelectedSchedaCombo(object sender, EventArgs e)
+        private void TakeSnapshot()
         {
-            if (_control.ComboSchede.SelectedItem != null)
-            {
-                Scheda scheda = (Scheda)_control.ComboSchede.SelectedItem;
-                _control.ComboSedute.DataSource = scheda.Sedute;
-            }
-            else
-            {
-                _control.ComboSedute.DataSource = new List<Seduta>();
-            }
+            _data = Data;
+            _seduta = SelectedSeduta;
+
+            Debug("Snapshot: " + _data + " " + _seduta);
+        }
+
+        private void ClearSnapshot()
+        {
+            Debug("ClearSnapshot");
+
+            _seduta = null;
+            _data = default(DateTime);
         }
 
         private void OnAggiungiEsercizioButton(object sender, EventArgs e)
         {
-            _data = Form.Data.Value;
-
-            if (EserciziSvolti.Count > 0 && (Seduta)_control.ComboSedute.SelectedItem != _seduta)
-            {
-                string messageBoxText = "Non è possibile svolgere esercizi di sedute e/o schede diverse nello stesso allenamento programmato";
-                string caption = "Errore";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBoxIcon icon = MessageBoxIcon.Warning;
-
-                MessageBox.Show(messageBoxText, caption, buttons, icon);
-                return;
-            }
-
-            _seduta = (Seduta)_control.ComboSedute.SelectedItem;
             using (SelezionaEserciziSeduta form = new SelezionaEserciziSeduta())
             {
                 SelezionaEserciziSedutaPresenter presenter;
                 try
                 {
-                    presenter = new SelezionaEserciziSedutaPresenter(form, _seduta);
+                    presenter = new SelezionaEserciziSedutaPresenter(form, SelectedSeduta);
                 }
                 catch(Exception ex)
                 {
@@ -118,9 +183,10 @@ namespace Trainary.presenter
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    
-                    Esercizio es = presenter.GetEsercizio();
-                    if(es == null)
+                    Esercizio esSelezionato = presenter.GetEsercizio();
+
+                    // ???????
+                    if(esSelezionato == null)
                     {
                         string messageBoxText = "Non è possibile svolgere solo alcuni esercizi di un circuito. Devi svolgere l'intero circuito per poterlo inserire in un allenamento!";
                         string caption = "Errore";
@@ -130,37 +196,36 @@ namespace Trainary.presenter
                         MessageBox.Show(messageBoxText, caption, buttons, icon);
                         return;
                     }
-                    foreach(EsercizioSvolto ev in EserciziSvolti)
-                    {
-                        if (ev.Esercizio.Equals(es))
-                        {
-                            string messageBoxText = "Non è possibile aggiungere un esercizio più volte nello stesso allenamento";
-                            string caption = "Errore";
-                            MessageBoxButtons buttons = MessageBoxButtons.OK;
-                            MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-                            MessageBox.Show(messageBoxText, caption, buttons, icon);
-                            return;
-                        }
+                    // Controllo sul fatto che ogni esercizio programmato venga svolto al massimo una volta
+                    if (EserciziSvolti.Any(esSvolto => esSvolto.Esercizio.Equals(esSelezionato)))
+                    {
+                        string messageBoxText = "L'esercizio selezionato è già stato segnato come svolto in questo allenamento";
+                        string caption = "Errore";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        MessageBoxIcon icon = MessageBoxIcon.Warning;
+
+                        MessageBox.Show(messageBoxText, caption, buttons, icon);
+                        return;
                     }
+
                     SvolgiVisitor sv = new SvolgiVisitor();
-                    es.Accept(sv);
-                    EsercizioSvolto eSvolto = sv.EsercizioSvolto;
-                    EserciziSvolti.Add(eSvolto);
-                    TreeViewPresenter.VisualizzaEserciziSvolti(EserciziSvolti.ToArray());
-                   
+                    esSelezionato.Accept(sv);
+                    EserciziSvolti.Add(sv.EsercizioSvolto);
+                    TreeViewPresenter.VisualizzaEserciziSvolti(EserciziSvolti);
+
+                    // Se ho inserito un esercizio salvo lo stato (data e seduta)
+                    TakeSnapshot();
                 }
-               
             }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            DateTime data = Form.Data.Value;
             AllenamentoProgrammato allenamento;
             try
             {
-                allenamento = new AllenamentoProgrammato(data, EserciziSvolti.ToArray(), _seduta);
+                allenamento = new AllenamentoProgrammato(Data, EserciziSvolti.ToArray(), SelectedSeduta);
             }
             catch (Exception ex)
             {
@@ -175,11 +240,13 @@ namespace Trainary.presenter
             Diario.GetInstance().Allenamenti.Add(allenamento);
             Form.Close();
         }
+
         protected override void OnCancelButtonClick(object sender, EventArgs e)
         {
             base.OnCancelButtonClick(sender, e);
             OnDataValueChanged(null, EventArgs.Empty);
         }
+
         protected override void OnApplicationIdle(object sender, EventArgs e)
         {
             base.OnApplicationIdle(sender, e);
