@@ -85,14 +85,26 @@ namespace Trainary.presenter
         {
             Debug("OnDataValueChanged");
 
-            PopolaSchedeCombo(new List<Scheda>(GestoreSchede.GetInstance().GetSchedeValide(Data)));
+            List<Scheda> schedeValide = new List<Scheda>(GestoreSchede.GetInstance().GetSchedeValide(Data));
+            PopolaSchedeCombo(schedeValide);
+
+            // nel caso di combo vuota non viene lanciato SelectedIndexChanged
+            // quindi invoco l'handler manualmente
+            if (schedeValide.Count == 0)
+                OnSelectedSchedaCombo(null, EventArgs.Empty);
         }
 
         private void OnSelectedSchedaCombo(object sender, EventArgs e)
         {
             Debug("OnSelectedSchedaCombo");
 
-           PopolaSeduteCombo(SelectedScheda != null ? SelectedScheda.Sedute : new Seduta[0]);
+            Seduta[] sedute = SelectedScheda != null ? SelectedScheda.Sedute : new Seduta[0];
+            PopolaSeduteCombo(sedute);
+
+            // nel caso di combo vuota non viene lanciato SelectedIndexChanged
+            // quindi invoco l'handler manualmente
+            if (sedute.Length == 0)
+                OnSelectedSedutaCombo(null, EventArgs.Empty);
         }
 
         private void OnSelectedSedutaCombo(object sender, EventArgs e)
