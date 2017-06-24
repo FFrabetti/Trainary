@@ -29,9 +29,17 @@ namespace Trainary.presenter
             _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiButton;
             _allenamentoForm.AnnullaSelezioneButton.Click += OnAnnullaSelezioneButtonClick;
             _allenamentoForm.EliminaEsercizioButton.Click += OnEliminaEsercizioButton;
+            _allenamentoForm.FormClosing += OnFormClosing;
         }
 
-        
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_allenamentoForm.DialogResult == DialogResult.OK && EserciziSvolti.Count == 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void OnEliminaEsercizioButton(object sender, EventArgs e)
         {
             if (_allenamentoForm.TreeView.SelectedNode.Tag != null && _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto)
