@@ -165,7 +165,20 @@ namespace Trainary.Presentation
             }
         }
 
+        public Button AnnullaSelezioneButton
+        {
+            get
+            {
+                return buttonsel;
+            }
+        }
+
         private void _seduteTreeView_AfterSelect_1(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

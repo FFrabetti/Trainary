@@ -36,7 +36,7 @@ namespace Trainary.view
             }
         }
 
-        public Button OkButton
+        public Button ApplicaFiltroButton
         {
             get
             {

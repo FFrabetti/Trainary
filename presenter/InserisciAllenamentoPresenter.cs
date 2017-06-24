@@ -27,10 +27,11 @@ namespace Trainary.presenter
             _allenamentoForm.TreeView.AfterSelect += OnSelectedNode;
 
             _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiButton;
-            _allenamentoForm.Buttons.CancelButton.Click += OnCancelButtonClick;
+            _allenamentoForm.AnnullaSelezioneButton.Click += OnAnnullaSelezioneButtonClick;
             _allenamentoForm.EliminaEsercizioButton.Click += OnEliminaEsercizioButton;
         }
 
+        
         private void OnEliminaEsercizioButton(object sender, EventArgs e)
         {
             if (_allenamentoForm.TreeView.SelectedNode.Tag != null && _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto)
@@ -42,7 +43,7 @@ namespace Trainary.presenter
             }
         }
 
-        protected virtual void OnCancelButtonClick(object sender, EventArgs e)
+        protected virtual void OnAnnullaSelezioneButtonClick(object sender, EventArgs e)
         {
             _eserciziSvolti.Clear();
             _allenamentoForm.Data.Value = DateTime.Today.Date;

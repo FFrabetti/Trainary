@@ -53,6 +53,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this._seduteTreeView = new System.Windows.Forms.TreeView();
+            this.buttonsel = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -138,11 +139,12 @@
             this.label1.BackColor = System.Drawing.Color.Red;
             this.label1.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(23, 504);
+            this.label1.Location = new System.Drawing.Point(23, 515);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(335, 15);
             this.label1.TabIndex = 18;
             this.label1.Text = "Nota: i campi contrassegnati con * sono obbligatori";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // _nuovoEsercizioButton
             // 
@@ -313,12 +315,24 @@
             this._seduteTreeView.TabIndex = 17;
             this._seduteTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this._seduteTreeView_AfterSelect_1);
             // 
+            // buttonsel
+            // 
+            this.buttonsel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.buttonsel.Enabled = false;
+            this.buttonsel.Location = new System.Drawing.Point(344, 485);
+            this.buttonsel.Name = "buttonsel";
+            this.buttonsel.Size = new System.Drawing.Size(101, 23);
+            this.buttonsel.TabIndex = 41;
+            this.buttonsel.Text = "Annulla selezione";
+            this.buttonsel.UseVisualStyleBackColor = true;
+            // 
             // SchedaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this.buttonsel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._nuovoCircuitoButton);
@@ -379,5 +393,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TreeView _seduteTreeView;
+        private System.Windows.Forms.Button buttonsel;
     }
 }

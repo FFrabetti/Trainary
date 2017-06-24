@@ -197,18 +197,6 @@ namespace Trainary.presenter
                 {
                     Esercizio esSelezionato = presenter.GetEsercizio();
 
-                    // ???????
-                    if(esSelezionato == null)
-                    {
-                        string messageBoxText = "Non è possibile svolgere solo alcuni esercizi di un circuito. Devi svolgere l'intero circuito per poterlo inserire in un allenamento!";
-                        string caption = "Errore";
-                        MessageBoxButtons buttons = MessageBoxButtons.OK;
-                        MessageBoxIcon icon = MessageBoxIcon.Warning;
-
-                        MessageBox.Show(messageBoxText, caption, buttons, icon);
-                        return;
-                    }
-
                     // Controllo sul fatto che ogni esercizio programmato venga svolto al massimo una volta
                     if (EserciziSvolti.Any(esSvolto => esSvolto.Esercizio.Equals(esSelezionato)))
                     {
@@ -253,16 +241,16 @@ namespace Trainary.presenter
             Form.Close();
         }
 
-        protected override void OnCancelButtonClick(object sender, EventArgs e)
+        protected override void OnAnnullaSelezioneButtonClick(object sender, EventArgs e)
         {
-            base.OnCancelButtonClick(sender, e);
+            base.OnAnnullaSelezioneButtonClick(sender, e);
             OnDataValueChanged(null, EventArgs.Empty);
         }
 
         protected override void OnApplicationIdle(object sender, EventArgs e)
         {
             base.OnApplicationIdle(sender, e);
-            Form.Buttons.CancelButton.Enabled = Form.Data.Value.Date != DateTime.Today.Date || EserciziSvolti.Count > 0;
+            Form.AnnullaSelezioneButton.Enabled = Form.Data.Value.Date != DateTime.Today.Date || EserciziSvolti.Count > 0;
 
         }
     }

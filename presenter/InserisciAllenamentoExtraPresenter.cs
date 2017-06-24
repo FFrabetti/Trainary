@@ -148,15 +148,15 @@ namespace Trainary.presenter
             Diario.GetInstance().Allenamenti.Add(allenamentoExtra);
             Form.Close();
         }
-        protected override void OnCancelButtonClick(object sender, EventArgs e)
+        protected override void OnAnnullaSelezioneButtonClick(object sender, EventArgs e)
         {
-            base.OnCancelButtonClick(sender, e);
+            base.OnAnnullaSelezioneButtonClick(sender, e);
             _control.Nome.Text = String.Empty;
         }
         protected override void OnApplicationIdle(object sender, EventArgs e)
         {
             base.OnApplicationIdle(sender, e);
-            Form.Buttons.CancelButton.Enabled = Form.Data.Value.Date != DateTime.Today.Date || EserciziSvolti.Count > 0 || _control.Nome.Text != String.Empty;
+            Form.AnnullaSelezioneButton.Enabled = Form.Data.Value.Date != DateTime.Today.Date || EserciziSvolti.Count > 0 || _control.Nome.Text != String.Empty;
 
         }
     }
