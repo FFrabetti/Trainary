@@ -178,6 +178,9 @@ namespace Trainary.presenter
                 MessageBoxIcon icon = MessageBoxIcon.Warning;
 
                 MessageBox.Show(messageBoxText, caption, buttons, icon);
+                _filtriApplicati.Remove(opzione);
+                ResetInfoLabel();
+                
                 return;
             }
             InizializeListView(_listaAllenamenti);
@@ -190,6 +193,16 @@ namespace Trainary.presenter
 
             _diarioControl.FiltriLabel.Text += filtroAllenamenti.GetLabelAttribute().ToLower();
        }
+        private void ResetInfoLabel()
+        {
+            _diarioControl.FiltriLabel.Text = "Filtri applicati: ";
+            foreach(IFiltroAllenamenti filtro in _filtriApplicati.Values)
+            {
+                _diarioControl.FiltriLabel.Text += filtro.GetLabelAttribute().ToLower();
+                if(!filtro.Equals(_filtriApplicati.Values.Last()))
+                 _diarioControl.FiltriLabel.Text += ", ";
+            }
+        }
 
         private void _annullaButton_Click(object sender, EventArgs e)
         {
