@@ -40,7 +40,6 @@
             this._aggiungiCircuitoButton = new System.Windows.Forms.Button();
             this._aggiungiDatiButton = new System.Windows.Forms.Button();
             this._eliminaEsercizioButton = new System.Windows.Forms.Button();
-            this._debugTextBox = new System.Windows.Forms.TextBox();
             this._annselbutton = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -59,11 +58,11 @@
             // 
             // dialogButtonsControl1
             // 
-            this.dialogButtonsControl1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dialogButtonsControl1.AutoSize = true;
-            this.dialogButtonsControl1.Location = new System.Drawing.Point(180, 468);
+            this.dialogButtonsControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dialogButtonsControl1.Location = new System.Drawing.Point(0, 466);
             this.dialogButtonsControl1.Name = "dialogButtonsControl1";
-            this.dialogButtonsControl1.Size = new System.Drawing.Size(397, 49);
+            this.dialogButtonsControl1.Size = new System.Drawing.Size(778, 47);
             this.dialogButtonsControl1.TabIndex = 10;
             // 
             // panel1
@@ -72,7 +71,7 @@
             this.panel1.AutoSize = true;
             this.panel1.Location = new System.Drawing.Point(195, 121);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(280, 79);
+            this.panel1.Size = new System.Drawing.Size(302, 79);
             this.panel1.TabIndex = 12;
             // 
             // panel2
@@ -83,12 +82,12 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(193, 40);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(282, 66);
+            this.panel2.Size = new System.Drawing.Size(303, 66);
             this.panel2.TabIndex = 13;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(73, 23);
+            this.dateTimePicker1.Location = new System.Drawing.Point(78, 25);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
@@ -96,7 +95,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 25);
+            this.label3.Location = new System.Drawing.Point(22, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 2;
@@ -123,7 +122,7 @@
             // _aggiungiEsercizioButton
             // 
             this._aggiungiEsercizioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this._aggiungiEsercizioButton.Location = new System.Drawing.Point(502, 121);
+            this._aggiungiEsercizioButton.Location = new System.Drawing.Point(502, 246);
             this._aggiungiEsercizioButton.Name = "_aggiungiEsercizioButton";
             this._aggiungiEsercizioButton.Size = new System.Drawing.Size(107, 23);
             this._aggiungiEsercizioButton.TabIndex = 15;
@@ -133,7 +132,7 @@
             // _aggiungiCircuitoButton
             // 
             this._aggiungiCircuitoButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this._aggiungiCircuitoButton.Location = new System.Drawing.Point(502, 150);
+            this._aggiungiCircuitoButton.Location = new System.Drawing.Point(502, 217);
             this._aggiungiCircuitoButton.Name = "_aggiungiCircuitoButton";
             this._aggiungiCircuitoButton.Size = new System.Drawing.Size(107, 23);
             this._aggiungiCircuitoButton.TabIndex = 16;
@@ -143,7 +142,7 @@
             // _aggiungiDatiButton
             // 
             this._aggiungiDatiButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this._aggiungiDatiButton.Location = new System.Drawing.Point(503, 206);
+            this._aggiungiDatiButton.Location = new System.Drawing.Point(502, 304);
             this._aggiungiDatiButton.Name = "_aggiungiDatiButton";
             this._aggiungiDatiButton.Size = new System.Drawing.Size(107, 23);
             this._aggiungiDatiButton.TabIndex = 17;
@@ -153,25 +152,17 @@
             // _eliminaEsercizioButton
             // 
             this._eliminaEsercizioButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this._eliminaEsercizioButton.Location = new System.Drawing.Point(503, 177);
+            this._eliminaEsercizioButton.Location = new System.Drawing.Point(502, 275);
             this._eliminaEsercizioButton.Name = "_eliminaEsercizioButton";
             this._eliminaEsercizioButton.Size = new System.Drawing.Size(107, 23);
             this._eliminaEsercizioButton.TabIndex = 18;
             this._eliminaEsercizioButton.Text = "Elimina esercizio";
             this._eliminaEsercizioButton.UseVisualStyleBackColor = true;
             // 
-            // _debugTextBox
-            // 
-            this._debugTextBox.Location = new System.Drawing.Point(503, 275);
-            this._debugTextBox.Multiline = true;
-            this._debugTextBox.Name = "_debugTextBox";
-            this._debugTextBox.Size = new System.Drawing.Size(228, 193);
-            this._debugTextBox.TabIndex = 19;
-            // 
             // _annselbutton
             // 
             this._annselbutton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this._annselbutton.Location = new System.Drawing.Point(503, 235);
+            this._annselbutton.Location = new System.Drawing.Point(502, 333);
             this._annselbutton.Name = "_annselbutton";
             this._annselbutton.Size = new System.Drawing.Size(107, 23);
             this._annselbutton.TabIndex = 20;
@@ -185,7 +176,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(778, 513);
             this.Controls.Add(this._annselbutton);
-            this.Controls.Add(this._debugTextBox);
             this.Controls.Add(this._eliminaEsercizioButton);
             this.Controls.Add(this._aggiungiDatiButton);
             this.Controls.Add(this._aggiungiCircuitoButton);
@@ -220,7 +210,6 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button _aggiungiDatiButton;
         private System.Windows.Forms.Button _eliminaEsercizioButton;
-        private System.Windows.Forms.TextBox _debugTextBox;
         private System.Windows.Forms.Button _annselbutton;
     }
 }

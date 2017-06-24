@@ -47,13 +47,18 @@ namespace Trainary.presenter
                     CircuitoSvolto cSvolto = (CircuitoSvolto)sv.EsercizioSvolto;
 
                     // Devo rimuovere dagli esercizi svolti quelli che ho usato per creare il circuito
+                    // Non posso modificare direttamente la lista mentre la scorro con foreach
+                    List<EsercizioSvolto> nuovaListaEsSvolti = new List<EsercizioSvolto>();
                     foreach(EsercizioSvolto es in EserciziSvolti)
                     {
-                        if (circuito.Esercizi.Contains(es.Esercizio))
-                            EserciziSvolti.Remove(es);
+                        if (!circuito.Esercizi.Contains(es.Esercizio))
+                            nuovaListaEsSvolti.Add(es);
                     }
 
-                    EserciziSvolti.Add(cSvolto);
+                    nuovaListaEsSvolti.Add(cSvolto);
+                    EserciziSvolti.Clear();
+                    EserciziSvolti.AddRange(nuovaListaEsSvolti);
+
                     AggiornaTreeView();
                 }
             }

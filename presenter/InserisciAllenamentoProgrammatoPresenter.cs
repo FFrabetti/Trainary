@@ -102,9 +102,9 @@ namespace Trainary.presenter
 
         private void SetFreezingState(bool state)
         {
-            Form.Data.Enabled = state;
-            _selSedutaControl.ComboSchede.Enabled = state;
-            _selSedutaControl.ComboSedute.Enabled = state;
+            Form.Data.Enabled = !state;
+            _selSedutaControl.ComboSchede.Enabled = !state;
+            _selSedutaControl.ComboSedute.Enabled = !state;
         }
 
         private void OnAggiungiEsercizioClick(object sender, EventArgs e)

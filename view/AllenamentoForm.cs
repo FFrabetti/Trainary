@@ -1,28 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Trainary.presenter;
+﻿using System.Windows.Forms;
 using Trainary.view;
 
 namespace Trainary.Presentation
 {
-    public partial class AllenamentoForm: Form
+    public partial class AllenamentoForm : Form
     {
         public AllenamentoForm()
         {
             InitializeComponent();
-            
-        }
 
-        public TextBox DebugTextBox
-        {
-            get { return _debugTextBox; }
         }
 
         public Button AggiungiEsercizioButton
