@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.utils;
+using Trainary.view;
 
 namespace Trainary.presenter.filtri
 {
@@ -13,6 +14,7 @@ namespace Trainary.presenter.filtri
 
         public FiltroPerSchedaPresenter()
         {
+            
             //_schedaLabel
             this._schedaLabel.AutoSize = true;
             this._schedaLabel.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

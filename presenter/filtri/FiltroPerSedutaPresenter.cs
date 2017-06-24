@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.utils;
@@ -20,14 +21,17 @@ namespace Trainary.presenter.filtri
 
         private void InizializeSchedeCombo()
         {
-            _control.ComboSchede.DataSource = GestoreSchede.GetInstance().GetSchede();
+            _control.ComboSchede.DataSource = new List<Scheda>(GestoreSchede.GetInstance().GetSchede());
             _control.ComboSchede.SelectedIndexChanged += SelectedSchedaCombo;
         }
 
         private void InizializeSeduteCombo()
         {
             Scheda scheda = (Scheda)_control.ComboSchede.SelectedItem;
-            _control.ComboSedute.DataSource = scheda.Sedute;
+            if (scheda != null)
+                _control.ComboSedute.DataSource = scheda.Sedute;
+            else
+                _control.ComboSedute.DataSource = new List<Seduta>();
         }
 
         public override void DrawControls(Panel panel)

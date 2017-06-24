@@ -38,7 +38,7 @@ namespace Trainary.presenter
 
             Diario.GetInstance().DiarioChanged += OnDiarioChanged;
 
-            diarioControl.OkButton.Click += _okButton_Click;
+            diarioControl.ApplicaFiltroButton.Click += OnApplicaFiltroButton;
             diarioControl.AnnullaButton.Click += _annullaButton_Click;
             diarioControl.ListBox.SelectedIndexChanged += _listView_SelectedIndexChanged;
             Application.Idle += AbilitaBottoni;
@@ -128,7 +128,7 @@ namespace Trainary.presenter
             SelectedPresenter((ComboBox)sender);
         }
 
-        private void _okButton_Click(object sender, EventArgs e)
+        private void OnApplicaFiltroButton(object sender, EventArgs e)
         {
             _currentFiltroPresenter = (FiltroPresenter)_diarioControl.ComboBox.SelectedItem;
 
@@ -136,36 +136,49 @@ namespace Trainary.presenter
             object opzione = _currentFiltroPresenter.GetOpzione();
            
             IEnumerable<Allenamento> allenamentiDaFiltrare;
-
-            if (filtroAllenamenti == _lastFiltro)
+            try
             {
-                // se è esattamente lo stesso (quindi anche stessa opzione)
-                // non faccio niente
-                if (opzione == _lastOpzione)
-                    return;
+                if (filtroAllenamenti == _lastFiltro)
+                {
+                    // se è esattamente lo stesso (quindi anche stessa opzione)
+                    // non faccio niente
+                    if (opzione == _lastOpzione)
+                        return;
 
-                // altrimenti applico il filtro alla vecchia selezione
-                _filtriApplicati.Remove(_lastOpzione);
-                _filtriApplicati.Add(opzione, filtroAllenamenti);
-                allenamentiDaFiltrare = _listaAllenamentiPrec;
+                    // altrimenti applico il filtro alla vecchia selezione
+                    _filtriApplicati.Remove(_lastOpzione);
+                    _filtriApplicati.Add(opzione, filtroAllenamenti);
+                    allenamentiDaFiltrare = _listaAllenamentiPrec;
+                }
+                else
+                {
+                    // filtro diverso:
+                    //  applicarlo alla selezione corrente
+                    SetInfoLabel(filtroAllenamenti);
+                    allenamentiDaFiltrare = _listaAllenamenti;
+
+                    _listaAllenamentiPrec = _listaAllenamenti;
+                    _filtriApplicati.Add(opzione, filtroAllenamenti);
+                }
+
+                _lastOpzione = opzione;
+                _lastFiltro = filtroAllenamenti;
+
+
+                _listaAllenamenti = filtroAllenamenti.Filtra(allenamentiDaFiltrare, opzione);
+
+                InizializeListView(_listaAllenamenti);
             }
-            else
+            catch(Exception)
             {
-                // filtro diverso:
-                //  applicarlo alla selezione corrente
-                SetInfoLabel(filtroAllenamenti);
-                allenamentiDaFiltrare = _listaAllenamenti;
+                string messageBoxText = "Impossibile applicare l'opzione di filtraggio richiesta";
+                string caption = "Errore";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-                _listaAllenamentiPrec = _listaAllenamenti;
-                _filtriApplicati.Add(opzione, filtroAllenamenti);
+                MessageBox.Show(messageBoxText, caption, buttons, icon);
+                return;
             }
-
-            _lastOpzione = opzione;
-            _lastFiltro = filtroAllenamenti;
-
-            
-            _listaAllenamenti = filtroAllenamenti.Filtra(allenamentiDaFiltrare, opzione);
-            InizializeListView(_listaAllenamenti);
         }
 
         private void SetInfoLabel(IFiltroAllenamenti filtroAllenamenti)
