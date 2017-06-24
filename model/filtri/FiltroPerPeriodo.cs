@@ -17,7 +17,10 @@ namespace Trainary.model.filtri
             {
                 if (!(opzione is Periodo))
                     throw new ArgumentException("opzione is not periodo");
+                
                 Periodo periodo = (Periodo)opzione;
+                if (periodo.Equals(default(Periodo)))
+                    throw new ArgumentException("periodo vuoto");
 
                 return listaAllenamenti.Where(all => periodo.IsNelPeriodo(all.Data));
             }
