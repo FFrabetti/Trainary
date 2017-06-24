@@ -50,6 +50,7 @@ namespace Trainary.presenter
             _form.NuovaSedutaButton.Visible = false;
             _form.RinominaSedutaButton.Visible = false;
             _form.Buttons.Visible = false;
+            _form.AnnullaSelezioneButton.Visible = false;
             _form.CambiObbligatori.Visible = false;
             _form.NomeLabel.Text = "Nome:";
             _form.DataInizioLabel.Text = "DataInizio:";
