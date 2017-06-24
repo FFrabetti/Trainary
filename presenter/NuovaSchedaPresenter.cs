@@ -27,7 +27,6 @@ namespace Trainary.presenter
             _presenter = new TreeViewPresenter(_schedaForm.TreeView);
             InizializeScopoCombo();
             AssegnaGestori();
-            _schedaForm.Buttons.CancelButton.Enabled = false;
             
         }
 
@@ -43,10 +42,19 @@ namespace Trainary.presenter
             _schedaForm.RimuoviSedutaButton.Click += OnRimuoviSedutaButton;
             _schedaForm.RinominaSedutaButton.Click += OnRinominaSedutaButton;
             _schedaForm.NuovoCircuitoButton.Click += OnNuovoCircuitoButton;
-            _schedaForm.Buttons.CancelButton.Click += OnCancelButton;
+            _schedaForm.AnnullaSelezioneButton.Click += OnAnnullaSelezioneButton;
+            _schedaForm.FormClosing += OnFormClosing;
         }
 
-        private void OnCancelButton(object sender, EventArgs e)
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_schedaForm.DialogResult == DialogResult.OK && _scheda == null)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void OnAnnullaSelezioneButton(object sender, EventArgs e)
         {
             _schedaForm.Nome.Text = String.Empty;
             InizializeScopoCombo();
@@ -182,7 +190,7 @@ namespace Trainary.presenter
 
         private void OnIdle(object sender, EventArgs e)
         {
-            _schedaForm.Buttons.CancelButton.Enabled = EnableCancel();
+            _schedaForm.AnnullaSelezioneButton.Enabled = EnableAnnullaSelezione();
             _schedaForm.NuovaSedutaButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
             _schedaForm.Buttons.OkButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
            
@@ -200,7 +208,7 @@ namespace Trainary.presenter
             }
         }
 
-        private bool EnableCancel()
+        private bool EnableAnnullaSelezione()
         {
             if (_schedaForm.Nome.Text.Trim() != String.Empty)
                 return true;
