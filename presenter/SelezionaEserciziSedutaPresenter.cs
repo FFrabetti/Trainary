@@ -31,13 +31,21 @@ namespace Trainary.presenter
 
         private void OnIdle(object sender, EventArgs e)
         {
-            _form.Buttons.OkButton.Enabled = _form.TreeView.SelectedNode != null && _form.TreeView.SelectedNode.Tag != null && _form.TreeView.SelectedNode.Tag.GetType().IsSubclassOf(typeof(Esercizio));
+            _form.Buttons.OkButton.Enabled =  EnableOkButton();
         }
-
+        private bool EnableOkButton()
+        {
+            if (_form.TreeView.SelectedNode == null)
+                return false;
+            if (_form.TreeView.SelectedNode.Tag == null)
+                return false;
+            if (_form.TreeView.SelectedNode.Parent.Tag != null && _form.TreeView.SelectedNode.Parent.Tag is Circuito)
+                return false;
+            return true;
+        }
         public Esercizio GetEsercizio()
         {
-            if (_form.TreeView.SelectedNode.Parent.Tag != null && _form.TreeView.SelectedNode.Parent.Tag is Circuito)
-                return null;
+           
             return  (Esercizio)_form.TreeView.SelectedNode.Tag;
         }
     }
