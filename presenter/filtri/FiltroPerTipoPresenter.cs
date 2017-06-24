@@ -56,16 +56,7 @@ namespace Trainary.presenter.filtri
 
         public override object GetOpzione()
         {
-            Type tipo = null;
-            try
-            {
-                tipo = (Type)_comboBox.SelectedValue;
-            }
-            catch
-            {
-
-            }
-            return tipo;
+            return (Type)_comboBox.SelectedValue;
         }
     }
 }

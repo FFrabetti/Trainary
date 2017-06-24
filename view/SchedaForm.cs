@@ -53,11 +53,11 @@ namespace Trainary.Presentation
                 return _nome;
             }
         }
-        public Panel Scopo
+        public ComboBox ScopoComboBox
         {
             get
             {
-                return panel1;
+                return _scopoComboBox;
             }
         }
         public TextBox Descrizione

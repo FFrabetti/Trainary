@@ -42,7 +42,10 @@ namespace Trainary.presenter.filtri
 
         public override object GetOpzione()
         {
-            return (Seduta)_control.ComboSedute.SelectedItem;
+            Seduta seduta = (Seduta)_control.ComboSedute.SelectedItem;
+            if (seduta == null)
+                throw new ArgumentException("nessuna seduta selezionata");
+            return seduta;
         }
 
         private void SelectedSchedaCombo(object sender, EventArgs e)

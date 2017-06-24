@@ -67,17 +67,12 @@ namespace Trainary.presenter.filtri
         public override object GetOpzione()
         {
             Periodo periodo = default(Periodo);
-            try
-            {
-                DateTime dataInizio = _dataInizio.Value;
-                DateTime dataFine = _dataFine.Value;
 
-                periodo = new Periodo(dataInizio, dataFine);
-            }
-            catch(Exception)
-            {
-               
-            }
+            DateTime dataInizio = _dataInizio.Value;
+            DateTime dataFine = _dataFine.Value;
+
+            periodo = new Periodo(dataInizio, dataFine);
+
             return periodo;
         }
     }

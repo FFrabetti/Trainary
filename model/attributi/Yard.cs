@@ -9,7 +9,7 @@
             private static readonly double k = 0.9144;
 
             // it has to have a constructor with no arguments
-            public Yard() : base("yard", "yd", TipoQuantita.LENGTH)
+            public Yard() : base("yard", "yd", TipoQuantita.LUNGHEZZA)
             {
                 _base = GetBase(TipoQuantita);
             }

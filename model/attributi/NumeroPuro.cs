@@ -13,7 +13,7 @@
 
             public override TipoQuantita Tipo
             {
-                get { return TipoQuantita.PURE_NUMBER; }
+                get { return TipoQuantita.NUMERO_PURO; }
             }
 
             public override double ToStandard()

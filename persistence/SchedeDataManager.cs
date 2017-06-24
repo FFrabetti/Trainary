@@ -30,9 +30,10 @@ namespace Trainary.persistence
         private Periodo GetRandomPeriodo()
         {
             // max 30 giorni prima e dopo il giorno corrente
+            DateTime start = DateTime.Today.AddDays(-random.Next(31));
             return new Periodo(
-                DateTime.Today.AddDays(-random.Next(31)),
-                DateTime.Today.AddDays(random.Next(31))
+                start,
+                start.AddDays(random.Next(31))
             );
         }
 

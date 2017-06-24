@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Trainary.model;
+using Trainary.model.attributi;
 
 namespace Trainary.persistence
 {
@@ -10,11 +11,13 @@ namespace Trainary.persistence
         private Random random = new Random();
         private IDataManager<Esercizio> _eserciziDM;
         private IDataManager<Seduta> _seduteDM;
+        private IDataManager<Attributo> _attributiDM;
 
-        public AllenamentiDataManager(IDataManager<Esercizio> eserciziDM, IDataManager<Seduta> seduteDM)
+        public AllenamentiDataManager(IDataManager<Esercizio> eserciziDM, IDataManager<Seduta> seduteDM, IDataManager<Attributo> attributiDM)
         {
             _eserciziDM = eserciziDM;
             _seduteDM = seduteDM;
+            _attributiDM = attributiDM;
         }
 
         private List<EsercizioSvolto> GetEserciziSvolti()
@@ -25,7 +28,9 @@ namespace Trainary.persistence
             {
                 SvolgiVisitor visitor = new SvolgiVisitor();
                 es.Accept(visitor);
-                lista.Add(visitor.EsercizioSvolto);
+                EsercizioSvolto esSvolto = visitor.EsercizioSvolto;
+                esSvolto.Dati.AddRange(_attributiDM.GetElements());
+                lista.Add(esSvolto);
             }
 
             return lista;

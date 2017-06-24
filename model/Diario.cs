@@ -22,7 +22,8 @@ namespace Trainary.model
             );
             IDataManager<Allenamento> allenamentiDM = new AllenamentiDataManager(
                 eserciziDM,
-                new SeduteAdapterDM()
+                new SeduteAdapterDM(),
+                new AttributiDataManager()
             );
 
             _allenamenti = new ObservableCollection<Allenamento>(allenamentiDM.GetElements());

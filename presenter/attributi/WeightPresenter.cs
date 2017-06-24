@@ -12,7 +12,7 @@ namespace Trainary.presenter.attributi
 
         public WeightPresenter()
         {
-            _unitaList = new List<UnitaDiMisura>(UnitaFactory.GetAllOfType(TipoQuantita.MASS));
+            _unitaList = new List<UnitaDiMisura>(UnitaFactory.GetAllOfType(TipoQuantita.MASSA));
         }
 
         protected override IList<UnitaDiMisura> UnitaDiMisura

@@ -43,15 +43,9 @@ namespace Trainary.presenter.filtri
 
         public override object GetOpzione()
         {
-            Scheda scheda = null;
-            try
-            {
-                scheda = (Scheda)_comboBox.SelectedItem;
-            }
-            catch
-            {
-
-            }
+            Scheda scheda = (Scheda)_comboBox.SelectedItem;
+            if (scheda == null)
+                throw new ArgumentException("nessuna scheda selezionata");
             return scheda;
         }
     }

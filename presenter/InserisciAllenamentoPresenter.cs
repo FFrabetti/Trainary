@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Trainary.model;
 using Trainary.Presentation;
 using Trainary.presenter.attributi;
+using Trainary.utils;
 using Trainary.view;
 
 namespace Trainary.presenter
@@ -23,39 +24,12 @@ namespace Trainary.presenter
             _treeViewPresenter = new TreeViewPresenter(_allenamentoForm.TreeView);
             _eserciziSvolti = new List<EsercizioSvolto>();
 
+            _allenamentoForm.TreeView.AfterSelect += OnNodeSelected;
+            _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiClick;
+            _allenamentoForm.EliminaEsercizioButton.Click += OnEliminaEsercizioClick;
+            _allenamentoForm.Data.ValueChanged += ControllaDataFutura;
+
             Application.Idle += OnApplicationIdle;
-            _allenamentoForm.TreeView.AfterSelect += OnSelectedNode;
-
-            _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiButton;
-            _allenamentoForm.AnnullaSelezioneButton.Click += OnAnnullaSelezioneButtonClick;
-            _allenamentoForm.EliminaEsercizioButton.Click += OnEliminaEsercizioButton;
-            _allenamentoForm.FormClosing += OnFormClosing;
-        }
-
-        private void OnFormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_allenamentoForm.DialogResult == DialogResult.OK && EserciziSvolti.Count == 0)
-            {
-                e.Cancel = true;
-            }
-        }
-
-        private void OnEliminaEsercizioButton(object sender, EventArgs e)
-        {
-            if (_allenamentoForm.TreeView.SelectedNode.Tag != null && _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto)
-            {
-                EsercizioSvolto eSvolto = (EsercizioSvolto)_allenamentoForm.TreeView.SelectedNode.Tag;
-                
-                _eserciziSvolti.Remove(eSvolto);
-                AggiornaTreeView();
-            }
-        }
-
-        protected virtual void OnAnnullaSelezioneButtonClick(object sender, EventArgs e)
-        {
-            _eserciziSvolti.Clear();
-            _allenamentoForm.Data.Value = DateTime.Today.Date;
-            AggiornaTreeView();
         }
 
         protected AllenamentoForm Form
@@ -73,22 +47,50 @@ namespace Trainary.presenter
             get { return _eserciziSvolti; }
         }
 
-        protected virtual void OnApplicationIdle(object sender, EventArgs e)
+        private void OnApplicationIdle(object sender, EventArgs e)
         {
             EnableButtons();
         }
 
-        private void OnSelectedNode(object sender, TreeViewEventArgs e)
+        private void ControllaDataFutura(object sender, EventArgs e)
+        {
+            DateTimePicker dateTimePicker = (DateTimePicker)sender;
+            if(dateTimePicker.Value.Date > DateTime.Today)
+            {
+                MessageBoxUtils.DisplayError("Data futura");
+                dateTimePicker.Value = DateTime.Today;
+            }
+        }
+
+        private void OnEliminaEsercizioClick(object sender, EventArgs e)
+        {
+            if (_allenamentoForm.TreeView.SelectedNode == null)
+                return;
+
+            EsercizioSvolto eSvolto = _allenamentoForm.TreeView.SelectedNode.Tag as EsercizioSvolto;
+            if (eSvolto != null)
+            {
+                _eserciziSvolti.Remove(eSvolto);
+                AggiornaTreeView();
+            }
+        }
+
+        private void OnNodeSelected(object sender, TreeViewEventArgs e)
         {
             EnableButtons();
         }
 
         private void EnableButtons()
         {
+            _allenamentoForm.AggiungiCircuitoButton.Enabled = EserciziSvolti.Count >= 2;
+
             _allenamentoForm.AggiungiDatiButton.Enabled = _allenamentoForm.TreeView.SelectedNode != null &&
                            _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto;
-            _allenamentoForm.EliminaEsercizioButton.Enabled = _allenamentoForm.TreeView.SelectedNode != null &&
-                            _allenamentoForm.TreeView.SelectedNode.Tag is EsercizioSvolto && !(_allenamentoForm.TreeView.SelectedNode.Parent.Tag is CircuitoSvolto);
+
+            _allenamentoForm.EliminaEsercizioButton.Enabled = _allenamentoForm.AggiungiDatiButton.Enabled &&
+                            !(_allenamentoForm.TreeView.SelectedNode.Parent.Tag is CircuitoSvolto);
+
+            _allenamentoForm.Buttons.OkButton.Enabled = EserciziSvolti.Count > 0;
         }
 
         protected void AggiornaTreeView()
@@ -96,9 +98,11 @@ namespace Trainary.presenter
             _treeViewPresenter.VisualizzaEserciziSvolti(_eserciziSvolti);
         }
 
-        private void OnAggiungiDatiButton(object sender, EventArgs e)
+        private void OnAggiungiDatiClick(object sender, EventArgs e)
         {
             // Recupero l'esercizio svolto selezionato
+            if (_allenamentoForm.TreeView.SelectedNode == null)
+                return;
             EsercizioSvolto esercizioSvolto = _allenamentoForm.TreeView.SelectedNode.Tag as EsercizioSvolto;
             if (esercizioSvolto == null)
                 return;

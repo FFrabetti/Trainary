@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Trainary.model;
 using Trainary.view;
 
@@ -15,7 +10,8 @@ namespace Trainary.presenter
         private SelezionaEserciziSeduta _form;
         private Seduta _seduta;
         private TreeViewPresenter _presenter;
-        public SelezionaEserciziSedutaPresenter(SelezionaEserciziSeduta form,Seduta seduta)
+
+        public SelezionaEserciziSedutaPresenter(SelezionaEserciziSeduta form, Seduta seduta)
         {
             if (form == null)
                 throw new ArgumentNullException("form");
@@ -23,29 +19,24 @@ namespace Trainary.presenter
                 throw new ArgumentNullException("seduta");
             _form = form;
             _seduta = seduta;
+
             _presenter = new TreeViewPresenter(form.TreeView);
-            Application.Idle += OnIdle;
+            form.TreeView.AfterSelect += OnTreeNodeSelected;
           
             _presenter.VisualizzaSeduta(_seduta);
+
+            OnTreeNodeSelected(null, EventArgs.Empty);
         }
 
-        private void OnIdle(object sender, EventArgs e)
+        private void OnTreeNodeSelected(object sender, EventArgs e)
         {
-            _form.Buttons.OkButton.Enabled =  EnableOkButton();
+            _form.Buttons.OkButton.Enabled = _form.TreeView.SelectedNode != null &&
+                _form.TreeView.SelectedNode.Tag is Esercizio &&
+                !(_form.TreeView.SelectedNode.Parent.Tag is Circuito);
         }
-        private bool EnableOkButton()
-        {
-            if (_form.TreeView.SelectedNode == null)
-                return false;
-            if (_form.TreeView.SelectedNode.Tag == null)
-                return false;
-            if (_form.TreeView.SelectedNode.Parent.Tag != null && _form.TreeView.SelectedNode.Parent.Tag is Circuito)
-                return false;
-            return true;
-        }
+
         public Esercizio GetEsercizio()
-        {
-           
+        {           
             return  (Esercizio)_form.TreeView.SelectedNode.Tag;
         }
     }

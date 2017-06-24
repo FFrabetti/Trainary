@@ -37,6 +37,7 @@
             this._scopo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._descrizione = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._periodo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._nrSedute = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,7 +103,8 @@
             this._nome,
             this._scopo,
             this._descrizione,
-            this._periodo});
+            this._periodo,
+            this._nrSedute});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Location = new System.Drawing.Point(20, 20);
             this.listView1.Name = "listView1";
@@ -114,7 +116,7 @@
             // _nome
             // 
             this._nome.Text = "Nome";
-            this._nome.Width = 124;
+            this._nome.Width = 80;
             // 
             // _scopo
             // 
@@ -130,6 +132,11 @@
             // 
             this._periodo.Text = "Periodo di validità";
             this._periodo.Width = 164;
+            // 
+            // _nrSedute
+            // 
+            this._nrSedute.Text = "Numero sedute";
+            this._nrSedute.Width = 300;
             // 
             // GestioneSchedeControl
             // 
@@ -160,5 +167,6 @@
         private System.Windows.Forms.ColumnHeader _scopo;
         private System.Windows.Forms.ColumnHeader _descrizione;
         private System.Windows.Forms.ColumnHeader _periodo;
+        private System.Windows.Forms.ColumnHeader _nrSedute;
     }
 }

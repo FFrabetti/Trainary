@@ -14,11 +14,11 @@ namespace Trainary.presenter
     class NuovaSchedaPresenter
     {
         private SchedaForm _schedaForm;
-        private ComboBox _comboBox = new ComboBox();
         private TreeViewPresenter _presenter;
         private IList<Seduta> _sedute = new List<Seduta>();
         private Scheda _scheda = null;
         public event EventHandler SeduteChanged;
+
         public NuovaSchedaPresenter(SchedaForm schedaForm)
         {
             if (schedaForm == null)
@@ -29,6 +29,19 @@ namespace Trainary.presenter
             AssegnaGestori();
             
         }
+
+        protected Scheda Scheda
+        {
+            get { return _scheda; }
+            set { _scheda = value; }
+        }
+
+        protected TreeViewPresenter SedutePresenter
+        {
+            get { return _presenter; }
+        }
+
+        protected SchedaForm SchedaForm { get { return _schedaForm; } }
 
         private void AssegnaGestori()
         {
@@ -214,7 +227,7 @@ namespace Trainary.presenter
                 return true;
             if (_schedaForm.Descrizione.Text.Trim() != String.Empty)
                 return true;
-            if ((ScopoDellaScheda)_comboBox.SelectedItem != ScopoDellaScheda.Nessuno)
+            if ((ScopoDellaScheda)_schedaForm.ScopoComboBox.SelectedItem != ScopoDellaScheda.Nessuno)
                 return true;
             if (_schedaForm.DataInizio.Value.Date != DateTime.Today.Date)
                 return true;
@@ -274,26 +287,18 @@ namespace Trainary.presenter
 
         private void OnSeduteChanged(object sender, EventArgs e)
         {
-            _schedaForm.TreeView.Nodes.Clear();
             _presenter.VisualizzaSedute(_scheda.Sedute);
         }
+
         private void InizializeScopoCombo()
         {
-            _comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            _comboBox.FormattingEnabled = true;
-            _comboBox.Dock = DockStyle.Fill;
-            _comboBox.TabIndex = 11;
-            _comboBox.DataSource = Enum.GetValues(typeof(ScopoDellaScheda));
-            _schedaForm.Scopo.Controls.Add(_comboBox);
+            _schedaForm.ScopoComboBox.DataSource = Enum.GetValues(typeof(ScopoDellaScheda));
            
         }
-        private Scheda NuovaScheda()
+
+        protected Periodo GetPeriodoDiValidita()
         {
             Periodo periodo;
-            
-            string nome = _schedaForm.Nome.Text;
-            ScopoDellaScheda scopo = (ScopoDellaScheda)_comboBox.SelectedItem;
-            string decrizione = _schedaForm.Descrizione.Text;
             DateTime dataInizio = _schedaForm.DataInizio.Value;
 
             if (_schedaForm.DataFineRadioButton.Checked)
@@ -305,51 +310,27 @@ namespace Trainary.presenter
             {
                 string durata = _schedaForm.Durata.Text.Trim();
                 int giorni = 0;
-                try
-                {
-                    giorni = Int32.Parse(durata);
-                }
-                catch (Exception exception)
-                {
-                    string messageBoxText = exception.Message;
-                    string caption = "Errore";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-                    MessageBox.Show(messageBoxText, caption, buttons, icon);
-                    return null;
-                }
+                giorni = Int32.Parse(durata);
+
                 TimeSpan timeSpanDurata = new TimeSpan(giorni, 0, 0, 0);
                 periodo = new Periodo(dataInizio, timeSpanDurata);
             }
-            return new Scheda(nome, scopo, decrizione, periodo);
-        }
-        private void OKButtonClick(object sender, EventArgs e)
-        {
-            if (_scheda == null)
-            {
-                string messageBoxText = "Non è possibile creare una scheda senza aver aggiunto almeno una seduta";
-                string caption = "Errore";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBoxIcon icon = MessageBoxIcon.Warning;
-
-                MessageBox.Show(messageBoxText, caption, buttons, icon);
-                return;
-            }
-            
-                GestoreSchede.GetInstance().GetSchede().Add(_scheda);
-                _schedaForm.Close();
-            
+            return periodo;
         }
 
-        private void _nuovaSedutaButton_Click(object sender, EventArgs e)
+        private Scheda NuovaScheda()
         {
             if (_scheda == null)
             {
                 try
                 {
-                    _scheda = NuovaScheda();
-                    if (_scheda == null) return;
+                    string nome = _schedaForm.Nome.Text;
+                    ScopoDellaScheda scopo = (ScopoDellaScheda)_schedaForm.ScopoComboBox.SelectedItem;
+                    string decrizione = _schedaForm.Descrizione.Text;
+
+                    Periodo periodo = GetPeriodoDiValidita();
+                    _scheda = new Scheda(nome, scopo, decrizione, periodo);
                 }
                 catch (Exception exception)
                 {
@@ -359,16 +340,33 @@ namespace Trainary.presenter
                     MessageBoxIcon icon = MessageBoxIcon.Warning;
 
                     MessageBox.Show(messageBoxText, caption, buttons, icon);
-                    return;
-
                 }
             }
-            _schedaForm.Buttons.CancelButton.Enabled = true;   
-                Seduta seduta = _scheda.AggiungiSeduta(new List<Esercizio>());
-                SeduteChanged(this, EventArgs.Empty);
-            
+            return _scheda;
+        }
 
-           
+        protected virtual void OKButtonClick(object sender, EventArgs e)
+        {
+            if (NuovaScheda() != null)
+            {
+                GestoreSchede.GetInstance().GetSchede().Add(_scheda);
+            }
+        }
+
+        protected virtual void _nuovaSedutaButton_Click(object sender, EventArgs e)
+        {
+            if (NuovaScheda() != null)
+            {
+                _schedaForm.Buttons.CancelButton.Enabled = true;
+                Seduta seduta = _scheda.AggiungiSeduta(new List<Esercizio>());
+                FireSeduteChanged();
+            }
+        }
+
+        protected void FireSeduteChanged()
+        {
+            if (SeduteChanged != null)
+                SeduteChanged(null, EventArgs.Empty);
         }
 
         //private void VisualizzaSeduta(Seduta seduta)

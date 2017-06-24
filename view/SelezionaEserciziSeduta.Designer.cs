@@ -69,7 +69,7 @@
             this.Controls.Add(this.dialogButtonsControl1);
             this.Name = "SelezionaEserciziSeduta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SelezionaEserciziSeduta";
+            this.Text = "Seleziona esercizi svolti";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

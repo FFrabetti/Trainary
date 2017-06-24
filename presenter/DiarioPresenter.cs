@@ -61,7 +61,7 @@ namespace Trainary.presenter
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
         {
-            IEnumerable<Allenamento> allenamentiOrdinati = listaAllenamenti.OrderBy(a => a.Data);
+            IEnumerable<Allenamento> allenamentiOrdinati = listaAllenamenti.OrderByDescending(a => a.Data);
             _diarioControl.ListBox.Items.Clear();
             //_diarioControl.ListBox.DataSource = listaAllenamenti;
             //_diarioControl.ListView.Items.Clear();
@@ -132,12 +132,13 @@ namespace Trainary.presenter
         {
             _currentFiltroPresenter = (FiltroPresenter)_diarioControl.ComboBox.SelectedItem;
 
-            IFiltroAllenamenti filtroAllenamenti = _currentFiltroPresenter.NewFiltro;
-            object opzione = _currentFiltroPresenter.GetOpzione();
-           
-            IEnumerable<Allenamento> allenamentiDaFiltrare;
             try
             {
+                IFiltroAllenamenti filtroAllenamenti = _currentFiltroPresenter.NewFiltro;
+                object opzione = _currentFiltroPresenter.GetOpzione();
+           
+                IEnumerable<Allenamento> allenamentiDaFiltrare;
+
                 if (filtroAllenamenti == _lastFiltro)
                 {
                     // se è esattamente lo stesso (quindi anche stessa opzione)
@@ -170,19 +171,14 @@ namespace Trainary.presenter
 
                
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                string messageBoxText = "Impossibile applicare l'opzione di filtraggio richiesta";
+                string messageBoxText = "Impossibile applicare l'opzione di filtraggio richiesta: " + ex.Message;
                 string caption = "Errore";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBoxIcon icon = MessageBoxIcon.Warning;
 
                 MessageBox.Show(messageBoxText, caption, buttons, icon);
-                _filtriApplicati.Remove(opzione);
-                _lastOpzione = _filtriApplicati.Keys.Count > 0 ? _filtriApplicati.Keys.Last() : null;
-                _lastFiltro = _filtriApplicati.Values.Count > 0 ? _filtriApplicati.Values.Last() : null;
-                ResetInfoLabel();
-                
                 return;
             }
             InizializeListView(_listaAllenamenti);

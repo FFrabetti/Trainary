@@ -41,16 +41,7 @@ namespace Trainary.presenter.filtri
 
         public override object GetOpzione()
         {
-            ScopoDellaScheda scopo = ScopoDellaScheda.Nessuno;
-            try
-            {
-                scopo = (ScopoDellaScheda)_comboBox.SelectedItem;
-            }
-            catch
-            {
-                
-            }
-            return scopo;
+            return (ScopoDellaScheda)_comboBox.SelectedItem;
         }
     }
 }

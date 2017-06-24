@@ -46,49 +46,22 @@ namespace Trainary
             Application.Exit();
         }
 
-        [MenuLabel("Diario")]
+        [MenuLabel("Visualizza Diario")]
         public static void MostraDiario()
         {
             Control control = new DiarioControl();
             AddControl(control);
-
-            Console.WriteLine("mostra diario");
         }
 
-        [MenuLabel("Schede", "Gestione Schede")]
+        [MenuLabel("Gestione Schede")]
         public static void MostraGestioneSchede()
         {
             GestioneSchedeControl control = new GestioneSchedeControl();
             GestioneSchedePresenter presenter = new GestioneSchedePresenter(control);
             AddControl(control);
-
-            Console.WriteLine("gestione schede");
         }
 
-        [MenuLabel("Schede", "Aggiungi Scheda")]
-        public static void AggiungiScheda()
-        {
-            //using (SchedaForm schedaForm = new SchedaForm())
-            //{
-            //    NuovaSchedaPresenter presenter = new NuovaSchedaPresenter(schedaForm);
-            //    if (schedaForm.ShowDialog() == DialogResult.OK)
-            //        Console.WriteLine("ok!");
-            //    else
-            //        Console.WriteLine("cancel");
-            //}
-
-
-            // Nel caso commentato sopra, se si preme ok e questo genera errore la form si chiude comunque,
-            // cosa che, secondo me, è sbagliata perché l'utente, visualizzato l'errore, deve poter correggere e 
-            // premere nuovamente ok.
-            SchedaForm schedaForm = new SchedaForm();
-            NuovaSchedaPresenter presenter = new NuovaSchedaPresenter(schedaForm);
-            schedaForm.Show();
-
-            Console.WriteLine("aggiungi scheda");
-        }
-
-        [MenuLabel("Allenamenti", "Nuovo Allenamento Programmato")]
+        [MenuLabel("Allenamenti", "Inserisci Allenamento Programmato")]
         public static void NuovoAllenamentoProgrammato()
         {
             AllenamentoForm form = new AllenamentoForm();
@@ -96,51 +69,13 @@ namespace Trainary
             form.Show();
         }
 
-        [MenuLabel("Allenamenti", "Nuovo Allenamento Extra")]
+        [MenuLabel("Allenamenti", "Inserisci Allenamento Extra")]
         public static void NuovoAllenamentoExtra()
         {
-
             AllenamentoForm form = new AllenamentoForm();
             InserisciAllenamentoExtraPresenter presenter = new InserisciAllenamentoExtraPresenter(form);
             form.Show();
         }
-
-        // Test only
-        //[MenuLabel("Test", "Nuovo eserczio")]
-        //public static void NuovoEsercizio()
-        //{
-        //    using (NewEsercizioForm newEsForm = new NewEsercizioForm())
-        //    {
-        //        NewEsercizioPresenter presenter = new NewEsercizioPresenter(newEsForm);
-
-        //        if (newEsForm.ShowDialog() == DialogResult.OK)
-        //        {
-        //            Esercizio esercizio = presenter.NewEsercizio();
-        //            Console.WriteLine(esercizio);
-        //        }
-        //        else
-        //            Console.WriteLine("cancel");
-        //    }
-        //}
-
-        //[MenuLabel("Test", "Test2", "Nuovo Circuito")]
-        //public static void NuovoCircuito()
-        //{
-        //    IDataManager<Esercizio> eserciziDM = new EserciziDataManager(new CategorieDataManager(), new AttributiDataManager());
-
-        //    using (NewCircuitoForm newCircuitoForm = new NewCircuitoForm())
-        //    {
-        //        NewCircuitoPresenter presenter = new NewCircuitoPresenter(newCircuitoForm, new List<Esercizio>(eserciziDM.GetElements()));
-
-        //        if (newCircuitoForm.ShowDialog() == DialogResult.OK)
-        //        {
-        //            Circuito circuito = presenter.NewCircuito();
-        //            Console.WriteLine(circuito.ToFullString());
-        //        }
-        //        else
-        //            Console.WriteLine("cancel");
-        //    }
-        //}
-
+        
     }
 }

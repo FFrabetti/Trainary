@@ -12,7 +12,7 @@ namespace Trainary.presenter.attributi
 
         public DistancePresenter()
         {
-            _unitaList = new List<UnitaDiMisura>(UnitaFactory.GetAllOfType(TipoQuantita.LENGTH));
+            _unitaList = new List<UnitaDiMisura>(UnitaFactory.GetAllOfType(TipoQuantita.LUNGHEZZA));
         }
 
         protected override IList<UnitaDiMisura> UnitaDiMisura

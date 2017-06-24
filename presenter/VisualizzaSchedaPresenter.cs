@@ -1,79 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Trainary.model;
-using Trainary.model.attributi;
 using Trainary.Presentation;
 
 namespace Trainary.presenter
 {
-    class VisualizzaSchedaPresenter
+    class VisualizzaSchedaPresenter : NuovaSchedaPresenter
     {
-        private SchedaForm _form;
-        private Scheda _scheda;
-        private TextBox _scopoTextBox = new TextBox();
-        private TreeViewPresenter _presenter;
-        public VisualizzaSchedaPresenter(SchedaForm form,Scheda scheda)
+        List<Seduta> _nuoveSedute;
+
+        public VisualizzaSchedaPresenter(SchedaForm form, Scheda scheda) : base(form)
         {
-            if (form == null)
-                throw new ArgumentNullException("form");
             if (scheda == null)
                 throw new ArgumentNullException("scheda");
-            _form = form;
-            _scheda = scheda;
-            _presenter = new TreeViewPresenter(_form.TreeView);
+            Scheda = scheda;
+
+            _nuoveSedute = new List<Seduta>();
+
             Inizializza();
-            VisualizzaScheda();
         }
 
         private void Inizializza()
         {
-            _form.Text = "Visualizza scheda";
-            _form.Nome.Enabled = false;
-            _scopoTextBox.Dock = DockStyle.Fill;
-            _form.Scopo.Controls.Add(_scopoTextBox);
-            _scopoTextBox.Enabled = false;
-            _form.Scopo.Enabled = false;
-            _form.Descrizione.Enabled = false;
-            _form.DataInizio.Enabled = false;
-            _form.DataFine.Enabled = false;
-            _form.DurataRadioButton.Visible = false;
-            _form.DataFineRadioButton.Visible = false;
-            _form.Durata.Enabled = false;
-            _form.EliminaEsercizioButton.Visible = false;
-            _form.NuovoEsercizioButton.Visible = false;
-            _form.NuovoCircuitoButton.Visible = false;
-            _form.RimuoviSedutaButton.Visible = false;
-            _form.NuovaSedutaButton.Visible = false;
-            _form.RinominaSedutaButton.Visible = false;
-            _form.Buttons.Visible = false;
-            _form.AnnullaSelezioneButton.Visible = false;
-            _form.CambiObbligatori.Visible = false;
-            _form.NomeLabel.Text = "Nome:";
-            _form.DataInizioLabel.Text = "DataInizio:";
-            _form.SeduteLabel.Text = "Sedute:";
+            SchedaForm.Text = "Visualizza scheda";
+            SchedaForm.Nome.Text = Scheda.Nome;
+
+            SchedaForm.ScopoComboBox.SelectedItem = Scheda.Scopo;
+
+            SchedaForm.Descrizione.Text = Scheda.Descrizione;
+
+            SchedaForm.DataInizio.Value = Scheda.PeriodoDiValidita.DataInizio;
+
+            SchedaForm.DataFine.Value = Scheda.PeriodoDiValidita.DataFine;
+
+            SchedaForm.Durata.Text = Scheda.PeriodoDiValidita.Durata.Days.ToString();
+           
+            SedutePresenter.VisualizzaSedute(Scheda.Sedute);
         }
 
-        private void VisualizzaScheda()
+        protected override void OKButtonClick(object sender, EventArgs e)
         {
-            _form.Nome.Text = _scheda.Nome;
-           
-            _scopoTextBox.Text = _scheda.Scopo.ToString();
-           
-            _form.Descrizione.Text = _scheda.Descrizione;
-           
-            _form.DataInizio.Value = _scheda.PeriodoDiValidita.DataInizio;
-           
-            _form.DataFine.Value = _scheda.PeriodoDiValidita.DataFine;
-           
-            _form.Durata.Text = _scheda.PeriodoDiValidita.Durata.Days.ToString();
-           
-            _presenter.VisualizzaSedute(_scheda.Sedute);
-           
+            Scheda.Nome = SchedaForm.Nome.Text;
+
+            Scheda.Scopo = (ScopoDellaScheda)SchedaForm.ScopoComboBox.SelectedItem;
+
+            Scheda.Descrizione = SchedaForm.Descrizione.Text;
+
+            Scheda.PeriodoDiValidita = GetPeriodoDiValidita();
         }
-       
+
+        protected override void _nuovaSedutaButton_Click(object sender, EventArgs e)
+        {
+            _nuoveSedute.Add(Scheda.AggiungiSeduta(new Esercizio[0]));
+
+            FireSeduteChanged();
+        }
+
+        public void CancellaNuoveSedute()
+        {
+            foreach (Seduta s in _nuoveSedute)
+                Scheda.RimuoviSeduta(s);
+        }
     }
 }

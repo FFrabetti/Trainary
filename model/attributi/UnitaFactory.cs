@@ -18,10 +18,10 @@ namespace Trainary.model.attributi
         {
             try
             {
-                UnitaDiMisura number = new UnitaDiMisuraBase("numero puro", "", TipoQuantita.PURE_NUMBER);
-                UnitaDiMisura metre = new UnitaDiMisuraBase("metro", "m", TipoQuantita.LENGTH);
-                UnitaDiMisura kilogram = new UnitaDiMisuraBase("kilogrammo", "kg", TipoQuantita.MASS);
-                UnitaDiMisura second = new UnitaDiMisuraBase("secondo", "s", TipoQuantita.TIME);
+                UnitaDiMisura number = new UnitaDiMisuraBase("numero puro", "", TipoQuantita.NUMERO_PURO);
+                UnitaDiMisura metre = new UnitaDiMisuraBase("metro", "m", TipoQuantita.LUNGHEZZA);
+                UnitaDiMisura kilogram = new UnitaDiMisuraBase("kilogrammo", "kg", TipoQuantita.MASSA);
+                UnitaDiMisura second = new UnitaDiMisuraBase("secondo", "s", TipoQuantita.TEMPO);
 
                 UnitaDiMisura gram = new UnitaDiMisuraDerivata("grammo", "g", kilogram, 0.001);
                 UnitaDiMisura kilometre = new UnitaDiMisuraDerivata("kilometro", "km", metre, 1000);

@@ -50,10 +50,10 @@
             this.dialogButtonsControl1 = new Trainary.view.DialogButtonsControl();
             this._rimuoviSedutaButton = new System.Windows.Forms.Button();
             this._nuovoCircuitoButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this._seduteTreeView = new System.Windows.Forms.TreeView();
             this.buttonsel = new System.Windows.Forms.Button();
+            this._scopoComboBox = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +73,7 @@
             this._nome.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._nome.Location = new System.Drawing.Point(172, 17);
             this._nome.Name = "_nome";
-            this._nome.Size = new System.Drawing.Size(190, 20);
+            this._nome.Size = new System.Drawing.Size(195, 20);
             this._nome.TabIndex = 2;
             // 
             // _dataInizioLabel
@@ -117,7 +117,7 @@
             this._descrizione.Multiline = true;
             this._descrizione.Name = "_descrizione";
             this._descrizione.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._descrizione.Size = new System.Drawing.Size(190, 52);
+            this._descrizione.Size = new System.Drawing.Size(195, 52);
             this._descrizione.TabIndex = 11;
             // 
             // _seduteLabel
@@ -288,14 +288,6 @@
             this._nuovoCircuitoButton.Text = "Nuovo Circuito";
             this._nuovoCircuitoButton.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel1.Location = new System.Drawing.Point(172, 51);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(190, 29);
-            this.panel1.TabIndex = 39;
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -326,15 +318,23 @@
             this.buttonsel.Text = "Annulla selezione";
             this.buttonsel.UseVisualStyleBackColor = true;
             // 
+            // _scopoComboBox
+            // 
+            this._scopoComboBox.FormattingEnabled = true;
+            this._scopoComboBox.Location = new System.Drawing.Point(172, 52);
+            this._scopoComboBox.Name = "_scopoComboBox";
+            this._scopoComboBox.Size = new System.Drawing.Size(195, 21);
+            this._scopoComboBox.TabIndex = 42;
+            // 
             // SchedaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(459, 611);
+            this.Controls.Add(this._scopoComboBox);
             this.Controls.Add(this.buttonsel);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this._nuovoCircuitoButton);
             this.Controls.Add(this._rimuoviSedutaButton);
             this.Controls.Add(this.dialogButtonsControl1);
@@ -390,9 +390,9 @@
         private view.DialogButtonsControl dialogButtonsControl1;
         private System.Windows.Forms.Button _rimuoviSedutaButton;
         private System.Windows.Forms.Button _nuovoCircuitoButton;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TreeView _seduteTreeView;
         private System.Windows.Forms.Button buttonsel;
+        private System.Windows.Forms.ComboBox _scopoComboBox;
     }
 }

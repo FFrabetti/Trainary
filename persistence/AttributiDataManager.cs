@@ -44,10 +44,10 @@ namespace Trainary.persistence
                         a = new Attributo("ripetizione", GetRandomNumeroPuro());
                         break;
                     case 2:
-                        a = new Attributo("distanza", GetRandomUnitValue(TipoQuantita.LENGTH));
+                        a = new Attributo("distanza", GetRandomUnitValue(TipoQuantita.LUNGHEZZA));
                         break;
                     case 3:
-                        a = new Attributo("peso", GetRandomUnitValue(TipoQuantita.MASS));
+                        a = new Attributo("peso", GetRandomUnitValue(TipoQuantita.MASSA));
                         break;
                 }
                 list.Add(a);

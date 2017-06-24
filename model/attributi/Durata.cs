@@ -22,7 +22,7 @@ namespace Trainary.model.attributi
 
             public override TipoQuantita Tipo
             {
-                get { return TipoQuantita.TIME; }
+                get { return TipoQuantita.TEMPO; }
             }
 
             public override double ToStandard()
