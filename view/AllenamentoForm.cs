@@ -41,6 +41,14 @@ namespace Trainary.Presentation
             }
         }
 
+        public Button AnnullaSelezioneButton
+        {
+            get
+            {
+                return _annselbutton;
+            }
+        }
+
         public Button EliminaEsercizioButton
         {
             get
