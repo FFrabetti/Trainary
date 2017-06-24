@@ -158,6 +158,7 @@ namespace Trainary.presenter
                     allenamentiDaFiltrare = _listaAllenamenti;
 
                     _listaAllenamentiPrec = _listaAllenamenti;
+                    if(!_filtriApplicati.ContainsKey(opzione))
                     _filtriApplicati.Add(opzione, filtroAllenamenti);
                 }
 
@@ -167,7 +168,7 @@ namespace Trainary.presenter
 
                 _listaAllenamenti = filtroAllenamenti.Filtra(allenamentiDaFiltrare, opzione);
 
-                InizializeListView(_listaAllenamenti);
+               
             }
             catch(Exception)
             {
@@ -179,6 +180,7 @@ namespace Trainary.presenter
                 MessageBox.Show(messageBoxText, caption, buttons, icon);
                 return;
             }
+            InizializeListView(_listaAllenamenti);
         }
 
         private void SetInfoLabel(IFiltroAllenamenti filtroAllenamenti)

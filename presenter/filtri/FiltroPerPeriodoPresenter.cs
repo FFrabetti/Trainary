@@ -73,10 +73,10 @@ namespace Trainary.presenter.filtri
                 DateTime dataFine = _dataFine.Value;
 
                 periodo = new Periodo(dataInizio, dataFine);
-            } 
-            catch
+            }
+            catch(Exception)
             {
-
+               
             }
             return periodo;
         }
