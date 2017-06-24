@@ -56,7 +56,7 @@ namespace Trainary.presenter
 
         private void AbilitaBottoni(object sender, EventArgs e)
         {
-            _diarioControl.AnnullaButton.Enabled = _lastFiltro != null;
+            _diarioControl.AnnullaButton.Enabled = _filtriApplicati.Values != null;
         }
 
         private void InizializeListView(IEnumerable<Allenamento> listaAllenamenti)
@@ -179,6 +179,8 @@ namespace Trainary.presenter
 
                 MessageBox.Show(messageBoxText, caption, buttons, icon);
                 _filtriApplicati.Remove(opzione);
+                _lastOpzione = _filtriApplicati.Keys.Count > 0 ? _filtriApplicati.Keys.Last() : null;
+                _lastFiltro = _filtriApplicati.Values.Count > 0 ? _filtriApplicati.Values.Last() : null;
                 ResetInfoLabel();
                 
                 return;
@@ -199,7 +201,7 @@ namespace Trainary.presenter
             foreach(IFiltroAllenamenti filtro in _filtriApplicati.Values)
             {
                 _diarioControl.FiltriLabel.Text += filtro.GetLabelAttribute().ToLower();
-                if(!filtro.Equals(_filtriApplicati.Values.Last()))
+                if( _filtriApplicati.Values.Count > 0 && !filtro.Equals(_filtriApplicati.Values.Last()))
                  _diarioControl.FiltriLabel.Text += ", ";
             }
         }
