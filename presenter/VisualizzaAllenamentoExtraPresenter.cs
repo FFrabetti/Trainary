@@ -25,7 +25,8 @@ namespace Trainary.presenter
             _form.Panel.Controls.Add(_control);
             _form.AllenamentoLabel.Text = "Allenamento Extra";
             _form.AggiungiDatiButton.Visible = false;
-            
+            _form.EliminaEsercizioButton.Visible = false;
+            _form.AnnullaSelezioneButton.Visible = false;
 
             VisualizzaAllenamento();
         }
