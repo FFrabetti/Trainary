@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Trainary.model;
 using Trainary.Presentation;
 
@@ -7,7 +8,8 @@ namespace Trainary.presenter
 {
     class VisualizzaSchedaPresenter : NuovaSchedaPresenter
     {
-        List<Seduta> _nuoveSedute;
+        List<Seduta> _vecchieSedute;
+        //private Dictionary<Seduta, IList<Esercizio>> _dictionary = new Dictionary<Seduta, IList<Esercizio>>();
 
         public VisualizzaSchedaPresenter(SchedaForm form, Scheda scheda) : base(form)
         {
@@ -15,10 +17,15 @@ namespace Trainary.presenter
                 throw new ArgumentNullException("scheda");
             Scheda = scheda;
 
-            _nuoveSedute = new List<Seduta>();
-
+            _vecchieSedute = new List<Seduta>(Scheda.Sedute);
+            //foreach (Seduta s in Scheda.Sedute)
+            //{
+            //    _dictionary.Add(s, s.Esercizi);
+            //}
+            SchedaForm.Buttons.CancelButton.Click += OnAnnullaSelezioneButton;
             Inizializza();
         }
+        
 
         private void Inizializza()
         {
@@ -51,15 +58,27 @@ namespace Trainary.presenter
 
         protected override void _nuovaSedutaButton_Click(object sender, EventArgs e)
         {
-            _nuoveSedute.Add(Scheda.AggiungiSeduta(new Esercizio[0]));
-
+            Scheda.AggiungiSeduta(new List<Esercizio>());
+            //_dictionary.Add(new Seduta(Scheda, new List<Esercizio>()),new List<Esercizio>());
             FireSeduteChanged();
         }
 
         public void CancellaNuoveSedute()
         {
-            foreach (Seduta s in _nuoveSedute)
+            foreach (Seduta s in Scheda.Sedute)
                 Scheda.RimuoviSeduta(s);
+            foreach (Seduta s in _vecchieSedute)
+                Scheda.AggiungiSeduta(s.Esercizi);
         }
+        protected override void OnAnnullaSelezioneButton(object sender, EventArgs e)
+        {
+            CancellaNuoveSedute();
+            //foreach(Seduta s in _dictionary.Keys)
+            //{
+            //    Scheda.AggiungiSeduta(_dictionary[s]);
+            //}
+            Inizializza();
+        }
+        
     }
 }
