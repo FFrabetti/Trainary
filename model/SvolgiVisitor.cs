@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Trainary.model
 {
     public class SvolgiVisitor : Visitor
     {
-        private EsercizioSvolto _esercizioSvolto = null ;
+        private EsercizioSvolto _esercizioSvolto = null;
+
         public void Visit(EsercizioSingolo esercizioSingolo)
         {
             _esercizioSvolto = new EsercizioSingoloSvolto(esercizioSingolo);
@@ -28,23 +25,9 @@ namespace Trainary.model
 
         public void Visit(Esercizio esercizio)
         {
-            //Type type = esercizio.GetType();
-            //switch (type)
-            //{
-            //    case typeof(EsercizioSingolo):
-            //        Visit((EsercizioSingolo)esercizio);
-            //        break;
-            //    case typeof(Circuito):
-            //        Visit((Circuito)esercizio);
-            //        break;
-            //    default:
-            //        throw new ArgumentException("esercizio");
-
-            //}
-
-            if (esercizio.GetType().Equals(typeof(EsercizioSingolo)))
+            if (esercizio is EsercizioSingolo)
                 Visit((EsercizioSingolo)esercizio);
-            else if (esercizio.GetType().Equals(typeof(Circuito)))
+            else if (esercizio is Circuito)
                 Visit((Circuito)esercizio);
             else throw new ArgumentException("esercizio");
         }

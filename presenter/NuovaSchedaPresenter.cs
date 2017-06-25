@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Trainary.model;
-using Trainary.model.attributi;
 using Trainary.Presentation;
+using Trainary.utils;
 using Trainary.view;
 
 namespace Trainary.presenter
@@ -27,7 +24,7 @@ namespace Trainary.presenter
             _presenter = new TreeViewPresenter(_schedaForm.TreeView);
             InizializeScopoCombo();
             AssegnaGestori();
-            
+
         }
 
         protected Scheda Scheda
@@ -49,7 +46,7 @@ namespace Trainary.presenter
             _schedaForm.Buttons.OkButton.Click += OKButtonClick;
             _schedaForm.NuovaSedutaButton.Click += _nuovaSedutaButton_Click;
             _schedaForm.TreeView.AfterSelect += OnSelectedNode;
-             SeduteChanged += OnSeduteChanged;
+            SeduteChanged += OnSeduteChanged;
             _schedaForm.NuovoEsercizioButton.Click += OnNuovoEsercizioButton;
             _schedaForm.EliminaEsercizioButton.Click += OnEliminaEsercizioButton;
             _schedaForm.RimuoviSedutaButton.Click += OnRimuoviSedutaButton;
@@ -61,7 +58,7 @@ namespace Trainary.presenter
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            if(_schedaForm.DialogResult == DialogResult.OK && _scheda == null)
+            if (_schedaForm.DialogResult == DialogResult.OK && _scheda == null)
             {
                 e.Cancel = true;
             }
@@ -90,17 +87,17 @@ namespace Trainary.presenter
         private void OnNuovoCircuitoButton(object sender, EventArgs e)
         {
             TreeNode node = _schedaForm.TreeView.SelectedNode;
-            if (node.Tag.GetType() == typeof(Seduta))
+            if (node != null && node.Tag is Seduta)
             {
-                Seduta seduta = (Seduta) node.Tag;
+                Seduta seduta = (Seduta)node.Tag;
                 IList<Esercizio> esercizi = seduta.Esercizi;
-                using(NewCircuitoForm form = new NewCircuitoForm())
+                using (NewCircuitoForm form = new NewCircuitoForm())
                 {
                     NewCircuitoPresenter presenter = new NewCircuitoPresenter(form, esercizi);
-                    if(form.ShowDialog() == DialogResult.OK)
+                    if (form.ShowDialog() == DialogResult.OK)
                     {
                         Circuito circuito = presenter.NewCircuito();
-                        foreach(Esercizio es in circuito.Esercizi)
+                        foreach (Esercizio es in circuito.Esercizi)
                         {
                             seduta.Esercizi.Remove(es);
                         }
@@ -114,27 +111,22 @@ namespace Trainary.presenter
         private void OnRinominaSedutaButton(object sender, EventArgs e)
         {
             TreeNode node = _schedaForm.TreeView.SelectedNode;
-            if (node.Tag.GetType() == typeof(Seduta))
+            if (node != null && node.Tag is Seduta)
             {
-                Seduta daRinominare = (Seduta) node.Tag;
+                Seduta daRinominare = (Seduta)node.Tag;
                 using (RinominaSedutaView view = new RinominaSedutaView())
                 {
                     RinominaSedutaPresenter presenter = new RinominaSedutaPresenter(view);
-                    if(view.ShowDialog() == DialogResult.OK)
+                    if (view.ShowDialog() == DialogResult.OK)
                     {
                         string nuovoNome = presenter.NuovoNome();
                         try
                         {
-                            daRinominare.Nome = nuovoNome; 
+                            daRinominare.Nome = nuovoNome;
                         }
-                        catch(Exception exception)
+                        catch (Exception exception)
                         {
-                            string messageBoxText = exception.Message;
-                            string caption = "Errore";
-                            MessageBoxButtons buttons = MessageBoxButtons.OK;
-                            MessageBoxIcon icon = MessageBoxIcon.Warning;
-
-                            MessageBox.Show(messageBoxText, caption, buttons, icon);
+                            MessageBoxUtils.DisplayError(exception.Message);
                             return;
                         }
                     }
@@ -146,9 +138,9 @@ namespace Trainary.presenter
         private void OnRimuoviSedutaButton(object sender, EventArgs e)
         {
             TreeNode node = _schedaForm.TreeView.SelectedNode;
-            if(node.Tag.GetType() == typeof(Seduta))
+            if (node != null && node.Tag is Seduta)
             {
-                Seduta sedutaDaEliminare = (Seduta) node.Tag;
+                Seduta sedutaDaEliminare = (Seduta)node.Tag;
                 _scheda.RimuoviSeduta(sedutaDaEliminare);
                 SeduteChanged(this, EventArgs.Empty);
             }
@@ -157,19 +149,14 @@ namespace Trainary.presenter
         private void OnEliminaEsercizioButton(object sender, EventArgs e)
         {
             TreeNode node = _schedaForm.TreeView.SelectedNode;
-            if(node.Tag.GetType().IsSubclassOf(typeof(Esercizio)))
+            if (node != null && node.Tag is Esercizio)
             {
                 Esercizio esercizioDaEliminare = (Esercizio)node.Tag;
-                
-                TreeNode superNode = node.Parent;
-                if(superNode.Tag != null && superNode.Tag is Circuito && (superNode.Tag as Circuito).Esercizi.Count == 2)
-                {
-                    string messageBoxText = "Un circuito non può contenere meno di 2 esercizi";
-                    string caption = "Errore";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    MessageBoxIcon icon = MessageBoxIcon.Warning;
 
-                    MessageBox.Show(messageBoxText, caption, buttons, icon);
+                TreeNode superNode = node.Parent;
+                if (superNode != null && superNode.Tag is Circuito && (superNode.Tag as Circuito).Esercizi.Count == 2)
+                {
+                    MessageBoxUtils.DisplayError("Un circuito non può contenere meno di 2 esercizi");
                     return;
                 }
                 while (!(superNode.Tag is Seduta))
@@ -177,9 +164,9 @@ namespace Trainary.presenter
                     superNode = superNode.Parent;
                 }
                 Seduta seduta = (Seduta)superNode.Tag;
-               
+
                 EliminaEsercizio(seduta.Esercizi, esercizioDaEliminare);
-                
+
                 SeduteChanged(this, EventArgs.Empty);
             }
         }
@@ -187,7 +174,7 @@ namespace Trainary.presenter
         private void EliminaEsercizio(IList<Esercizio> esercizi, Esercizio esercizioDaEliminare)
         {
             if (esercizi.Contains(esercizioDaEliminare))
-             esercizi.Remove(esercizioDaEliminare);
+                esercizi.Remove(esercizioDaEliminare);
             else
             {
                 foreach (Esercizio es in esercizi)
@@ -206,11 +193,11 @@ namespace Trainary.presenter
             _schedaForm.AnnullaSelezioneButton.Enabled = EnableAnnullaSelezione();
             _schedaForm.NuovaSedutaButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
             _schedaForm.Buttons.OkButton.Enabled = _schedaForm.Nome.Text.Trim() != String.Empty;
-           
+
             if (_schedaForm.TreeView.SelectedNode == null) //|| _schedaForm.TreeView.SelectedNode.Tag.GetType() == typeof(Seduta))
             {
                 _schedaForm.EliminaEsercizioButton.Enabled = false;
-               
+
             }
             if (_schedaForm.TreeView.SelectedNode == null)// || _schedaForm.TreeView.SelectedNode.Tag.GetType().IsSubclassOf(typeof(Esercizio)))
             {
@@ -276,7 +263,7 @@ namespace Trainary.presenter
 
         private bool isValida(object tag)
         {
-            if(tag.GetType() == typeof(Seduta))
+            if (tag.GetType() == typeof(Seduta))
             {
                 Seduta seduta = (Seduta)tag;
                 if (seduta.Esercizi.Count >= 2)
@@ -293,7 +280,7 @@ namespace Trainary.presenter
         private void InizializeScopoCombo()
         {
             _schedaForm.ScopoComboBox.DataSource = Enum.GetValues(typeof(ScopoDellaScheda));
-           
+
         }
 
         protected Periodo GetPeriodoDiValidita()
@@ -396,5 +383,5 @@ namespace Trainary.presenter
         //    }
         //}
     }
-    }
+}
 
