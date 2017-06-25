@@ -19,8 +19,6 @@ namespace Trainary.presenter
             Form.AllenamentoLabel.Text = "Allenamento Extra";
             Form.Panel.Controls.Add(_control);
 
-            Form.AnnullaSelezioneButton.Visible = false;
-
             Form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioClick;
             Form.AggiungiCircuitoButton.Click += OnAggiungiCircuitoClick;
             Form.Buttons.OkButton.Click += OkButtonClick;
