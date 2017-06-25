@@ -67,7 +67,7 @@ namespace Trainary.presenter
             }
         }
 
-        private void OnAnnullaSelezioneButton(object sender, EventArgs e)
+        protected virtual void OnAnnullaSelezioneButton(object sender, EventArgs e)
         {
             _schedaForm.Nome.Text = String.Empty;
             InizializeScopoCombo();
@@ -285,7 +285,7 @@ namespace Trainary.presenter
             return false;
         }
 
-        private void OnSeduteChanged(object sender, EventArgs e)
+        protected void OnSeduteChanged(object sender, EventArgs e)
         {
             _presenter.VisualizzaSedute(_scheda.Sedute);
         }
