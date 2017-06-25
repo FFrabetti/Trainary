@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Trainary.model.attributi;
 
@@ -7,7 +8,7 @@ namespace Trainary.model
 {
     public class Circuito : Esercizio
     {
-        private  IList<Esercizio> _esercizi;
+        private readonly IList<Esercizio> _esercizi;
 
         public Circuito(Attributo[] targets, IList<Esercizio> esercizi) : base(targets)
         {
@@ -15,18 +16,19 @@ namespace Trainary.model
                 throw new ArgumentNullException("esercizi");
             if (esercizi.Count < 2)
                 throw new ArgumentException("un circuito deve contenere almeno 2 esercizi");
-            
+
             _esercizi = esercizi;
         }
 
-        public Circuito(Esercizio[] esercizi) : this(new Attributo[0], esercizi)
+        public Circuito(IList<Esercizio> esercizi) : this(null, esercizi)
         {
         }
 
-        public IList<Esercizio> Esercizi {
+        public Esercizio[] Esercizi
+        {
             get
             {
-               return _esercizi;
+                return _esercizi.ToArray();
             }
         }
 
@@ -47,7 +49,7 @@ namespace Trainary.model
         {
             StringBuilder sb = new StringBuilder("Circuito [");
 
-            for (int i = 0; i < Esercizi.Count; i++)
+            for (int i = 0; i < _esercizi.Count; i++)
             {
                 if (i != 0)
                     sb.Append(", ");
@@ -71,7 +73,7 @@ namespace Trainary.model
 
         private void RecoursiveToFullString(StringBuilder result, StringBuilder ident, Esercizio e)
         {
-            if(e is Circuito)
+            if (e is Circuito)
             {
                 result.Append(Environment.NewLine + ident + e);
                 ident.Append("    ");

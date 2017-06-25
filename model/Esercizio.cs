@@ -9,10 +9,7 @@ namespace Trainary.model
 
         public Esercizio(Attributo[] targets)
         {
-            if (targets == null)
-                _targets = new Attributo[0];
-            else
-                _targets = targets;
+            _targets = targets == null ? new Attributo[0] : targets;
         }
 
 		public Esercizio() : this(null)

@@ -4,7 +4,7 @@ namespace Trainary.model
 {
     public struct Periodo
     {
-        public static string ToStringDate(DateTime dateTime)
+        private string ToStringDate(DateTime dateTime)
         {
             return dateTime.ToString("d");
         }

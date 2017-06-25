@@ -154,7 +154,7 @@ namespace Trainary.presenter
                 Esercizio esercizioDaEliminare = (Esercizio)node.Tag;
 
                 TreeNode superNode = node.Parent;
-                if (superNode != null && superNode.Tag is Circuito && (superNode.Tag as Circuito).Esercizi.Count == 2)
+                if (superNode != null && superNode.Tag is Circuito && (superNode.Tag as Circuito).Esercizi.Length == 2)
                 {
                     MessageBoxUtils.DisplayError("Un circuito non può contenere meno di 2 esercizi");
                     return;

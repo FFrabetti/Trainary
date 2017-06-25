@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace Trainary.model
+﻿namespace Trainary.model
 {
     public class EsercizioSingoloSvolto : EsercizioSvolto
     {
-        private static readonly List<EsercizioSvolto> EMPTY = new List<EsercizioSvolto>(); 
+        private static readonly EsercizioSvolto[] EMPTY = new EsercizioSvolto[0];
 
         public EsercizioSingoloSvolto(EsercizioSingolo esercizio) : base(esercizio)
         {
         }
 
-        public override List<EsercizioSvolto> SottoEserciziSvolti
+        public override EsercizioSvolto[] SottoEserciziSvolti
         {
             get
             {

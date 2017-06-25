@@ -28,7 +28,7 @@ namespace Trainary.model
             get { return _dati; }
         }
 
-        public abstract List<EsercizioSvolto> SottoEserciziSvolti
+        public abstract EsercizioSvolto[] SottoEserciziSvolti
         { get; }
 
         public override string ToString()

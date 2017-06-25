@@ -1,20 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Trainary.model
 {
     public class CircuitoSvolto : EsercizioSvolto
     {
-        List<EsercizioSvolto> _sottoEserciziSvolti = new List<EsercizioSvolto>();
+        private readonly List<EsercizioSvolto> _sottoEserciziSvolti;
 
-        public CircuitoSvolto(Circuito esercizio) : base(esercizio)
+        public CircuitoSvolto(Circuito circuito, List<EsercizioSvolto> sottoEserciziSvolti) : base(circuito)
         {
+            if (sottoEserciziSvolti == null)
+                throw new ArgumentNullException("sottoEserciziSvolti");
+            if (sottoEserciziSvolti.Count < 2)
+                throw new ArgumentException("Un circuito deve contenere almeno 2 esercizi");
+            if (sottoEserciziSvolti.Any(esSvolto => !circuito.Esercizi.Contains(esSvolto.Esercizio)))
+                throw new ArgumentException("Gli esercizi svolti devono riferirsi ad esercizi del circuito");
+
+            _sottoEserciziSvolti = sottoEserciziSvolti;
         }
 
-        public override List<EsercizioSvolto> SottoEserciziSvolti
+        public override EsercizioSvolto[] SottoEserciziSvolti
         {
             get
             {
-                return _sottoEserciziSvolti;
+                return _sottoEserciziSvolti.ToArray();
             }
         }
 

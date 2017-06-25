@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Trainary.model
 {
@@ -13,14 +14,15 @@ namespace Trainary.model
 
         public void Visit(Circuito circuito)
         {
-            CircuitoSvolto circuitoSvolto = new CircuitoSvolto(circuito);
+            List<EsercizioSvolto> esSvolti = new List<EsercizioSvolto>();
+
             foreach (Esercizio e in circuito.Esercizi)
             {
                 e.Accept(this);
-                EsercizioSvolto esercizioSvolto = this.EsercizioSvolto;
-                circuitoSvolto.SottoEserciziSvolti.Add(esercizioSvolto);
+                esSvolti.Add(EsercizioSvolto);
             }
-            _esercizioSvolto = circuitoSvolto;
+
+            _esercizioSvolto = new CircuitoSvolto(circuito, esSvolti);
         }
 
         public void Visit(Esercizio esercizio)
