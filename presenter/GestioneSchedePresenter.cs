@@ -39,8 +39,7 @@ namespace Trainary.presenter
                 {
                     OnSchedeChanged(null, EventArgs.Empty);
                 }
-                else
-                    presenter.CancellaNuoveSedute();
+               
             }
         }
 
