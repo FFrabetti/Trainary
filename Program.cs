@@ -64,17 +64,31 @@ namespace Trainary
         [MenuLabel("Allenamenti", "Inserisci Allenamento Programmato")]
         public static void NuovoAllenamentoProgrammato()
         {
-            AllenamentoForm form = new AllenamentoForm();
-            InserisciAllenamentoProgrammatoPresenter presenter = new InserisciAllenamentoProgrammatoPresenter(form);
-            form.Show();
+            using (AllenamentoForm form = new AllenamentoForm())
+            {
+                InserisciAllenamentoProgrammatoPresenter presenter = new InserisciAllenamentoProgrammatoPresenter(form);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Console.WriteLine("ok");
+                }
+                else
+                    Console.WriteLine("cancel");
+            }
         }
 
         [MenuLabel("Allenamenti", "Inserisci Allenamento Extra")]
         public static void NuovoAllenamentoExtra()
         {
-            AllenamentoForm form = new AllenamentoForm();
-            InserisciAllenamentoExtraPresenter presenter = new InserisciAllenamentoExtraPresenter(form);
-            form.Show();
+            using (AllenamentoForm form = new AllenamentoForm())
+            {
+                InserisciAllenamentoExtraPresenter presenter = new InserisciAllenamentoExtraPresenter(form);
+                if(form.ShowDialog() == DialogResult.OK)
+                {
+                    Console.WriteLine("ok");
+                }
+                else
+                    Console.WriteLine("cancel");
+            }
         }
         
     }
