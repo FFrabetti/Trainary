@@ -22,7 +22,7 @@ namespace Trainary.model
                 esSvolti.Add(EsercizioSvolto);
             }
 
-            _esercizioSvolto = new CircuitoSvolto(circuito, esSvolti);
+            _esercizioSvolto = new CircuitoSvolto(circuito, esSvolti.ToArray());
         }
 
         public void Visit(Esercizio esercizio)
