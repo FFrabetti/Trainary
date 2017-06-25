@@ -128,9 +128,9 @@
             this._seduteLabel.ForeColor = System.Drawing.Color.Black;
             this._seduteLabel.Location = new System.Drawing.Point(22, 282);
             this._seduteLabel.Name = "_seduteLabel";
-            this._seduteLabel.Size = new System.Drawing.Size(68, 19);
+            this._seduteLabel.Size = new System.Drawing.Size(64, 19);
             this._seduteLabel.TabIndex = 13;
-            this._seduteLabel.Text = "Sedute*:";
+            this._seduteLabel.Text = "Sedute :";
             // 
             // label1
             // 
