@@ -256,7 +256,7 @@ namespace Trainary.presenter
         {
             _schedaForm.NuovoEsercizioButton.Enabled = _schedaForm.TreeView.SelectedNode.Tag.GetType() == typeof(Seduta);
             _schedaForm.NuovoCircuitoButton.Enabled = _schedaForm.TreeView.SelectedNode.Tag.GetType() == typeof(Seduta) && isValida(_schedaForm.TreeView.SelectedNode.Tag);
-            _schedaForm.EliminaEsercizioButton.Enabled = _schedaForm.TreeView.SelectedNode.Tag.GetType().IsSubclassOf(typeof(Esercizio));  //_schedaForm.NuovoEsercizioButton.Enabled = _schedaForm.TreeView.SelectedNode.Parent==null;
+            _schedaForm.EliminaEsercizioButton.Enabled = _schedaForm.TreeView.SelectedNode.Tag != null && _schedaForm.TreeView.SelectedNode.Tag.GetType().IsSubclassOf(typeof(Esercizio)) && !(_schedaForm.TreeView.SelectedNode.Parent.Tag is Circuito);  //_schedaForm.NuovoEsercizioButton.Enabled = _schedaForm.TreeView.SelectedNode.Parent==null;
             _schedaForm.RinominaSedutaButton.Enabled = _schedaForm.TreeView.SelectedNode.Tag.GetType() == typeof(Seduta);
             _schedaForm.RimuoviSedutaButton.Enabled = _schedaForm.TreeView.SelectedNode.Tag.GetType() == typeof(Seduta);
         }
