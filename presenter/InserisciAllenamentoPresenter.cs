@@ -27,6 +27,7 @@ namespace Trainary.presenter
             _allenamentoForm.TreeView.AfterSelect += OnNodeSelected;
             _allenamentoForm.AggiungiDatiButton.Click += OnAggiungiDatiClick;
             _allenamentoForm.EliminaEsercizioButton.Click += OnEliminaEsercizioClick;
+            _allenamentoForm.AnnullaSelezioneButton.Click += OnAnnullaSelezioneClick;
             _allenamentoForm.Data.ValueChanged += ControllaDataFutura;
 
             Application.Idle += OnApplicationIdle;
@@ -55,7 +56,7 @@ namespace Trainary.presenter
         private void ControllaDataFutura(object sender, EventArgs e)
         {
             DateTimePicker dateTimePicker = (DateTimePicker)sender;
-            if(dateTimePicker.Value.Date > DateTime.Today)
+            if (dateTimePicker.Value.Date > DateTime.Today)
             {
                 MessageBoxUtils.DisplayError("Data futura");
                 dateTimePicker.Value = DateTime.Today;
@@ -91,6 +92,8 @@ namespace Trainary.presenter
                             !(_allenamentoForm.TreeView.SelectedNode.Parent.Tag is CircuitoSvolto);
 
             _allenamentoForm.Buttons.OkButton.Enabled = EserciziSvolti.Count > 0;
+
+            _allenamentoForm.AnnullaSelezioneButton.Enabled = EserciziSvolti.Count > 0;
         }
 
         protected void AggiornaTreeView()
@@ -122,5 +125,18 @@ namespace Trainary.presenter
             }
         }
 
+        protected virtual void OnAnnullaSelezioneClick(object sender, EventArgs e)
+        {
+            if (EserciziSvolti.Count > 0)
+            {
+                string messageBoxText = "Ci sono degli esercizi svolti non salvati, se si prosegue saranno cancellati";
+
+                if (MessageBoxUtils.AskForConfirmation(messageBoxText) == DialogResult.OK)
+                {
+                    EserciziSvolti.Clear();
+                    AggiornaTreeView();
+                }
+            }
+        }
     }
 }

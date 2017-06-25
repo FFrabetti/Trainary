@@ -60,7 +60,6 @@ namespace Trainary.presenter
 
             Form.AggiungiEsercizioButton.Click += OnAggiungiEsercizioClick;
             Form.Buttons.OkButton.Click += OkButtonClick;
-            Form.AnnullaSelezioneButton.Click += OnAnnullaSelezioneClick;
 
             Form.Data.ValueChanged += OnDataValueChanged;
             _selSedutaControl.ComboSchede.SelectedIndexChanged += OnSelectedSchedaChanged;
@@ -154,24 +153,17 @@ namespace Trainary.presenter
             }
         }
 
-        private void OnAnnullaSelezioneClick(object sender, EventArgs e)
+        override protected void OnAnnullaSelezioneClick(object sender, EventArgs e)
         {
-            if (EserciziSvolti.Count > 0)
-            {
-                string messageBoxText = "Ci sono degli esercizi svolti non salvati, se si prosegue saranno cancellati";
+            base.OnAnnullaSelezioneClick(sender, e);
 
-                if (MessageBoxUtils.AskForConfirmation(messageBoxText) == DialogResult.OK)
-                {
-                    EserciziSvolti.Clear();
-                    ClearSnapshot();
-                    AggiornaTreeView();
-                }
-            }
+            // vengono cancellati dal metodo base
+            if (EserciziSvolti.Count == 0)
+                ClearSnapshot();
         }
 
         private void OnApplicationIdle(object sender, EventArgs e)
         {
-            Form.AnnullaSelezioneButton.Enabled = EserciziSvolti.Count > 0;
             Form.AggiungiEsercizioButton.Enabled = SelectedSeduta != null;
         }
     }
