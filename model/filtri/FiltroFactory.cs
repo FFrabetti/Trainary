@@ -32,7 +32,7 @@ namespace Trainary.model.filtri
             }
         }
 
-        public static IFiltroAllenamenti GetFiltroAllenamento(string nomeFiltro)
+        public static IFiltroAllenamenti GetFiltroAllenamenti(string nomeFiltro)
         {
             // If the specified key is not found, throws a KeyNotFoundException
             return _dictionary[nomeFiltro];

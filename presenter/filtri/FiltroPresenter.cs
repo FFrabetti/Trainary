@@ -8,7 +8,7 @@ namespace Trainary.presenter.filtri
     {
         public IFiltroAllenamenti NewFiltro
         {
-            get { return FiltroFactory.GetFiltroAllenamento(LabelAttribute); }
+            get { return FiltroFactory.GetFiltroAllenamenti(LabelAttribute); }
         }
 
         //public abstract IFiltroAllenamenti GetNewFiltro();
