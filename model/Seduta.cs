@@ -18,7 +18,7 @@ namespace Trainary.model
                 throw new ArgumentNullException("esercizi");
 
             _scheda = scheda;
-            _scheda.RegisterSeduta(this);
+            _scheda.RegistraSeduta(this);
             _esercizi = esercizi;
             Nome = nome;
         }

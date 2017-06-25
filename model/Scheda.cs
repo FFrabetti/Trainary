@@ -95,7 +95,7 @@ namespace Trainary.model
             // aggiungendosi alla lista _sedute
         }
 
-        internal void RegisterSeduta(Seduta s)
+        internal void RegistraSeduta(Seduta s)
         {
             if (s.Scheda != this)
                 throw new ArgumentException("La seduta non appartiene a questa scheda");
