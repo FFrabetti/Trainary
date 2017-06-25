@@ -32,6 +32,7 @@ namespace Trainary.presenter
             _form.AggiungiDatiButton.Visible = false;
             _form.EliminaEsercizioButton.Visible = false;
             _form.AnnullaSelezioneButton.Visible = false;
+            _form.Buttons.Visible = false;
             VisualizzaAllenamento();
         }
 
