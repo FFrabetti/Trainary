@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Trainary.model;
 using Trainary.model.attributi;
 using Trainary.Presentation;
+using Trainary.utils;
 using Trainary.view;
 
 namespace Trainary.presenter
@@ -67,7 +68,7 @@ namespace Trainary.presenter
             }
         }
 
-        protected virtual void OnAnnullaSelezioneButton(object sender, EventArgs e)
+        private void OnAnnullaSelezioneButton(object sender, EventArgs e)
         {
             _schedaForm.Nome.Text = String.Empty;
             InizializeScopoCombo();
@@ -149,8 +150,12 @@ namespace Trainary.presenter
             if(node.Tag.GetType() == typeof(Seduta))
             {
                 Seduta sedutaDaEliminare = (Seduta) node.Tag;
-                _scheda.RimuoviSeduta(sedutaDaEliminare);
-                SeduteChanged(this, EventArgs.Empty);
+                if (MessageBoxUtils.AskForConfirmation("Sicuro di voler eliminare la seduta " + sedutaDaEliminare + " ?") == DialogResult.OK)
+                {
+                    _scheda.RimuoviSeduta(sedutaDaEliminare);
+                    SeduteChanged(this, EventArgs.Empty);
+                }
+               
             }
         }
 
@@ -177,10 +182,12 @@ namespace Trainary.presenter
                     superNode = superNode.Parent;
                 }
                 Seduta seduta = (Seduta)superNode.Tag;
-               
-                EliminaEsercizio(seduta.Esercizi, esercizioDaEliminare);
+                if (MessageBoxUtils.AskForConfirmation("Sicuro di voler eliminare l'esercizio " + esercizioDaEliminare + " ?") == DialogResult.OK)
+                {
+                    EliminaEsercizio(seduta.Esercizi, esercizioDaEliminare);
+                    SeduteChanged(this, EventArgs.Empty);
+                }
                 
-                SeduteChanged(this, EventArgs.Empty);
             }
         }
 
