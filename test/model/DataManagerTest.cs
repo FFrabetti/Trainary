@@ -34,7 +34,7 @@ namespace Trainary.test.model
 
             // schede
             foreach (Scheda s in documento.GetSchede())
-                Console.WriteLine(s.ToFullString());
+                Console.WriteLine(s.ToString());
 
             Separator();
 

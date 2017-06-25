@@ -49,7 +49,7 @@ namespace Trainary.persistence
             List<Scheda> list = new List<Scheda>();
 
             for (int i = 0; i < random.Next(4) + 4; i++)
-                list.Add(new Scheda(
+                list.Add(new SchedaConcreta(
                     "Scheda" + i,
                     GetRandomScopo(),
                     GetRandomDesc(),

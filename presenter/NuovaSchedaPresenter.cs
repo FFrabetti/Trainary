@@ -317,7 +317,7 @@ namespace Trainary.presenter
                     string decrizione = _schedaForm.Descrizione.Text;
 
                     Periodo periodo = GetPeriodoDiValidita();
-                    _scheda = new Scheda(nome, scopo, decrizione, periodo);
+                    _scheda = new SchedaConcreta(nome, scopo, decrizione, periodo);
                 }
                 catch (Exception exception)
                 {

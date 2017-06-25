@@ -85,7 +85,7 @@ namespace Trainary.presenter
         private void VisualizzaSchede()
         {
             _control.ListView.Items.Clear();
-            foreach (Scheda s in GestoreSchede.GetInstance().GetSchede().OrderByDescending(scheda => scheda.isValida(DateTime.Today)))
+            foreach (Scheda s in GestoreSchede.GetInstance().GetSchede().OrderByDescending(scheda => scheda.IsValida(DateTime.Today)))
             {
                 ListViewItem item = new ListViewItem(s.Nome);
                 item.Tag = s;
@@ -96,7 +96,7 @@ namespace Trainary.presenter
                 item.SubItems.Add(s.Sedute.Length.ToString());
                 _control.ListView.Items.Add(item);
 
-                if(!s.isValida(DateTime.Today))
+                if(!s.IsValida(DateTime.Today))
                     item.ForeColor = Color.Red;
                 else
                     item.ForeColor = Color.Green;

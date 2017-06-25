@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Trainary.model
 {
-    public class Scheda
+    public abstract class Scheda
     {
         private string _nome;
         private ScopoDellaScheda _scopo;
         private string _descrizione;
         private Periodo _periodoDiValidita;
         private readonly IList<Seduta> _sedute;
-		
+
         public Scheda(string nome, ScopoDellaScheda scopo, string descrizione, Periodo periodoDiValidita)
         {
             Nome = nome;
@@ -23,15 +22,19 @@ namespace Trainary.model
         }
 
         public Scheda(string nome, ScopoDellaScheda scopo, Periodo periodoDiValidita)
-            : this(nome, scopo, null, periodoDiValidita) { }
+        : this(nome, scopo, null, periodoDiValidita)
+        { }
 
         public Scheda(string nome, string descrizione, Periodo periodoDiValidita)
-            : this(nome, ScopoDellaScheda.Nessuno, descrizione, periodoDiValidita) { }
+        : this(nome, ScopoDellaScheda.Nessuno, descrizione, periodoDiValidita)
+        { }
 
         public Scheda(string nome, Periodo periodoDiValidita)
-            : this(nome, null, periodoDiValidita) { }
+        : this(nome, null, periodoDiValidita)
+        { }
 
-        public string Nome {
+        public virtual string Nome
+        {
             get
             {
                 return _nome;
@@ -45,7 +48,8 @@ namespace Trainary.model
             }
         }
 
-        public ScopoDellaScheda Scopo {
+        public virtual ScopoDellaScheda Scopo
+        {
             get
             {
                 return _scopo;
@@ -56,21 +60,20 @@ namespace Trainary.model
             }
         }
 
-        public Periodo PeriodoDiValidita {
+        public virtual Periodo PeriodoDiValidita
+        {
             get
             {
-               return _periodoDiValidita;
+                return _periodoDiValidita;
             }
             set
             {
-                if (value.DataInizio != _periodoDiValidita.DataInizio || value.DataFine < _periodoDiValidita.DataFine)
-                    throw new ArgumentException("Il periodo di validità può solo essere esteso.");
-
                 _periodoDiValidita = value;
             }
         }
 
-        public string Descrizione {
+        public virtual string Descrizione
+        {
             get
             {
                 return _descrizione;
@@ -81,21 +84,22 @@ namespace Trainary.model
             }
         }
 
-        public Seduta[] Sedute {
+        public virtual Seduta[] Sedute
+        {
             get
             {
                 return _sedute.ToArray();
             }
         }
 
-        public Seduta AggiungiSeduta(IList<Esercizio> esercizi)
+        public virtual Seduta AggiungiSeduta(IList<Esercizio> esercizi)
         {
             return new Seduta(this, esercizi);
             // il costruttore di Seduta chiama RegisterSeduta,
             // aggiungendosi alla lista _sedute
         }
 
-        internal void RegistraSeduta(Seduta s)
+        internal virtual void RegistraSeduta(Seduta s)
         {
             if (s.Scheda != this)
                 throw new ArgumentException("La seduta non appartiene a questa scheda");
@@ -104,48 +108,24 @@ namespace Trainary.model
                 _sedute.Add(s);
         }
 
-        public bool RimuoviSeduta(Seduta seduta)
+        public virtual bool RimuoviSeduta(Seduta seduta)
         {
             return _sedute.Remove(seduta);
         }
 
-        public bool IsNomeUnivoco(string nome)
-        {
-            return ! _sedute.Any(s => s.Nome == nome);
-        }
-
-        public int GetCodiceProgressivo(Seduta seduta)
-        {
-            int i = _sedute.IndexOf(seduta);
-            if (i < 0)
-                throw new ArgumentException("La seduta non è presente.");
-
-            return i+1;
-        }
-
-        public bool isValida(DateTime giorno)
+        public virtual bool IsValida(DateTime giorno)
         {
             return PeriodoDiValidita.IsNelPeriodo(giorno);
         }
+
+        public abstract bool IsNomeSedutaValido(string nome);
+
+        public abstract string GetCodiceSeduta(Seduta seduta);
 
         public override string ToString()
         {
             return _nome;
         }
 
-        // debug only
-        public string ToFullString()
-        {
-            StringBuilder sb = new StringBuilder(_nome + " ");
-            if (_scopo != ScopoDellaScheda.Nessuno)
-            {
-                sb.Append("(");
-                sb.Append(_scopo);
-                sb.Append(") ");
-            }
-            sb.Append(_periodoDiValidita.ToFullString());
-
-            return sb.ToString();
-        }
     }
 }

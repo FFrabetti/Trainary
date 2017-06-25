@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Trainary.model
 {
@@ -38,10 +37,10 @@ namespace Trainary.model
             {
                 if (string.IsNullOrEmpty(value))
                     _nome = String.Empty;
-                else if (_scheda.IsNomeUnivoco(value))
+                else if (_scheda.IsNomeSedutaValido(value))
                     _nome = value;
                 else
-                    throw new ArgumentException("Nome già in uso da un'altra seduta nella stessa scheda");
+                    throw new ArgumentException("Nome seduta non valido");
             }
         }
 
@@ -55,7 +54,7 @@ namespace Trainary.model
 
         public override string ToString()
         {
-            return (string.IsNullOrEmpty(_nome) ? "Seduta " + _scheda.GetCodiceProgressivo(this).ToString() : _nome);
+            return (string.IsNullOrEmpty(_nome) ? "Seduta " + _scheda.GetCodiceSeduta(this) : _nome);
         }
 
     }

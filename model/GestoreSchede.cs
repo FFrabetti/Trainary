@@ -50,7 +50,7 @@ namespace Trainary
 
         public IEnumerable<Scheda> GetSchedeValide(DateTime data)
         {
-            return _schede.Where(scheda => scheda.isValida(data));
+            return _schede.Where(scheda => scheda.IsValida(data));
         }
     }
 }
