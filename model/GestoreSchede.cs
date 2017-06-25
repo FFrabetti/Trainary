@@ -29,7 +29,7 @@ namespace Trainary
             _schede.CollectionChanged += OnSchedeChanged;
         }
 
-        private void OnSchedeChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public void OnSchedeChanged(object sender, EventArgs e)
         {
             if (SchedeChanged != null)
                 SchedeChanged(this, EventArgs.Empty);

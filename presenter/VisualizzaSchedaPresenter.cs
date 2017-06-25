@@ -20,9 +20,14 @@ namespace Trainary.presenter
 
             SchedaForm.Buttons.CancelButton.Visible = false;
             SchedaForm.AnnullaSelezioneButton.Visible = false;
+            SchedaForm.FormClosed += OnFormClosed;
             Inizializza();
         }
-        
+
+        private void OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            GestoreSchede.GetInstance().OnSchedeChanged(null,EventArgs.Empty);
+        }
 
         private void Inizializza()
         {

@@ -356,7 +356,7 @@ namespace Trainary.presenter
         {
             if (NuovaScheda() != null)
             {
-                GestoreSchede.GetInstance().GetSchede().Add(_scheda);
+                Trainary.GestoreSchede.GetInstance().GetSchede().Add(_scheda);
             }
         }
 
