@@ -320,6 +320,7 @@
             // 
             // _scopoComboBox
             // 
+            this._scopoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._scopoComboBox.FormattingEnabled = true;
             this._scopoComboBox.Location = new System.Drawing.Point(172, 52);
             this._scopoComboBox.Name = "_scopoComboBox";

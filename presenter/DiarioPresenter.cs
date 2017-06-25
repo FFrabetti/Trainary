@@ -40,7 +40,7 @@ namespace Trainary.presenter
 
             diarioControl.ApplicaFiltroButton.Click += OnApplicaFiltroButton;
             diarioControl.AnnullaButton.Click += _annullaButton_Click;
-            diarioControl.ListBox.SelectedIndexChanged += _listView_SelectedIndexChanged;
+            diarioControl.ListBox.DoubleClick += _listView_SelectedIndexChanged;
             Application.Idle += AbilitaBottoni;
         }
 
@@ -227,18 +227,24 @@ namespace Trainary.presenter
         {
             ListBox listBox = (ListBox)sender;
             Allenamento allenamento = (Allenamento)listBox.SelectedItem;
-            AllenamentoForm form = new AllenamentoForm();
-            if (allenamento is AllenamentoExtra)
+            using (AllenamentoForm form = new AllenamentoForm())
             {
-                
-                VisualizzaAllenamentoExtraPresenter presenter = new VisualizzaAllenamentoExtraPresenter(form, allenamento as AllenamentoExtra);
-                
+                if (allenamento is AllenamentoExtra)
+                {
+
+                    VisualizzaAllenamentoExtraPresenter presenter = new VisualizzaAllenamentoExtraPresenter(form, allenamento as AllenamentoExtra);
+
+                }
+                else
+                {
+                    VisualizzaAllenamentoProgrammatoPresenter presenter = new VisualizzaAllenamentoProgrammatoPresenter(form, allenamento as AllenamentoProgrammato);
+                }
+                if(form.ShowDialog() == DialogResult.OK)
+                {
+                    OnDiarioChanged(null, EventArgs.Empty);
+                }
+               
             }
-            else
-            {
-                VisualizzaAllenamentoProgrammatoPresenter presenter = new VisualizzaAllenamentoProgrammatoPresenter(form, allenamento as AllenamentoProgrammato);
-            }
-            form.Show();
         }
     }
 }

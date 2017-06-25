@@ -27,7 +27,6 @@ namespace Trainary.presenter
             _control.Scheda.Enabled = false;
             _control.Seduta.Enabled = false;
             _form.Data.Enabled = false;
-            _form.Buttons.Visible = false;
             _form.AggiungiEsercizioButton.Visible = false;
             _form.AggiungiCircuitoButton.Visible = false;
             _form.AggiungiDatiButton.Visible = false;

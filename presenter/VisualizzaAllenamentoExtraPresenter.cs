@@ -17,7 +17,7 @@ namespace Trainary.presenter
         private AllenamentoExtra _allenamento;
         private NomeUserControl _control = new NomeUserControl();
         private TreeViewPresenter _presenter;
-        public VisualizzaAllenamentoExtraPresenter(AllenamentoForm form,AllenamentoExtra allenamento)
+        public VisualizzaAllenamentoExtraPresenter(AllenamentoForm form, AllenamentoExtra allenamento)
         {
             _form = form;
             _allenamento = allenamento;
@@ -27,25 +27,36 @@ namespace Trainary.presenter
             _form.AggiungiDatiButton.Visible = false;
             _form.EliminaEsercizioButton.Visible = false;
             _form.AnnullaSelezioneButton.Visible = false;
-
+            _form.Data.Enabled = false;
+            _form.AggiungiEsercizioButton.Visible = false;
+            _form.AggiungiCircuitoButton.Visible = false;
+            _form.Buttons.OkButton.Click += OnOkButtonClick;
+            Application.Idle += OnIdle;
             VisualizzaAllenamento();
+        }
+
+        private void OnIdle(object sender, EventArgs e)
+        {
+            _form.Buttons.OkButton.Enabled = _control.Nome.Text.Trim() != String.Empty;
+        }
+
+        private void OnOkButtonClick(object sender, EventArgs e)
+        {
+            _allenamento.Nome = _control.Nome.Text;
         }
 
         private void VisualizzaAllenamento()
         {
-            
+
             _control.Nome.Text = _allenamento.Nome;
-            _control.Nome.Enabled = false;
-            
+
             _form.Data.Value = _allenamento.Data;
-            _form.Data.Enabled = false;
+
             _presenter.VisualizzaEserciziSvolti(_allenamento.EserciziSvolti);
-            _form.AggiungiEsercizioButton.Visible = false;
-            _form.AggiungiCircuitoButton.Visible = false;
-            _form.Buttons.Visible = false;
+
         }
 
-       
+
     }
-    }
+}
 
