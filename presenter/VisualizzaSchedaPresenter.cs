@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Trainary.model;
 using Trainary.Presentation;
+using Trainary.utils;
 
 namespace Trainary.presenter
 {
     class VisualizzaSchedaPresenter : NuovaSchedaPresenter
     {
-        List<Seduta> _vecchieSedute;
+        private List<Seduta> _vecchieSedute;
+        private bool errore = false;
       
         public VisualizzaSchedaPresenter(SchedaForm form, Scheda scheda) : base(form)
         {
@@ -21,7 +23,16 @@ namespace Trainary.presenter
             SchedaForm.Buttons.CancelButton.Visible = false;
             SchedaForm.AnnullaSelezioneButton.Visible = false;
             SchedaForm.FormClosed += OnFormClosed;
+
             Inizializza();
+        }
+
+        protected override void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (SchedaForm.DialogResult == DialogResult.OK && errore == true)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)
@@ -49,13 +60,24 @@ namespace Trainary.presenter
 
         protected override void OKButtonClick(object sender, EventArgs e)
         {
+            errore = false;
+            try
+            {
+                Scheda.PeriodoDiValidita = GetPeriodoDiValidita();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxUtils.DisplayError(ex.Message);
+                errore = true;
+                return;
+            }
+
+
             Scheda.Nome = SchedaForm.Nome.Text;
 
             Scheda.Scopo = (ScopoDellaScheda)SchedaForm.ScopoComboBox.SelectedItem;
 
             Scheda.Descrizione = SchedaForm.Descrizione.Text;
-
-            Scheda.PeriodoDiValidita = GetPeriodoDiValidita();
         }
 
         protected override void _nuovaSedutaButton_Click(object sender, EventArgs e)

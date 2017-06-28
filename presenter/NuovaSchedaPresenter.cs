@@ -52,11 +52,11 @@ namespace Trainary.presenter
             _schedaForm.RimuoviSedutaButton.Click += OnRimuoviSedutaButton;
             _schedaForm.RinominaSedutaButton.Click += OnRinominaSedutaButton;
             _schedaForm.NuovoCircuitoButton.Click += OnNuovoCircuitoButton;
-            _schedaForm.AnnullaSelezioneButton.Click += OnAnnullaSelezioneButton;
+            _schedaForm.AnnullaSelezioneButton.Click += OnFormClosing;
             _schedaForm.FormClosing += OnFormClosing;
         }
 
-        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        protected virtual void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             if (_schedaForm.DialogResult == DialogResult.OK && _scheda == null)
             {
@@ -64,7 +64,7 @@ namespace Trainary.presenter
             }
         }
 
-        protected virtual void OnAnnullaSelezioneButton(object sender, EventArgs e)
+        protected virtual void OnFormClosing(object sender, EventArgs e)
         {
             _schedaForm.Nome.Text = String.Empty;
             InizializeScopoCombo();
@@ -141,8 +141,11 @@ namespace Trainary.presenter
             if (node != null && node.Tag is Seduta)
             {
                 Seduta sedutaDaEliminare = (Seduta)node.Tag;
-                _scheda.RimuoviSeduta(sedutaDaEliminare);
-                SeduteChanged(this, EventArgs.Empty);
+                if (MessageBoxUtils.AskForConfirmation("Sicuro di voler eliminare la seduta " + sedutaDaEliminare + "?") == DialogResult.OK)
+                {
+                    _scheda.RimuoviSeduta(sedutaDaEliminare);
+                    SeduteChanged(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -164,10 +167,13 @@ namespace Trainary.presenter
                     superNode = superNode.Parent;
                 }
                 Seduta seduta = (Seduta)superNode.Tag;
+                if (MessageBoxUtils.AskForConfirmation("Sicuro di voler eliminare l'esercizio " + esercizioDaEliminare + "?") == DialogResult.OK)
+                {
 
-                EliminaEsercizio(seduta.Esercizi, esercizioDaEliminare);
+                    EliminaEsercizio(seduta.Esercizi, esercizioDaEliminare);
 
-                SeduteChanged(this, EventArgs.Empty);
+                    SeduteChanged(this, EventArgs.Empty);
+                }
             }
         }
 
