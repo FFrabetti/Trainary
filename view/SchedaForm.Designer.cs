@@ -320,6 +320,7 @@
             // 
             // _scopoComboBox
             // 
+            this._scopoComboBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._scopoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._scopoComboBox.FormattingEnabled = true;
             this._scopoComboBox.Location = new System.Drawing.Point(172, 52);

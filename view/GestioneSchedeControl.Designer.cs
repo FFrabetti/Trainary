@@ -67,6 +67,7 @@
             // 
             // _allenamentiLabel
             // 
+            this._allenamentiLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._allenamentiLabel.AutoSize = true;
             this._allenamentiLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._allenamentiLabel.Location = new System.Drawing.Point(304, 71);
@@ -106,6 +107,7 @@
             this._periodo,
             this._nrSedute});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(20, 20);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(673, 363);
@@ -116,17 +118,17 @@
             // _nome
             // 
             this._nome.Text = "Nome";
-            this._nome.Width = 80;
+            this._nome.Width = 123;
             // 
             // _scopo
             // 
             this._scopo.Text = "Scopo";
-            this._scopo.Width = 144;
+            this._scopo.Width = 104;
             // 
             // _descrizione
             // 
             this._descrizione.Text = "Descrizione";
-            this._descrizione.Width = 173;
+            this._descrizione.Width = 141;
             // 
             // _periodo
             // 
@@ -136,7 +138,7 @@
             // _nrSedute
             // 
             this._nrSedute.Text = "Numero sedute";
-            this._nrSedute.Width = 300;
+            this._nrSedute.Width = 123;
             // 
             // GestioneSchedeControl
             // 
