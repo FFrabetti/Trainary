@@ -67,6 +67,7 @@
             // 
             // _allenamentiLabel
             // 
+            this._allenamentiLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._allenamentiLabel.AutoSize = true;
             this._allenamentiLabel.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._allenamentiLabel.Location = new System.Drawing.Point(304, 71);
