@@ -20,19 +20,27 @@ namespace Trainary.persistence
             _attributiDM = attributiDM;
         }
 
+        private EsercizioSvolto SvolgiEsercizio(Esercizio es)
+        {
+            SvolgiVisitor visitor = new SvolgiVisitor();
+            es.Accept(visitor);
+            AggiungiDati(visitor.EsercizioSvolto);
+            return visitor.EsercizioSvolto;
+        }
+
+        private void AggiungiDati(EsercizioSvolto es)
+        {
+            es.Dati.AddRange(_attributiDM.GetElements());
+        }
+
         private List<EsercizioSvolto> GetEserciziSvolti()
         {
             List<EsercizioSvolto> lista = new List<EsercizioSvolto>();
 
             foreach (Esercizio es in _eserciziDM.GetElements())
             {
-                SvolgiVisitor visitor = new SvolgiVisitor();
-                es.Accept(visitor);
-                EsercizioSvolto esSvolto = visitor.EsercizioSvolto;
-                esSvolto.Dati.AddRange(_attributiDM.GetElements());
-                lista.Add(esSvolto);
+                lista.Add(SvolgiEsercizio(es));
             }
-
             return lista;
         }
 
@@ -42,14 +50,9 @@ namespace Trainary.persistence
 
             foreach (Esercizio es in s.Esercizi)
             {
-                if (random.NextDouble() >= 0.7)
-                    continue;
-
-                SvolgiVisitor visitor = new SvolgiVisitor();
-                es.Accept(visitor);
-                lista.Add(visitor.EsercizioSvolto);
+                if (random.NextDouble() < 0.7) // alcuni es non vengono svolti
+                    lista.Add(SvolgiEsercizio(es));
             }
-
             return lista;
         }
 

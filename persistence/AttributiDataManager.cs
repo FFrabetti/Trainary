@@ -17,7 +17,7 @@ namespace Trainary.persistence
 
         private NumeroPuro GetRandomNumeroPuro()
         {
-            return new NumeroPuro(random.NextDouble() * 100);
+            return new NumeroPuro(random.Next(32));
         }
 
         private Quantita GetRandomUnitValue(TipoQuantita tipo)
