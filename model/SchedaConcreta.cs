@@ -49,7 +49,7 @@ namespace Trainary.model
         {
             int i = Array.IndexOf(Sedute, seduta);
             if (i < 0)
-                throw new ArgumentException("La seduta non è presente nella scheda.");
+                return " -- ";
 
             return (i + 1).ToString();
         }
